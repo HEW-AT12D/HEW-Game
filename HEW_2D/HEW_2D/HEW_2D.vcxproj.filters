@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="リソース ファイル">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="フレームワーク">
+      <UniqueIdentifier>{741e99e2-d922-47b1-a7ed-ce183f73de1f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="シェーダー">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="フレームワーク\入力管理">
+      <UniqueIdentifier>{c812db62-3724-4852-a1c3-7cb761320727}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="フレームワーク\画像読み込み">
+      <UniqueIdentifier>{3049bf7e-8268-4d88-b705-a2ae2991f89e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ゲーム">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="フレームワーク\サウンド">
+      <UniqueIdentifier>{6aea1f95-ca80-4270-9b35-c8e37059f90b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="フレームワーク\DirectX3D11管理">
+      <UniqueIdentifier>{921e64a0-82db-4014-ab84-571ea61e2c97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="フレームワーク\注意点">
+      <UniqueIdentifier>{e840742c-0025-4a90-85b3-a1f4957628af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ゲーム\ゲーム処理">
+      <UniqueIdentifier>{8e8e67e4-b785-4afc-9ee5-2dd8dedccf2d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ゲーム\オブジェクト">
+      <UniqueIdentifier>{73efc6ce-7906-49a0-a135-42a3ec82dab9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="フレームワーク\シーン系">
+      <UniqueIdentifier>{bb884ea1-67de-491c-8028-366c6b61d50c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="フレームワーク\シーン系\シーン管理">
+      <UniqueIdentifier>{62ecd12a-2c34-4e8d-81c1-75aa78d2bd00}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="フレームワーク\シーン系\シーン">
+      <UniqueIdentifier>{45911435-0c0f-4964-888a-ddb38ea69b9b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="フレームワーク\コンポーネント">
+      <UniqueIdentifier>{f18084a7-8232-4e9e-93b8-65fa56d75992}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="フレームワーク\コンポーネント\Transform">
+      <UniqueIdentifier>{0f697584-a89c-4169-a972-57306499fd6e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="フレームワーク\コンポーネント\基本コンポーネント">
+      <UniqueIdentifier>{626bc03d-b55a-45e1-956a-800780101596}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="フレームワーク\コンポーネント\Physic（物理）">
+      <UniqueIdentifier>{e5865c91-7b67-4588-bc48-6f00e9770a55}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="フレームワーク\Precompiled">
+      <UniqueIdentifier>{0774df99-0867-45f6-9bef-850f567650d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="フレームワーク\ImGui">
+      <UniqueIdentifier>{14696ced-9345-41dc-8e38-de4cefa9f34c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="フレームワーク\コンポーネント\コンポーネント管理">
+      <UniqueIdentifier>{b4e7f271-71d4-4d49-9abd-b17ea461da9c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Game\Game\Game.cpp">
+      <Filter>ゲーム\ゲーム処理</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Input\Input.cpp">
+      <Filter>フレームワーク\入力管理</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\D3D11\D3D11.cpp">
+      <Filter>フレームワーク\DirectX3D11管理</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\WICTextureLoader\WICTextureLoader.cpp">
+      <Filter>フレームワーク\画像読み込み</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Sound\sound.cpp">
+      <Filter>フレームワーク\サウンド</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Objcet\GameObject.cpp">
+      <Filter>ゲーム\オブジェクト</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Scene\IScene.cpp">
+      <Filter>フレームワーク\シーン系\シーン</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\SceneManager\SceneManager.cpp">
+      <Filter>フレームワーク\シーン系\シーン管理</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Component\TransForm\Tramsform.cpp">
+      <Filter>フレームワーク\コンポーネント\Transform</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Component\IComponent\IComponent.cpp">
+      <Filter>フレームワーク\コンポーネント\基本コンポーネント</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Precompiled\pch.cpp">
+      <Filter>フレームワーク\Precompiled</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Component\Transform\TransformComponent.cpp">
+      <Filter>フレームワーク\コンポーネント\Transform</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\ComponentManager\ComponentManager.cpp">
+      <Filter>フレームワーク\コンポーネント\コンポーネント管理</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Framework\D3D11\D3D11.h">
+      <Filter>フレームワーク\DirectX3D11管理</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Game\Game.h">
+      <Filter>ゲーム\ゲーム処理</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Input\Input.h">
+      <Filter>フレームワーク\入力管理</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\WICTextureLoader\WICTextureLoader.h">
+      <Filter>フレームワーク\画像読み込み</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Sound\sound.h">
+      <Filter>フレームワーク\サウンド</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Objcet\GameObject.h">
+      <Filter>ゲーム\オブジェクト</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Scene\IScene.h">
+      <Filter>フレームワーク\シーン系\シーン</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\SceneManager\SceneManager.h">
+      <Filter>フレームワーク\シーン系\シーン管理</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Component\TransForm\Transform.h">
+      <Filter>フレームワーク\コンポーネント\Transform</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Component\IComponent\IComponent.h">
+      <Filter>フレームワーク\コンポーネント\基本コンポーネント</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Precompiled\pch.h">
+      <Filter>フレームワーク\Precompiled</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Component\Transform\TransformComponent.h">
+      <Filter>フレームワーク\コンポーネント\Transform</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\ComponentManager\ComponentManager.h">
+      <Filter>フレームワーク\コンポーネント\コンポーネント管理</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Shader\PixelShader.hlsl">
+      <Filter>シェーダー</Filter>
+    </FxCompile>
+    <FxCompile Include="Shader\VertexShader.hlsl">
+      <Filter>シェーダー</Filter>
+    </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Framework\注意点\注意点・解説.txt">
+      <Filter>フレームワーク\注意点</Filter>
+    </Text>
+  </ItemGroup>
+</Project>
