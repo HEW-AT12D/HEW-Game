@@ -1,6 +1,6 @@
-#include "Object.h"
+#include "GameObject.h"
 
-void Object::Init(const wchar_t* imgname, int sx, int sy)
+void GameObject::Init(const wchar_t* imgname, int sx, int sy)
 {
 	//UVÀ•W‚ğİ’è
 	splitX = sx;
