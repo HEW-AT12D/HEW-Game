@@ -38,7 +38,7 @@ void GameObject::Init(const wchar_t* imgname, int sx, int sy)
 	}
 }
 
-void Object::Draw()
+void GameObject::Draw()
 {
 	//頂点バッファを設定
 	UINT strides = sizeof(Vertex);
@@ -77,14 +77,14 @@ void Object::Draw()
 	g_pDeviceContext->Draw(4, 0); // 描画命令
 }
 
-void Object::Uninit()
+void GameObject::Uninit()
 {
 	//開放処理
 	SAFE_RELEASE(m_pVertexBuffer);
 	SAFE_RELEASE(m_pTextureView);
 }
 
-void Object::SetPos(float x, float y, float z) 
+void GameObject::SetPos(float x, float y, float z) 
 {
 	//座標をセットする
 	pos.x = x;
@@ -92,7 +92,7 @@ void Object::SetPos(float x, float y, float z)
 	pos.z = z;
 }
 
-void Object::SetSize(float x, float y, float z) 
+void GameObject::SetSize(float x, float y, float z) 
 {
 	//大きさをセットする
 	size.x = x;
@@ -100,12 +100,12 @@ void Object::SetSize(float x, float y, float z)
 	size.z = z;
 }
 
-void Object::SetAngle(float a) 
+void GameObject::SetAngle(float a) 
 {
 	//角度をセットする
 	angle = a;
 }
-void Object::SetColor(float r, float g, float b, float a)
+void GameObject::SetColor(float r, float g, float b, float a)
 {
 	//色をセットする
 	color.x = r;
@@ -114,25 +114,25 @@ void Object::SetColor(float r, float g, float b, float a)
 	color.w = a;
 }
 
-DirectX::XMFLOAT3 Object::GetPos(void)
+DirectX::XMFLOAT3 GameObject::GetPos(void)
 {
 	//座標をゲット
 	return pos;
 }
   
-DirectX::XMFLOAT3 Object::GetSize(void)
+DirectX::XMFLOAT3 GameObject::GetSize(void)
 {
 	//大きさをゲット
 	return size;
 }
 
-float Object::GetAngle(void)
+float GameObject::GetAngle(void)
 {
 	//角度をゲット
 	return angle;
 }
 
-DirectX::XMFLOAT4 Object::GetColor(void)
+DirectX::XMFLOAT4 GameObject::GetColor(void)
 {
 	//色をゲット
 	return color;
