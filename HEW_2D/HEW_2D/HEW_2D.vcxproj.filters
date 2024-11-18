@@ -67,6 +67,9 @@
     <Filter Include="フレームワーク\コンポーネント\コンポーネント管理">
       <UniqueIdentifier>{b4e7f271-71d4-4d49-9abd-b17ea461da9c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="フレームワーク\Texture">
+      <UniqueIdentifier>{7ccad534-fab1-4564-97bd-1c80764cff69}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game\Game\Game.cpp">
@@ -93,7 +96,7 @@
     <ClCompile Include="Framework\SceneManager\SceneManager.cpp">
       <Filter>フレームワーク\シーン系\シーン管理</Filter>
     </ClCompile>
-    <ClCompile Include="Framework\Component\TransForm\Tramsform.cpp">
+    <ClCompile Include="Framework\Component\TransForm\Transform.cpp">
       <Filter>フレームワーク\コンポーネント\Transform</Filter>
     </ClCompile>
     <ClCompile Include="Framework\Component\IComponent\IComponent.cpp">
@@ -107,6 +110,9 @@
     </ClCompile>
     <ClCompile Include="Framework\ComponentManager\ComponentManager.cpp">
       <Filter>フレームワーク\コンポーネント\コンポーネント管理</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>フレームワーク\Texture</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -148,6 +154,9 @@
     </ClInclude>
     <ClInclude Include="Framework\ComponentManager\ComponentManager.h">
       <Filter>フレームワーク\コンポーネント\コンポーネント管理</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>フレームワーク\Texture</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
