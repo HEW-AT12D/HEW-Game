@@ -8,10 +8,6 @@
     <Filter Include="フレームワーク">
       <UniqueIdentifier>{741e99e2-d922-47b1-a7ed-ce183f73de1f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="シェーダー">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
     <Filter Include="フレームワーク\入力管理">
       <UniqueIdentifier>{c812db62-3724-4852-a1c3-7cb761320727}</UniqueIdentifier>
     </Filter>
@@ -69,6 +65,10 @@
     </Filter>
     <Filter Include="フレームワーク\Texture">
       <UniqueIdentifier>{7ccad534-fab1-4564-97bd-1c80764cff69}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ゲーム\シェーダー">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -161,10 +161,10 @@
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Shader\PixelShader.hlsl">
-      <Filter>シェーダー</Filter>
+      <Filter>ゲーム\シェーダー</Filter>
     </FxCompile>
     <FxCompile Include="Shader\VertexShader.hlsl">
-      <Filter>シェーダー</Filter>
+      <Filter>ゲーム\シェーダー</Filter>
     </FxCompile>
   </ItemGroup>
   <ItemGroup>
