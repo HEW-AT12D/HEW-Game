@@ -1,15 +1,22 @@
 #include"Texture.h"
 
-
-void Init(const wchar_t* _Filename, Transform _Transform, XMFLOAT2 _Split, XMFLOAT2 _Splitnum)
+/**
+ * @brief テクスチャの初期化
+ * @param _Filename ファイルパス
+ * @param _Transform トランスフォーム
+ * @param _Split 画像分割数
+ * @param _Uv 画像番号
+*/
+void Texture::Init(const wchar_t* _Filename, Transform _Transform, XMFLOAT2 _Split, XMFLOAT2 _Uv)
 {
 	//UV座標を設定
-	splitX = sx;
-	splitY = sy;
-	vertexList[1].u = 1.0f / splitX;
-	vertexList[2].v = 1.0f / splitY;
-	vertexList[3].u = 1.0f / splitX;
-	vertexList[3].v = 1.0f / splitY;
+	uv.x = _Uv.x;
+	uv.y = _Uv.y;
+	//! 画像分割数を画像番号で割って、分割した何番目を使うかを各頂点ごと計算
+	vertexList[1].u = uv.x / split.x;
+	vertexList[2].v = uv.y / split.y;
+	vertexList[3].u = uv.x / split.x;
+	vertexList[3].v = uv.y / split.y;
 
 	// 頂点バッファを作成する
 	// ※頂点バッファ→VRAMに頂点データを置くための機能
@@ -30,7 +37,7 @@ void Init(const wchar_t* _Filename, Transform _Transform, XMFLOAT2 _Split, XMFLO
 
 	// テクスチャ読み込み
 //	hr = DirectX::CreateWICTextureFromFile(g_pDevice, imgname, NULL, &m_pTextureView);
-	hr = DirectX::CreateWICTextureFromFileEx(g_pDevice, g_pDeviceContext, imgname, 0, D3D11_USAGE_DEFAULT,
+	hr = DirectX::CreateWICTextureFromFileEx(m_pDevice, m_pDeviceContext, _Filename, 0, D3D11_USAGE_DEFAULT,
 		D3D11_BIND_SHADER_RESOURCE, 0, 0, DirectX::WIC_LOADER_IGNORE_SRGB, nullptr, &m_pTextureView);
 	if (FAILED(hr))
 	{
@@ -42,7 +49,7 @@ void Init(const wchar_t* _Filename, Transform _Transform, XMFLOAT2 _Split, XMFLO
 
 void Texture::Draw()
 {
-
+	transform.Getpo
 }
 
 void Texture::Uninit()

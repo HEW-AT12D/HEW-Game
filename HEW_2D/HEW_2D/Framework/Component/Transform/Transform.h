@@ -26,6 +26,7 @@ public:
 	void SetRotation(XMFLOAT3 _Rotation);
 	void SetScale(XMFLOAT3 _Scale);
 	XMMATRIX ConvertMatrix(void);		// Transformの各値をかけ合わせてワールド行列に変換
+	
 
 	// 更新するべきなのはコンポーネントなのでここに更新はいらない？
 	// →conioのvectorとかと同じノリ？
