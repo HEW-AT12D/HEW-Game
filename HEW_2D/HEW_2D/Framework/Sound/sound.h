@@ -23,11 +23,13 @@ private:
 	{
 		LPCSTR filename;	// 音声ファイルまでのパスを設定
 		bool bLoop;			// trueでループ。通常BGMはture、SEはfalse。
+		bool SandW;			//! 音の強弱の切り替えが必要なサウンドを判定
+		float volume;		//! 音の大きさ（1.0fがノーマル)
 	} PARAM;		//PARAM型構造体
 
 	PARAM m_param[SOUND_LABEL_MAX] =
 	{
-		{"asset/BGM/○○○.wav", true},	// サンプルBGM（ループさせるのでtrue設定）
+		{"asset/BGM/○○○.wav", true,true,1.0f},	// サンプルBGM（ループさせるのでtrue設定）
 //		{"asset/BGM/○○○.wav", true},	// サンプルBGM
 //		{"asset/SE/○○○.wav", false},  		// サンプルSE（ループしないのでfalse設定）
 //		{"asset/SE/○○○.wav", false},		// サンプルSE
@@ -58,6 +60,9 @@ public:
 
 	// 引数で指定したサウンドを停止する
 	void Stop(SOUND_LABEL label);
+
+	//! 引数で指定したサウンドの音量を変更する	//後から追加（出口）
+	void ChangeVolume(SOUND_LABEL label,float volume );
 
 	// 引数で指定したサウンドの再生を再開する
 	void Resume(SOUND_LABEL label);
