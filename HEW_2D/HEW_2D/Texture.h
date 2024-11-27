@@ -4,10 +4,19 @@
 
 
 
-
-class Texture :public Transform
+/**
+ * Textureクラス
+ * 
+ * ・画像の読み込み
+ * ・描画
+ * ・解放
+ * を行う
+ * 
+ */
+class Texture
 {
 protected:
+	Transform transform;
 private:
 	void Init();
 	void Update();
