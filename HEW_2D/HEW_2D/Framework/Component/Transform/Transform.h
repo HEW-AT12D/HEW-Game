@@ -2,6 +2,7 @@
 #include "../../Precompiled/pch.h"
 
 // TODO 2024/10/4 このTransformクラスの変数transformを、IComponentを継承したTransformComponent？とかに持たせる→Transform完成！！（カラーとか透明度ってどこでする？）
+// 2024/11/27 これ構造体でいい説
 // クラステンプレートとか標準ライブラリ、スマートポインタの勉強も必要かも std::vectorとかでコンポーネントを好きなだけつけれるとかできそう
 
 /// <summary>
