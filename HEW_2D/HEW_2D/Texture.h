@@ -1,8 +1,6 @@
 #pragma once
+#include "Framework/D3D11/D3D11.h"
 #include "Framework/Component/Transform/Transform.h"
-
-
-
 
 /**
  * Textureクラス
@@ -12,6 +10,7 @@
  * ・解放
  * を行う
  * 
+ * @brief 
  */
 class Texture
 {
