@@ -5,6 +5,7 @@
 // サウンドファイル
 typedef enum
 {
+
 	SOUND_LABEL_BGM000 = 0,		// サンプルBGM
 	SOUND_LABEL_BGM001,			// サンプルBGM
 	SOUND_LABEL_SE000,			// サンプルSE
@@ -22,7 +23,7 @@ private:
 	{
 		LPCSTR filename;	// 音声ファイルまでのパスを設定
 		bool bLoop;			// trueでループ。通常BGMはture、SEはfalse。
-	} PARAM;
+	} PARAM;		//PARAM型構造体
 
 	PARAM m_param[SOUND_LABEL_MAX] =
 	{
@@ -53,7 +54,7 @@ public:
 	void Uninit(void);
 
 	// 引数で指定したサウンドを再生する
-	void Play(SOUND_LABEL label);
+	void Play(SOUND_LABEL label);		//enumで決めたデータで引数として渡している
 
 	// 引数で指定したサウンドを停止する
 	void Stop(SOUND_LABEL label);
@@ -61,4 +62,13 @@ public:
 	// 引数で指定したサウンドの再生を再開する
 	void Resume(SOUND_LABEL label);
 
+	/*===サウンドフレームワーク設計===*/
+
+	/*
+	音の停止
+	音の再生
+	音のループ
+	シーンごとでの音楽の切り替え(少し違うかも)
+	音の強弱（ゲームシステム上画面外なら小さくなど）これが一番問題？
+	*/
 };

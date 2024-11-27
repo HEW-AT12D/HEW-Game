@@ -131,16 +131,19 @@ void Sound::Play(SOUND_LABEL label)
 
 	if (pSV != nullptr)
 	{
-		pSV->DestroyVoice();
-		pSV = nullptr;
+		pSV->DestroyVoice();		//一度pSVの中身を初期化している
+		pSV = nullptr;				//新しく音声を作成する準備
 	}
 
 	// ソースボイス作成
-	m_pXAudio2->CreateSourceVoice(&pSV, &(m_wfx[(int)label].Format));
+	m_pXAudio2->CreateSourceVoice(&pSV, &(m_wfx[(int)label].Format));	//フォーマットを関数に引数として渡して音源を創る
 	pSV->SubmitSourceBuffer(&(m_buffer[(int)label]));	// ボイスキューに新しいオーディオバッファーを追加
 
+	//音量設定（仮：作成出口）
+	pSV->SetVolume(1.0f);	//更新処理でプレイヤーとオブジェクトの距離で計算すれば距離に応じて
+							//音の大きさを変えることが可能？	1.0fがデフォルト
 	// 再生
-	pSV->Start(0);
+	pSV->Start(0);	//引数の０は生成遅延時間を表している
 
 }
 
@@ -149,14 +152,17 @@ void Sound::Play(SOUND_LABEL label)
 //=============================================================================
 void Sound::Stop(SOUND_LABEL label)
 {
-	if (m_pSourceVoice[(int)label] == NULL) return;
+	if (m_pSourceVoice[(int)label] == NULL) return;	//! 音声が入っていないなら関数を抜ける
 
 	XAUDIO2_VOICE_STATE xa2state;
-	m_pSourceVoice[(int)label]->GetState(&xa2state);
-	if (xa2state.BuffersQueued)
-	{
-		m_pSourceVoice[(int)label]->Stop(0);
+	m_pSourceVoice[(int)label]->GetState(&xa2state);	//! 音声が今どういう状態化を確認する
+	if (xa2state.BuffersQueued)			//! ture(音声が再生中の場合）に音声を止める
+	{									
+		m_pSourceVoice[(int)label]->Stop(0);	//! 引数内はどのように停止するか（０は即座に強制停止）
 	}
+
+	//! 音が流れ切った時に止めるならBuffersQueued=0の時に止めればok
+
 }
 
 //=============================================================================
