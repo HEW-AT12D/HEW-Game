@@ -131,19 +131,33 @@ void Sound::Play(SOUND_LABEL label)
 
 	if (pSV != nullptr)
 	{
-		pSV->DestroyVoice();		//一度pSVの中身を初期化している
-		pSV = nullptr;				//新しく音声を作成する準備
+		pSV->DestroyVoice();		//! 一度pSVの中身を初期化している
+		pSV = nullptr;				//! 新しく音声を作成する準備
 	}
 
 	// ソースボイス作成
-	m_pXAudio2->CreateSourceVoice(&pSV, &(m_wfx[(int)label].Format));	//フォーマットを関数に引数として渡して音源を創る
-	pSV->SubmitSourceBuffer(&(m_buffer[(int)label]));	// ボイスキューに新しいオーディオバッファーを追加
+	m_pXAudio2->CreateSourceVoice(&pSV, &(m_wfx[(int)label].Format));	//! フォーマットを関数に引数として渡して音源を創る
+	pSV->SubmitSourceBuffer(&(m_buffer[(int)label]));	//! ボイスキューに新しいオーディオバッファーを追加
 
 	//音量設定（仮：作成出口）
-	pSV->SetVolume(1.0f);	//更新処理でプレイヤーとオブジェクトの距離で計算すれば距離に応じて
-							//音の大きさを変えることが可能？	1.0fがデフォルト
+	pSV->SetVolume(1.0f);	//! 更新処理でプレイヤーとオブジェクトの距離で計算すれば距離に応じて
+							//! 音の大きさを変えることが可能？	1.0fがデフォルト
 	// 再生
-	pSV->Start(0);	//引数の０は生成遅延時間を表している
+	pSV->Start(0);	//! 引数の０は生成遅延時間を表している
+
+}
+
+//=============================================================================
+// 音量変更
+//=============================================================================
+void Sound::ChangeVolume(SOUND_LABEL label,float volume)		//! 引数の受け渡し（volumeがおそらくできないから変更必要)
+{
+
+	IXAudio2SourceVoice*& pSV = m_pSourceVoice[(int)label];
+	if (pSV != nullptr)
+	{
+		volume = 0;
+	}
 
 }
 
