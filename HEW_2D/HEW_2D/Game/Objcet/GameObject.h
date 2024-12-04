@@ -22,9 +22,7 @@ private:
 		{  0.5f, -0.5f, 0.5f, 1.0f,1.0f,1.0f,1.0f, 1.0f,1.0f},  // 3”Ô–Ú‚Ì’¸“_À•W
 	};
 
-	D3D11* d3d11;
-	Transform* transform;
-	
+	D3D11* d3d11;	
 
 	// À•W
 	//DirectX::XMFLOAT3 pos = { 0.0f, 0.0f, 0.0f };
