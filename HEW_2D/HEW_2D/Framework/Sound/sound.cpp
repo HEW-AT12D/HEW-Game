@@ -94,7 +94,7 @@ HRESULT Sound::Init()
 
 		m_pXAudio2->CreateSourceVoice(&m_pSourceVoice[i], &(m_wfx[i].Format));
 	}
-
+	
 	return hr;
 }
 
@@ -144,19 +144,23 @@ void Sound::Play(SOUND_LABEL label)
 							//! 音の大きさを変えることが可能？	1.0fがデフォルト
 	// 再生
 	pSV->Start(0);	//! 引数の０は生成遅延時間を表している
-
+	
 }
 
 //=============================================================================
 // 音量変更
 //=============================================================================
-void Sound::ChangeVolume(SOUND_LABEL label,float volume)		//! 引数の受け渡し（volumeがおそらくできないから変更必要)
+void Sound::ChangeVolume(SOUND_LABEL label,int distance)		//! 引数の受け渡し（volumeがおそらくできないから変更必要)
 {
 
 	IXAudio2SourceVoice*& pSV = m_pSourceVoice[(int)label];
 	if (pSV != nullptr)
 	{
-		volume = 0;
+		m_param[label].volume = 0;
+	}
+	else
+	{
+		m_param[label].volume = distance;
 	}
 
 }
@@ -245,4 +249,23 @@ HRESULT Sound::ReadChunkData(HANDLE hFile, void* buffer, DWORD buffersize, DWORD
 	if (0 == ReadFile(hFile, buffer, buffersize, &dwRead, NULL))
 		hr = HRESULT_FROM_WIN32(GetLastError());
 	return hr;
+}
+
+//=============================================================================
+// volumeに関するセッター
+//=============================================================================
+int Sound::SetDistance(int distance)
+{
+	//! プレイヤーとの距離(distance)を取って来る
+	
+}
+
+
+//=============================================================================
+// volumeに関するゲッター
+//=============================================================================
+int Sound::SetDistance(int distnace)
+{
+
+	//! 今のところ中身なし
 }
