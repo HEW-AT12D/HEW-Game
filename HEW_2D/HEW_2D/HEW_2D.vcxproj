@@ -139,10 +139,10 @@
     <ClCompile Include="Framework\SceneManager\SceneManager.cpp" />
     <ClCompile Include="Framework\Scene\IScene.cpp" />
     <ClCompile Include="Framework\Sound\sound.cpp" />
+    <ClCompile Include="Framework\Texture\Texture.cpp" />
     <ClCompile Include="Framework\WICTextureLoader\WICTextureLoader.cpp" />
     <ClCompile Include="Game\Game\Game.cpp" />
     <ClCompile Include="Game\Objcet\GameObject.cpp" />
-    <ClCompile Include="Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework\ComponentManager\ComponentManager.h" />
@@ -155,10 +155,10 @@
     <ClInclude Include="Framework\SceneManager\SceneManager.h" />
     <ClInclude Include="Framework\Scene\IScene.h" />
     <ClInclude Include="Framework\Sound\sound.h" />
+    <ClInclude Include="Framework\Texture\Texture.h" />
     <ClInclude Include="Framework\WICTextureLoader\WICTextureLoader.h" />
     <ClInclude Include="Game\Game\Game.h" />
     <ClInclude Include="Game\Objcet\GameObject.h" />
-    <ClInclude Include="Texture.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Framework\注意点\注意点・解説.txt" />

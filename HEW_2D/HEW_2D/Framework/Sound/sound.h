@@ -16,16 +16,19 @@ typedef enum
 	SOUND_LABEL_MAX,
 } SOUND_LABEL;
 
+// パラメータ構造体
+typedef struct
+{
+	LPCSTR filename;	// 音声ファイルまでのパスを設定
+	bool bLoop;			// trueでループ。通常BGMはture、SEはfalse。
+	bool SandW;			//! 音の強弱の切り替えが必要なサウンドを判定
+	float volume;		//! 音の大きさ（1.0fがノーマル)
+} PARAM;		//PARAM型構造体
+
 class Sound {
+
 private:
-	// パラメータ構造体
-	typedef struct
-	{
-		LPCSTR filename;	// 音声ファイルまでのパスを設定
-		bool bLoop;			// trueでループ。通常BGMはture、SEはfalse。
-		bool SandW;			//! 音の強弱の切り替えが必要なサウンドを判定
-		float volume;		//! 音の大きさ（1.0fがノーマル)
-	} PARAM;		//PARAM型構造体
+	
 
 	PARAM m_param[SOUND_LABEL_MAX] =
 	{
@@ -48,6 +51,8 @@ private:
 	HRESULT FindChunk(HANDLE, DWORD, DWORD&, DWORD&);
 	HRESULT ReadChunkData(HANDLE, void*, DWORD, DWORD);
 
+	int Distance = 0;	//プレイヤーとオブジェクトの距離をもらう変数
+
 public:
 	// ゲームループ開始前に呼び出すサウンドの初期化処理
 	HRESULT Init(void);
@@ -62,10 +67,14 @@ public:
 	void Stop(SOUND_LABEL label);
 
 	//! 引数で指定したサウンドの音量を変更する	//後から追加（出口）
-	void ChangeVolume(SOUND_LABEL label,float volume );
+	void ChangeVolume(SOUND_LABEL label,int );
 
 	// 引数で指定したサウンドの再生を再開する
 	void Resume(SOUND_LABEL label);
+
+	//volume変数のセッター・ゲッター関数（音量調整のため）
+	int SetDistance(int);
+	int GetDistance(void);
 
 	/*===サウンドフレームワーク設計===*/
 

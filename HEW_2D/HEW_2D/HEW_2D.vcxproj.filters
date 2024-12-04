@@ -111,7 +111,7 @@
     <ClCompile Include="Framework\ComponentManager\ComponentManager.cpp">
       <Filter>フレームワーク\コンポーネント\コンポーネント管理</Filter>
     </ClCompile>
-    <ClCompile Include="Texture.cpp">
+    <ClCompile Include="Framework\Texture\Texture.cpp">
       <Filter>フレームワーク\Texture</Filter>
     </ClCompile>
   </ItemGroup>
@@ -155,7 +155,7 @@
     <ClInclude Include="Framework\ComponentManager\ComponentManager.h">
       <Filter>フレームワーク\コンポーネント\コンポーネント管理</Filter>
     </ClInclude>
-    <ClInclude Include="Texture.h">
+    <ClInclude Include="Framework\Texture\Texture.h">
       <Filter>フレームワーク\Texture</Filter>
     </ClInclude>
   </ItemGroup>
