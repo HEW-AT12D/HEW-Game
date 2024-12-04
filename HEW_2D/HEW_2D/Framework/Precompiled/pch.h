@@ -6,6 +6,7 @@
 #include <memory>
 #include <vector>
 #include <DirectXMath.h>
+#include <SimpleMath.h>
 #include <stdlib.h>
 
 // DirectX::‚ğÈ—ª‚µ‚½‚¢

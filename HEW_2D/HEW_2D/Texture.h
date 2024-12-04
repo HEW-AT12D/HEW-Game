@@ -1,6 +1,7 @@
 #pragma once
 #include "Framework/D3D11/D3D11.h"
 #include "Framework/Component/Transform/Transform.h"
+#include "Framework/WICTextureLoader/WICTextureLoader.h"
 
 
 /**
@@ -25,8 +26,10 @@ class Texture
 protected:
 	//! トランスフォーム
 	Transform transform;
+	//! 画像分割数
+	XMFLOAT2 split;
 	//! 画像番号
-	XMFLOAT2 Splitnum;
+	XMFLOAT2 uv;
 	//! 頂点座標
 	Vertex vertexList[4] =
 	{

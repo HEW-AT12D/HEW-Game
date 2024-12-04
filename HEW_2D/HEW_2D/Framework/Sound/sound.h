@@ -51,6 +51,8 @@ private:
 	HRESULT FindChunk(HANDLE, DWORD, DWORD&, DWORD&);
 	HRESULT ReadChunkData(HANDLE, void*, DWORD, DWORD);
 
+	int Distance = 0;	//プレイヤーとオブジェクトの距離をもらう変数
+
 public:
 	// ゲームループ開始前に呼び出すサウンドの初期化処理
 	HRESULT Init(void);
@@ -65,14 +67,14 @@ public:
 	void Stop(SOUND_LABEL label);
 
 	//! 引数で指定したサウンドの音量を変更する	//後から追加（出口）
-	void ChangeVolume(SOUND_LABEL label,float volume );
+	void ChangeVolume(SOUND_LABEL label,int );
 
 	// 引数で指定したサウンドの再生を再開する
 	void Resume(SOUND_LABEL label);
 
 	//volume変数のセッター・ゲッター関数（音量調整のため）
-	int SetVolume(SOUND_LABEL label,int);
-	int GetVolume(void);
+	int SetDistance(int);
+	int GetDistance(void);
 
 	/*===サウンドフレームワーク設計===*/
 

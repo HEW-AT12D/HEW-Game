@@ -1,2 +1,6 @@
 PlatformToolSet=v143:VCToolArchitecture=Native64Bit:VCToolsVersion=14.35.32215:TargetPlatformVersion=10.0.22000.0:
+<<<<<<< HEAD
 Debug|x64|C:\Users\kuluk\OneDrive\デスクトップ\HEW-Game\HEW_2D\|
+=======
+Debug|x64|C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\|
+>>>>>>> ba5eaa072caf3349bf119b40af9ff33780eec0aa
