@@ -16,16 +16,19 @@ typedef enum
 	SOUND_LABEL_MAX,
 } SOUND_LABEL;
 
+// パラメータ構造体
+typedef struct
+{
+	LPCSTR filename;	// 音声ファイルまでのパスを設定
+	bool bLoop;			// trueでループ。通常BGMはture、SEはfalse。
+	bool SandW;			//! 音の強弱の切り替えが必要なサウンドを判定
+	float volume;		//! 音の大きさ（1.0fがノーマル)
+} PARAM;		//PARAM型構造体
+
 class Sound {
+
 private:
-	// パラメータ構造体
-	typedef struct
-	{
-		LPCSTR filename;	// 音声ファイルまでのパスを設定
-		bool bLoop;			// trueでループ。通常BGMはture、SEはfalse。
-		bool SandW;			//! 音の強弱の切り替えが必要なサウンドを判定
-		float volume;		//! 音の大きさ（1.0fがノーマル)
-	} PARAM;		//PARAM型構造体
+	
 
 	PARAM m_param[SOUND_LABEL_MAX] =
 	{
@@ -66,6 +69,10 @@ public:
 
 	// 引数で指定したサウンドの再生を再開する
 	void Resume(SOUND_LABEL label);
+
+	//volume変数のセッター・ゲッター関数（音量調整のため）
+	int SetVolume(SOUND_LABEL label,int);
+	int GetVolume(void);
 
 	/*===サウンドフレームワーク設計===*/
 
