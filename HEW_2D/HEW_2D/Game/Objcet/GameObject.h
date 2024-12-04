@@ -9,7 +9,7 @@
 /// ・このクラスを完成させてから余裕があればコンポーネント指向に移行する
 /// </summary>
 
-class GameObject {
+class GameObject:public Transform {
 private:
 	// 頂点データ
 	Vertex vertexList[4] =
@@ -22,9 +22,11 @@ private:
 	};
 
 	// 座標
-	DirectX::XMFLOAT3 pos = { 0.0f, 0.0f, 0.0f };
+	//DirectX::XMFLOAT3 pos = { 0.0f, 0.0f, 0.0f };
+	
 	// 大きさ
-	DirectX::XMFLOAT3 size = { 100.0f, 100.0f, 0.0f };
+	//DirectX::XMFLOAT3 size = { 100.0f, 100.0f, 0.0f };
+	
 	// 角度
 	float angle = 0.0f;
 	// 色
