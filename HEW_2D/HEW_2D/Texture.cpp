@@ -36,7 +36,10 @@ void Texture::Init(const wchar_t* _Filename, Transform _Transform, XMFLOAT2 _Spl
 	HRESULT hr = m_pDevice->CreateBuffer(&bufferDesc, &subResourceData, &m_pVertexBuffer);
 
 	// テクスチャ読み込み
-//	hr = DirectX::CreateWICTextureFromFile(g_pDevice, imgname, NULL, &m_pTextureView);
+//	hr = DirectX::CreateWICTextureFromFile(
+	
+	
+	Device, imgname, NULL, &m_pTextureView);
 	hr = DirectX::CreateWICTextureFromFileEx(m_pDevice, m_pDeviceContext, _Filename, 0, D3D11_USAGE_DEFAULT,
 		D3D11_BIND_SHADER_RESOURCE, 0, 0, DirectX::WIC_LOADER_IGNORE_SRGB, nullptr, &m_pTextureView);
 	if (FAILED(hr))

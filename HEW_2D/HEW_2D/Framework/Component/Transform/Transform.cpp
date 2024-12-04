@@ -13,6 +13,19 @@ void Transform::SetScale(XMFLOAT3 _Scale) {
 	m_Position = _Scale;
 }
 
+ XMFLOAT3 Transform::GetPosition(void) {
+	return m_Position;
+}
+
+ XMFLOAT3 Transform::GetRotation(void) {
+	 return m_Rotation;
+ }
+
+ XMFLOAT3 Transform::GetPosition(void) {
+	 return m_Rotation;
+ }
+
+
 // çsóÒïœä∑
 XMMATRIX Transform::ConvertMatrix(void) {
 	XMMATRIX WorldPos, WorldRot, WorldScale;

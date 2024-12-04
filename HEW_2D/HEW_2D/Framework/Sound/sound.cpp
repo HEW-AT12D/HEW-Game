@@ -38,7 +38,7 @@ HRESULT Sound::Init()
 
 	/**** Create XAudio2 ****/
 	hr = XAudio2Create(&m_pXAudio2, 0);		// 第二引数は､動作フラグ デバッグモードの指定(現在は未使用なので0にする)
-	//hr=XAudio2Create(&g_pXAudio2, 0, XAUDIO2_DEFAULT_PROCESSOR);		// 第三引数は、windowsでは無視
+	//hr=XAudio2Create(&m_pXAudio2, 0, XAUDIO2_DEFAULT_PROCESSOR);		// 第三引数は、windowsでは無視
 	if (FAILED(hr)) {
 		CoUninitialize();
 		return -1;

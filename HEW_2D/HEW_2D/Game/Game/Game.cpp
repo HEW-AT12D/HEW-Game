@@ -35,11 +35,15 @@ void Game::Update(void)
 
 	// Iキーでフルスクリーン化
 	if (input.GetKeyTrigger(VK_I)) {
-		g_pSwapChain->SetFullscreenState(TRUE, NULL);
+		
+		
+		
+		
+		SwapChain->SetFullscreenState(TRUE, NULL);
 	}
 	// Kキーでフルスクリーン解除
 	if (input.GetKeyTrigger(VK_K)) {
-		g_pSwapChain->SetFullscreenState(FALSE, NULL);
+		m_pSwapChain->SetFullscreenState(FALSE, NULL);
 	}
 
 	player.SetPos(pos.x, pos.y, pos.z);

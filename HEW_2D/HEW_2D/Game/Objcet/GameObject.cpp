@@ -25,11 +25,14 @@ void GameObject::Init(const wchar_t* imgname, int sx, int sy)
 	subResourceData.SysMemPitch = 0;
 	subResourceData.SysMemSlicePitch = 0;
 
-	HRESULT hr = m_pDevice->CreateBuffer(&bufferDesc, &subResourceData, &m_pVertexBuffer);
+	HRESULT hr = d3d11->GetDevice()->CreateBuffer(&bufferDesc, &subResourceData, &m_pVertexBuffer);
 
 	// テクスチャ読み込み
-//	hr = DirectX::CreateWICTextureFromFile(g_pDevice, imgname, NULL, &m_pTextureView);
-	hr = DirectX::CreateWICTextureFromFileEx(g_pDevice, g_pDeviceContext, imgname, 0, D3D11_USAGE_DEFAULT,
+//	hr = DirectX::CreateWICTextureFromFile(
+	
+	
+	Device, imgname, NULL, &m_pTextureView);
+	hr = DirectX::CreateWICTextureFromFileEx(d3d11->GetDevice(), d3d11->GetDeviceContext(), imgname, 0, D3D11_USAGE_DEFAULT,
 		D3D11_BIND_SHADER_RESOURCE, 0, 0, DirectX::WIC_LOADER_IGNORE_SRGB, nullptr, &m_pTextureView);
 	if (FAILED(hr))
 	{
@@ -43,10 +46,10 @@ void GameObject::Draw()
 	//頂点バッファを設定
 	UINT strides = sizeof(Vertex);
 	UINT offsets = 0;
-	g_pDeviceContext->IASetVertexBuffers(0, 1, &m_pVertexBuffer, &strides, &offsets);
+	d3d11->GetDeviceContext()->IASetVertexBuffers(0, 1, &m_pVertexBuffer, &strides, &offsets);
 
 	// テクスチャをピクセルシェーダーに渡す
-	g_pDeviceContext->PSSetShaderResources(0, 1, &m_pTextureView);
+	d3d11->GetDeviceContext()->PSSetShaderResources(0, 1, &m_pTextureView);
 
 	//定数バッファを更新
 	ConstBuffer cb;
@@ -57,9 +60,9 @@ void GameObject::Draw()
 
 	// ワールド変換行列の作成
 	// →オブジェクトの位置・大きさ・向きを指定
-	cb.matrixWorld = DirectX::XMMatrixScaling(size.x, size.y, size.z);
+	cb.matrixWorld = DirectX::XMMatrixScaling(m_Scale.x, m_Scale.y, m_Scale.z);
 	cb.matrixWorld *= DirectX::XMMatrixRotationZ(angle * 3.14f / 180);
-	cb.matrixWorld *= DirectX::XMMatrixTranslation(pos.x, pos.y, pos.z);
+	cb.matrixWorld *= DirectX::XMMatrixTranslation(m_Position.x, m_Position.y, m_Position.z);
 	cb.matrixWorld = DirectX::XMMatrixTranspose(cb.matrixWorld);
 
 	// UVアニメーションの行列作成
@@ -72,9 +75,9 @@ void GameObject::Draw()
 	cb.color = color;
 
 	// 行列をシェーダーに渡す
-	g_pDeviceContext->UpdateSubresource( g_pConstantBuffer, 0, NULL, &cb, 0, 0);
+	d3d11->GetDeviceContext()->UpdateSubresource(d3d11->GetConststBuffer(), 0, NULL, &cb, 0, 0);
 
-	g_pDeviceContext->Draw(4, 0); // 描画命令
+	d3d11->GetDeviceContext()->Draw(4, 0); // 描画命令
 }
 
 void GameObject::Uninit()
@@ -87,17 +90,17 @@ void GameObject::Uninit()
 void GameObject::SetPos(float x, float y, float z) 
 {
 	//座標をセットする
-	pos.x = x;
-	pos.y = y;
-	pos.z = z;
+	m_Position.x = x;
+	m_Position.y = y;
+	m_Position.z = z;
 }
 
 void GameObject::SetSize(float x, float y, float z) 
 {
 	//大きさをセットする
-	size.x = x;
-	size.y = y;
-	size.z = z;
+	m_Scale.x = x;
+	m_Scale.y = y;
+	m_Scale.z = z;
 }
 
 void GameObject::SetAngle(float a) 
@@ -117,13 +120,13 @@ void GameObject::SetColor(float r, float g, float b, float a)
 DirectX::XMFLOAT3 GameObject::GetPos(void)
 {
 	//座標をゲット
-	return pos;
+	return m_Position;
 }
   
 DirectX::XMFLOAT3 GameObject::GetSize(void)
 {
 	//大きさをゲット
-	return size;
+	return m_Scale;
 }
 
 float GameObject::GetAngle(void)

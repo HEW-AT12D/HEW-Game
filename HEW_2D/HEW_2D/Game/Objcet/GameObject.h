@@ -2,6 +2,7 @@
 #include "../../Framework/Precompiled/pch.h"
 #include "../../Framework/D3D11/D3D11.h"
 #include "../../Framework/WICTextureLoader/WICTextureLoader.h" // テクスチャ読み込みライブラリ
+#include"../../Framework/Component/Transform/Transform.h"//Transform.h読み込み
 
 /// <summary>
 /// 基本となるゲームオブジェクトクラス
@@ -20,6 +21,10 @@ private:
 		{ -0.5f, -0.5f, 0.5f, 1.0f,1.0f,1.0f,1.0f, 0.0f,1.0f},  // 2番目の頂点座標
 		{  0.5f, -0.5f, 0.5f, 1.0f,1.0f,1.0f,1.0f, 1.0f,1.0f},  // 3番目の頂点座標
 	};
+
+	D3D11* d3d11;
+	Transform* transform;
+	
 
 	// 座標
 	//DirectX::XMFLOAT3 pos = { 0.0f, 0.0f, 0.0f };

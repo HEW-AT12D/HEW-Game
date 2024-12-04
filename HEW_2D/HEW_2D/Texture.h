@@ -21,11 +21,12 @@
  * アニメーションどうする問題
  * →レンダラークラスを作るなら描画機能は完全にレンダラーに依存させて、レンダラーからアニメーションを呼び出す、とかにするべき
  */
-class Texture
+class Texture:public Transform
 {
+
 protected:
 	//! トランスフォーム
-	Transform transform;
+	//Transform transform;
 	//! 画像分割数
 	XMFLOAT2 split;
 	//! 画像番号

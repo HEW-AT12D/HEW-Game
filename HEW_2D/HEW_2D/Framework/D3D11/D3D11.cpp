@@ -46,17 +46,17 @@ HRESULT D3D11::Init(HWND hwnd)
 		1,
 		D3D11_SDK_VERSION,
 		&swapChainDesc,
-		&g_pSwapChain,
-		&g_pDevice,
+		&m_pSwapChain,
+		&m_pDevice,
 		&level,
-		&g_pDeviceContext);
+		&m_pDeviceContext);
 	if (FAILED(hr)) return hr; // 上の関数呼び出しが失敗してないかifでチェック
 
 	// レンダーターゲットビュー作成
 	ID3D11Texture2D* renderTarget;
-	hr = g_pSwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&renderTarget);
+	hr = m_pSwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&renderTarget);
 	if (FAILED(hr)) return hr;
-	hr = g_pDevice->CreateRenderTargetView(renderTarget, NULL, &m_pRenderTargetView);
+	hr = m_pDevice->CreateRenderTargetView(renderTarget, NULL, &m_pRenderTargetView);
 	renderTarget->Release();
 	if (FAILED(hr)) return hr;
 
@@ -75,7 +75,7 @@ HRESULT D3D11::Init(HWND hwnd)
 	textureDesc.BindFlags = D3D11_BIND_DEPTH_STENCIL;
 	textureDesc.CPUAccessFlags = 0;
 	textureDesc.MiscFlags = 0;
-	hr = g_pDevice->CreateTexture2D(&textureDesc, NULL, &depthStencile);
+	hr = m_pDevice->CreateTexture2D(&textureDesc, NULL, &depthStencile);
 	if (FAILED(hr)) return hr;
 
 	// デプスステンシルビュー作成
@@ -84,7 +84,7 @@ HRESULT D3D11::Init(HWND hwnd)
 	depthStencilViewDesc.Format = textureDesc.Format;
 	depthStencilViewDesc.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
 	depthStencilViewDesc.Flags = 0;
-	hr = g_pDevice->CreateDepthStencilView(depthStencile, &depthStencilViewDesc, &g_pDepthStencilView);
+	hr = m_pDevice->CreateDepthStencilView(depthStencile, &depthStencilViewDesc, &m_pDepthStencilView);
 	if (FAILED(hr)) return hr;
 	depthStencile->Release();
 
@@ -96,7 +96,7 @@ HRESULT D3D11::Init(HWND hwnd)
 	viewport.Height = (FLOAT)rect.Height();
 	viewport.MinDepth = 0.0f;
 	viewport.MaxDepth = 1.0f;
-	g_pDeviceContext->RSSetViewports(1, &viewport);
+	m_pDeviceContext->RSSetViewports(1, &viewport);
 
 	// インプットレイアウト作成
 	D3D11_INPUT_ELEMENT_DESC layout[]
@@ -111,15 +111,15 @@ HRESULT D3D11::Init(HWND hwnd)
 	unsigned int numElements = ARRAYSIZE(layout);
 
 	// 頂点シェーダーオブジェクトを生成、同時に頂点レイアウトも生成
-	hr = CreateVertexShader(g_pDevice, "VertexShader.hlsl", "vs_main", "vs_5_0",
-		layout, numElements, &g_pVertexShader, &g_pInputLayout);
+	hr = CreateVertexShader(m_pDevice, "VertexShader.hlsl", "vs_main", "vs_5_0",
+		layout, numElements, &m_pVertexShader, &m_pInputLayout);
 	if (FAILED(hr)) {
 		MessageBoxA(NULL, "CreateVertexShader error", "error", MB_OK);
 		return E_FAIL;
 	}
 
 	// ピクセルシェーダーオブジェクトを生成
-	hr = CreatePixelShader(g_pDevice, "PixelShader.hlsl", "ps_main", "ps_5_0", &g_pPixelShader);
+	hr = CreatePixelShader(m_pDevice, "PixelShader.hlsl", "ps_main", "ps_5_0", &m_pPixelShader);
 	if (FAILED(hr)) {
 		MessageBoxA(NULL, "CreatePixelShader error", "error", MB_OK);
 		return E_FAIL;
@@ -133,7 +133,7 @@ HRESULT D3D11::Init(HWND hwnd)
 	smpDesc.AddressU = D3D11_TEXTURE_ADDRESS_CLAMP;
 	smpDesc.AddressV = D3D11_TEXTURE_ADDRESS_CLAMP;
 	smpDesc.AddressW = D3D11_TEXTURE_ADDRESS_CLAMP;
-	hr = g_pDevice->CreateSamplerState(&smpDesc, &g_pSampler);
+	hr = m_pDevice->CreateSamplerState(&smpDesc, &m_pSampler);
 	if (FAILED(hr)) return hr;
 
 	// 定数バッファ作成
@@ -144,7 +144,7 @@ HRESULT D3D11::Init(HWND hwnd)
 	cbDesc.CPUAccessFlags = 0;
 	cbDesc.MiscFlags = 0;
 	cbDesc.StructureByteStride = 0;
-	hr = g_pDevice->CreateBuffer(&cbDesc, NULL, &g_pConstantBuffer);
+	hr = m_pDevice->CreateBuffer(&cbDesc, NULL, &m_pConstantBuffer);
 	if (FAILED(hr)) return hr;
 
 	// ブレンドステート作成 →透過処理や加算合成を可能にする色の合成方法
@@ -160,7 +160,7 @@ HRESULT D3D11::Init(HWND hwnd)
 	BlendState.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_ZERO;
 	BlendState.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
 	BlendState.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
-	hr = g_pDevice->CreateBlendState(&BlendState, &g_pBlendState);
+	hr = m_pDevice->CreateBlendState(&BlendState, &m_pBlendState);
 	if (FAILED(hr)) return hr;
 
 	//深度テストを無効にする
@@ -170,9 +170,9 @@ HRESULT D3D11::Init(HWND hwnd)
 	dsDesc.DepthEnable = FALSE; // 深度テストを無効にする
 	dsDesc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL;
 	dsDesc.DepthFunc = D3D11_COMPARISON_LESS;
-	hr = g_pDevice->CreateDepthStencilState(&dsDesc, &pDSState);
+	hr = m_pDevice->CreateDepthStencilState(&dsDesc, &pDSState);
 	if (FAILED(hr)) return hr;
-	g_pDeviceContext->OMSetDepthStencilState(pDSState, 1);
+	m_pDeviceContext->OMSetDepthStencilState(pDSState, 1);
 
 
 	return S_OK;
@@ -187,31 +187,31 @@ void D3D11::StartRender()
 	float clearColor[4] = { 0.0f, 0.0f, 1.0f, 1.0f }; //red,green,blue,alpha
 
 	// 描画先のキャンバスと使用する深度バッファを指定する
-	g_pDeviceContext->OMSetRenderTargets(1, &g_pRenderTargetView, g_pDepthStencilView);
+	m_pDeviceContext->OMSetRenderTargets(1, &m_pRenderTargetView, m_pDepthStencilView);
 	// 描画先キャンバスを塗りつぶす
-	g_pDeviceContext->ClearRenderTargetView(g_pRenderTargetView, clearColor);
+	m_pDeviceContext->ClearRenderTargetView(m_pRenderTargetView, clearColor);
 	// 深度バッファをリセットする
-	g_pDeviceContext->ClearDepthStencilView(g_pDepthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
+	m_pDeviceContext->ClearDepthStencilView(m_pDepthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 
-	g_pDeviceContext->IASetInputLayout(g_pInputLayout);
-	g_pDeviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
-	g_pDeviceContext->VSSetShader(g_pVertexShader, NULL, 0);
-	g_pDeviceContext->PSSetShader(g_pPixelShader, NULL, 0);
+	m_pDeviceContext->IASetInputLayout(m_pInputLayout);
+	m_pDeviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
+	m_pDeviceContext->VSSetShader(m_pVertexShader, NULL, 0);
+	m_pDeviceContext->PSSetShader(m_pPixelShader, NULL, 0);
 
 	// サンプラーをピクセルシェーダーに渡す
-	g_pDeviceContext->PSSetSamplers(0, 1, &g_pSampler);
+	m_pDeviceContext->PSSetSamplers(0, 1, &m_pSampler);
 
 	// 定数バッファを頂点シェーダーにセットする
-	g_pDeviceContext->VSSetConstantBuffers(0, 1, &g_pConstantBuffer);
+	m_pDeviceContext->VSSetConstantBuffers(0, 1, &m_pConstantBuffer);
 
 	//ブレンドステートをセットする
-	g_pDeviceContext->OMSetBlendState( g_pBlendState, NULL, 0xffffffff);
+	m_pDeviceContext->OMSetBlendState( m_pBlendState, NULL, 0xffffffff);
 }
 
 void D3D11::FinishRender()
 {
 	// ダブルバッファの切り替えを行い画面を更新する
-	g_pSwapChain->Present(0, 0);
+	m_pSwapChain->Present(0, 0);
 }
 
 //--------------------------------------------------------------------------------------
@@ -220,18 +220,18 @@ void D3D11::FinishRender()
 // ※DirectXの各機能は作成した後、アプリ終了時に必ず解放しなければならない
 void D3D11::Release()
 {
-	if (g_pDeviceContext) g_pDeviceContext->ClearState();
-	SAFE_RELEASE(g_pBlendState);
-	SAFE_RELEASE(g_pConstantBuffer);
-	SAFE_RELEASE(g_pSampler);
-	SAFE_RELEASE(g_pPixelShader);
-	SAFE_RELEASE(g_pVertexShader);
-	SAFE_RELEASE(g_pInputLayout);
-	SAFE_RELEASE(g_pDepthStencilView);
-	SAFE_RELEASE(g_pRenderTargetView);
-	SAFE_RELEASE(g_pSwapChain);
-	SAFE_RELEASE(g_pDeviceContext);
-	SAFE_RELEASE(g_pDevice);
+	if (m_pDeviceContext) m_pDeviceContext->ClearState();
+	SAFE_RELEASE(m_pBlendState);
+	SAFE_RELEASE(m_pConstantBuffer);
+	SAFE_RELEASE(m_pSampler);
+	SAFE_RELEASE(m_pPixelShader);
+	SAFE_RELEASE(m_pVertexShader);
+	SAFE_RELEASE(m_pInputLayout);
+	SAFE_RELEASE(m_pDepthStencilView);
+	SAFE_RELEASE(m_pRenderTargetView);
+	SAFE_RELEASE(m_pSwapChain);
+	SAFE_RELEASE(m_pDeviceContext);
+	SAFE_RELEASE(m_pDevice);
 }
 
 //--------------------------------------------------------------------------------------
@@ -380,4 +380,25 @@ HRESULT D3D11::CreatePixelShader(ID3D11Device* device, const char* szFileName, L
 	}
 
 	return S_OK;
+}
+
+
+ID3D11Device* D3D11::GetDevice(void)
+{
+	return m_pDevice;
+}
+
+ID3D11DeviceContext* D3D11::GetDeviceContext(void)
+{
+	return m_pDeviceContext;
+}
+
+IDXGISwapChain* D3D11::GetSwapChain(void)
+{
+	return m_pSwapChain;
+}
+
+ID3D11Buffer* D3D11::GetConststBuffer(void)
+{
+	return m_pConstantBuffer;
 }

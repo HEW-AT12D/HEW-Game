@@ -22,15 +22,20 @@ public:
 	Transform() :m_Position(0.0f, 0.0f, 0.0f), m_Rotation(0.0f, 0.0f, 0.0f), m_Scale(1.0f, 1.0f, 0.0f) {};
 	~Transform();
 
+
+
 	void SetPosition(XMFLOAT3 _Position);
 	void SetRotation(XMFLOAT3 _Rotation);
 	void SetScale(XMFLOAT3 _Scale);
+	XMFLOAT3 GetPosition(void);
+	XMFLOAT3 GetRotation(void);
+	XMFLOAT3 GetScale(void);
 	XMMATRIX ConvertMatrix(void);		// Transformの各値をかけ合わせてワールド行列に変換
 	
 
 	// 更新するべきなのはコンポーネントなのでここに更新はいらない？
 	// →conioのvectorとかと同じノリ？
-private:
+protected:
 	XMFLOAT3 m_Position = XMFLOAT3(0.0f, 0.0f, 0.0f);	// 座標
 	XMFLOAT3 m_Rotation = XMFLOAT3(0.0f, 0.0f, 0.0f);	// 角度
 	XMFLOAT3 m_Scale = XMFLOAT3(0.0f, 0.0f, 0.0f);		// 大きさ
