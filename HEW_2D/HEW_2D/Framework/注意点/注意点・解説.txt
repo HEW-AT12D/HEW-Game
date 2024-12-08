@@ -7,6 +7,7 @@
 ＜WICTextureLoaderについて＞
 　〇WICTextureLoaderはプロジェクトに埋め込む方式を使ってます（2024/9/30時点）
 　　→後から変更あるかも
+　　　→Cドライブ直下にWICTextureLoaderとDirectXToolKitをそれぞれ入れてもらう形にします！（2024/12/8時点）
 
 ＜コンポーネント(機能)について＞
 ・基本的にUnityと同じような作りにしたつもりです。

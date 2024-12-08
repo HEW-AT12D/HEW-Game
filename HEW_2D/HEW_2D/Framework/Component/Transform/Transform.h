@@ -1,6 +1,8 @@
 #pragma once
 #include "../../Precompiled/pch.h"
 
+using namespace SimpleMath;
+
 // TODO:2024/11/27 これ構造体でいい説！！！！！！！
 // →Transformはあくまでデータの取りまとめ→わざわざクラスにして継承させてしまうと親子関係が深くなりすぎて絶対ややこしくなるからこれはやめるべき
 // クラステンプレートとか標準ライブラリ、スマートポインタの勉強も必要かも std::vectorとかでコンポーネントを好きなだけつけれるとかできそう
@@ -24,21 +26,21 @@ public:
 
 
 
-	void SetPosition(XMFLOAT3 _Position);
-	void SetRotation(XMFLOAT3 _Rotation);
-	void SetScale(XMFLOAT3 _Scale);
-	XMFLOAT3 GetPosition(void);
-	XMFLOAT3 GetRotation(void);
-	XMFLOAT3 GetScale(void);
-	XMMATRIX ConvertMatrix(void);		// Transformの各値をかけ合わせてワールド行列に変換
+	void SetPosition(Vector3 _Position);
+	void SetRotation(Vector3 _Rotation);
+	void SetScale(Vector3 _Scale);
+	Vector3 GetPosition(void);
+	Vector3 GetRotation(void);
+	Vector3 GetScale(void);
+	Matrix ConvertMatrix(void);		// Transformの各値をかけ合わせてワールド行列に変換
 	
 
 	// 更新するべきなのはコンポーネントなのでここに更新はいらない？
 	// →conioのvectorとかと同じノリ？
 protected:
-	XMFLOAT3 m_Position = XMFLOAT3(0.0f, 0.0f, 0.0f);	// 座標
-	XMFLOAT3 m_Rotation = XMFLOAT3(0.0f, 0.0f, 0.0f);	// 角度
-	XMFLOAT3 m_Scale = XMFLOAT3(0.0f, 0.0f, 0.0f);		// 大きさ
+	Vector3 m_Position = Vector3(0.0f, 0.0f, 0.0f);	// 座標
+	Vector3 m_Rotation = Vector3(0.0f, 0.0f, 0.0f);	// 角度
+	Vector3 m_Scale = Vector3(0.0f, 0.0f, 0.0f);		// 大きさ
 };
 
 Transform::Transform()

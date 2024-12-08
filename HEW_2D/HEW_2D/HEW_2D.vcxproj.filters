@@ -70,6 +70,9 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
+    <Filter Include="フレームワーク\ウィンドウ">
+      <UniqueIdentifier>{bb3b72fc-e6c5-4df3-8470-371f3acafc99}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game\Game\Game.cpp">
@@ -114,6 +117,9 @@
     <ClCompile Include="Framework\Texture\Texture.cpp">
       <Filter>フレームワーク\Texture</Filter>
     </ClCompile>
+    <ClCompile Include="Framework\Window\Window.cpp">
+      <Filter>フレームワーク\ウィンドウ</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework\D3D11\D3D11.h">
@@ -157,6 +163,9 @@
     </ClInclude>
     <ClInclude Include="Framework\Texture\Texture.h">
       <Filter>フレームワーク\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Window\Window.h">
+      <Filter>フレームワーク\ウィンドウ</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

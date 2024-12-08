@@ -149,6 +149,7 @@
     <ClCompile Include="Framework\Sound\sound.cpp" />
     <ClCompile Include="Framework\Texture\Texture.cpp" />
     <ClCompile Include="Framework\WICTextureLoader\WICTextureLoader.cpp" />
+    <ClCompile Include="Framework\Window\Window.cpp" />
     <ClCompile Include="Game\Game\Game.cpp" />
     <ClCompile Include="Game\Objcet\GameObject.cpp" />
   </ItemGroup>
@@ -165,6 +166,7 @@
     <ClInclude Include="Framework\Sound\sound.h" />
     <ClInclude Include="Framework\Texture\Texture.h" />
     <ClInclude Include="Framework\WICTextureLoader\WICTextureLoader.h" />
+    <ClInclude Include="Framework\Window\Window.h" />
     <ClInclude Include="Game\Game\Game.h" />
     <ClInclude Include="Game\Objcet\GameObject.h" />
   </ItemGroup>

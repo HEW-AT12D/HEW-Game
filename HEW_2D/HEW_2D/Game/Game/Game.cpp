@@ -39,11 +39,11 @@ void Game::Update(void)
 		
 		
 		
-		SwapChain->SetFullscreenState(TRUE, NULL);
+		d3d11.GetSwapChain()->SetFullscreenState(TRUE, NULL);
 	}
 	// Kキーでフルスクリーン解除
 	if (input.GetKeyTrigger(VK_K)) {
-		m_pSwapChain->SetFullscreenState(FALSE, NULL);
+		d3d11.GetSwapChain()->SetFullscreenState(FALSE, NULL);
 	}
 
 	player.SetPos(pos.x, pos.y, pos.z);
