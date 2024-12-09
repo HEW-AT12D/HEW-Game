@@ -1,8 +1,8 @@
 #include "Window.h"
 
 // 定数定義
-const auto ClassName = TEXT("HEW2D");		//!< ウィンドウクラス名.
-const auto WindowName = TEXT("オトマトぺ");	//!< ウィンドウ名.
+const auto ClassName = TEXT("HEW2D");			//!< ウィンドウクラス名.
+const auto WindowName = TEXT("おとめるパレット");	//!< ウィンドウ名.
 
 
 /**

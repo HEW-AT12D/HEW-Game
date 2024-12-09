@@ -37,7 +37,7 @@ private:
 	};
 	
 
-	D3D11* d3d11;	
+	D3D11* d3d11;
 
 	// À•W,‘å‚«‚³,Šp“x
 	Transform transform;
