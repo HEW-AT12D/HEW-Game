@@ -40,7 +40,7 @@ public:
 protected:
 	Vector3 m_Position = Vector3(0.0f, 0.0f, 0.0f);	// À•W
 	Vector3 m_Rotation = Vector3(0.0f, 0.0f, 0.0f);	// Šp“x
-	Vector3 m_Scale = Vector3(0.0f, 0.0f, 0.0f);		// ‘å‚«‚³
+	Vector3 m_Scale = Vector3(0.0f, 0.0f, 0.0f);	// ‘å‚«‚³
 };
 
 Transform::Transform()
