@@ -42,12 +42,12 @@ protected:
 	Vector3 m_Rotation = Vector3(0.0f, 0.0f, 0.0f);	// Šp“x
 	Vector3 m_Scale = Vector3(0.0f, 0.0f, 0.0f);	// ‘å‚«‚³
 };
-
-Transform::Transform()
-{
-}
-
-Transform::~Transform()
-{
-}
+//
+//Transform::Transform()
+//{
+//}
+//
+//Transform::~Transform()
+//{
+//}
 

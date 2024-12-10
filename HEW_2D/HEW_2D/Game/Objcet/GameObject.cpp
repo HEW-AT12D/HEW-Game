@@ -1,3 +1,5 @@
+#include "../../Framework/Precompiled/pch.h"
+#include "pch.h"
 #include "GameObject.h"
 
 void GameObject::Init(const wchar_t* imgname, int sx, int sy)
@@ -13,7 +15,7 @@ void GameObject::Init(const wchar_t* imgname, int sx, int sy)
 	// 頂点バッファを作成する
 	// ※頂点バッファ→VRAMに頂点データを置くための機能
 	D3D11_BUFFER_DESC bufferDesc;
-	bufferDesc.ByteWidth = sizeof(vertices);// 確保するバッファサイズを指定（vectorなので注意）
+	bufferDesc.ByteWidth = sizeof(vertices);	// 確保するバッファサイズを指定（vectorなので注意）
 	bufferDesc.Usage = D3D11_USAGE_DEFAULT;
 	bufferDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;// 頂点バッファ作成を指定
 	bufferDesc.CPUAccessFlags = 0;
@@ -21,7 +23,7 @@ void GameObject::Init(const wchar_t* imgname, int sx, int sy)
 	bufferDesc.StructureByteStride = 0;
 
 	D3D11_SUBRESOURCE_DATA subResourceData;
-	subResourceData.pSysMem = vertices;// VRAMに送るデータを指定（vectorなので注意）
+	subResourceData.pSysMem = vertices.data();	// VRAMに送るデータを指定（vectorなので注意）
 	subResourceData.SysMemPitch = 0;
 	subResourceData.SysMemSlicePitch = 0;
 

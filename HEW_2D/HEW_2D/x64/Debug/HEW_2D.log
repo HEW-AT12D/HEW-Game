@@ -1,4 +1,7 @@
-﻿  IComponent.cpp
+﻿  compilation object save succeeded; see C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\x64\Debug\PixelShader.cso
+  compilation object save succeeded; see C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\x64\Debug\VertexShader.cso
+  pch.cpp
+  IComponent.cpp
 C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\IComponent\IComponent.cpp(26,1): fatal  error C1010: プリコンパイル ヘッダーを検索中に不明な EOF が見つかりました。'#include "pch.h"' をソースに追加しましたか?
   Transform.cpp
 C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\TransForm\Transform.cpp(42,1): fatal  error C1010: プリコンパイル ヘッダーを検索中に不明な EOF が見つかりました。'#include "pch.h"' をソースに追加しましたか?
@@ -35,5 +38,4 @@ C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Window\Window.c
   Game.cpp
 C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Game\Game.cpp(68,1): fatal  error C1010: プリコンパイル ヘッダーを検索中に不明な EOF が見つかりました。'#include "pch.h"' をソースに追加しましたか?
   GameObject.cpp
-C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Objcet\GameObject.cpp(139,1): fatal  error C1010: プリコンパイル ヘッダーを検索中に不明な EOF が見つかりました。'#include "pch.h"' をソースに追加しましたか?
   コードを生成中...
