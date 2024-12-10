@@ -1,6 +1,4 @@
-﻿  compilation object save succeeded; see C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\x64\Debug\PixelShader.cso
-  compilation object save succeeded; see C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\x64\Debug\VertexShader.cso
-  pch.cpp
+﻿C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(1101,5): warning MSB8027: SceneManager.cpp という名前の複数のファイルでは、同じ場所に出力が生成されます。これにより、不適切なビルド結果が生じる可能性があります。関連するファイルは Framework\SceneManager\SceneManager.cpp, Game\SceneManager\SceneManager.cpp です。
   IComponent.cpp
 C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\IComponent\IComponent.cpp(26,1): fatal  error C1010: プリコンパイル ヘッダーを検索中に不明な EOF が見つかりました。'#include "pch.h"' をソースに追加しましたか?
   Transform.cpp
@@ -37,5 +35,8 @@ C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\WICTextureLoade
 C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Window\Window.cpp(304,1): fatal  error C1010: プリコンパイル ヘッダーを検索中に不明な EOF が見つかりました。'#include "pch.h"' をソースに追加しましたか?
   Game.cpp
 C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Game\Game.cpp(68,1): fatal  error C1010: プリコンパイル ヘッダーを検索中に不明な EOF が見つかりました。'#include "pch.h"' をソースに追加しましたか?
-  GameObject.cpp
+  ObjectManager.cpp
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\ObjectManager\ObjectManager.cpp(55,1): fatal  error C1010: プリコンパイル ヘッダーを検索中に不明な EOF が見つかりました。'#include "pch.h"' をソースに追加しましたか?
+  SceneManager.cpp
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\SceneManager\SceneManager.cpp(44,1): fatal  error C1010: プリコンパイル ヘッダーを検索中に不明な EOF が見つかりました。'#include "pch.h"' をソースに追加しましたか?
   コードを生成中...

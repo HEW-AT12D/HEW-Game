@@ -73,6 +73,12 @@
     <Filter Include="フレームワーク\ウィンドウ">
       <UniqueIdentifier>{bb3b72fc-e6c5-4df3-8470-371f3acafc99}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ゲーム\シーン管理">
+      <UniqueIdentifier>{588c322f-cbe3-47bb-9100-8218c7678e21}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ゲーム\オブジェクト管理">
+      <UniqueIdentifier>{07c8d67a-cea0-4a65-96e3-8ed9f2f42def}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game\Game\Game.cpp">
@@ -120,6 +126,12 @@
     <ClCompile Include="Framework\Window\Window.cpp">
       <Filter>フレームワーク\ウィンドウ</Filter>
     </ClCompile>
+    <ClCompile Include="Game\SceneManager\SceneManager.cpp">
+      <Filter>ゲーム\シーン管理</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\ObjectManager\ObjectManager.cpp">
+      <Filter>ゲーム\オブジェクト管理</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework\D3D11\D3D11.h">
@@ -166,6 +178,12 @@
     </ClInclude>
     <ClInclude Include="Framework\Window\Window.h">
       <Filter>フレームワーク\ウィンドウ</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\SceneManager\SceneManager.h">
+      <Filter>ゲーム\シーン管理</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\ObjectManager\ObjectManager.h">
+      <Filter>ゲーム\オブジェクト管理</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
