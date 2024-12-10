@@ -50,13 +50,14 @@ private:
 	ID3D11ShaderResourceView* m_pTextureView;
 
 	//テクスチャが縦横に何分割されているか
-	int splitX = 1;
-	int splitY = 1;
+	Vector2 m_Split{ 1.0f,1.0f };
+
+	//左上から何段目を切り抜いて表示するか
+	Vector2 m_num{ 0.0f,0.0f };
+
 
 public:
-	//左上から何段目を切り抜いて表示するか
-	float numU = 0;
-	float numV = 0;
+	
 
 	void Init(const wchar_t* imgname, int sx = 1, int sy = 1); //初期化
 	void Draw();						//描画
@@ -65,6 +66,8 @@ public:
 	void SetScale(Vector3 _Size);		//大きさをセット
 	void SetRotation(Vector3 _Rot);		//角度をセット
 	void SetColor(Vector4 _Color);		//色をセット
+
+	// 個別の当たり判定もここに追加？オブジェクトの基本となるクラスならここじゃなくて、判定が必要なオブジェクトにそれぞれ追加？
 
 	Vector3 GetPosition(void);			//座標を取得
 	Vector3 GetScale(void);				//大きさを取得

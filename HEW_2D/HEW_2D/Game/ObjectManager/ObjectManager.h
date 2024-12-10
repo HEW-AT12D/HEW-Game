@@ -35,6 +35,8 @@ public:
 	void Draw(void);
 	void Uninit(void);
 
+	// 当たり判定も追加予定
+
 private:
 	//! オブジェクトのユニークポインタをvectorで持つ→オブジェクトマネージャーがオブジェクトを管理する
 	std::vector<std::unique_ptr<GameObject>> objects;
