@@ -1,6 +1,5 @@
 #pragma once
-#include <d3d11.h>  // DirectX11を使うためのヘッダーファイル
-#include <DirectXMath.h> // DirextXの数学関連のヘッダーファイル
+#include "../Precompiled/pch.h"
 
 #define SCREEN_WIDTH (640)	// ウインドウの幅
 #define SCREEN_HEIGHT (480)	// ウインドウの高さ

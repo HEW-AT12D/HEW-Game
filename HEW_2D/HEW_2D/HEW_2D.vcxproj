@@ -137,13 +137,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Framework\ComponentManager\ComponentManager.cpp" />
+    <ClCompile Include="Framework\ComponentManager\ComponentManager.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="Framework\Component\IComponent\IComponent.cpp" />
     <ClCompile Include="Framework\Component\TransForm\Transform.cpp" />
     <ClCompile Include="Framework\Component\Transform\TransformComponent.cpp" />
     <ClCompile Include="Framework\D3D11\D3D11.cpp" />
     <ClCompile Include="Framework\Input\Input.cpp" />
-    <ClCompile Include="Framework\Precompiled\pch.cpp" />
+    <ClCompile Include="Framework\Precompiled\pch.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="Framework\SceneManager\SceneManager.cpp" />
     <ClCompile Include="Framework\Scene\IScene.cpp" />
     <ClCompile Include="Framework\Sound\sound.cpp" />
@@ -154,7 +158,9 @@
     <ClCompile Include="Game\Objcet\GameObject.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Framework\ComponentManager\ComponentManager.h" />
+    <ClInclude Include="Framework\ComponentManager\ComponentManager.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="Framework\Component\IComponent\IComponent.h" />
     <ClInclude Include="Framework\Component\TransForm\Transform.h" />
     <ClInclude Include="Framework\Component\Transform\TransformComponent.h" />
@@ -174,8 +180,14 @@
     <Text Include="Framework\注意点\注意点・解説.txt" />
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="Shader\PixelShader.hlsl" />
-    <FxCompile Include="Shader\VertexShader.hlsl" />
+    <FxCompile Include="Shader\PixelShader.hlsl">
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">ps_main</EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+    </FxCompile>
+    <FxCompile Include="Shader\VertexShader.hlsl">
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">vs_main</EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+    </FxCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

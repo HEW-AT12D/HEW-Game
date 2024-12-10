@@ -13,7 +13,7 @@ void GameObject::Init(const wchar_t* imgname, int sx, int sy)
 	// 頂点バッファを作成する
 	// ※頂点バッファ→VRAMに頂点データを置くための機能
 	D3D11_BUFFER_DESC bufferDesc;
-	bufferDesc.ByteWidth = sizeof(vertexList);// 確保するバッファサイズを指定
+	bufferDesc.ByteWidth = sizeof(vertices);// 確保するバッファサイズを指定（vectorなので注意）
 	bufferDesc.Usage = D3D11_USAGE_DEFAULT;
 	bufferDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;// 頂点バッファ作成を指定
 	bufferDesc.CPUAccessFlags = 0;
@@ -21,7 +21,7 @@ void GameObject::Init(const wchar_t* imgname, int sx, int sy)
 	bufferDesc.StructureByteStride = 0;
 
 	D3D11_SUBRESOURCE_DATA subResourceData;
-	subResourceData.pSysMem = vertexList;// VRAMに送るデータを指定
+	subResourceData.pSysMem = vertices;// VRAMに送るデータを指定（vectorなので注意）
 	subResourceData.SysMemPitch = 0;
 	subResourceData.SysMemSlicePitch = 0;
 
@@ -87,25 +87,19 @@ void GameObject::Uninit()
 void GameObject::SetPosition(Vector3 _Pos) 
 {
 	//座標をセットする
-	m_Position.x = _Pos.x;
-	m_Position.y = _Pos.y;
-	m_Position.z = _Pos.z;
+	transform.SetPosition(_Pos);
 }
 
-void GameObject::SetSize(Vector3 _Size) 
+void GameObject::SetScale(Vector3 _Size) 
 {
 	//大きさをセットする
-	m_Scale.x = _Size.x;
-	m_Scale.y = _Size.y;
-	m_Scale.z = _Size.z;
+	transform.SetScale(_Size);
 }
 
 void GameObject::SetRotation(Vector3 _Rot) 
 {
 	//角度をセットする
-	m_Rotation.x = _Rot.x;
-	m_Rotation.y = _Rot.y;
-	m_Rotation.z = _Rot.z;
+	transform.SetRotation(_Rot);
 }
 void GameObject::SetColor(Vector4 _Color)
 {
@@ -119,19 +113,19 @@ void GameObject::SetColor(Vector4 _Color)
 Vector3 GameObject::GetPosition(void)
 {
 	//座標をゲット
-	return m_Position;
+	return transform.GetPosition();
 }
   
 Vector3 GameObject::GetScale(void)
 {
 	//大きさをゲット
-	return m_Scale;
+	return transform.GetScale();
 }
 
 Vector3 GameObject::GetRotation(void)
 {
 	//角度をゲット
-	return m_Rotation;
+	return transform.GetRotation();
 }
 
 Vector4 GameObject::GetColor(void)

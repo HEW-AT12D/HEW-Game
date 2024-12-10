@@ -1,3 +1,4 @@
+#include "../Precompiled/pch.h"
 #include "Window.h"
 
 // ’è”’è‹`
@@ -211,7 +212,6 @@ void Window::WinMain(void) {
 
 		}
 	}
-
 	//! I—¹ˆ—
 	//Game::Uninit();
 }

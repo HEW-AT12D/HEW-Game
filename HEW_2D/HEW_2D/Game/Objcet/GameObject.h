@@ -62,7 +62,7 @@ public:
 	void Draw();						//描画
 	void Uninit();						//終了
 	void SetPosition(Vector3 _Pos);		//座標をセット
-	void SetSize(Vector3 _Size);		//大きさをセット
+	void SetScale(Vector3 _Size);		//大きさをセット
 	void SetRotation(Vector3 _Rot);		//角度をセット
 	void SetColor(Vector4 _Color);		//色をセット
 

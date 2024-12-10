@@ -1,4 +1,6 @@
+#include "../../Precompiled/pch.h"
 #include "Transform.h"
+
 
 // セッター
 void Transform::SetPosition(Vector3 _Position) {

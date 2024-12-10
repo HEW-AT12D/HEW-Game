@@ -1,3 +1,4 @@
+#include "../Precompiled/pch.h"
 #include "input.h"
 
 //コンストラクタ
