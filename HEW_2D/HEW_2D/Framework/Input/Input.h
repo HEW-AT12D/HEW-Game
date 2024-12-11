@@ -4,9 +4,13 @@
 #include <Xinput.h> //XInputを使うためのヘッダーファイル
 #pragma comment (lib, "xinput.lib") //XInputを使うために必要
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "../../pch.h"
 =======
 >>>>>>> c18ec40d02bbcc93ab399e4036a21f857ba308be
+=======
+#include "../Precompiled/pch.h"
+>>>>>>> parent of cecf57c (隱ｿ謨ｴ荳ｭ)
 
 #define XINPUT_A              0x1000
 #define XINPUT_B              0x2000

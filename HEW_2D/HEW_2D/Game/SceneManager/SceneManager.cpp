@@ -31,7 +31,7 @@ void SceneManager::Draw(void) {
 
 void SceneManager::Uninit(void) {
 	// Œ»İƒV[ƒ“‚ÌI—¹ˆ—
-	//scenes[scenename].un
+	scenes[scenename].un
 }
 
 /**

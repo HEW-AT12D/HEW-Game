@@ -74,6 +74,7 @@
       <UniqueIdentifier>{07c8d67a-cea0-4a65-96e3-8ed9f2f42def}</UniqueIdentifier>
     </Filter>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <Filter Include="ゲーム\シーン">
       <UniqueIdentifier>{51a8fd47-76e4-4a73-bb5b-b922a6648df4}</UniqueIdentifier>
 =======
@@ -81,6 +82,8 @@
       <UniqueIdentifier>{7ccad534-fab1-4564-97bd-1c80764cff69}</UniqueIdentifier>
 >>>>>>> c18ec40d02bbcc93ab399e4036a21f857ba308be
     </Filter>
+=======
+>>>>>>> parent of cecf57c (調整中)
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game\Game\Game.cpp">
@@ -113,6 +116,9 @@
     <ClCompile Include="Framework\Component\IComponent\IComponent.cpp">
       <Filter>フレームワーク\コンポーネント\基本コンポーネント</Filter>
     </ClCompile>
+    <ClCompile Include="Framework\Precompiled\pch.cpp">
+      <Filter>フレームワーク\Precompiled</Filter>
+    </ClCompile>
     <ClCompile Include="Framework\Component\Transform\TransformComponent.cpp">
       <Filter>フレームワーク\コンポーネント\Transform</Filter>
     </ClCompile>
@@ -130,18 +136,6 @@
     </ClCompile>
     <ClCompile Include="Game\ObjectManager\ObjectManager.cpp">
       <Filter>ゲーム\オブジェクト管理</Filter>
-    </ClCompile>
-    <ClCompile Include="pch.cpp">
-      <Filter>フレームワーク\Precompiled</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Scene\GameScene.cpp">
-      <Filter>ゲーム\シーン</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Scene\ResultScene.cpp">
-      <Filter>ゲーム\シーン</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Scene\TitleScene.cpp">
-      <Filter>ゲーム\シーン</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -175,6 +169,9 @@
     <ClInclude Include="Framework\Component\IComponent\IComponent.h">
       <Filter>フレームワーク\コンポーネント\基本コンポーネント</Filter>
     </ClInclude>
+    <ClInclude Include="Framework\Precompiled\pch.h">
+      <Filter>フレームワーク\Precompiled</Filter>
+    </ClInclude>
     <ClInclude Include="Framework\Component\Transform\TransformComponent.h">
       <Filter>フレームワーク\コンポーネント\Transform</Filter>
     </ClInclude>
@@ -194,6 +191,7 @@
       <Filter>ゲーム\オブジェクト管理</Filter>
     </ClInclude>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <ClInclude Include="pch.h">
       <Filter>フレームワーク\Precompiled</Filter>
     </ClInclude>
@@ -210,6 +208,8 @@
       <Filter>ゲーム\ゲーム処理</Filter>
 >>>>>>> c18ec40d02bbcc93ab399e4036a21f857ba308be
     </ClInclude>
+=======
+>>>>>>> parent of cecf57c (調整中)
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Shader\PixelShader.hlsl">
