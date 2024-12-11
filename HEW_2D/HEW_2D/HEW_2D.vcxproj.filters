@@ -190,13 +190,7 @@
     <ClInclude Include="Game\ObjectManager\ObjectManager.h">
       <Filter>ゲーム\オブジェクト管理</Filter>
     </ClInclude>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> parent of 7e04c3e (調整中)
+
     <ClInclude Include="pch.h">
       <Filter>フレームワーク\Precompiled</Filter>
     </ClInclude>
@@ -209,12 +203,7 @@
     <ClInclude Include="Game\Scene\TitleScene.h">
       <Filter>ゲーム\シーン</Filter>
     </ClInclude>
-=======
->>>>>>> parent of cecf57c (調整中)
-=======
->>>>>>> parent of c18ec40 (pch.hの削除とmain.hをすべてにinclude)
-=======
->>>>>>> parent of cecf57c (調整中)
+
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Shader\PixelShader.hlsl">
