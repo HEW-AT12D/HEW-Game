@@ -5,6 +5,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "../../pch.h"
 =======
 >>>>>>> c18ec40d02bbcc93ab399e4036a21f857ba308be
@@ -14,6 +15,9 @@
 =======
 #include "../Precompiled/pch.h"
 >>>>>>> parent of c18ec40 (pch.hの削除とmain.hをすべてにinclude)
+=======
+#include "../../pch.h"
+>>>>>>> parent of 7e04c3e (調整中)
 
 #define XINPUT_A              0x1000
 #define XINPUT_B              0x2000

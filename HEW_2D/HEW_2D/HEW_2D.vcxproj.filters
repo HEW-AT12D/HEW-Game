@@ -82,12 +82,11 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of 7e04c3e (調整中)
     <Filter Include="ゲーム\シーン">
       <UniqueIdentifier>{51a8fd47-76e4-4a73-bb5b-b922a6648df4}</UniqueIdentifier>
-=======
-    <Filter Include="フレームワーク\Texture">
-      <UniqueIdentifier>{7ccad534-fab1-4564-97bd-1c80764cff69}</UniqueIdentifier>
->>>>>>> c18ec40d02bbcc93ab399e4036a21f857ba308be
     </Filter>
 =======
 >>>>>>> parent of cecf57c (調整中)
@@ -202,6 +201,9 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of 7e04c3e (調整中)
     <ClInclude Include="pch.h">
       <Filter>フレームワーク\Precompiled</Filter>
     </ClInclude>
@@ -213,10 +215,6 @@
     </ClInclude>
     <ClInclude Include="Game\Scene\TitleScene.h">
       <Filter>ゲーム\シーン</Filter>
-=======
-    <ClInclude Include="main.h">
-      <Filter>ゲーム\ゲーム処理</Filter>
->>>>>>> c18ec40d02bbcc93ab399e4036a21f857ba308be
     </ClInclude>
 =======
 >>>>>>> parent of cecf57c (調整中)

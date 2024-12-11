@@ -183,10 +183,14 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of 7e04c3e (調整中)
     <ClInclude Include="Game\Scene\GameScene.h" />
     <ClInclude Include="Game\Scene\ResultScene.h" />
     <ClInclude Include="Game\Scene\TitleScene.h" />
     <ClInclude Include="pch.h" />
+<<<<<<< HEAD
 =======
     <ClInclude Include="main.h" />
 >>>>>>> c18ec40d02bbcc93ab399e4036a21f857ba308be
@@ -194,6 +198,8 @@
 >>>>>>> parent of cecf57c (調整中)
 =======
 >>>>>>> parent of c18ec40 (pch.hの削除とmain.hをすべてにinclude)
+=======
+>>>>>>> parent of 7e04c3e (調整中)
   </ItemGroup>
   <ItemGroup>
     <Text Include="Framework\注意点\注意点・解説.txt" />

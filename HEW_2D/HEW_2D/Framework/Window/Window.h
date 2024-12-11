@@ -2,6 +2,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "../../pch.h"
 =======
 #include "../main.h"
@@ -12,6 +13,9 @@
 =======
 #include "../Precompiled/pch.h"
 >>>>>>> parent of c18ec40 (pch.hの削除とmain.hをすべてにinclude)
+=======
+#include "../../pch.h"
+>>>>>>> parent of 7e04c3e (調整中)
 #include <Windows.h>
 
 /**
