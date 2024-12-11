@@ -1,4 +1,5 @@
 #pragma once
+#include"../main.h"
 #include "../D3D11/D3D11.h"
 #include "../Component/Transform/Transform.h"
 #include "../WICTextureLoader/WICTextureLoader.h"

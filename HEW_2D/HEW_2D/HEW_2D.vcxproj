@@ -112,9 +112,9 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>\pch.h";%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>HEW_2D;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -180,10 +180,14 @@
     <ClInclude Include="Game\Objcet\GameObject.h" />
     <ClInclude Include="Game\ObjectManager\ObjectManager.h" />
     <ClInclude Include="Game\SceneManager\SceneManager.h" />
+<<<<<<< HEAD
     <ClInclude Include="Game\Scene\GameScene.h" />
     <ClInclude Include="Game\Scene\ResultScene.h" />
     <ClInclude Include="Game\Scene\TitleScene.h" />
     <ClInclude Include="pch.h" />
+=======
+    <ClInclude Include="main.h" />
+>>>>>>> c18ec40d02bbcc93ab399e4036a21f857ba308be
   </ItemGroup>
   <ItemGroup>
     <Text Include="Framework\注意点\注意点・解説.txt" />

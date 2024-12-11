@@ -1,4 +1,3 @@
-#include "../Precompiled/pch.h"
 #include"Texture.h"
 
 /**

@@ -1,5 +1,9 @@
 #pragma once
+<<<<<<< HEAD
 #include "../../pch.h"
+=======
+#include "../main.h"
+>>>>>>> c18ec40d02bbcc93ab399e4036a21f857ba308be
 #include "../../Framework/Scene/IScene.h"
 
 

@@ -1,8 +1,12 @@
 #pragma once
 
+#include "../main.h"
 #include <Xinput.h> //XInputを使うためのヘッダーファイル
 #pragma comment (lib, "xinput.lib") //XInputを使うために必要
+<<<<<<< HEAD
 #include "../../pch.h"
+=======
+>>>>>>> c18ec40d02bbcc93ab399e4036a21f857ba308be
 
 #define XINPUT_A              0x1000
 #define XINPUT_B              0x2000

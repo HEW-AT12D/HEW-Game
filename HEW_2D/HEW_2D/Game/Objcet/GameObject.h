@@ -1,5 +1,5 @@
 #pragma once
-#include "../../pch.h"
+#include "../main.h"
 #include "../../Framework/D3D11/D3D11.h"
 #include "../../Framework/WICTextureLoader/WICTextureLoader.h"	// テクスチャ読み込みライブラリ
 #include"../../Framework/Component/Transform/Transform.h"		//Transform.h読み込み

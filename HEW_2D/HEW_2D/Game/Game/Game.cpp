@@ -1,4 +1,3 @@
-#include "../../Framework/Precompiled/pch.h"
 #include "Game.h"
 
 void Game::Init(HWND hWnd)

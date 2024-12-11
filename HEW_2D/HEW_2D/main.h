@@ -1,7 +1,6 @@
 #pragma once
 
 
-// プリコンパイルヘッダー一覧
 #include <windows.h>
 #include <memory>
 #include <vector>
