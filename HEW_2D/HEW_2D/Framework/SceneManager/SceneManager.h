@@ -1,5 +1,4 @@
 #pragma once
-#include"../main.h"
 #include "../Scene/IScene.h"
 
 //! TODO:scenemanagerでtitlesceneとresultsceneをインクルードすると、それぞれでインクルードされているobjectmanagerとISceneが衝突してしまう

@@ -54,11 +54,17 @@
     <Filter Include="フレームワーク\コンポーネント\Physic（物理）">
       <UniqueIdentifier>{e5865c91-7b67-4588-bc48-6f00e9770a55}</UniqueIdentifier>
     </Filter>
+    <Filter Include="フレームワーク\Precompiled">
+      <UniqueIdentifier>{0774df99-0867-45f6-9bef-850f567650d9}</UniqueIdentifier>
+    </Filter>
     <Filter Include="フレームワーク\ImGui">
       <UniqueIdentifier>{14696ced-9345-41dc-8e38-de4cefa9f34c}</UniqueIdentifier>
     </Filter>
     <Filter Include="フレームワーク\コンポーネント\コンポーネント管理">
       <UniqueIdentifier>{b4e7f271-71d4-4d49-9abd-b17ea461da9c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="フレームワーク\Texture">
+      <UniqueIdentifier>{7ccad534-fab1-4564-97bd-1c80764cff69}</UniqueIdentifier>
     </Filter>
     <Filter Include="ゲーム\シェーダー">
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
@@ -75,6 +81,7 @@
     </Filter>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     <Filter Include="ゲーム\シーン">
       <UniqueIdentifier>{51a8fd47-76e4-4a73-bb5b-b922a6648df4}</UniqueIdentifier>
 =======
@@ -84,6 +91,8 @@
     </Filter>
 =======
 >>>>>>> parent of cecf57c (調整中)
+=======
+>>>>>>> parent of c18ec40 (pch.hの削除とmain.hをすべてにinclude)
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game\Game\Game.cpp">
@@ -192,6 +201,7 @@
     </ClInclude>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     <ClInclude Include="pch.h">
       <Filter>フレームワーク\Precompiled</Filter>
     </ClInclude>
@@ -210,6 +220,8 @@
     </ClInclude>
 =======
 >>>>>>> parent of cecf57c (調整中)
+=======
+>>>>>>> parent of c18ec40 (pch.hの削除とmain.hをすべてにinclude)
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Shader\PixelShader.hlsl">

@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../main.h"
 #include <Xinput.h> //XInputを使うためのヘッダーファイル
 #pragma comment (lib, "xinput.lib") //XInputを使うために必要
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 #include "../../pch.h"
@@ -11,6 +11,9 @@
 =======
 #include "../Precompiled/pch.h"
 >>>>>>> parent of cecf57c (隱ｿ謨ｴ荳ｭ)
+=======
+#include "../Precompiled/pch.h"
+>>>>>>> parent of c18ec40 (pch.h縺ｮ蜑企勁縺ｨmain.h繧偵☆縺ｹ縺ｦ縺ｫinclude)
 
 #define XINPUT_A              0x1000
 #define XINPUT_B              0x2000

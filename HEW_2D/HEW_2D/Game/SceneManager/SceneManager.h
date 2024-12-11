@@ -1,6 +1,7 @@
 #pragma once
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "../../pch.h"
 =======
 #include "../main.h"
@@ -8,6 +9,9 @@
 =======
 #include "../../Framework/Precompiled/pch.h"
 >>>>>>> parent of cecf57c (調整中)
+=======
+#include "../../Framework/Precompiled/pch.h"
+>>>>>>> parent of c18ec40 (pch.hの削除とmain.hをすべてにinclude)
 #include "../../Framework/Scene/IScene.h"
 
 

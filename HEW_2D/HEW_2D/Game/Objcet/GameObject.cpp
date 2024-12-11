@@ -1,3 +1,5 @@
+#include "../../Framework/Precompiled/pch.h"
+#include "pch.h"
 #include "GameObject.h"
 
 void GameObject::Init(const wchar_t* imgname, int sx, int sy)

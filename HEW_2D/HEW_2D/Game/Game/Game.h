@@ -1,5 +1,4 @@
 #pragma once
-#include "../main.h"
 #include "../../Game/Objcet/GameObject.h"
 #include "../../Framework/Input/input.h"
 #include "../../Framework/D3D11/D3D11.h"

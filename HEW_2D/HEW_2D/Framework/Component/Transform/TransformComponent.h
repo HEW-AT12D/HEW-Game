@@ -1,5 +1,4 @@
 #pragma once
-#include "../main.h"
 #include "Transform.h"
 #include "../IComponent/IComponent.h"
 
