@@ -79,22 +79,11 @@
     <Filter Include="ゲーム\オブジェクト管理">
       <UniqueIdentifier>{07c8d67a-cea0-4a65-96e3-8ed9f2f42def}</UniqueIdentifier>
     </Filter>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> parent of 7e04c3e (調整中)
+
     <Filter Include="ゲーム\シーン">
       <UniqueIdentifier>{51a8fd47-76e4-4a73-bb5b-b922a6648df4}</UniqueIdentifier>
     </Filter>
-=======
->>>>>>> parent of cecf57c (調整中)
-=======
->>>>>>> parent of c18ec40 (pch.hの削除とmain.hをすべてにinclude)
-=======
->>>>>>> parent of cecf57c (調整中)
+
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game\Game\Game.cpp">
