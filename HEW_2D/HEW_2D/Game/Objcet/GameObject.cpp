@@ -5,12 +5,12 @@
 void GameObject::Init(const wchar_t* imgname, int sx, int sy)
 {
 	//UV座標を設定
-	splitX = sx;
-	splitY = sy;
-	vertices[1].u = 1.0f / splitX;
-	vertices[2].v = 1.0f / splitY;
-	vertices[3].u = 1.0f / splitX;
-	vertices[3].v = 1.0f / splitY;
+	m_Split.x = sx;
+	m_Split.y = sy;
+	vertices[1].u = 1.0f / m_Split.x;
+	vertices[2].v = 1.0f / m_Split.y;
+	vertices[3].u = 1.0f / m_Split.x;
+	vertices[3].v = 1.0f / m_Split.y;
 
 	// 頂点バッファを作成する
 	// ※頂点バッファ→VRAMに頂点データを置くための機能
@@ -65,8 +65,8 @@ void GameObject::Draw()
 	cb.matrixWorld = DirectX::XMMatrixTranspose(cb.matrixWorld);
 
 	// UVアニメーションの行列作成
-	float u = (float)numU / splitX;
-	float v = (float)numV / splitY;
+	float u = (float)m_Number.x / m_Split.x;
+	float v = (float)m_Number.y / m_Split.y;
 	cb.matrixTex = DirectX::XMMatrixTranslation(u, v, 0.0f);
 	cb.matrixTex = DirectX::XMMatrixTranspose(cb.matrixTex);
 

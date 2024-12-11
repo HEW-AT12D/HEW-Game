@@ -1,5 +1,5 @@
 #pragma once
-#include "../../Framework/Precompiled/pch.h"
+#include "../../pch.h"
 #include "../../Framework/D3D11/D3D11.h"
 #include "../../Framework/WICTextureLoader/WICTextureLoader.h"	// テクスチャ読み込みライブラリ
 #include"../../Framework/Component/Transform/Transform.h"		//Transform.h読み込み
@@ -11,6 +11,9 @@
 /// 目標：インデックスバッファを使用した描画に変更
 /// 
 /// 良い点：頂点情報を共有できるので規模が大きくなればなるほど描画処理の負荷が減る
+/// 
+/// --------------改善案----------------
+/// d3dクラスのポインタ→参照？ユニークポインタ？d3dクラスをstatic化？Rendererクラス作成？
 /// </summary>
 
 /**
@@ -36,7 +39,7 @@ private:
 		{  0.5f, -0.5f, 0.5f, 1.0f,1.0f,1.0f,1.0f, 1.0f,1.0f},  // 3番目の頂点座標
 	};
 	
-
+	// d3dクラス
 	D3D11* d3d11;
 
 	// 座標,大きさ,角度
@@ -53,7 +56,7 @@ private:
 	Vector2 m_Split{ 1.0f,1.0f };
 
 	//左上から何段目を切り抜いて表示するか
-	Vector2 m_num{ 0.0f,0.0f };
+	Vector2 m_Number{ 0.0f,0.0f };
 
 
 public:

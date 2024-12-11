@@ -1,5 +1,5 @@
 #pragma once
-#include "../Precompiled/pch.h"
+#include "../../pch.h"
 
 #define SCREEN_WIDTH (640)	// ウインドウの幅
 #define SCREEN_HEIGHT (480)	// ウインドウの高さ

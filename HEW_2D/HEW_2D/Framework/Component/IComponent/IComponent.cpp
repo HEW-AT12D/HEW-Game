@@ -1,4 +1,4 @@
-#include "../../Precompiled/pch.h"
+#include "../../../pch.h"
 #include "IComponent.h"
 
 // コンストラクタ
