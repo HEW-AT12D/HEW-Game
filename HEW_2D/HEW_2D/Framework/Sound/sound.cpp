@@ -1,4 +1,3 @@
-#include "../Precompiled/pch.h"
 #include "sound.h"
 
 #ifdef _XBOX //Big-Endian

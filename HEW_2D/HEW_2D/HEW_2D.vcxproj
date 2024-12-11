@@ -112,9 +112,9 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>\pch.h";%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>HEW_2D;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -146,9 +146,6 @@
     <ClCompile Include="Framework\Component\Transform\TransformComponent.cpp" />
     <ClCompile Include="Framework\D3D11\D3D11.cpp" />
     <ClCompile Include="Framework\Input\Input.cpp" />
-    <ClCompile Include="Framework\Precompiled\pch.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
-    </ClCompile>
     <ClCompile Include="Framework\SceneManager\SceneManager.cpp" />
     <ClCompile Include="Framework\Scene\IScene.cpp" />
     <ClCompile Include="Framework\Sound\sound.cpp" />
@@ -169,7 +166,6 @@
     <ClInclude Include="Framework\Component\Transform\TransformComponent.h" />
     <ClInclude Include="Framework\D3D11\D3D11.h" />
     <ClInclude Include="Framework\Input\Input.h" />
-    <ClInclude Include="Framework\Precompiled\pch.h" />
     <ClInclude Include="Framework\SceneManager\SceneManager.h" />
     <ClInclude Include="Framework\Scene\IScene.h" />
     <ClInclude Include="Framework\Sound\sound.h" />
@@ -180,6 +176,7 @@
     <ClInclude Include="Game\Objcet\GameObject.h" />
     <ClInclude Include="Game\ObjectManager\ObjectManager.h" />
     <ClInclude Include="Game\SceneManager\SceneManager.h" />
+    <ClInclude Include="main.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Framework\注意点\注意点・解説.txt" />

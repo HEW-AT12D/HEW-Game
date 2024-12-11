@@ -54,17 +54,11 @@
     <Filter Include="フレームワーク\コンポーネント\Physic（物理）">
       <UniqueIdentifier>{e5865c91-7b67-4588-bc48-6f00e9770a55}</UniqueIdentifier>
     </Filter>
-    <Filter Include="フレームワーク\Precompiled">
-      <UniqueIdentifier>{0774df99-0867-45f6-9bef-850f567650d9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="フレームワーク\ImGui">
       <UniqueIdentifier>{14696ced-9345-41dc-8e38-de4cefa9f34c}</UniqueIdentifier>
     </Filter>
     <Filter Include="フレームワーク\コンポーネント\コンポーネント管理">
       <UniqueIdentifier>{b4e7f271-71d4-4d49-9abd-b17ea461da9c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="フレームワーク\Texture">
-      <UniqueIdentifier>{7ccad534-fab1-4564-97bd-1c80764cff69}</UniqueIdentifier>
     </Filter>
     <Filter Include="ゲーム\シェーダー">
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
@@ -78,6 +72,9 @@
     </Filter>
     <Filter Include="ゲーム\オブジェクト管理">
       <UniqueIdentifier>{07c8d67a-cea0-4a65-96e3-8ed9f2f42def}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="フレームワーク\Texture">
+      <UniqueIdentifier>{7ccad534-fab1-4564-97bd-1c80764cff69}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -110,9 +107,6 @@
     </ClCompile>
     <ClCompile Include="Framework\Component\IComponent\IComponent.cpp">
       <Filter>フレームワーク\コンポーネント\基本コンポーネント</Filter>
-    </ClCompile>
-    <ClCompile Include="Framework\Precompiled\pch.cpp">
-      <Filter>フレームワーク\Precompiled</Filter>
     </ClCompile>
     <ClCompile Include="Framework\Component\Transform\TransformComponent.cpp">
       <Filter>フレームワーク\コンポーネント\Transform</Filter>
@@ -164,9 +158,6 @@
     <ClInclude Include="Framework\Component\IComponent\IComponent.h">
       <Filter>フレームワーク\コンポーネント\基本コンポーネント</Filter>
     </ClInclude>
-    <ClInclude Include="Framework\Precompiled\pch.h">
-      <Filter>フレームワーク\Precompiled</Filter>
-    </ClInclude>
     <ClInclude Include="Framework\Component\Transform\TransformComponent.h">
       <Filter>フレームワーク\コンポーネント\Transform</Filter>
     </ClInclude>
@@ -184,6 +175,9 @@
     </ClInclude>
     <ClInclude Include="Game\ObjectManager\ObjectManager.h">
       <Filter>ゲーム\オブジェクト管理</Filter>
+    </ClInclude>
+    <ClInclude Include="main.h">
+      <Filter>ゲーム\ゲーム処理</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

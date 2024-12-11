@@ -1,6 +1,6 @@
 #pragma once
 #include "Transform.h"
-#include "../../../pch.h"
+#include "../main.h"
 
 using namespace SimpleMath;
 

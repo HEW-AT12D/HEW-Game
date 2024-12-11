@@ -1,5 +1,5 @@
 #pragma once
-#include "../Precompiled/pch.h"
+#include "../main.h"
 #include <Windows.h>
 
 /**

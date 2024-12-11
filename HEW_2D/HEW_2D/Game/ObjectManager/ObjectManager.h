@@ -1,5 +1,5 @@
 #pragma once
-#include "../../Framework/Precompiled/pch.h"
+#include "../main.h"
 #include "../../Game/Objcet/GameObject.h"
 
 /**

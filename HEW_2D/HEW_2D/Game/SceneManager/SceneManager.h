@@ -1,5 +1,5 @@
 #pragma once
-#include "../../Framework/Precompiled/pch.h"
+#include "../main.h"
 #include "../../Framework/Scene/IScene.h"
 
 
