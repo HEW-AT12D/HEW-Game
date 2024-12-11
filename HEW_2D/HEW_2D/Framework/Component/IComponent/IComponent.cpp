@@ -1,4 +1,4 @@
-#include "../../../pch.h"
+#include "../../../Game/EntryPoint/main.h"
 #include "IComponent.h"
 
 // コンストラクタ

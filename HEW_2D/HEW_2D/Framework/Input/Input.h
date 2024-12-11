@@ -2,26 +2,7 @@
 
 #include <Xinput.h> //XInputを使うためのヘッダーファイル
 #pragma comment (lib, "xinput.lib") //XInputを使うために必要
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-#include "../../pch.h"
-=======
->>>>>>> c18ec40d02bbcc93ab399e4036a21f857ba308be
-=======
-#include "../Precompiled/pch.h"
->>>>>>> parent of cecf57c (隱ｿ謨ｴ荳ｭ)
-=======
-#include "../Precompiled/pch.h"
->>>>>>> parent of c18ec40 (pch.h縺ｮ蜑企勁縺ｨmain.h繧偵☆縺ｹ縺ｦ縺ｫinclude)
-=======
-#include "../../pch.h"
->>>>>>> parent of 7e04c3e (隱ｿ謨ｴ荳ｭ)
-=======
-#include "../Precompiled/pch.h"
->>>>>>> parent of cecf57c (隱ｿ謨ｴ荳ｭ)
+
 
 #define XINPUT_A              0x1000
 #define XINPUT_B              0x2000

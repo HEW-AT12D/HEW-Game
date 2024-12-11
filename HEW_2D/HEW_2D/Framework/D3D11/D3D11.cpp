@@ -1,4 +1,4 @@
-#include "../Precompiled/pch.h"
+#include "../../Game/EntryPoint/main.h"
 #include <d3dcompiler.h>
 #pragma comment (lib, "d3d11.lib")
 #pragma comment(lib, "d3dcompiler.lib")

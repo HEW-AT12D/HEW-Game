@@ -1,4 +1,4 @@
-#include "../../../pch.h"
+#include "../../../Game/EntryPoint/main.h"
 #include "Transform.h"
 
 
@@ -23,8 +23,8 @@ Vector3 Transform::GetRotation(void) {
 	 return m_Rotation;
  }
 
-Vector3 Transform::GetPosition(void) {
-	 return m_Rotation;
+Vector3 Transform::GetScale(void) {
+	 return m_Scale;
  }
 
 

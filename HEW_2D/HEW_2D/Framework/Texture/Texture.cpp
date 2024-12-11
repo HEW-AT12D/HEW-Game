@@ -1,4 +1,3 @@
-#include "../Precompiled/pch.h"
 #include"Texture.h"
 
 /**
@@ -50,7 +49,7 @@ void Texture::Init(const wchar_t* _Filename, Transform _Transform, XMFLOAT2 _Spl
 
 void Texture::Draw()
 {
-	transform.Getpo
+	//transform.Getpo
 }
 
 void Texture::Uninit()

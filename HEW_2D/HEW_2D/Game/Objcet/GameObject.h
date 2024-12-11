@@ -1,5 +1,5 @@
 #pragma once
-#include "../../pch.h"
+#include "../EntryPoint/main.h"
 #include "../../Framework/D3D11/D3D11.h"
 #include "../../Framework/WICTextureLoader/WICTextureLoader.h"	// テクスチャ読み込みライブラリ
 #include"../../Framework/Component/Transform/Transform.h"		//Transform.h読み込み
@@ -40,7 +40,7 @@ private:
 	};
 	
 	// d3dクラス
-	D3D11* d3d11;
+	D3D11& d3d11;
 
 	// 座標,大きさ,角度
 	Transform transform;
@@ -58,10 +58,8 @@ private:
 	//左上から何段目を切り抜いて表示するか
 	Vector2 m_Number{ 0.0f,0.0f };
 
-
 public:
 	
-
 	void Init(const wchar_t* imgname, int sx = 1, int sy = 1); //初期化
 	void Draw();						//描画
 	void Uninit();						//終了

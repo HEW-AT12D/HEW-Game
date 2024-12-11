@@ -1,25 +1,4 @@
 #pragma once
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-#include "../../pch.h"
-=======
-#include "../main.h"
->>>>>>> c18ec40d02bbcc93ab399e4036a21f857ba308be
-=======
-#include "../../Framework/Precompiled/pch.h"
->>>>>>> parent of cecf57c (調整中)
-=======
-#include "../../Framework/Precompiled/pch.h"
->>>>>>> parent of c18ec40 (pch.hの削除とmain.hをすべてにinclude)
-=======
-#include "../../pch.h"
->>>>>>> parent of 7e04c3e (調整中)
-=======
-#include "../../Framework/Precompiled/pch.h"
->>>>>>> parent of cecf57c (調整中)
 #include "../../Framework/Scene/IScene.h"
 
 
@@ -55,7 +34,7 @@ public:
 	void ChangeScene(SceneName scene);	//! �V�[���؂�ւ�
 
 private:
-	std::array<std::unique_ptr<IScene>, 3> scenes;
+	std::vector<std::unique_ptr<IScene>> scenes;
 	SceneName scenename;
 };
 

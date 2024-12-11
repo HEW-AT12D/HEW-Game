@@ -31,8 +31,8 @@ void ObjectManager::Update(void) {
 	{
 		objects[i]->Update();
 		//! スクリーン内から出たらオブジェクトを削除
-		if (objects[i]->GetPos().x > SCREEN_WIDTH / 2 || objects[i]->GetPos().x < 0 - SCREEN_WIDTH / 2 ||
-			objects[i]->GetPos().y > SCREEN_HEIGHT / 2 || objects[i]->GetPos().y < 0 - SCREEN_HEIGHT / 2) {
+		if (objects[i]->GetPosition().x > SCREEN_WIDTH / 2 || objects[i]->GetPosition().x < 0 - SCREEN_WIDTH / 2 ||
+			objects[i]->GetPosition().y > SCREEN_HEIGHT / 2 || objects[i]->GetPosition().y < 0 - SCREEN_HEIGHT / 2) {
 			this->DeleteObject(objects[i].get());
 		}
 	}

@@ -1,26 +1,6 @@
 #pragma once
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-#include "../../pch.h"
-=======
-#include "../main.h"
->>>>>>> c18ec40d02bbcc93ab399e4036a21f857ba308be
-=======
-#include "../Precompiled/pch.h"
->>>>>>> parent of cecf57c (隱ｿ謨ｴ荳ｭ)
-=======
-#include "../Precompiled/pch.h"
->>>>>>> parent of c18ec40 (pch.h縺ｮ蜑企勁縺ｨmain.h繧偵☆縺ｹ縺ｦ縺ｫinclude)
-=======
-#include "../../pch.h"
->>>>>>> parent of 7e04c3e (隱ｿ謨ｴ荳ｭ)
-=======
-#include "../Precompiled/pch.h"
->>>>>>> parent of cecf57c (隱ｿ謨ｴ荳ｭ)
-#include <Windows.h>
+
+#include "../../Game/EntryPoint/main.h"
 
 /**
  * @brief ゲームクラスを保持するウィンドウクラス

@@ -1,4 +1,4 @@
-#include "../Precompiled/pch.h"
+#include "../../Game/EntryPoint/main.h"
 #include "input.h"
 
 //コンストラクタ

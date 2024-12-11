@@ -2,6 +2,7 @@
 
 
 // プリコンパイルヘッダー一覧
+// 頻繁に使用するヘッダファイル一覧
 #include <windows.h>
 #include <memory>
 #include <vector>

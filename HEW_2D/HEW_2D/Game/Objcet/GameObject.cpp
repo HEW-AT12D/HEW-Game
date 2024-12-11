@@ -1,5 +1,4 @@
-#include "../../Framework/Precompiled/pch.h"
-#include "pch.h"
+#include "../EntryPoint/main.h"
 #include "GameObject.h"
 
 void GameObject::Init(const wchar_t* imgname, int sx, int sy)
@@ -27,11 +26,11 @@ void GameObject::Init(const wchar_t* imgname, int sx, int sy)
 	subResourceData.SysMemPitch = 0;
 	subResourceData.SysMemSlicePitch = 0;
 
-	HRESULT hr = d3d11->GetDevice()->CreateBuffer(&bufferDesc, &subResourceData, &m_pVertexBuffer);
+	HRESULT hr = d3d11.GetDevice()->CreateBuffer(&bufferDesc, &subResourceData, &m_pVertexBuffer);
 
 	// テクスチャ読み込み
 //	hr = DirectX::CreateWICTextureFromFile(Device, imgname, NULL, &m_pTextureView);
-	hr = DirectX::CreateWICTextureFromFileEx(d3d11->GetDevice(), d3d11->GetDeviceContext(), imgname, 0, D3D11_USAGE_DEFAULT,
+	hr = DirectX::CreateWICTextureFromFileEx(d3d11.GetDevice(), d3d11.GetDeviceContext(), imgname, 0, D3D11_USAGE_DEFAULT,
 		D3D11_BIND_SHADER_RESOURCE, 0, 0, DirectX::WIC_LOADER_IGNORE_SRGB, nullptr, &m_pTextureView);
 	if (FAILED(hr))
 	{
@@ -45,10 +44,10 @@ void GameObject::Draw()
 	//頂点バッファを設定
 	UINT strides = sizeof(Vertex);
 	UINT offsets = 0;
-	d3d11->GetDeviceContext()->IASetVertexBuffers(0, 1, &m_pVertexBuffer, &strides, &offsets);
+	d3d11.GetDeviceContext()->IASetVertexBuffers(0, 1, &m_pVertexBuffer, &strides, &offsets);
 
 	// テクスチャをピクセルシェーダーに渡す
-	d3d11->GetDeviceContext()->PSSetShaderResources(0, 1, &m_pTextureView);
+	d3d11.GetDeviceContext()->PSSetShaderResources(0, 1, &m_pTextureView);
 
 	//定数バッファを更新
 	ConstBuffer cb;
@@ -74,9 +73,9 @@ void GameObject::Draw()
 	cb.color = color;
 
 	// 行列をシェーダーに渡す
-	d3d11->GetDeviceContext()->UpdateSubresource(d3d11->GetConststBuffer(), 0, NULL, &cb, 0, 0);
+	d3d11.GetDeviceContext()->UpdateSubresource(d3d11.GetConststBuffer(), 0, NULL, &cb, 0, 0);
 
-	d3d11->GetDeviceContext()->Draw(4, 0); // 描画命令
+	d3d11.GetDeviceContext()->Draw(4, 0); // 描画命令
 }
 
 void GameObject::Uninit()

@@ -1,12 +1,13 @@
 #pragma once
-#include "../../../pch.h"
-#include "../../../Game/Objcet/GameObject.h"
+#include "../../../Game/EntryPoint/main.h"
 
 /// <summary>
 /// 全てのコンポーネントの元となるクラス
 /// コンポーネントはそれをアタッチ（取りつけ）するオブジェクトがあるのでメンバ変数としてGameObjcetクラスのポインタを持つ
 /// →それによってコンポーネントからアタッチしているオブジェクトにアクセスすることができる
 /// </summary>
+
+class GameObject;
 
 class IComponent
 {
