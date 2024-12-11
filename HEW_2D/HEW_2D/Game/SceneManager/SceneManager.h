@@ -1,5 +1,5 @@
 #pragma once
-#include "../../Framework/Precompiled/pch.h"
+#include "../../pch.h"
 #include "../../Framework/Scene/IScene.h"
 
 
@@ -20,6 +20,9 @@ enum SceneName {
  * タイトル、ゲーム、リザルトの３つだけなので今回はarrayを使用
  * 初期化でシーンをすべて配列に格納
  * シーン切り替え関数が必要
+ * 
+ * イベント発生でシーン切り替え
+ * →mapで保持しておき、シーン遷移でシーンを解放
 */
 class SceneManager
 {
@@ -35,7 +38,7 @@ public:
 	void ChangeScene(SceneName scene);	//! シーン切り替え
 
 private:
-	std::array<std::unique_ptr<IScene>, 3> scenes;
+	std::vector<std::unique_ptr<IScene>> scenes;
 	SceneName scenename;
 };
 

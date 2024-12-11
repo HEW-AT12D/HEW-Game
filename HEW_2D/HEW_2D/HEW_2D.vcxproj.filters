@@ -79,6 +79,9 @@
     <Filter Include="ゲーム\オブジェクト管理">
       <UniqueIdentifier>{07c8d67a-cea0-4a65-96e3-8ed9f2f42def}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ゲーム\シーン">
+      <UniqueIdentifier>{51a8fd47-76e4-4a73-bb5b-b922a6648df4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game\Game\Game.cpp">
@@ -111,9 +114,6 @@
     <ClCompile Include="Framework\Component\IComponent\IComponent.cpp">
       <Filter>フレームワーク\コンポーネント\基本コンポーネント</Filter>
     </ClCompile>
-    <ClCompile Include="Framework\Precompiled\pch.cpp">
-      <Filter>フレームワーク\Precompiled</Filter>
-    </ClCompile>
     <ClCompile Include="Framework\Component\Transform\TransformComponent.cpp">
       <Filter>フレームワーク\コンポーネント\Transform</Filter>
     </ClCompile>
@@ -131,6 +131,18 @@
     </ClCompile>
     <ClCompile Include="Game\ObjectManager\ObjectManager.cpp">
       <Filter>ゲーム\オブジェクト管理</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>フレームワーク\Precompiled</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Scene\GameScene.cpp">
+      <Filter>ゲーム\シーン</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Scene\ResultScene.cpp">
+      <Filter>ゲーム\シーン</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Scene\TitleScene.cpp">
+      <Filter>ゲーム\シーン</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -164,9 +176,6 @@
     <ClInclude Include="Framework\Component\IComponent\IComponent.h">
       <Filter>フレームワーク\コンポーネント\基本コンポーネント</Filter>
     </ClInclude>
-    <ClInclude Include="Framework\Precompiled\pch.h">
-      <Filter>フレームワーク\Precompiled</Filter>
-    </ClInclude>
     <ClInclude Include="Framework\Component\Transform\TransformComponent.h">
       <Filter>フレームワーク\コンポーネント\Transform</Filter>
     </ClInclude>
@@ -184,6 +193,18 @@
     </ClInclude>
     <ClInclude Include="Game\ObjectManager\ObjectManager.h">
       <Filter>ゲーム\オブジェクト管理</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>フレームワーク\Precompiled</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Scene\GameScene.h">
+      <Filter>ゲーム\シーン</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Scene\ResultScene.h">
+      <Filter>ゲーム\シーン</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Scene\TitleScene.h">
+      <Filter>ゲーム\シーン</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

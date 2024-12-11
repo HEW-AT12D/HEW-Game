@@ -2,7 +2,7 @@
 
 #include <Xinput.h> //XInputを使うためのヘッダーファイル
 #pragma comment (lib, "xinput.lib") //XInputを使うために必要
-#include "../Precompiled/pch.h"
+#include "../../pch.h"
 
 #define XINPUT_A              0x1000
 #define XINPUT_B              0x2000

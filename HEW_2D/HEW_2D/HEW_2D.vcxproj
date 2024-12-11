@@ -146,9 +146,6 @@
     <ClCompile Include="Framework\Component\Transform\TransformComponent.cpp" />
     <ClCompile Include="Framework\D3D11\D3D11.cpp" />
     <ClCompile Include="Framework\Input\Input.cpp" />
-    <ClCompile Include="Framework\Precompiled\pch.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
-    </ClCompile>
     <ClCompile Include="Framework\SceneManager\SceneManager.cpp" />
     <ClCompile Include="Framework\Scene\IScene.cpp" />
     <ClCompile Include="Framework\Sound\sound.cpp" />
@@ -159,6 +156,10 @@
     <ClCompile Include="Game\Objcet\GameObject.cpp" />
     <ClCompile Include="Game\ObjectManager\ObjectManager.cpp" />
     <ClCompile Include="Game\SceneManager\SceneManager.cpp" />
+    <ClCompile Include="Game\Scene\GameScene.cpp" />
+    <ClCompile Include="Game\Scene\ResultScene.cpp" />
+    <ClCompile Include="Game\Scene\TitleScene.cpp" />
+    <ClCompile Include="pch.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework\ComponentManager\ComponentManager.h">
@@ -169,7 +170,6 @@
     <ClInclude Include="Framework\Component\Transform\TransformComponent.h" />
     <ClInclude Include="Framework\D3D11\D3D11.h" />
     <ClInclude Include="Framework\Input\Input.h" />
-    <ClInclude Include="Framework\Precompiled\pch.h" />
     <ClInclude Include="Framework\SceneManager\SceneManager.h" />
     <ClInclude Include="Framework\Scene\IScene.h" />
     <ClInclude Include="Framework\Sound\sound.h" />
@@ -180,6 +180,10 @@
     <ClInclude Include="Game\Objcet\GameObject.h" />
     <ClInclude Include="Game\ObjectManager\ObjectManager.h" />
     <ClInclude Include="Game\SceneManager\SceneManager.h" />
+    <ClInclude Include="Game\Scene\GameScene.h" />
+    <ClInclude Include="Game\Scene\ResultScene.h" />
+    <ClInclude Include="Game\Scene\TitleScene.h" />
+    <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Framework\注意点\注意点・解説.txt" />
