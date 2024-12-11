@@ -184,6 +184,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> parent of 7e04c3e (調整中)
     <ClInclude Include="Game\Scene\GameScene.h" />
@@ -200,6 +201,8 @@
 >>>>>>> parent of c18ec40 (pch.hの削除とmain.hをすべてにinclude)
 =======
 >>>>>>> parent of 7e04c3e (調整中)
+=======
+>>>>>>> parent of cecf57c (調整中)
   </ItemGroup>
   <ItemGroup>
     <Text Include="Framework\注意点\注意点・解説.txt" />

@@ -3,6 +3,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "../../pch.h"
 =======
 #include "../main.h"
@@ -16,6 +17,9 @@
 =======
 #include "../../pch.h"
 >>>>>>> parent of 7e04c3e (調整中)
+=======
+#include "../../Framework/Precompiled/pch.h"
+>>>>>>> parent of cecf57c (調整中)
 #include "../../Framework/Scene/IScene.h"
 
 
