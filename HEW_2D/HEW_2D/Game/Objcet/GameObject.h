@@ -25,6 +25,7 @@
  * @param transform トランスフォーム（座標、回転、大きさ）
  * @param color 色情報
  * 
+ * 
 */
 class GameObject {
 private:

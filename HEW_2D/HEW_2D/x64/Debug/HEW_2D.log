@@ -10,26 +10,37 @@ C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Texture\Texture
   Game.cpp
 C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Game\Game.cpp(7,2): error C2065: 'player': 定義されていない識別子です。
 C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Game\Game.cpp(8,2): error C2065: 'player': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Game\Game.cpp(8,21): error C3861: 'Vector3': 識別子が見つかりませんでした
 C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Game\Game.cpp(9,2): error C2065: 'player': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Game\Game.cpp(9,18): error C3861: 'Vector3': 識別子が見つかりませんでした
 C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Game\Game.cpp(10,2): error C2065: 'player': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Game\Game.cpp(10,21): error C3861: 'Vector3': 識別子が見つかりませんでした
 C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Game\Game.cpp(11,2): error C2065: 'player': 定義されていない識別子です。
-C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Game\Game.cpp(13,2): error C2065: 'background': 定義されていない識別子です。
-C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Game\Game.cpp(14,2): error C2065: 'background': 定義されていない識別子です。
-C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Game\Game.cpp(15,2): error C2065: 'background': 定義されていない識別子です。
-C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Game\Game.cpp(16,2): error C2065: 'background': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Game\Game.cpp(11,18): error C3861: 'Vector4': 識別子が見つかりませんでした
 C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Game\Game.cpp(25,2): error C2065: 'player': 定義されていない識別子です。
 C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Game\Game.cpp(26,6): error C2065: 'player': 定義されていない識別子です。
 C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Game\Game.cpp(27,3): error C2065: 'player': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Game\Game.cpp(29,2): error C2065: 'Vector3': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Game\Game.cpp(29,10): error C2146: 構文エラー: ';' が、識別子 'pos' の前に必要です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Game\Game.cpp(29,10): error C2065: 'pos': 定義されていない識別子です。
 C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Game\Game.cpp(29,16): error C2065: 'player': 定義されていない識別子です。
-C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Game\Game.cpp(50,2): error C2065: 'player': 定義されていない識別子です。
-C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Game\Game.cpp(57,2): error C2065: 'background': 定義されていない識別子です。
-C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Game\Game.cpp(58,2): error C2065: 'player': 定義されていない識別子です。
-C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Game\Game.cpp(64,2): error C2065: 'player': 定義されていない識別子です。
-C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Game\Game.cpp(65,2): error C2065: 'background': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Game\Game.cpp(32,33): error C2065: 'pos': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Game\Game.cpp(33,33): error C2065: 'pos': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Game\Game.cpp(34,33): error C2065: 'pos': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Game\Game.cpp(35,33): error C2065: 'pos': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Game\Game.cpp(46,2): error C2065: 'player': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Game\Game.cpp(46,16): error C2065: 'pos': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Game\Game.cpp(46,23): error C2065: 'pos': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Game\Game.cpp(46,30): error C2065: 'pos': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Game\Game.cpp(52,2): error C2065: 'background': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Game\Game.cpp(53,2): error C2065: 'player': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Game\Game.cpp(59,2): error C2065: 'player': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Game\Game.cpp(60,2): error C2065: 'background': 定義されていない識別子です。
   GameObject.cpp
 C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Objcet\GameObject.cpp(7,14): warning C4244: '=': 'int' から 'float' への変換です。データが失われる可能性があります。
 C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Objcet\GameObject.cpp(8,14): warning C4244: '=': 'int' から 'float' への変換です。データが失われる可能性があります。
   ObjectManager.cpp
 C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\ObjectManager\ObjectManager.cpp(32,15): error C2039: 'Update': 'GameObject' のメンバーではありません
-C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Objcet\GameObject.h(29,7): message : 'GameObject' の宣言を確認してください
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Objcet\GameObject.h(30,7): message : 'GameObject' の宣言を確認してください
+  SceneManager.cpp
   コードを生成中...
