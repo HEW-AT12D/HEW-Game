@@ -5,6 +5,11 @@ const auto ClassName = TEXT("HEW2D");			//!< ウィンドウクラス名.
 const auto WindowName = TEXT("おとめるパレット");	//!< ウィンドウ名.
 
 
+Window& Window::GetInstance(void) {
+
+}
+
+
 /**
  * @brief ウィンドウの初期化
  *
@@ -67,9 +72,10 @@ bool Window::Init(void) {
 		m_hInst,				// インスタンスハンドル
 		nullptr);				// ウィンドウ作成データ
 
-
+	// もしウィンドウの情報がない（ウィンドウ作成がうまくいってない）なら
 	if (m_hWnd == nullptr)
 	{
+		// 初期化失敗とする
 		return false;
 	}
 
@@ -81,11 +87,14 @@ bool Window::Init(void) {
 
 	// ウィンドウにフォーカスを設定.
 	SetFocus(m_hWnd);
+
+	// 正常終了（ウィンドウハンドルを返す）.
+	return true;
 }
 
 
 //-----------------------------------------------------------------------------
-// メインループ
+// メインループ（主に実行する関数）
 //-----------------------------------------------------------------------------
 void Window::WinMain(void) {
 
@@ -148,7 +157,7 @@ void Window::WinMain(void) {
 	// ゲームループ
 	while (1)
 	{
-		// 新たにメッセージがあれば
+		// 新たにメッセージ(WM_KEYDOWNとかそういうやつ)があれば
 		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
 		{
 			// ウィンドウプロシージャにメッセージを送る
@@ -256,7 +265,7 @@ LRESULT CALLBACK Window::WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPa
 		}
 	}
 	break;
-	case WM_KEYDOWN: //キー入力があったメッセージ
+	case WM_KEYDOWN: //キー入力があった場合のメッセージ
 		if (LOWORD(wParam) == VK_ESCAPE) { //入力されたキーがESCAPEなら
 			PostMessage(hWnd, WM_CLOSE, wParam, lParam);//「WM_CLOSE」を送る
 		}
@@ -293,6 +302,7 @@ LRESULT CALLBACK Window::WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPa
 		return DefWindowProc(hWnd, uMsg, wParam, lParam);	// 標準挙動を実行させるため
 		break;
 	default:
+		// 特別じゃない（↑のcaseで定義されていないような）メッセージ（処理）の場合はこっちに飛ぶ
 		// 受け取ったメッセージに対してデフォルトの処理を実行
 		return DefWindowProc(hWnd, uMsg, wParam, lParam);
 		break;

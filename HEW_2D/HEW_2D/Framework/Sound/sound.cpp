@@ -94,7 +94,7 @@ HRESULT Sound::Init()
 
 		m_pXAudio2->CreateSourceVoice(&m_pSourceVoice[i], &(m_wfx[i].Format));
 	}
-	
+
 	return hr;
 }
 
@@ -141,16 +141,16 @@ void Sound::Play(SOUND_LABEL label)
 
 	//音量設定（仮：作成出口）
 	pSV->SetVolume(1.0f);	//! 更新処理でプレイヤーとオブジェクトの距離で計算すれば距離に応じて
-							//! 音の大きさを変えることが可能？	1.0fがデフォルト
-	// 再生
+	//! 音の大きさを変えることが可能？	1.0fがデフォルト
+// 再生
 	pSV->Start(0);	//! 引数の０は生成遅延時間を表している
-	
+
 }
 
 //=============================================================================
 // 音量変更
 //=============================================================================
-void Sound::ChangeVolume(SOUND_LABEL label,int distance)		//! 引数の受け渡し（volumeがおそらくできないから変更必要)
+void Sound::ChangeVolume(SOUND_LABEL label, int distance)		//! 引数の受け渡し（volumeがおそらくできないから変更必要)
 {
 
 	IXAudio2SourceVoice*& pSV = m_pSourceVoice[(int)label];
@@ -175,7 +175,7 @@ void Sound::Stop(SOUND_LABEL label)
 	XAUDIO2_VOICE_STATE xa2state;
 	m_pSourceVoice[(int)label]->GetState(&xa2state);	//! 音声が今どういう状態化を確認する
 	if (xa2state.BuffersQueued)			//! ture(音声が再生中の場合）に音声を止める
-	{									
+	{
 		m_pSourceVoice[(int)label]->Stop(0);	//! 引数内はどのように停止するか（０は即座に強制停止）
 	}
 
@@ -257,15 +257,15 @@ HRESULT Sound::ReadChunkData(HANDLE hFile, void* buffer, DWORD buffersize, DWORD
 int Sound::SetDistance(int distance)
 {
 	//! プレイヤーとの距離(distance)を取って来る
-	
+
 }
 
 
 //=============================================================================
 // volumeに関するゲッター
 //=============================================================================
-int Sound::SetDistance(int distnace)
-{
-
-	//! 今のところ中身なし
-}
+//int Sound::SetDistance(int distnace)
+//{
+//
+//	//! 今のところ中身なし
+//}

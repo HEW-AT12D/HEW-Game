@@ -1,9 +1,20 @@
 #include "../EntryPoint/main.h"
 #include "Game.h"
 
-void Game::Init(HWND hWnd)
+using namespace SimpleMath;
+
+/**
+ * @brief アプリ全体としての初期化処理
+ * 
+ * ウィンドウ初期化→DirectX初期化→ゲーム初期化
+ * の流れで進める
+*/
+void Game::Init(void)
 {
+	HWND hWnd;					// ウィンドウハンドル代入用変数
+	hWnd = window.Init();		// ウィンドウ初期化
 	d3d11.Init(hWnd);			// DirectXを初期化
+	
 	player.Init(L"asset/char01.png", 3, 4);				//プレイヤーを初期化
 	player.SetPosition(Vector3(100.0f, 0.0f, 0.0f));	//位置を設定
 	player.SetScale(Vector3(200.0f, 300.0f, 0.0f));		//大きさを設定
