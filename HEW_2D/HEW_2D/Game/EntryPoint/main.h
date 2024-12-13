@@ -15,5 +15,13 @@
 // DirectX::を省略したい
 using namespace DirectX;
 
+//! constexpr：コンパイル時に値が決まる定数
+//! 変数と同じでスコープがあること、型を指定できること、コンパイル時（プログラム実行前）に値が決まる
+//! →コンパイルどうのこうのはまだわからないので一旦放置、後から勉強
 constexpr uint32_t SCREEN_WIDTH = 1280;
 constexpr uint32_t SCREEN_HEIGHT = 720;
+
+// 定数定義
+const auto ClassName = TEXT("HEW2D");			//!< ウィンドウクラス名.
+const auto WindowName = TEXT("おとめるパレット");	//!< ウィンドウ名.
+

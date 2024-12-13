@@ -14,11 +14,16 @@
 */
 class Window
 {
-public:
-	Window();
-	~Window();
+public:	
 
-	bool Init(void);			// ウィンドウの初期化処理→これ自体は外からでもしたいのでpublicでいい
+	/**
+	 * @brief ウィンドウの初期化処理
+	 * →これ自体は外からでもしたいのでpublicでいい
+	 * @param screen_width ウィンドウの幅
+	 * @param screen_height ウィンドウの高さ
+	 * @return 初期化成功or失敗
+	*/
+	bool Init(uint32_t _Screen_width = SCREEN_WIDTH, uint32_t _Screen_height = SCREEN_HEIGHT);
 	void WinMain(void);			// メインのループ
 	void Uninit(void);			// 終了処理
 
@@ -32,12 +37,33 @@ public:
 	*/
 	static LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
-	static Window& GetInstance(void);	// インスタンス取得用関数（シングルトン実現に必要）
+	/**
+	 * @brief インスタンス取得用関数（シングルトン実現に必要）
+	 * 基本ウィンドウのインスタンスはこのクラス内で生成するのみ。それも最初の一度だけ。
+	 * これをstaticにしないと最初に呼び出すことができなくなる（一度外でインスタンスを作ってから関数呼び出ししないといけなくなる）から絶対static
+	 * @return Windowのインスタンス
+	*/
+	static Window& GetInstance(void);
+
+	/**
+	 * @brief ウィンドウハンドル取得関数
+	 * ウィンドウハンドルはウィンドウの初期化処理内でウィンドウの登録などを済ませてから初めて情報として成立する
+	 * →staticにする（インスタンス生成前に呼び出せるようにする）必要はない
+	 * @return ウィンドウハンドル
+	*/
+	HWND GetHandleWindow(void);
 
 private:
-	static Window* m_Instance;			// ウィンドウのインスタンス保持用変数（これでシングルトン実現！）
-	static HINSTANCE   m_hInst;			// インスタンスハンドル
-	static HWND        m_hWnd;			// ウィンドウハンドル
+	//! コンストラクタとデストラクタをprivateに配置することで、インスタンスを生成できなくする
+	//! コンストラクタとデストラクタは変数が作られたときと消えるときに動作する関数
+	//! つまり、インスタンスを作ろうとする→コンストラクタが動こうとするけどprivateだから動かない→インスタンスが作れない
+	//! となる
+	Window();
+	~Window();
+
+	//static Window* m_Instance;		// ウィンドウのインスタンス保持用変数（これでシングルトン実現！→メンバ変数にするとややこしいのでゲッター関数内のローカル変数としておく
+	static HINSTANCE   m_hInst;			// インスタンスハンドル(アプリケーションを識別する情報→これはどんな設計でも単一(static)であるべき)
+	static HWND        m_hWnd;			// ウィンドウハンドル(ウィンドウの情報を持つポインタみたいなもの→今回はウィンドウは一つなので単一(static)とする)
 	static uint32_t    m_Width;			// ウィンドウの横幅
 	static uint32_t    m_Height;		// ウィンドウの縦幅
 };

@@ -11,15 +11,16 @@ using namespace SimpleMath;
 */
 void Game::Init(void)
 {
-	HWND hWnd;					// ウィンドウハンドル代入用変数
-	hWnd = window.Init();		// ウィンドウ初期化
-	d3d11.Init(hWnd);			// DirectXを初期化
+	HWND hWnd;						// ウィンドウハンドル代入用変数
+	Window::GetInstance().Init();	// ウィンドウ初期化
+	hWnd = Window::GetInstance().GetHandleWindow();		// ウィンドウハンドル取得
+	d3d11.Init(hWnd);				// DirectXを初期化
 	
-	player.Init(L"asset/char01.png", 3, 4);				//プレイヤーを初期化
-	player.SetPosition(Vector3(100.0f, 0.0f, 0.0f));	//位置を設定
-	player.SetScale(Vector3(200.0f, 300.0f, 0.0f));		//大きさを設定
-	player.SetRotation(Vector3(0.0f, 0.0f, 0.0f));		//角度を設定
-	player.SetColor(Vector4(1.0f, 1.0f, 1.0f, 0.5f));	//角度を設定
+	//player.Init(L"asset/char01.png", 3, 4);				//プレイヤーを初期化
+	//player.SetPosition(Vector3(100.0f, 0.0f, 0.0f));	//位置を設定
+	//player.SetScale(Vector3(200.0f, 300.0f, 0.0f));		//大きさを設定
+	//player.SetRotation(Vector3(0.0f, 0.0f, 0.0f));		//角度を設定
+	//player.SetColor(Vector4(1.0f, 1.0f, 1.0f, 0.5f));	//角度を設定
 
 	//background.Init(L"asset/back_img_01.png");	//背景を初期化
 	//background.SetPos(0.0f, 0.0f, 0.0f);		//位置を設定

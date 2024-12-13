@@ -1,12 +1,17 @@
 #include "Window.h"
 
-// 定数定義
-const auto ClassName = TEXT("HEW2D");			//!< ウィンドウクラス名.
-const auto WindowName = TEXT("おとめるパレット");	//!< ウィンドウ名.
-
-
+/**
+ * @brief インスタンス取得関数
+ * @param  なし
+ * @return 自身のインスタンス
+ * 
+ * 一度目のインスタンス呼び出しであれば自身を生成し、既にインスタンスが存在していればそれを返す
+*/
 Window& Window::GetInstance(void) {
-
+	// 自身のインスタンスをstaticで生成
+	static Window Instance;
+	
+	return Instance;
 }
 
 
@@ -15,9 +20,13 @@ Window& Window::GetInstance(void) {
  *
  * ウィンドウの登録と作成"だけ"を行う
  *
- * @param
+ * @param ウィンドウの幅、高さ
 */
-bool Window::Init(void) {
+bool Window::Init(uint32_t _Screen_width, uint32_t _Screen_height) {
+	//! 引数で設定したウィンドウサイズをメンバ変数に代入
+	m_Width = _Screen_width;
+	m_Height = _Screen_height;
+	
 	//! ウィンドウの初期化
 	// インスタンスハンドルを取得.
 	auto hInst = GetModuleHandle(nullptr);

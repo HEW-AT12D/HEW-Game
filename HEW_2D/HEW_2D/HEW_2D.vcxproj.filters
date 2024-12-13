@@ -194,9 +194,6 @@
     <ClInclude Include="Game\Scene\TitleScene.h">
       <Filter>ゲーム\シーン</Filter>
     </ClInclude>
-    <ClInclude Include="main.h">
-      <Filter>ゲーム</Filter>
-    </ClInclude>
     <ClInclude Include="Game\EntryPoint\main.h">
       <Filter>ゲーム\エントリーポイント</Filter>
     </ClInclude>

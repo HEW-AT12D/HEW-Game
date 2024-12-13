@@ -257,7 +257,7 @@ HRESULT Sound::ReadChunkData(HANDLE hFile, void* buffer, DWORD buffersize, DWORD
 int Sound::SetDistance(int distance)
 {
 	//! ƒvƒŒƒCƒ„[‚Æ‚Ì‹——£(distance)‚ğæ‚Á‚Ä—ˆ‚é
-
+	return 0;
 }
 
 

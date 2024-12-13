@@ -1,30 +1,16 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(1101,5): warning MSB8027: SceneManager.cpp という名前の複数のファイルでは、同じ場所に出力が生成されます。これにより、不適切なビルド結果が生じる可能性があります。関連するファイルは Framework\SceneManager\SceneManager.cpp, Game\SceneManager\SceneManager.cpp です。
-  sound.cpp
-C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Sound\sound.cpp(163,27): warning C4244: '=': 'int' から 'float' への変換です。データが失われる可能性があります。
-  Texture.cpp
-C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Texture\Texture.cpp(36,15): error C2065: 'm_pDevice': 定義されていない識別子です。
-C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Texture\Texture.cpp(40,43): error C2065: 'm_pDevice': 定義されていない識別子です。
-C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Texture\Texture.cpp(40,54): error C2065: 'm_pDeviceContext': 定義されていない識別子です。
-  Window.cpp
   Game.cpp
-C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Game\Game.cpp(13,13): error C2065: 'hWnd': 定義されていない識別子です。
-C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Game\Game.cpp(15,2): error C2065: 'player': 定義されていない識別子です。
-C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Game\Game.cpp(16,2): error C2065: 'player': 定義されていない識別子です。
-C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Game\Game.cpp(17,2): error C2065: 'player': 定義されていない識別子です。
-C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Game\Game.cpp(18,2): error C2065: 'player': 定義されていない識別子です。
-C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Game\Game.cpp(19,2): error C2065: 'player': 定義されていない識別子です。
-C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Game\Game.cpp(33,2): error C2065: 'player': 定義されていない識別子です。
-C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Game\Game.cpp(34,6): error C2065: 'player': 定義されていない識別子です。
-C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Game\Game.cpp(35,3): error C2065: 'player': 定義されていない識別子です。
-C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Game\Game.cpp(37,16): error C2065: 'player': 定義されていない識別子です。
-C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Game\Game.cpp(54,2): error C2065: 'player': 定義されていない識別子です。
-C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Game\Game.cpp(60,2): error C2065: 'background': 定義されていない識別子です。
-C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Game\Game.cpp(61,2): error C2065: 'player': 定義されていない識別子です。
-C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Game\Game.cpp(67,2): error C2065: 'player': 定義されていない識別子です。
-C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Game\Game.cpp(68,2): error C2065: 'background': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Game\Game.h(30,1): warning C4624: 'Game': デストラクターは暗黙的に削除済みとして定義されました
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Game\Game.cpp(37,2): error C2065: 'player': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Game\Game.cpp(38,6): error C2065: 'player': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Game\Game.cpp(39,3): error C2065: 'player': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Game\Game.cpp(41,16): error C2065: 'player': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Game\Game.cpp(58,2): error C2065: 'player': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Game\Game.cpp(64,2): error C2065: 'background': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Game\Game.cpp(65,2): error C2065: 'player': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Game\Game.cpp(71,2): error C2065: 'player': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Game\Game.cpp(72,2): error C2065: 'background': 定義されていない識別子です。
   ObjectManager.cpp
 C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\ObjectManager\ObjectManager.cpp(32,15): error C2039: 'Update': 'GameObject' のメンバーではありません
 C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Objcet\GameObject.h(30,7): message : 'GameObject' の宣言を確認してください
-  SceneManager.cpp
   コードを生成中...
-C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Sound\sound.cpp(261): error C4716: 'Sound::SetDistance': 値を返さなければいけません

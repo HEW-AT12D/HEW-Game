@@ -39,7 +39,14 @@ void GameObject::Init(const wchar_t* imgname, int sx, int sy)
 	}
 }
 
-void GameObject::Draw()
+
+void GameObject::Update(void)
+{
+
+}
+
+
+void GameObject::Draw(void)
 {
 	//頂点バッファを設定
 	UINT strides = sizeof(Vertex);

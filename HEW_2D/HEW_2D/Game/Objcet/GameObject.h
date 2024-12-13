@@ -61,13 +61,14 @@ private:
 
 public:
 	
-	void Init(const wchar_t* imgname, int sx = 1, int sy = 1); //初期化
-	void Draw();						//描画
-	void Uninit();						//終了
-	void SetPosition(Vector3 _Pos);		//座標をセット
-	void SetScale(Vector3 _Size);		//大きさをセット
-	void SetRotation(Vector3 _Rot);		//角度をセット
-	void SetColor(Vector4 _Color);		//色をセット
+	void Init(const wchar_t* imgname, int sx = 1, int sy = 1); // 初期化
+	void Update(void);					// 更新（自オブジェクトに”何か”が当たった判定だけここで確認）
+	void Draw(void);					// 描画
+	void Uninit(void);					// 終了
+	void SetPosition(Vector3 _Pos);		// 座標をセット
+	void SetScale(Vector3 _Size);		// 大きさをセット
+	void SetRotation(Vector3 _Rot);		// 角度をセット
+	void SetColor(Vector4 _Color);		// 色をセット
 
 	// 個別の当たり判定もここに追加？オブジェクトの基本となるクラスならここじゃなくて、判定が必要なオブジェクトにそれぞれ追加？
 
