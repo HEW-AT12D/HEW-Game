@@ -22,13 +22,19 @@ public:
 		//! オブジェクト配列にテンプレート型のクラスのユニークポインタを格納
 		//! →その際のコンストラクタに与える引数の型(Args)と、実引数として(args)が存在している。
 		//! 　→この場合、std::forwardはTのコンストラクタに引数の型、実引数をそのまま渡すために記述されている
-		objects.push_back(std::make_unique<T>(std::forward<Args>(args)...));
+		objects.emplace_back(std::make_unique<T>(std::forward<Args>(args)...));
 	}
 	/**
 	 * @brief オブジェクト削除関数
 	 * @param object 削除対象オブジェクト
 	*/
 	void DeleteObject(GameObject* object);
+
+	/**
+	 * @brief オブジェクトの数を返す関数
+	 * @return オブジェクト数
+	*/
+	size_t GetObjectCount(void);
 
 	void Init(void);
 	void Update(void);

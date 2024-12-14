@@ -5,10 +5,11 @@
 
 SceneManager::SceneManager()
 {
-	//! シーン生成
-	scenes[0] = std::make_unique<TitleScene>();
+	//! タイトルシーンを生成してシーン配列に追加
+	Scenes.emplace(std::make_unique<TitleScene>());
+	/*scenes[0] = std::make_unique<TitleScene>();
 	scenes[1] = std::make_unique<GameScene>();
-	scenes[2] = std::make_unique<TitleScene>();
+	scenes[2] = std::make_unique<TitleScene>();*/
 }
 
 SceneManager::~SceneManager()
@@ -20,24 +21,40 @@ SceneManager::~SceneManager()
  * @brief シーン配列初期化
  * @param  
 */
-void SceneManager::Init(void) {
-	
+void SceneManager::Init(void) 
+{
+	//! シーンの初期化
 
 }
 
 void SceneManager::Draw(void) {
-	scenes[scenename]->Draw();
+	//! 現在シーンによってそのシーンを描画
+	//! →これだとシーンの解放を考えられてなくない？添え字を指定しちゃってるからvectorな意味ないかも
+	switch (CurrentScene)
+	{
+	case TITLE:
+		Scenes[TITLE]->Draw();
+		break;
+	case GAME:
+		Scenes[GAME]->Draw();
+		break;
+	case RESULT:
+		Scenes[RESULT]->Draw();
+		break;
+	default:
+		break;
+	}
 }
 
 void SceneManager::Uninit(void) {
-	// 現在シーンの終了処理
-	//scenes[scenename].un
+	// シーンの終了処理
+	Scenes[CurrentScene]->Uninit();
 }
 
 /**
  * @brief シーン切り替え関数
  * @param  
 */
-void SceneManager::ChangeScene(SceneName scenename) {
-	this->scenename = scenename;
+void SceneManager::ChangeScene(SceneName _Scene) {
+	this->CurrentScene = _Scene;
 }

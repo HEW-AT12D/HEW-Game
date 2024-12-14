@@ -6,6 +6,8 @@
 #include <windows.h>
 #include <memory>
 #include <vector>
+#include <map>
+#include <string>
 #include <DirectXMath.h>	// DirextXの数学関連のヘッダーファイル
 #include <SimpleMath.h>
 #include <stdlib.h>

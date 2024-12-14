@@ -1,7 +1,7 @@
 #include "TitleScene.h"
 
 
-// TODO:コンストラクタで
+// TODO:コンストラクタでオブジェクト生成
 TitleScene::TitleScene()
 {
 	objectmanager.AddObject<GameObject>();

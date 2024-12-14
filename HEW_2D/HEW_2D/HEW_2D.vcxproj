@@ -160,6 +160,9 @@
     <ClCompile Include="Game\Objcet\GameObject.cpp" />
     <ClCompile Include="Game\ObjectManager\ObjectManager.cpp" />
     <ClCompile Include="Game\SceneManager\SceneManager.cpp" />
+    <ClCompile Include="Game\Scene\GameScene.cpp" />
+    <ClCompile Include="Game\Scene\ResultScene.cpp" />
+    <ClCompile Include="Game\Scene\TitleScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework\ComponentManager\ComponentManager.h">

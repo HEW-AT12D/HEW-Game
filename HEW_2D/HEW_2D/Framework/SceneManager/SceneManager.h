@@ -4,7 +4,7 @@
 //! TODO:scenemanagerでtitlesceneとresultsceneをインクルードすると、それぞれでインクルードされているobjectmanagerとISceneが衝突してしまう
 //! →scenemanager.cppでのみtitlesceneとresultsceneをインクルードして解決
 //! 
-//! TODO:シーンをvectorで持つべき？mapで持つべき？
+
 
 enum SceneName {
 	TITLE,

@@ -4,6 +4,7 @@
 
 //! TODO:scenemanagerでtitlesceneとresultsceneをインクルードすると、それぞれでインクルードされているobjectmanagerとISceneが衝突してしまう
 //! →scenemanager.cppでのみtitlesceneとresultsceneをインクルードして解決
+//! TODO:シーンをvectorで持つべき？mapで持つべき？
 
 enum SceneName {
 	TITLE,
@@ -33,8 +34,15 @@ public:
 
 	void ChangeScene(SceneName scene);	//! シーン切り替え
 
+	template <typename T>
+	void CreateScene(SceneName _name)
+	{
+		// タグを設定してシーンを追加
+		Scenes.emplace(_name, std::make_unique<T>());
+	}
+
 private:
-	std::vector<std::unique_ptr<IScene>> scenes;
-	SceneName scenename;
+	std::map<std::string, std::unique_ptr<IScene>> Scenes;	//! シーン配列
+	SceneName CurrentScene;
 };
 

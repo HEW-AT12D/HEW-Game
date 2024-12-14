@@ -1,5 +1,8 @@
 #include "ObjectManager.h"
 
+/**
+ * @brief コンストラクタ（ここでオブジェクトを生成）
+*/
 ObjectManager::ObjectManager() {
 
 }
@@ -7,6 +10,13 @@ ObjectManager::ObjectManager() {
 ObjectManager::~ObjectManager() {
 
 }
+
+
+size_t ObjectManager::GetObjectCount(void)
+{
+	return objects.size();
+}
+
 
 /**
  * @brief オブジェクト削除関数
