@@ -5,6 +5,9 @@
 //! TODO:scenemanagerでtitlesceneとresultsceneをインクルードすると、それぞれでインクルードされているobjectmanagerとISceneが衝突してしまう
 //! →scenemanager.cppでのみtitlesceneとresultsceneをインクルードして解決
 //! TODO:シーンをvectorで持つべき？mapで持つべき？
+//! 
+//! 使っていないシーンはロードせず、現在シーンだけを更新、描画するようにしたい
+//! シーン遷移の時に前シーンを解放して新しいシーンを初期化、という流れにしたい
 
 enum SceneName {
 	TITLE,

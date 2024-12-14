@@ -56,5 +56,18 @@ void SceneManager::Uninit(void) {
  * @param  
 */
 void SceneManager::ChangeScene(SceneName _Scene) {
+	// 現在シーンを切り替えて前シーンを解放
 	this->CurrentScene = _Scene;
+	switch (_Scene)
+	{
+	case TITLE:
+		CurrentScene=
+		break;
+	case GAME:
+		break;
+	case RESULT:
+		break;
+	default:
+		break;
+	}
 }
