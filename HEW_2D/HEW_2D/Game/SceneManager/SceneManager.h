@@ -8,9 +8,14 @@
 //! 
 //! 使っていないシーンはロードせず、現在シーンだけを更新、描画するようにしたい
 //! シーン遷移の時に前シーンを解放して新しいシーンを初期化、という流れにしたい
+//!						↓
+//! ステージ選択シーンはずっと保持しておき、選択されたステージだけを毎回生成→解放
+//! という流れを取りたい
+//! 
 
 enum SceneName {
 	TITLE,
+	STAGESELECT,
 	GAME,
 	RESULT,
 
@@ -37,6 +42,11 @@ public:
 
 	void ChangeScene(SceneName scene);	//! シーン切り替え
 
+	/**
+	 * @brief シーン生成関数
+	 * @tparam T 生成したいシーンの型
+	 * @param _name キー（シーンの名前（タグ））
+	*/
 	template <typename T>
 	void CreateScene(SceneName _name)
 	{
@@ -45,7 +55,7 @@ public:
 	}
 
 private:
-	std::map<std::string, std::unique_ptr<IScene>> Scenes;	//! シーン配列
+	std::unordered_map<SceneName, std::unique_ptr<IScene>> Scenes;	//! シーン配列
 	SceneName CurrentScene;
 };
 

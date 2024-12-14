@@ -30,20 +30,10 @@ void SceneManager::Init(void)
 void SceneManager::Draw(void) {
 	//! 現在シーンによってそのシーンを描画
 	//! →これだとシーンの解放を考えられてなくない？添え字を指定しちゃってるからvectorな意味ないかも
-	switch (CurrentScene)
-	{
-	case TITLE:
-		Scenes[TITLE]->Draw();
-		break;
-	case GAME:
-		Scenes[GAME]->Draw();
-		break;
-	case RESULT:
-		Scenes[RESULT]->Draw();
-		break;
-	default:
-		break;
-	}
+	//! 　→map使う？？？
+	
+	// 現在シーンの描画
+	Scenes[CurrentScene]->Draw();
 }
 
 void SceneManager::Uninit(void) {
@@ -53,21 +43,43 @@ void SceneManager::Uninit(void) {
 
 /**
  * @brief シーン切り替え関数
- * @param  
+ * タイトル、終了画面（？）、ステージ選択シーンはシーンとして保持し続けておきたい（頻繁に使うため、毎回生成→解放しなくても良くない？）
+ * @param  次のシーンタグ
 */
-void SceneManager::ChangeScene(SceneName _Scene) {
-	// 現在シーンを切り替えて前シーンを解放
-	this->CurrentScene = _Scene;
-	switch (_Scene)
+void SceneManager::ChangeScene(SceneName _Nextscene) {
+	// 切り替え前のシーンがタイトル、終了画面、ステージ選択画面ではない場合、
+	if (CurrentScene != TITLE && CurrentScene != RESULT && CurrentScene != STAGESELECT)
 	{
-	case TITLE:
-		CurrentScene=
-		break;
-	case GAME:
-		break;
-	case RESULT:
-		break;
-	default:
-		break;
+		// 現在シーン解放
+		Scenes.erase(CurrentScene);
 	}
+
+	// 切り替え予定のシーンが存在していない場合
+	if (Scenes.find(_Nextscene) == Scenes.end())
+	{
+		// シーンを生成してmapに追加
+		switch (_Nextscene)
+		{
+		case TITLE:
+			CreateScene<TitleScene>(TITLE);
+			break;
+		case STAGESELECT:
+			CreateScene<StageSelectScene>(STAGESELECT);
+			break;
+		case GAME:
+			CreateScene<GameScene>(GAME);
+			break;
+		case RESULT:
+			CreateScene<ResultScene>(RESULT);
+			break;
+		default:
+			break;
+		}
+	}
+	// 現在シーンを切り替え
+	this->CurrentScene = _Nextscene;
+
+	// 切り替えたシーンの初期化
+	Scenes[CurrentScene]->Init();
+	
 }

@@ -7,6 +7,7 @@
 #include <memory>
 #include <vector>
 #include <map>
+#include <unordered_map>
 #include <string>
 #include <DirectXMath.h>	// DirextXの数学関連のヘッダーファイル
 #include <SimpleMath.h>
