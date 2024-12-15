@@ -1,6 +1,27 @@
 #include "../EntryPoint/main.h"
 #include "GameObject.h"
 
+/**
+ * @brief コンストラクタ
+ * @param _D3d11 D3Dクラスの参照
+*/
+GameObject::GameObject(D3D11& _D3d11) :d3d11(_D3d11)
+{
+	// std::vectorを使うためコンストラクタで初期化
+	vertices = {
+		//   x     y    z       r    g    b    a     u    v
+		{ -0.5f, 0.5f, 0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f},	// 0番目の頂点座標
+		{ 0.5f,  0.5f, 0.5f, 1.0f,1.0f,1.0f,1.0f, 1.0f,0.0f },		// 1番目の頂点座標
+		{ -0.5f, -0.5f, 0.5f, 1.0f,1.0f,1.0f,1.0f, 0.0f,1.0f },		// 2番目の頂点座標
+		{ 0.5f, -0.5f, 0.5f, 1.0f,1.0f,1.0f,1.0f, 1.0f,1.0f },		// 3番目の頂点座標
+	};
+}
+
+GameObject::~GameObject()
+{
+
+}
+
 void GameObject::Init(const wchar_t* imgname, int sx, int sy)
 {
 	//UV座標を設定

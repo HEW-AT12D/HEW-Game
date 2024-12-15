@@ -73,12 +73,15 @@ private:
 	XINPUT_STATE controllerState = {};
 	XINPUT_STATE controllerState_old = {};
 
-	int VibrationTime; //振動継続時間をカウントする変数
+	int VibrationTime;	//振動継続時間をカウントする変数
+
+	Input();			//コンストラクタ
+	~Input();			//デストラクタ
 
 public:
 
-	Input(); //コンストラクタ
-	~Input(); //デストラクタ
+	static Input& GetInstance(void);	// インスタンス取得関数
+
 	void Update(); //更新
 
 	//キー入力

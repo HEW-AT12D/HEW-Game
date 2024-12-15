@@ -1,9 +1,18 @@
 #pragma once
 
+#pragma warning(push)
+#pragma warning(disable:4005)
+
+#pragma warning(pop)
+
+#pragma comment (lib,"winmm.lib")
+
+#define _CRT_SECURE_NO_WARNINGS
 
 // プリコンパイルヘッダー一覧
 // 頻繁に使用するヘッダファイル一覧
 #include <windows.h>
+#include <assert.h>
 #include <memory>
 #include <vector>
 #include <map>

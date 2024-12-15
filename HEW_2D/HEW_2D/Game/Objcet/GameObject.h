@@ -31,36 +31,32 @@ class GameObject {
 private:
 	//! 頂点データ
 	//! このゲームでは擬音を吸い込むことがあるため頂点を可変にしておく
-	std::vector<Vertex> vertices =
-	{
-		//   x     y    z       r    g    b    a     u    v
-		{ -0.5f,  0.5f, 0.5f, 1.0f,1.0f,1.0f,1.0f, 0.0f,0.0f},  // 0番目の頂点座標
-		{  0.5f,  0.5f, 0.5f, 1.0f,1.0f,1.0f,1.0f, 1.0f,0.0f},  // 1番目の頂点座標
-		{ -0.5f, -0.5f, 0.5f, 1.0f,1.0f,1.0f,1.0f, 0.0f,1.0f},  // 2番目の頂点座標
-		{  0.5f, -0.5f, 0.5f, 1.0f,1.0f,1.0f,1.0f, 1.0f,1.0f},  // 3番目の頂点座標
-	};
+	std::vector<Vertex> vertices;
 	
 	// d3dクラス
 	D3D11& d3d11;
-
 	// 座標,大きさ,角度
 	Transform transform;
 	// 色
 	Vector4 color = { 1.0f, 1.0f, 1.0f, 1.0f };
 
 	// 頂点バッファ
-	ID3D11Buffer* m_pVertexBuffer;
+	ID3D11Buffer* m_pVertexBuffer = nullptr;
 	// テクスチャ用変数
-	ID3D11ShaderResourceView* m_pTextureView;
+	ID3D11ShaderResourceView* m_pTextureView = nullptr;
 
 	//テクスチャが縦横に何分割されているか
-	Vector2 m_Split{ 1.0f,1.0f };
+	Vector2 m_Split = { 1.0f,1.0f };
 
 	//左上から何段目を切り抜いて表示するか
-	Vector2 m_Number{ 0.0f,0.0f };
+	Vector2 m_Number = { 0.0f,0.0f };
 
 public:
 	
+	GameObject() = default;
+	GameObject(D3D11& _D3d11);
+	~GameObject();
+
 	void Init(const wchar_t* imgname, int sx = 1, int sy = 1); // 初期化
 	void Update(void);					// 更新（自オブジェクトに”何か”が当たった判定だけここで確認）
 	void Draw(void);					// 描画

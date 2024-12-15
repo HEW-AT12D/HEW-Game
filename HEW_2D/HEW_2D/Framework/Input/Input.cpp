@@ -18,6 +18,17 @@ Input::~Input()
 	XInputSetState(0, &vibration);
 }
 
+/**
+ * @brief インスタンス取得関数
+ * @return 自身のインスタンス
+*/
+Input& Input::GetInstance(void)
+{
+	// 初回呼び出し時に自身のインスタンスを生成
+	static Input Instance;
+	return Instance;
+}
+
 void Input::Update()
 {
 	//1フレーム前の入力を記録しておく

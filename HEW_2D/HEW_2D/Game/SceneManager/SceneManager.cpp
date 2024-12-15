@@ -1,4 +1,5 @@
 #include "SceneManager.h"
+#include "../../Game/Scene/StageSelectScene.h"
 #include "../../Game/Scene/TitleScene.h"
 #include "../../Game/Scene/ResultScene.h"
 #include "../../Game/Scene/GameScene.h"
@@ -74,9 +75,9 @@ void SceneManager::ChangeScene(SceneName _Nextscene) {
 		case TITLE:
 			CreateScene<TitleScene>(TITLE);
 			break;
-		case STAGESELECT:
-			CreateScene<StageSelectScene>(STAGESELECT);
-			break;
+		//case STAGESELECT:
+		//	CreateScene<StageSelectScene>(STAGESELECT);
+		//	break;
 		case GAME:
 			CreateScene<GameScene>(GAME);
 			break;

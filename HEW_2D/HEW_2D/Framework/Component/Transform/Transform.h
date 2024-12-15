@@ -27,9 +27,9 @@ public:
 
 
 
-	void SetPosition(Vector3 _Position);
-	void SetRotation(Vector3 _Rotation);
-	void SetScale(Vector3 _Scale);
+	void SetPosition(Vector3 _Position);	// ç¿ïWê›íË
+	void SetRotation(Vector3 _Rotation);	// äpìxê›íË
+	void SetScale(Vector3 _Scale);			// ëÂÇ´Ç≥ê›íË
 	Vector3 GetPosition(void);
 	Vector3 GetRotation(void);
 	Vector3 GetScale(void);

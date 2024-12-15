@@ -10,7 +10,7 @@ ResultScene::~ResultScene()
 }
 
 void ResultScene::Init(void) {
-	objectmanager.AddObject<GameObject>()
+	objectmanager.AddObject<GameObject>();
 }
 
 
