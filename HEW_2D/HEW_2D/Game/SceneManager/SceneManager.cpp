@@ -27,6 +27,17 @@ void SceneManager::Init(void)
 
 }
 
+void SceneManager::Update(void)
+{
+	// イベント発生でシーン遷移
+	if (true)
+	{
+
+	}
+	
+}
+
+
 void SceneManager::Draw(void) {
 	//! 現在シーンによってそのシーンを描画
 	//! →これだとシーンの解放を考えられてなくない？添え字を指定しちゃってるからvectorな意味ないかも
