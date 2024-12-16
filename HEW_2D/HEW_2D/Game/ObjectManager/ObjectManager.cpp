@@ -3,51 +3,58 @@
 
 size_t ObjectManager::GetObjectCount(void)
 {
-	return objects.size();
+	return Objects.size();
 }
 
 
 /**
  * @brief オブジェクト削除関数
- *
- * このゲームでは球は最後に追加されるオブジェクトなのでpop_backを使う
- * @param object オブジェクト配列
+ * @param object 
 */
-void ObjectManager::DeleteObject(GameObject* object) {
+void ObjectManager::DeleteObject(ObjectName _ObjName) {
 	//! オブジェクト配列が空でなければ
-	if (!this->objects.empty()) {
-		//! 最後の要素を削除
-		this->objects.pop_back();
+	if (!this->Objects.empty()) {
+		//! 指定した要素を削除
+		Objects.erase(_ObjName);
 	}
 }
 
+/**
+ * @brief オブジェクト初期化
+ * コンストラクタでオブジェクトを一括追加→Init内で初期化が良さげ？
+*/
 void ObjectManager::Init(void) {
 	
 }
 
 void ObjectManager::Update(void) {
-	for (int i = 0; i < objects.size(); i++)
+	// 範囲for文
+	for (auto& obj : Objects)
 	{
-		objects[i]->Update();
-		//! スクリーン内から出たらオブジェクトを削除
-		if (objects[i]->GetPosition().x > SCREEN_WIDTH / 2 || objects[i]->GetPosition().x < 0 - SCREEN_WIDTH / 2 ||
-			objects[i]->GetPosition().y > SCREEN_HEIGHT / 2 || objects[i]->GetPosition().y < 0 - SCREEN_HEIGHT / 2) {
-			this->DeleteObject(objects[i].get());
+		// 画面外に出たらオブジェクトを削除
+		// firstがキー（ObjectName）,secondがオブジェクト本体
+		if (obj.second->GetPosition().x > SCREEN_WIDTH / 2 || obj.second->GetPosition().x < 0 - SCREEN_WIDTH / 2 ||
+			obj.second->GetPosition().y > SCREEN_HEIGHT / 2 || obj.second->GetPosition().y < 0 - SCREEN_HEIGHT / 2) {
+			this->DeleteObject(obj.first);		// オブジェクトのキーを指定して削除
 		}
 	}
 	
 }
 
 void ObjectManager::Draw(void) {
-	for (int i = 0; i < objects.size(); i++)
+	// 範囲for文
+	for (auto& obj : Objects)
 	{
-		objects[i]->Draw();
+		// firstがキー（ObjectName）,secondがオブジェクト本体
+		obj.second->Draw();
 	}
 }
 
 void ObjectManager::Uninit(void) {
-	for (int i = 0; i < objects.size(); i++)
+	// 範囲for文
+	for (auto& obj : Objects)
 	{
-		objects[i]->Uninit();
+		// firstがキー（ObjectName）,secondがオブジェクト本体
+		obj.second->Uninit();
 	}
 }

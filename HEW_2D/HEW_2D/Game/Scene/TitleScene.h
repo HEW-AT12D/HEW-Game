@@ -1,8 +1,5 @@
 #pragma once
 #include "../../Framework/Scene/IScene.h"
-#include "../ObjectManager/ObjectManager.h"
-#include "../../Framework/Sound/sound.h"
-
 /**
  * @brief タイトルシーンクラス
  * 
@@ -11,8 +8,11 @@
 class TitleScene :public IScene
 {
 public:
-	TitleScene();
-	~TitleScene();
+	TitleScene() = default;
+	TitleScene(D3D11& _D3d11) :IScene(_D3d11) {
+		objectmanager.AddObject<GameObject>(OBJECT);
+	};
+	~TitleScene() {};
 	void Init(void)override;
 	void Update(void)override;
 	void Draw(void)override;
@@ -20,8 +20,6 @@ public:
 
 private:
 	//Sound sound;
-	ObjectManager objectmanager;
 };
-
 
 

@@ -1,6 +1,8 @@
 #pragma once
-#include "../../Framework/Scene/IScene.h"
-
+#include "../../Game/Scene/StageSelectScene.h"
+#include "../../Game/Scene/TitleScene.h"
+#include "../../Game/Scene/ResultScene.h"
+#include "../../Game/Scene/GameScene.h"
 
 //! TODO:scenemanagerでtitlesceneとresultsceneをインクルードすると、それぞれでインクルードされているobjectmanagerとISceneが衝突してしまう
 //! →scenemanager.cppでのみtitlesceneとresultsceneをインクルードして解決
@@ -16,7 +18,7 @@
 //!  オブジェクト個別に描画機能を持たせているのでオブジェクトマネージャーまでd3dの参照を渡したい
 //! 　→シーンマネージャまではコンストラクタで持ってこられたがオブジェクトマネージャに持っていけない
 //! 　　→これより内側のクラスにはd3dの参照を持たせて解決する（もっとスマートにしたかった）
-//! 　　　→時間があればRendererクラスみたいなのを作って、描画昨日は全てそのクラス担当とさせるべき
+//! 　　　→時間があればRendererクラスみたいなのを作って、描画機能は全てそのクラス担当とさせるべき
 //! 
 
 enum SceneName {
@@ -36,8 +38,19 @@ enum SceneName {
 class SceneManager
 {
 public:
-	SceneManager();
-	~SceneManager();
+	SceneManager() = default;
+	/**
+	 * @brief コンストラクタ
+	 * @param _D3d11 d3dの参照
+	 * タイトルシーンはゲーム開始すぐに必要なのでコンストラクタで生成する
+	*/
+	SceneManager(D3D11& _D3d11) :D3d11(_D3d11)
+	{
+		//! タイトルシーンを生成してシーン配列に追加
+		Scenes.emplace(TITLE, std::make_unique<TitleScene>(_D3d11));
+		CurrentScene = TITLE;
+	};
+	~SceneManager() {};
 
 	void Init(void);		//! 初期化
 	void Update(void);		//! 更新
@@ -65,7 +78,11 @@ public:
 	void DeleteScene(SceneName _SceneName);
 
 private:
+	D3D11& D3d11;
 	std::unordered_map<SceneName, std::unique_ptr<IScene>> Scenes;	//! シーン配列
 	SceneName CurrentScene;
 };
+
+
+
 

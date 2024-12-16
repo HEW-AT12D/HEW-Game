@@ -1,28 +1,10 @@
 #include "SceneManager.h"
-#include "../../Game/Scene/StageSelectScene.h"
-#include "../../Game/Scene/TitleScene.h"
-#include "../../Game/Scene/ResultScene.h"
-#include "../../Game/Scene/GameScene.h"
+
 
 
 // 今だけシーン遷移確認用にインクルード
 #include "../../Framework/Input/Input.h"
 
-/**
- * @brief コンストラクタ
- * タイトルシーンはゲーム開始すぐに必要なのでコンストラクタで生成する
-*/
-SceneManager::SceneManager()
-{
-	//! タイトルシーンを生成してシーン配列に追加
-	Scenes.emplace(TITLE, std::make_unique<TitleScene>());
-	CurrentScene = TITLE;
-}
-
-SceneManager::~SceneManager()
-{
-
-}
 
 /**
  * @brief シーン配列初期化

@@ -5,8 +5,9 @@
 class ResultScene :public IScene
 {
 public:
-	ResultScene();
-	~ResultScene();
+	ResultScene() = default;
+	ResultScene(D3D11& _D3d11) :IScene(_D3d11) {};
+	~ResultScene() {};
 	
 	void Init(void) override;		//! ‰Šú‰»
 	void Update(void) override;		//! XV
@@ -14,5 +15,5 @@ public:
 	void Uninit(void) override;		//! I—¹
 
 private:
-	ObjectManager objectmanager;
+	
 };

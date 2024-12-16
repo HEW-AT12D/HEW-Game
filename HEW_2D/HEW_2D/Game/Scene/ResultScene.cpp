@@ -1,16 +1,7 @@
 #include "ResultScene.h"
 
-
-ResultScene::ResultScene()
-{
-}
-
-ResultScene::~ResultScene()
-{
-}
-
 void ResultScene::Init(void) {
-	objectmanager.AddObject<GameObject>();
+	objectmanager.AddObject<GameObject>(OBJECT);
 }
 
 
