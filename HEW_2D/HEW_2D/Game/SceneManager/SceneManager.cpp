@@ -4,13 +4,19 @@
 #include "../../Game/Scene/ResultScene.h"
 #include "../../Game/Scene/GameScene.h"
 
+
+// 今だけシーン遷移確認用にインクルード
+#include "../../Framework/Input/Input.h"
+
+/**
+ * @brief コンストラクタ
+ * タイトルシーンはゲーム開始すぐに必要なのでコンストラクタで生成する
+*/
 SceneManager::SceneManager()
 {
 	//! タイトルシーンを生成してシーン配列に追加
-	Scenes.emplace(std::make_unique<TitleScene>());
-	/*scenes[0] = std::make_unique<TitleScene>();
-	scenes[1] = std::make_unique<GameScene>();
-	scenes[2] = std::make_unique<TitleScene>();*/
+	Scenes.emplace(TITLE, std::make_unique<TitleScene>());
+	CurrentScene = TITLE;
 }
 
 SceneManager::~SceneManager()
@@ -20,20 +26,34 @@ SceneManager::~SceneManager()
 
 /**
  * @brief シーン配列初期化
- * @param  
 */
 void SceneManager::Init(void) 
 {
-	//! シーンの初期化
+	//! ステージ選択シーンの初期化（タイトル画面から動かないことがあるかもしれない→ステージ選択シーンはUpdateで生成のほうがいい？）
+	//! 一旦Initでステージ選択シーンを読み込む
+	Scenes.emplace(STAGESELECT, std::make_unique<StageSelectScene>());
 
 }
 
+
 void SceneManager::Update(void)
 {
+	// 動作確認用
 	// イベント発生でシーン遷移
-	if (true)
+	if (Input::GetInstance().GetKeyTrigger(VK_RETURN))
 	{
-
+		// 現在シーンがリザルトなら
+		if (CurrentScene == RESULT)
+		{
+			// タイトルへ戻り、シーンの初期化
+			ChangeScene(TITLE);
+		}
+		else
+		{
+			// エンターでリザルトへ
+			ChangeScene(RESULT);
+		}
+		
 	}
 	
 }
@@ -49,20 +69,31 @@ void SceneManager::Draw(void) {
 }
 
 void SceneManager::Uninit(void) {
-	// シーンの終了処理
-	Scenes[CurrentScene]->Uninit();
+	// 全てのシーンの終了処理
+	for (auto& scene : Scenes)
+	{
+		// シーンの中身を解放
+		scene.second.reset();
+	}
+	// シーン全体を解放
+	Scenes.clear();
 }
 
 /**
  * @brief シーン切り替え関数
  * タイトル、終了画面（？）、ステージ選択シーンはシーンとして保持し続けておきたい（頻繁に使うため、毎回生成→解放しなくても良くない？）
  * @param  次のシーンタグ
+ * 
+ * フェードインとかもさせたいので、その場合、
+ * ・シーン切り替え→切り替えフラグを立てる
+ *　 →切り替え中に次シーン生成とフェードアウト
+ * 　　→フェードアウトしたら（もしくは生成完了したら）前シーン解放し、フェードイン（ここで前シーン解放）
 */
 void SceneManager::ChangeScene(SceneName _Nextscene) {
-	// 切り替え前のシーンがタイトル、終了画面、ステージ選択画面ではない場合、
-	if (CurrentScene != TITLE && CurrentScene != RESULT && CurrentScene != STAGESELECT)
+	// 切り替え前のシーンがタイトル、ステージ選択画面ではない場合、
+	if (CurrentScene != TITLE && CurrentScene != STAGESELECT)
 	{
-		// 現在シーン解放
+		// 現在シーンだけを解放
 		Scenes.erase(CurrentScene);
 	}
 

@@ -23,7 +23,8 @@ enum SceneName {
 class SceneManager
 {
 public:
-	SceneManager();
+	SceneManager() = default;
+	SceneManager(D3D11& _D3d11) :scenes(_D3d11)
 	~SceneManager();
 
 	void Init(void);		//! 初期化
@@ -34,7 +35,7 @@ public:
 	void ChangeScene(SceneName scene);	//! シーン切り替え
 
 private:
-	std::vector<std::unique_ptr<IScene>> scenes;	// シーン配列
+	std::unordered_map<SceneName, std::unique_ptr<IScene>> scenes;	// シーン配列
 	SceneName scenename;
 };
 

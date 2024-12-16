@@ -76,9 +76,10 @@ private:
 	int VibrationTime;	//振動継続時間をカウントする変数
 
 	Input();			//コンストラクタ
-	~Input();			//デストラクタ
 
 public:
+
+	~Input();			//デストラクタ
 
 	static Input& GetInstance(void);	// インスタンス取得関数
 

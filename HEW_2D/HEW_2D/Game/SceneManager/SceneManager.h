@@ -25,8 +25,6 @@ enum SceneName {
 /**
  * @brief シーン管理クラス
  * 
- * タイトル、ゲーム、リザルトの３つだけなので今回はarrayを使用
- * 初期化でシーンをすべて配列に格納
  * シーン切り替え関数が必要
 */
 class SceneManager

@@ -1,4 +1,5 @@
 #include "../../EntryPoint/main.h"
+#include "../../../Framework/Input/Input.h"
 #include "Application.h"
 
 using namespace SimpleMath;
@@ -15,6 +16,7 @@ void Application::Init(void)
 	Window::GetInstance().Init();	// ウィンドウ初期化
 	hWnd = Window::GetInstance().GetHandleWindow();		// ウィンドウハンドル取得
 	d3d11.Init(hWnd);				// DirectXを初期化
+	game.Init();					// ゲーム初期化
 	
 	//player.Init(L"asset/char01.png", 3, 4);				//プレイヤーを初期化
 	//player.SetPosition(Vector3(100.0f, 0.0f, 0.0f));	//位置を設定
@@ -29,9 +31,9 @@ void Application::Init(void)
 
 }
 
-void Application::Update(void)
+void Application::Run(void)
 {
-	input.Update();
+	Init();
 
 	//プレイヤーのアニメーション
 	player.numU++;

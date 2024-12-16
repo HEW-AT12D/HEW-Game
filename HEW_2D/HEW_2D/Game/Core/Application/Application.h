@@ -1,8 +1,7 @@
 #pragma once
-#include "../../../Framework/Input/Input.h"
 #include "../../../Framework/D3D11/D3D11.h"
-#include "../../../Framework/SceneManager/SceneManager.h"
 #include "../../../Framework/Window/Window.h"
+#include "../Game/Game.h"
 
 
 /**
@@ -16,14 +15,16 @@
 */
 class Application {
 private:
-	SceneManager scenemanager;	// シーン管理クラス
 	D3D11 d3d11;				// DirectX11管理クラス
-	Input input;				// 入力管理クラス
 	Window window;				// ウィンドウクラス
+	Game game;					// ゲームクラス
 
 public:
+	Application() :game(d3d11) {};
+	~Application();
+
+
 	void Init(void);		// 初期化
-	void Update(void);		// 更新
-	void Draw(void);		// 描画
+	void Run(void);			// ループ
 	void Uninit(void);		// 終了
 };

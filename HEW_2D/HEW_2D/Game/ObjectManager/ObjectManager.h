@@ -8,7 +8,8 @@
 class ObjectManager
 {
 public:
-	ObjectManager();
+	ObjectManager() = default;
+	ObjectManager(D3D11& _D3d11) :objects(_D3d11) {};
 	~ObjectManager();
 
 	/**
