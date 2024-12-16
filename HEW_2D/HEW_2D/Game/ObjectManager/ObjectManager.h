@@ -9,7 +9,7 @@ class ObjectManager
 {
 public:
 	ObjectManager() = default;
-	ObjectManager(D3D11& _D3d11) :objects(_D3d11) {};
+	ObjectManager(D3D11& _D3d11) :d3d11(_D3d11) {};
 	~ObjectManager();
 
 	/**
@@ -45,7 +45,9 @@ public:
 	// 当たり判定も追加予定
 
 private:
-	//! オブジェクトのユニークポインタをvectorで持つ→オブジェクトマネージャーがオブジェクトを管理する
-	std::vector<std::unique_ptr<GameObject>> objects;
+	//TODO:1216ここまで！オブジェクト管理にmapを使う&オブジェクト生成関数で一度で複数のオブジェクトを呼び出せるように変更する！！
+	//! オブジェクトのユニークポインタをmapで持つ→オブジェクトマネージャーがオブジェクトを管理する
+	std::unordered_map<SceneName, std::unique_ptr<GameObject>> objects;
+	D3D11& d3d11;
 };
 

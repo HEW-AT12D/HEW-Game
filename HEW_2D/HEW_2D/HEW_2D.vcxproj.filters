@@ -33,9 +33,6 @@
     <Filter Include="フレームワーク\シーン系">
       <UniqueIdentifier>{bb884ea1-67de-491c-8028-366c6b61d50c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="フレームワーク\シーン系\シーン管理">
-      <UniqueIdentifier>{62ecd12a-2c34-4e8d-81c1-75aa78d2bd00}</UniqueIdentifier>
-    </Filter>
     <Filter Include="フレームワーク\シーン系\シーン">
       <UniqueIdentifier>{45911435-0c0f-4964-888a-ddb38ea69b9b}</UniqueIdentifier>
     </Filter>

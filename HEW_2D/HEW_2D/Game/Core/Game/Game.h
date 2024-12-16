@@ -1,5 +1,5 @@
 #pragma once
-#include "../../../Framework/SceneManager/SceneManager.h"
+#include "../../../Game/SceneManager/SceneManager.h"
 #include "../../../Framework/D3D11/D3D11.h"
 
 

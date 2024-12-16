@@ -94,7 +94,7 @@ void SceneManager::ChangeScene(SceneName _Nextscene) {
 	if (CurrentScene != TITLE && CurrentScene != STAGESELECT)
 	{
 		// 現在シーンだけを解放
-		Scenes.erase(CurrentScene);
+		DeleteScene(CurrentScene);
 	}
 
 	// 切り替え予定のシーンが存在していない場合
