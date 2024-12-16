@@ -12,11 +12,13 @@
  * ②HWND（ウィンドウの情報持ってるアドレスへのポインタみたいなもの）を使ってDirectXの初期化をする
  * ③ゲームの中身の初期化をする
  * という流れで進む。普通に考えれば終了処理はその逆の順番なはず
+ * 
+ * InputとWindowクラスはシングルトンとして設計
 */
 class Application {
 private:
 	D3D11 d3d11;				// DirectX11管理クラス
-	Window window;				// ウィンドウクラス
+	//Window window;				// ウィンドウクラス
 	Game game;					// ゲームクラス
 
 public:

@@ -75,7 +75,7 @@ void SceneManager::Uninit(void) {
 		// シーンの中身を解放
 		scene.second.reset();
 	}
-	// シーン全体を解放
+	// シーン配列全体を解放
 	Scenes.clear();
 }
 
@@ -125,4 +125,16 @@ void SceneManager::ChangeScene(SceneName _Nextscene) {
 	// 切り替えたシーンの初期化
 	Scenes[CurrentScene]->Init();
 	
+}
+
+
+/**
+ * @brief シーン削除関数
+ * @param _SceneName 削除したいシーンの型（mapのキー）
+
+*/
+void SceneManager::DeleteScene(SceneName _SceneName)
+{
+	// 指定したシーンを削除
+	Scenes.erase(_SceneName);
 }

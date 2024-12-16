@@ -35,42 +35,38 @@ void Application::Run(void)
 {
 	Init();
 
-	//プレイヤーのアニメーション
-	player.numU++;
-	if (player.numU >= 3) {
-		player.numU = 0;
-	}
+	
 	Vector3 pos = player.GetPosition();
 //	pos.x += 1.0f;
 
-	if (input.GetKeyPress(VK_W)) { pos.y += 1.0f; }
-	if (input.GetKeyPress(VK_A)) { pos.x -= 1.0f; }
-	if (input.GetKeyPress(VK_S)) { pos.y -= 1.0f; }
-	if (input.GetKeyPress(VK_D)) { pos.x += 1.0f; }
+	if (Input::GetInstance().GetKeyPress(VK_W)) { pos.y += 1.0f; }
+	if (Input::GetInstance().GetKeyPress(VK_A)) { pos.x -= 1.0f; }
+	if (Input::GetInstance().GetKeyPress(VK_S)) { pos.y -= 1.0f; }
+	if (Input::GetInstance().GetKeyPress(VK_D)) { pos.x += 1.0f; }
 
 	// Iキーでフルスクリーン化
-	if (input.GetKeyTrigger(VK_I)) {
+	if (Input::GetInstance().GetKeyTrigger(VK_I)) {
 		d3d11.GetSwapChain()->SetFullscreenState(TRUE, NULL);
 	}
 	// Kキーでフルスクリーン解除
-	if (input.GetKeyTrigger(VK_K)) {
+	if (Input::GetInstance().GetKeyTrigger(VK_K)) {
 		d3d11.GetSwapChain()->SetFullscreenState(FALSE, NULL);
 	}
 
 	player.SetPos(pos.x, pos.y, pos.z);
 }
 
-void Application::Draw(void)
-{
-	d3d11.StartRender();	// 描画開始
-	background.Draw();		// 背景を描画
-	player.Draw();			// プレイヤーを描画
-	d3d11.FinishRender();	// 描画終了
-}
+//void Application::Draw(void)
+//{
+//	d3d11.StartRender();	// 描画開始
+//	background.Draw();		// 背景を描画
+//	player.Draw();			// プレイヤーを描画
+//	d3d11.FinishRender();	// 描画終了
+//}
 
 void Application::Uninit(void)
 {
-	player.Uninit();		// プレイヤーを終了
-	background.Uninit();	// プレイヤーを終了
+	//player.Uninit();		// プレイヤーを終了
+	//background.Uninit();	// プレイヤーを終了
 	d3d11.Release();		// DirectXを終了
 }

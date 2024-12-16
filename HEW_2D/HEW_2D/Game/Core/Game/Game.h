@@ -1,7 +1,9 @@
 #pragma once
-#include "../../EntryPoint/main.h"
 #include "../../../Framework/SceneManager/SceneManager.h"
+#include "../../../Framework/D3D11/D3D11.h"
 
+
+//class D3D11;
 
 /**
  * @brief ゲームクラス
@@ -12,7 +14,7 @@ class Game
 {
 public:
 	Game() = default;
-	Game(D3D11& _D3d11) :scenemanager(_D3d11){}
+	Game(D3D11& _D3d11) :scenemanager(_D3d11) {};
 	~Game();
 
 	void Init(void);
@@ -23,11 +25,3 @@ public:
 private:
 	SceneManager scenemanager;	// シーン管理クラス
 };
-
-Game::Game()
-{
-}
-
-Game::~Game()
-{
-}

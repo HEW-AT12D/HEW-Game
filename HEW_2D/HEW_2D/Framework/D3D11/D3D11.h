@@ -67,13 +67,6 @@ private:
 	//ID3D11ConstantBuffer* m_pConstantBuffer;
 };
 
-D3D11::D3D11()
-{
-}
-
-D3D11::~D3D11()
-{
-}
 
 
 // \‘¢‘Ì‚Ì’è‹`

@@ -12,6 +12,12 @@
 //! ステージ選択シーンはずっと保持しておき、選択されたステージだけを毎回生成→解放
 //! という流れを取りたい
 //! 
+//! -----------------------------------------------------------------------------------------
+//!  オブジェクト個別に描画機能を持たせているのでオブジェクトマネージャーまでd3dの参照を渡したい
+//! 　→シーンマネージャまではコンストラクタで持ってこられたがオブジェクトマネージャに持っていけない
+//! 　　→これより内側のクラスにはd3dの参照を持たせて解決する（もっとスマートにしたかった）
+//! 　　　→時間があればRendererクラスみたいなのを作って、描画昨日は全てそのクラス担当とさせるべき
+//! 
 
 enum SceneName {
 	TITLE,
@@ -46,11 +52,17 @@ public:
 	 * @param _name キー（シーンの名前（タグ））
 	*/
 	template <typename T>
-	void CreateScene(SceneName _name)
+	void CreateScene(SceneName _SceneName)
 	{
 		// タグを設定してシーンを追加
-		Scenes.emplace(_name, std::make_unique<T>());
+		Scenes.emplace(_SceneName, std::make_unique<T>());
 	}
+
+	/**
+	 * @brief シーン削除関数
+	 * @param _SceneName 削除したいシーンの型（mapのキー）
+	*/
+	void DeleteScene(SceneName _SceneName);
 
 private:
 	std::unordered_map<SceneName, std::unique_ptr<IScene>> Scenes;	//! シーン配列

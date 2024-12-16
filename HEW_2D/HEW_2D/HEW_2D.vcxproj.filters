@@ -108,9 +108,6 @@
     <ClCompile Include="Framework\Scene\IScene.cpp">
       <Filter>フレームワーク\シーン系\シーン</Filter>
     </ClCompile>
-    <ClCompile Include="Framework\SceneManager\SceneManager.cpp">
-      <Filter>フレームワーク\シーン系\シーン管理</Filter>
-    </ClCompile>
     <ClCompile Include="Framework\Component\TransForm\Transform.cpp">
       <Filter>フレームワーク\コンポーネント\Transform</Filter>
     </ClCompile>
@@ -175,9 +172,6 @@
     </ClInclude>
     <ClInclude Include="Framework\Scene\IScene.h">
       <Filter>フレームワーク\シーン系\シーン</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\SceneManager\SceneManager.h">
-      <Filter>フレームワーク\シーン系\シーン管理</Filter>
     </ClInclude>
     <ClInclude Include="Framework\Component\TransForm\Transform.h">
       <Filter>フレームワーク\コンポーネント\Transform</Filter>
