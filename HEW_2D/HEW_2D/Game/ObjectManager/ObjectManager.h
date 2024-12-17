@@ -1,9 +1,10 @@
 #pragma once
 #include "../EntryPoint/main.h"
-#include "../../Game/Objcet/GameObject.h"
+#include "../../Game/Objcet/BaseObject/GameObject.h"
 
 enum ObjectName {
 	OBJECT,
+	PLAYER,
 };
 
 /**
@@ -13,7 +14,9 @@ class ObjectManager
 {
 public:
 	ObjectManager() = default;
-	ObjectManager(D3D11& _D3d11) :d3d11(_D3d11) {};
+	ObjectManager(D3D11& _D3d11) :D3d11(_D3d11) {
+
+	}
 	~ObjectManager() {};
 
 	/**
@@ -45,7 +48,7 @@ public:
 		static_assert(sizeof...(Ts) == sizeof...(Args), "キーの数と追加したいオブジェクトの数が違います");
 		 
 		//! std::forwardで異なるキーを追加できるようにし、Tsで異なる型のオブジェクトを追加できるようにしている
-		(Objects.emplace(std::forward<Args>(_ObjectsName), std::make_unique<Ts>(d3d11)), ...);		// 全オブジェクト生成時にd3dの参照を渡す
+		(Objects.emplace(std::forward<Args>(_ObjectsName), std::make_unique<Ts>(D3d11)), ...);		// 全オブジェクト生成時にd3dの参照を渡す
 	}
 
 	/**
@@ -75,6 +78,6 @@ private:
 	//! 
 	//! (もしかしたら左にあるオブジェクトから順に配列に保持してもいいかも？→その場合もう一度設計が必要)
 	std::unordered_map<ObjectName, std::unique_ptr<GameObject>> Objects;
-	D3D11& d3d11;
+	D3D11& D3d11;
 };
 

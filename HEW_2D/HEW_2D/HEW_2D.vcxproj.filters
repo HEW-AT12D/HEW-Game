@@ -85,6 +85,15 @@
     <Filter Include="ゲーム\Core（ゲーム処理）\Game">
       <UniqueIdentifier>{e7ee6291-f1e8-4734-a14b-bd46e7054751}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ゲーム\オブジェクト\プレイヤー">
+      <UniqueIdentifier>{e097f8b7-0409-496b-b5d6-e7bf979e8a8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ゲーム\オブジェクト\基本オブジェクト">
+      <UniqueIdentifier>{056cce67-35d6-42f5-8973-a138ddc79e16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ゲーム\オブジェクト\擬音銃">
+      <UniqueIdentifier>{7db3bf99-2a35-4519-8172-dfd0fd50a071}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Framework\Input\Input.cpp">
@@ -98,9 +107,6 @@
     </ClCompile>
     <ClCompile Include="Framework\Sound\sound.cpp">
       <Filter>フレームワーク\サウンド</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Objcet\GameObject.cpp">
-      <Filter>ゲーム\オブジェクト</Filter>
     </ClCompile>
     <ClCompile Include="Framework\Scene\IScene.cpp">
       <Filter>フレームワーク\シーン系\シーン</Filter>
@@ -150,6 +156,15 @@
     <ClCompile Include="Game\Core\Application\Application.cpp">
       <Filter>ゲーム\Core（ゲーム処理）\Application</Filter>
     </ClCompile>
+    <ClCompile Include="Game\Objcet\BaseObject\GameObject.cpp">
+      <Filter>ゲーム\オブジェクト\基本オブジェクト</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Objcet\Player\Player.cpp">
+      <Filter>ゲーム\オブジェクト\プレイヤー</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Objcet\SoundGun\SoundGun.cpp">
+      <Filter>ゲーム\オブジェクト\擬音銃</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework\D3D11\D3D11.h">
@@ -163,9 +178,6 @@
     </ClInclude>
     <ClInclude Include="Framework\Sound\sound.h">
       <Filter>フレームワーク\サウンド</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Objcet\GameObject.h">
-      <Filter>ゲーム\オブジェクト</Filter>
     </ClInclude>
     <ClInclude Include="Framework\Scene\IScene.h">
       <Filter>フレームワーク\シーン系\シーン</Filter>
@@ -214,6 +226,15 @@
     </ClInclude>
     <ClInclude Include="Game\Core\Application\Application.h">
       <Filter>ゲーム\Core（ゲーム処理）\Application</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Objcet\BaseObject\GameObject.h">
+      <Filter>ゲーム\オブジェクト\基本オブジェクト</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Objcet\Player\Player.h">
+      <Filter>ゲーム\オブジェクト\プレイヤー</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Objcet\SoundGun\SoundGun.h">
+      <Filter>ゲーム\オブジェクト\擬音銃</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

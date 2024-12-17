@@ -1,7 +1,5 @@
 #pragma once
-#include "../../Game/EntryPoint/main.h"
 #include "../../Game/ObjectManager/ObjectManager.h"
-#include "../../Framework/D3D11/D3D11.h"
 
 
 //! -----------İŒvƒƒ‚FIScene‚ğì‚Á‚½Œã‚Ì˜b-----------------
@@ -19,7 +17,7 @@
 class IScene
 {
 public:
-	IScene() = default;
+	IScene();
 	IScene(D3D11& _D3d11) :objectmanager(_D3d11) {};
 
 	virtual ~IScene();

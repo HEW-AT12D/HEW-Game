@@ -1,6 +1,12 @@
 #include "ObjectManager.h"
 
 
+
+ObjectManager::ObjectManager(D3D11& _D3d11) :D3d11(_D3d11) {
+
+}
+
+
 size_t ObjectManager::GetObjectCount(void)
 {
 	return Objects.size();
@@ -24,7 +30,8 @@ void ObjectManager::DeleteObject(ObjectName _ObjName) {
  * コンストラクタでオブジェクトを一括追加→Init内で初期化が良さげ？
 */
 void ObjectManager::Init(void) {
-	
+	// オブジェクト管理用コンテナの初期化
+	Objects.clear();
 }
 
 void ObjectManager::Update(void) {

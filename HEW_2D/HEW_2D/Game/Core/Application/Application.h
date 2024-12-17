@@ -23,7 +23,7 @@ private:
 
 public:
 	Application() :game(d3d11) {};
-	~Application();
+	~Application() {};
 
 
 	void Init(void);		// ‰Šú‰»
