@@ -26,3 +26,62 @@ C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Objcet\BaseObject\Ga
 C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Objcet\BaseObject\GameObject.cpp(53,43): error C2065: 'd3d11': 定義されていない識別子です。
 C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Objcet\BaseObject\GameObject.cpp(53,62): error C2065: 'd3d11': 定義されていない識別子です。
   ObjectManager.cpp
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\ObjectManager\ObjectManager.h(31,49): error C3861: 'd3d11': 識別子が見つかりませんでした
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\ObjectManager\ObjectManager.h(28,7): message : コンパイラでのこの診断により関数 'void ObjectManager::AddObject(ObjectName)' が生成されました。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\ObjectManager\ObjectManager.h(31,49): error C2065: 'd3d11': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\ObjectManager\ObjectManager.h(28,7): message : コンパイラでのこの診断により関数 'void ObjectManager::AddObject(ObjectName)' が生成されました。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\ObjectManager\ObjectManager.cpp(5,16): error C2084: 関数 'ObjectManager::ObjectManager(D3D11 &)' は既に本体を持っています。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\ObjectManager\ObjectManager.h(17,2): message : '{ctor}' の以前の定義を確認してください
+  SceneManager.cpp
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\ObjectManager\ObjectManager.h(31,49): error C3861: 'd3d11': 識別子が見つかりませんでした
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\ObjectManager\ObjectManager.h(28,7): message : コンパイラでのこの診断により関数 'void ObjectManager::AddObject(ObjectName)' が生成されました。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\ObjectManager\ObjectManager.h(31,49): error C2065: 'd3d11': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\ObjectManager\ObjectManager.h(28,7): message : コンパイラでのこの診断により関数 'void ObjectManager::AddObject(ObjectName)' が生成されました。
+  GameScene.cpp
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\ObjectManager\ObjectManager.h(31,49): error C3861: 'd3d11': 識別子が見つかりませんでした
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\ObjectManager\ObjectManager.h(28,7): message : コンパイラでのこの診断により関数 'void ObjectManager::AddObject(ObjectName)' が生成されました。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\ObjectManager\ObjectManager.h(31,49): error C2065: 'd3d11': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\ObjectManager\ObjectManager.h(28,7): message : コンパイラでのこの診断により関数 'void ObjectManager::AddObject(ObjectName)' が生成されました。
+  ResultScene.cpp
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\ObjectManager\ObjectManager.h(31,49): error C3861: 'd3d11': 識別子が見つかりませんでした
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\ObjectManager\ObjectManager.h(28,7): message : コンパイラでのこの診断により関数 'void ObjectManager::AddObject(ObjectName)' が生成されました。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\ObjectManager\ObjectManager.h(31,49): error C2065: 'd3d11': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\ObjectManager\ObjectManager.h(28,7): message : コンパイラでのこの診断により関数 'void ObjectManager::AddObject(ObjectName)' が生成されました。
+  StageSelectScene.cpp
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\ObjectManager\ObjectManager.h(31,49): error C3861: 'd3d11': 識別子が見つかりませんでした
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\ObjectManager\ObjectManager.h(28,7): message : コンパイラでのこの診断により関数 'void ObjectManager::AddObject(ObjectName)' が生成されました。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\ObjectManager\ObjectManager.h(31,49): error C2065: 'd3d11': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\ObjectManager\ObjectManager.h(28,7): message : コンパイラでのこの診断により関数 'void ObjectManager::AddObject(ObjectName)' が生成されました。
+  TitleScene.cpp
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\ObjectManager\ObjectManager.h(31,49): error C3861: 'd3d11': 識別子が見つかりませんでした
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\ObjectManager\ObjectManager.h(28,7): message : コンパイラでのこの診断により関数 'void ObjectManager::AddObject(ObjectName)' が生成されました。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\ObjectManager\ObjectManager.h(31,49): error C2065: 'd3d11': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\ObjectManager\ObjectManager.h(28,7): message : コンパイラでのこの診断により関数 'void ObjectManager::AddObject(ObjectName)' が生成されました。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Objcet\Player\Player.h(17,1): error C2280: 'GameObject::GameObject(void)': 削除された関数を参照しようとしています
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Objcet\BaseObject\GameObject.h(56,2): message : 'GameObject::GameObject' の宣言を確認してください
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Objcet\BaseObject\GameObject.h(56,2): message : 'GameObject::GameObject(void)': 関数は、'GameObject' に初期化されていない参照型のデータ メンバー 'GameObject::D3d11' があるため、暗黙的に削除されました
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Objcet\BaseObject\GameObject.h(37,9): message : 'GameObject::D3d11' の宣言を確認してください
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\TitleScene.cpp(5,17): error C2143: 構文エラー: ')' が '&' の前にありません。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\TitleScene.cpp(5,17): error C2143: 構文エラー: ';' が '&' の前にありません。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\TitleScene.cpp(5,25): error C2059: 構文エラー: ')'
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\TitleScene.cpp(5,27): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\TitleScene.cpp(5,27): error C2530: '_D3d11': 参照が初期化されずに宣言されています。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\TitleScene.cpp(5,27): error C2059: 構文エラー: ':'
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\TitleScene.cpp(5,35): error C2259: 'IScene': 抽象クラスをインスタンス化できません。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Scene\IScene.h(17,7): message : 'IScene' の宣言を確認してください
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\TitleScene.cpp(5,35): message : 次のメンバーが原因です:
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\TitleScene.cpp(5,35): message : 'void IScene::Init(void)': は抽象型です
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Scene\IScene.h(25,15): message : 'IScene::Init' の宣言を確認してください
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\TitleScene.cpp(5,35): message : 'void IScene::Update(void)': は抽象型です
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Scene\IScene.h(26,15): message : 'IScene::Update' の宣言を確認してください
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\TitleScene.cpp(5,35): message : 'void IScene::Draw(void)': は抽象型です
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Scene\IScene.h(27,15): message : 'IScene::Draw' の宣言を確認してください
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\TitleScene.cpp(5,35): message : 'void IScene::Uninit(void)': は抽象型です
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Scene\IScene.h(28,15): message : 'IScene::Uninit' の宣言を確認してください
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\TitleScene.cpp(15,1): error C2144: 構文エラー: 'void' は ';' によって先行されなければなりません。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\TitleScene.cpp(15,29): error C4430: 型指定子がありません - int と仮定しました。メモ: C++ は int を既定値としてサポートしていません
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\TitleScene.cpp(15,29): error C2556: 'int TitleScene::Init(void)': オーバーロード関数は、'void TitleScene::Init(void)' と戻り値の型のみが異なります。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\TitleScene.h(15,7): message : 'TitleScene::Init' の宣言を確認してください
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\TitleScene.cpp(15,18): error C2371: 'TitleScene::Init': 再定義されています。異なる基本型です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\TitleScene.h(15,7): message : 'TitleScene::Init' の宣言を確認してください
+  コードを生成中...
