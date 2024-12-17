@@ -21,15 +21,13 @@ void ObjectManager::DeleteObject(ObjectName _ObjName) {
 
 /**
  * @brief オブジェクト初期化
- * コンストラクタでオブジェクトを一括追加→Init内で初期化が良さげ？
+ * コンストラクタでオブジェクトを一括追加→Init内で初期化が良さげ？→それぞれ初期化値が違うのでここでオブジェクトのInitを回せない
+ * 
+ * ここではコンテナの初期化だけを行う
 */
 void ObjectManager::Init(void) {
 	// オブジェクト管理用コンテナの初期化
-	for (auto& obj : Objects)
-	{
-		// firstがキー（ObjectName）,secondがオブジェクト本体
-		obj.second->Init();
-	}
+	Objects.clear();
 }
 
 void ObjectManager::Update(void) {
@@ -60,6 +58,9 @@ void ObjectManager::Uninit(void) {
 	for (auto& obj : Objects)
 	{
 		// firstがキー（ObjectName）,secondがオブジェクト本体
+		// オブジェクトの中身を解放
 		obj.second->Uninit();
 	}
+	// コンテナ全体を解放
+	Objects.clear();
 }

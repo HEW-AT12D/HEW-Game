@@ -13,21 +13,8 @@ class TitleScene :public IScene
 public:
 	TitleScene() = default;
 	TitleScene(D3D11& _D3d11) :IScene(_D3d11) {
-		//-----------------------
-		//-----オブジェクト追加-----
-		//-----------------------
-		
-		// 背景
-		objectmanager.AddObject<GameObject>(OBJECT);
-		// タイトル
-		objectmanager.AddObject<GameObject>(OBJECT);
-		// UI1(ボタン)
-		objectmanager.AddObject<GameObject>(OBJECT);
-		// UI2(ボタン)
-		objectmanager.AddObject<GameObject>(OBJECT);
-		// プレイヤー
-		objectmanager.AddObject<Player>(PLAYER);
-		
+		// オブジェクトの追加はシーンの初期化で行う
+		// サウンドとかこのシーンのみ存在するものがあればその初期化を行う
 
 	};
 	~TitleScene() {};
