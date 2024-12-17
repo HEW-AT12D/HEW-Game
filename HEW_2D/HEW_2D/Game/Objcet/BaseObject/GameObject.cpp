@@ -50,7 +50,7 @@ void GameObject::Init(const wchar_t* imgname, int sx, int sy)
 
 	// テクスチャ読み込み
 //	hr = DirectX::CreateWICTextureFromFile(Device, imgname, NULL, &m_pTextureView);
-	hr = DirectX::CreateWICTextureFromFileEx(d3d11.GetDevice(), d3d11.GetDeviceContext(), imgname, 0, D3D11_USAGE_DEFAULT,
+	hr = DirectX::CreateWICTextureFromFileEx(D3d11.GetDevice(), D3d11.GetDeviceContext(), imgname, 0, D3D11_USAGE_DEFAULT,
 		D3D11_BIND_SHADER_RESOURCE, 0, 0, DirectX::WIC_LOADER_IGNORE_SRGB, nullptr, &m_pTextureView);
 	if (FAILED(hr))
 	{
@@ -60,6 +60,9 @@ void GameObject::Init(const wchar_t* imgname, int sx, int sy)
 }
 
 
+/**
+ * @brief オブジェクトの更新 
+*/
 void GameObject::Update(void)
 {
 

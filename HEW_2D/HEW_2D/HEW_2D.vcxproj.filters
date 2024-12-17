@@ -94,6 +94,9 @@
     <Filter Include="ゲーム\オブジェクト\擬音銃">
       <UniqueIdentifier>{7db3bf99-2a35-4519-8172-dfd0fd50a071}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ゲーム\オブジェクト\擬音銃\マガジン">
+      <UniqueIdentifier>{27527f46-8533-49f5-b5db-9b61dc785ecc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Framework\Input\Input.cpp">
@@ -165,6 +168,9 @@
     <ClCompile Include="Game\Objcet\SoundGun\SoundGun.cpp">
       <Filter>ゲーム\オブジェクト\擬音銃</Filter>
     </ClCompile>
+    <ClCompile Include="Game\Objcet\Player\Magazine.cpp">
+      <Filter>ゲーム\オブジェクト\擬音銃\マガジン</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework\D3D11\D3D11.h">
@@ -235,6 +241,9 @@
     </ClInclude>
     <ClInclude Include="Game\Objcet\SoundGun\SoundGun.h">
       <Filter>ゲーム\オブジェクト\擬音銃</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Objcet\Player\Magazine.h">
+      <Filter>ゲーム\オブジェクト\擬音銃\マガジン</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

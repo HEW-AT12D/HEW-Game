@@ -2,24 +2,23 @@
 #include "../../Game/Objcet/Player/Player.h"
 
 
-TitleScene(D3D11& _D3d11) :IScene(_D3d11) {
-
-}
-
-
-
 
 /**
- * @brief タイトル初期化
+ * @brief タイトルシーンの初期化
+ * 
+ * シーンごとに初期化は最初の一度のみ
+ * →
 */
 void TitleScene::Init(void) {
 	// オブジェクトマネージャ初期化
 	objectmanager.Init();
 
-	// オブジェクト追加		objectmanager.AddObject<GameObject>(OBJECT);
+	// オブジェクト追加		
+
 
 	// 背景
 	objectmanager.AddObject<GameObject>(OBJECT);
+	objectmanager.
 
 	// プレイヤー
 	objectmanager.AddObject<Player>(PLAYER);

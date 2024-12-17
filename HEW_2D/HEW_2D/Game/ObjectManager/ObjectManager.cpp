@@ -1,12 +1,6 @@
 #include "ObjectManager.h"
 
 
-
-ObjectManager::ObjectManager(D3D11& _D3d11) :D3d11(_D3d11) {
-
-}
-
-
 size_t ObjectManager::GetObjectCount(void)
 {
 	return Objects.size();
@@ -31,7 +25,11 @@ void ObjectManager::DeleteObject(ObjectName _ObjName) {
 */
 void ObjectManager::Init(void) {
 	// オブジェクト管理用コンテナの初期化
-	Objects.clear();
+	for (auto& obj : Objects)
+	{
+		// firstがキー（ObjectName）,secondがオブジェクト本体
+		obj.second->Init();
+	}
 }
 
 void ObjectManager::Update(void) {

@@ -1,6 +1,8 @@
 #pragma once
 #include "../EntryPoint/main.h"
 #include "../../Game/Objcet/BaseObject/GameObject.h"
+#include "../Objcet/Player/Player.h"
+#include "../Objcet/SoundGun/SoundGun.h"
 
 enum ObjectName {
 	OBJECT,
@@ -28,7 +30,7 @@ public:
 	void AddObject(ObjectName _ObjName)
 	{
 		// キーとオブジェクトをセットで追加
-		Objects.emplace(_ObjName, std::make_unique<T>(d3d11));
+		Objects.emplace(_ObjName, std::make_unique<T>(D3d11));
 	}
 
 	/**
@@ -64,6 +66,8 @@ public:
 	 * mapにしてるし、それ以外の場合でもコンテナだからサイズ返す必要あるか？
 	*/
 	size_t GetObjectCount(void);
+
+	
 
 	void Init(void);
 	void Update(void);
