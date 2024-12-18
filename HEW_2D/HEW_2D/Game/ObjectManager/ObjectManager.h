@@ -55,11 +55,11 @@ public:
 	/**
 	 * @brief オブジェクト一括追加関数
 	 * @tparam T オブジェクトの型
-	 * @tparam ...Args 可変長引数の型
+	 * @tparam ...Args オブジェクトのタグ
 	 * @param ...args 実引数
 	*/
 	template <typename... Ts, typename... Args>
-	void AddObject(Args&&... _ObjectsName)	// &&とは「右辺値参照」（右辺値とはx = 10 なら 10のように変数に入る実際の値）
+	void AddObject(Args&&... _ObjectsTag)	// &&とは「右辺値参照」（右辺値とはx = 10 なら 10のように変数に入る実際の値）
 	{
 		//! オブジェクト配列にテンプレート型のクラスのユニークポインタを格納
 		//! →その際のコンストラクタに与える引数の型(Args)と、実引数として(args)が存在している。
@@ -69,7 +69,7 @@ public:
 		static_assert(sizeof...(Ts) == sizeof...(Args), "キー(タグ)の数と追加したいオブジェクトの数が違います");
 		 
 		//! std::forwardで異なるキーを追加できるようにし、Tsで異なる型のオブジェクトを追加できるようにしている
-		(Objects.emplace(std::forward<Args>(_ObjectsName), std::make_unique<Ts>(D3d11)), ...);		// 全オブジェクト生成時にd3dの参照を渡す
+		(Objects.emplace(std::forward<Args>(_ObjectsTag), std::make_unique<Ts>(D3d11)), ...);		// 全オブジェクト生成時にd3dの参照を渡す
 	}
 
 	/**
