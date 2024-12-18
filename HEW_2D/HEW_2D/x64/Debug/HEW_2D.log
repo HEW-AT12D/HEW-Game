@@ -4,18 +4,40 @@ C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Core\Application\App
 C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Core\Application\Application.cpp(56,2): error C2065: 'player': 定義されていない識別子です。
   Game.cpp
   main.cpp
-  Magazine.cpp
-  Player.cpp
-  SoundGun.cpp
   ObjectManager.cpp
-C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\ObjectManager\ObjectManager.cpp(31,13): error C2660: 'GameObject::Init': 関数に 0 個の引数を指定できません。
-C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Objcet\BaseObject\GameObject.h(60,7): message : 'GameObject::Init' の宣言を確認してください
-C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\ObjectManager\ObjectManager.cpp(31,13): message : 引数リスト '()' を一致させようとしているとき
   SceneManager.cpp
   GameScene.cpp
   ResultScene.cpp
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\ResultScene.cpp(4,15): error C2672: 'ObjectManager::AddObject': 一致するオーバーロードされた関数が見つかりませんでした。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\ObjectManager\ObjectManager.h(49,7): message : 'void ObjectManager::AddObject(const std::pair<Tag,std::string> &)' の可能性があります
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\ResultScene.cpp(4,38): message : '初期化中': 'Tag' から 'const std::pair<Tag,std::string> &' に変換できません。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\ResultScene.cpp(4,38): message : 理由: 'Tag' から 'const std::pair<Tag,std::string>' へは変換できません。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\ResultScene.cpp(4,38): message : この変換を実行可能なユーザー定義変換演算子がないか、または演算子を呼び出せません。
   StageSelectScene.cpp
   TitleScene.cpp
-C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\TitleScene.cpp(24,2): error C2039: 'objectmanager': 'ObjectManager' のメンバーではありません
-C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\ObjectManager\ObjectManager.h(15,7): message : 'ObjectManager' の宣言を確認してください
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\TitleScene.cpp(22,15): error C2672: 'ObjectManager::AddObject': 一致するオーバーロードされた関数が見つかりませんでした。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\ObjectManager\ObjectManager.h(49,7): message : 'void ObjectManager::AddObject(const std::pair<Tag,std::string> &)' の可能性があります
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\TitleScene.cpp(22,38): message : '初期化中': 'Tag' から 'const std::pair<Tag,std::string> &' に変換できません。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\TitleScene.cpp(22,38): message : 理由: 'Tag' から 'const std::pair<Tag,std::string>' へは変換できません。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\TitleScene.cpp(22,38): message : この変換を実行可能なユーザー定義変換演算子がないか、または演算子を呼び出せません。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\TitleScene.cpp(24,15): error C2672: 'ObjectManager::AddObject': 一致するオーバーロードされた関数が見つかりませんでした。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\ObjectManager\ObjectManager.h(49,7): message : 'void ObjectManager::AddObject(const std::pair<Tag,std::string> &)' の可能性があります
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\TitleScene.cpp(24,38): message : '初期化中': 'Tag' から 'const std::pair<Tag,std::string> &' に変換できません。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\TitleScene.cpp(24,38): message : 理由: 'Tag' から 'const std::pair<Tag,std::string>' へは変換できません。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\TitleScene.cpp(24,38): message : この変換を実行可能なユーザー定義変換演算子がないか、または演算子を呼び出せません。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\TitleScene.cpp(26,15): error C2672: 'ObjectManager::AddObject': 一致するオーバーロードされた関数が見つかりませんでした。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\ObjectManager\ObjectManager.h(49,7): message : 'void ObjectManager::AddObject(const std::pair<Tag,std::string> &)' の可能性があります
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\TitleScene.cpp(26,38): message : '初期化中': 'Tag' から 'const std::pair<Tag,std::string> &' に変換できません。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\TitleScene.cpp(26,38): message : 理由: 'Tag' から 'const std::pair<Tag,std::string>' へは変換できません。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\TitleScene.cpp(26,38): message : この変換を実行可能なユーザー定義変換演算子がないか、または演算子を呼び出せません。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\TitleScene.cpp(28,15): error C2672: 'ObjectManager::AddObject': 一致するオーバーロードされた関数が見つかりませんでした。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\ObjectManager\ObjectManager.h(49,7): message : 'void ObjectManager::AddObject(const std::pair<Tag,std::string> &)' の可能性があります
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\TitleScene.cpp(28,38): message : '初期化中': 'Tag' から 'const std::pair<Tag,std::string> &' に変換できません。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\TitleScene.cpp(28,38): message : 理由: 'Tag' から 'const std::pair<Tag,std::string>' へは変換できません。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\TitleScene.cpp(28,38): message : この変換を実行可能なユーザー定義変換演算子がないか、または演算子を呼び出せません。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\TitleScene.cpp(30,15): error C2672: 'ObjectManager::AddObject': 一致するオーバーロードされた関数が見つかりませんでした。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\ObjectManager\ObjectManager.h(49,7): message : 'void ObjectManager::AddObject(const std::pair<Tag,std::string> &)' の可能性があります
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\TitleScene.cpp(30,34): message : '初期化中': 'Tag' から 'const std::pair<Tag,std::string> &' に変換できません。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\TitleScene.cpp(30,34): message : 理由: 'Tag' から 'const std::pair<Tag,std::string>' へは変換できません。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\TitleScene.cpp(30,34): message : この変換を実行可能なユーザー定義変換演算子がないか、または演算子を呼び出せません。
   コードを生成中...

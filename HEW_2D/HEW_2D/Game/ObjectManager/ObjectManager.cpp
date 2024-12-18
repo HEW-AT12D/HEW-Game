@@ -11,11 +11,11 @@ size_t ObjectManager::GetObjectCount(void)
  * @brief オブジェクト削除関数
  * @param object 
 */
-void ObjectManager::DeleteObject(ObjectName _ObjName) {
+void ObjectManager::DeleteObject(Tag _ObjName) {
 	//! オブジェクト配列が空でなければ
 	if (!this->Objects.empty()) {
 		//! 指定した要素を削除
-		Objects.erase(_ObjName);
+		//Objects.(_ObjName);
 	}
 }
 
@@ -38,7 +38,7 @@ void ObjectManager::Update(void) {
 		// firstがキー（ObjectName）,secondがオブジェクト本体
 		if (obj.second->GetPosition().x > SCREEN_WIDTH / 2 || obj.second->GetPosition().x < 0 - SCREEN_WIDTH / 2 ||
 			obj.second->GetPosition().y > SCREEN_HEIGHT / 2 || obj.second->GetPosition().y < 0 - SCREEN_HEIGHT / 2) {
-			this->DeleteObject(obj.first);		// オブジェクトのキーを指定して削除
+			//this->DeleteObject(obj.first);		// オブジェクトのキーを指定して削除
 		}
 	}
 	

@@ -17,7 +17,7 @@ enum Tag {
 
 
 /**
- * @brief オブジェクトのmapを管理するために使うstd::pairの二つを紐づける関数
+ * @brief オブジェクトのmapを管理するために使うstd::pairの二つmapに紐づける関数
 */
 struct PairHash {
 	template <typename T1, typename T2>
@@ -46,31 +46,31 @@ public:
 	 * @param _SceneName 
 	*/
 	template <typename T>
-	void AddObject(Tag _ObjTag)
+	void AddObject(const std::pair<Tag, std::string>& _Tag_and_Name)
 	{
 		// キーとオブジェクトをセットで追加
-		Objects.emplace(_ObjTag, std::make_unique<T>(D3d11));
+		Objects.emplace(_Tag_and_Name, std::make_unique<T>(D3d11));
 	}
 
+
+	// TODO:12/19ここまで。複数追加関数は一旦あきらめて一個ずつ追加する
 	/**
-	 * @brief オブジェクト一括追加関数
-	 * @tparam T オブジェクトの型
-	 * @tparam ...Args オブジェクトのタグ
-	 * @param ...args 実引数
+	 * @brief オブジェクト複数追加関数
+	 * @tparam ...Ts 追加するオブジェクトの型（複数でもok）
+	 * @tparam ...Args オブジェクトのタグと名前
+	 * @param ..._Tag_and_Name 実引数
 	*/
-	template <typename... Ts, typename... Args>
-	void AddObject(Args&&... _ObjectsTag)	// &&とは「右辺値参照」（右辺値とはx = 10 なら 10のように変数に入る実際の値）
-	{
-		//! オブジェクト配列にテンプレート型のクラスのユニークポインタを格納
-		//! →その際のコンストラクタに与える引数の型(Args)と、実引数として(args)が存在している。
-		//! 　→この場合、std::forwardはTのコンストラクタに引数の型、実引数をそのまま渡すために記述されている
-		 
-		// キーと名前が対応しているかの確認（数が合わない場合、プログラムは実行されずエラーが出る）
-		static_assert(sizeof...(Ts) == sizeof...(Args), "キー(タグ)の数と追加したいオブジェクトの数が違います");
-		 
-		//! std::forwardで異なるキーを追加できるようにし、Tsで異なる型のオブジェクトを追加できるようにしている
-		(Objects.emplace(std::forward<Args>(_ObjectsTag), std::make_unique<Ts>(D3d11)), ...);		// 全オブジェクト生成時にd3dの参照を渡す
-	}
+	//template <typename... Ts>
+	//void AddObject(std::pair<Tag, std::string>&&... _Tag_and_Name) {
+	//	// キーと名前の数が同じかの確認（数が合わない場合、プログラムは実行されずエラーが出る）, typename... Args
+	//	static_assert(sizeof...(Ts) == sizeof...(_Tag_and_Name), "キー(タグ)の数と追加したいオブジェクトの数が違います");
+
+	//	//! std::forwardで引数の型と引数そのものをそのまま渡している
+	//	//! mapに追加		タグと名前		指定した型のオブジェクトのインスタンスをユニークポインタで作成(D3D11クラスの参照を渡す)
+	//	(Objects.emplace(std::move(_Tag_and_Name), std::make_unique<Ts>(D3d11)), ...);
+	//	(Objects.emplace(std::make_pair(std::move(_Tag_and_Name).first, std::move(_Tag_and_Name).second), std::make_unique<Ts>(D3d11)), ...);
+	//	(Objects.emplace(std::forward<std::pair<Tag, std::string>>(_Tag_and_Name), std::make_unique<Ts>(D3d11)), ...);
+	//}
 
 	/**
 	 * @brief オブジェクト削除関数
