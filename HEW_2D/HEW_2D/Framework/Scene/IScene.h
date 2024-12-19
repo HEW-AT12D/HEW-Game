@@ -27,6 +27,10 @@ public:
 	virtual void Draw(void) = 0;
 	virtual void Uninit(void) = 0;
 
+	void SetChangeScene(bool _Flg);
+	bool GetChangeScene(void);
+
 protected:
 	ObjectManager objectmanager;
+	bool ChangeScene = false;
 };

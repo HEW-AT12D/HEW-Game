@@ -1,7 +1,5 @@
 ﻿  IScene.cpp
   Application.cpp
-C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Core\Application\Application.cpp(39,16): error C2065: 'player': 定義されていない識別子です。
-C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Core\Application\Application.cpp(56,2): error C2065: 'player': 定義されていない識別子です。
   Game.cpp
   main.cpp
   ObjectManager.cpp
@@ -10,29 +8,45 @@ C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Core\Application\App
   ResultScene.cpp
   StageSelectScene.cpp
   TitleScene.cpp
-C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\TitleScene.cpp(22,15): error C2672: 'ObjectManager::AddObject': 一致するオーバーロードされた関数が見つかりませんでした。
-C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\ObjectManager\ObjectManager.h(49,7): message : 'void ObjectManager::AddObject(const std::pair<Tag,std::string> &)' の可能性があります
-C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\TitleScene.cpp(22,38): message : '初期化中': 'Tag' から 'const std::pair<Tag,std::string> &' に変換できません。
-C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\TitleScene.cpp(22,38): message : 理由: 'Tag' から 'const std::pair<Tag,std::string>' へは変換できません。
-C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\TitleScene.cpp(22,38): message : この変換を実行可能なユーザー定義変換演算子がないか、または演算子を呼び出せません。
-C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\TitleScene.cpp(24,15): error C2672: 'ObjectManager::AddObject': 一致するオーバーロードされた関数が見つかりませんでした。
-C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\ObjectManager\ObjectManager.h(49,7): message : 'void ObjectManager::AddObject(const std::pair<Tag,std::string> &)' の可能性があります
-C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\TitleScene.cpp(24,38): message : '初期化中': 'Tag' から 'const std::pair<Tag,std::string> &' に変換できません。
-C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\TitleScene.cpp(24,38): message : 理由: 'Tag' から 'const std::pair<Tag,std::string>' へは変換できません。
-C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\TitleScene.cpp(24,38): message : この変換を実行可能なユーザー定義変換演算子がないか、または演算子を呼び出せません。
-C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\TitleScene.cpp(26,15): error C2672: 'ObjectManager::AddObject': 一致するオーバーロードされた関数が見つかりませんでした。
-C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\ObjectManager\ObjectManager.h(49,7): message : 'void ObjectManager::AddObject(const std::pair<Tag,std::string> &)' の可能性があります
-C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\TitleScene.cpp(26,38): message : '初期化中': 'Tag' から 'const std::pair<Tag,std::string> &' に変換できません。
-C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\TitleScene.cpp(26,38): message : 理由: 'Tag' から 'const std::pair<Tag,std::string>' へは変換できません。
-C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\TitleScene.cpp(26,38): message : この変換を実行可能なユーザー定義変換演算子がないか、または演算子を呼び出せません。
-C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\TitleScene.cpp(28,15): error C2672: 'ObjectManager::AddObject': 一致するオーバーロードされた関数が見つかりませんでした。
-C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\ObjectManager\ObjectManager.h(49,7): message : 'void ObjectManager::AddObject(const std::pair<Tag,std::string> &)' の可能性があります
-C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\TitleScene.cpp(28,38): message : '初期化中': 'Tag' から 'const std::pair<Tag,std::string> &' に変換できません。
-C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\TitleScene.cpp(28,38): message : 理由: 'Tag' から 'const std::pair<Tag,std::string>' へは変換できません。
-C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\TitleScene.cpp(28,38): message : この変換を実行可能なユーザー定義変換演算子がないか、または演算子を呼び出せません。
-C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\TitleScene.cpp(30,15): error C2672: 'ObjectManager::AddObject': 一致するオーバーロードされた関数が見つかりませんでした。
-C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\ObjectManager\ObjectManager.h(49,7): message : 'void ObjectManager::AddObject(const std::pair<Tag,std::string> &)' の可能性があります
-C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\TitleScene.cpp(30,34): message : '初期化中': 'Tag' から 'const std::pair<Tag,std::string> &' に変換できません。
-C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\TitleScene.cpp(30,34): message : 理由: 'Tag' から 'const std::pair<Tag,std::string>' へは変換できません。
-C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\TitleScene.cpp(30,34): message : この変換を実行可能なユーザー定義変換演算子がないか、または演算子を呼び出せません。
   コードを生成中...
+Application.obj : error LNK2005: "private: __cdecl Window::Window(void)" (??0Window@@AEAA@XZ) は既に Window.obj で定義されています。
+Application.obj : error LNK2005: "public: __cdecl SoundGun::~SoundGun(void)" (??1SoundGun@@QEAA@XZ) は既に IScene.obj で定義されています。
+Application.obj : error LNK2005: "private: __cdecl Window::~Window(void)" (??1Window@@AEAA@XZ) は既に Window.obj で定義されています。
+Game.obj : error LNK2005: "public: __cdecl SoundGun::~SoundGun(void)" (??1SoundGun@@QEAA@XZ) は既に IScene.obj で定義されています。
+Game.obj : error LNK2005: "public: virtual __cdecl StageSelectScene::~StageSelectScene(void)" (??1StageSelectScene@@UEAA@XZ) は既に Application.obj で定義されています。
+main.obj : error LNK2005: "private: __cdecl Window::Window(void)" (??0Window@@AEAA@XZ) は既に Window.obj で定義されています。
+main.obj : error LNK2005: "public: __cdecl SoundGun::~SoundGun(void)" (??1SoundGun@@QEAA@XZ) は既に IScene.obj で定義されています。
+main.obj : error LNK2005: "public: virtual __cdecl StageSelectScene::~StageSelectScene(void)" (??1StageSelectScene@@UEAA@XZ) は既に Application.obj で定義されています。
+main.obj : error LNK2005: "private: __cdecl Window::~Window(void)" (??1Window@@AEAA@XZ) は既に Window.obj で定義されています。
+Player.obj : error LNK2005: "public: __cdecl SoundGun::~SoundGun(void)" (??1SoundGun@@QEAA@XZ) は既に IScene.obj で定義されています。
+SoundGun.obj : error LNK2005: "public: __cdecl SoundGun::~SoundGun(void)" (??1SoundGun@@QEAA@XZ) は既に IScene.obj で定義されています。
+ObjectManager.obj : error LNK2005: "public: __cdecl SoundGun::~SoundGun(void)" (??1SoundGun@@QEAA@XZ) は既に IScene.obj で定義されています。
+SceneManager.obj : error LNK2005: "public: __cdecl SoundGun::~SoundGun(void)" (??1SoundGun@@QEAA@XZ) は既に IScene.obj で定義されています。
+SceneManager.obj : error LNK2005: "public: virtual __cdecl StageSelectScene::~StageSelectScene(void)" (??1StageSelectScene@@UEAA@XZ) は既に Application.obj で定義されています。
+GameScene.obj : error LNK2005: "public: __cdecl SoundGun::~SoundGun(void)" (??1SoundGun@@QEAA@XZ) は既に IScene.obj で定義されています。
+ResultScene.obj : error LNK2005: "public: __cdecl SoundGun::~SoundGun(void)" (??1SoundGun@@QEAA@XZ) は既に IScene.obj で定義されています。
+StageSelectScene.obj : error LNK2005: "public: __cdecl SoundGun::~SoundGun(void)" (??1SoundGun@@QEAA@XZ) は既に IScene.obj で定義されています。
+StageSelectScene.obj : error LNK2005: "public: virtual __cdecl StageSelectScene::~StageSelectScene(void)" (??1StageSelectScene@@UEAA@XZ) は既に Application.obj で定義されています。
+TitleScene.obj : error LNK2005: "public: __cdecl SoundGun::~SoundGun(void)" (??1SoundGun@@QEAA@XZ) は既に IScene.obj で定義されています。
+TransformComponent.obj : error LNK2019: 未解決の外部シンボル "public: __cdecl Transform::~Transform(void)" (??1Transform@@QEAA@XZ) が関数 "public: virtual __cdecl TransformComponent::~TransformComponent(void)" (??1TransformComponent@@UEAA@XZ) で参照されました
+GameObject.obj : error LNK2001: 外部シンボル "public: __cdecl Transform::~Transform(void)" (??1Transform@@QEAA@XZ) は未解決です
+TransformComponent.obj : error LNK2001: 外部シンボル "public: virtual void __cdecl TransformComponent::Init(void)" (?Init@TransformComponent@@UEAAXXZ) は未解決です
+TransformComponent.obj : error LNK2001: 外部シンボル "public: virtual void __cdecl TransformComponent::Update(void)" (?Update@TransformComponent@@UEAAXXZ) は未解決です
+TransformComponent.obj : error LNK2001: 外部シンボル "public: virtual void __cdecl TransformComponent::Uninit(void)" (?Uninit@TransformComponent@@UEAAXXZ) は未解決です
+Window.obj : error LNK2001: 外部シンボル "private: static struct HINSTANCE__ * Window::m_hInst" (?m_hInst@Window@@0PEAUHINSTANCE__@@EA) は未解決です
+Window.obj : error LNK2001: 外部シンボル "private: static struct HWND__ * Window::m_hWnd" (?m_hWnd@Window@@0PEAUHWND__@@EA) は未解決です
+Window.obj : error LNK2001: 外部シンボル "private: static unsigned int Window::m_Width" (?m_Width@Window@@0IA) は未解決です
+Window.obj : error LNK2001: 外部シンボル "private: static unsigned int Window::m_Height" (?m_Height@Window@@0IA) は未解決です
+Application.obj : error LNK2019: 未解決の外部シンボル "public: struct HWND__ * __cdecl Window::GetHandleWindow(void)" (?GetHandleWindow@Window@@QEAAPEAUHWND__@@XZ) が関数 "public: void __cdecl Application::Init(void)" (?Init@Application@@QEAAXXZ) で参照されました
+GameScene.obj : error LNK2001: 外部シンボル "public: virtual __cdecl IScene::~IScene(void)" (??1IScene@@UEAA@XZ) は未解決です
+StageSelectScene.obj : error LNK2001: 外部シンボル "public: virtual __cdecl IScene::~IScene(void)" (??1IScene@@UEAA@XZ) は未解決です
+Application.obj : error LNK2001: 外部シンボル "public: virtual __cdecl IScene::~IScene(void)" (??1IScene@@UEAA@XZ) は未解決です
+Game.obj : error LNK2001: 外部シンボル "public: virtual __cdecl IScene::~IScene(void)" (??1IScene@@UEAA@XZ) は未解決です
+main.obj : error LNK2001: 外部シンボル "public: virtual __cdecl IScene::~IScene(void)" (??1IScene@@UEAA@XZ) は未解決です
+SceneManager.obj : error LNK2001: 外部シンボル "public: virtual __cdecl IScene::~IScene(void)" (??1IScene@@UEAA@XZ) は未解決です
+main.obj : error LNK2019: 未解決の外部シンボル "public: __cdecl Game::~Game(void)" (??1Game@@QEAA@XZ) が関数 "public: __cdecl Application::~Application(void)" (??1Application@@QEAA@XZ) で参照されました
+SceneManager.obj : error LNK2019: 未解決の外部シンボル "public: __cdecl IScene::IScene(void)" (??0IScene@@QEAA@XZ) が関数 "public: __cdecl GameScene::GameScene(void)" (??0GameScene@@QEAA@XZ) で参照されました
+MSVCRTD.lib(exe_winmain.obj) : error LNK2019: 未解決の外部シンボル WinMain が関数 "int __cdecl invoke_main(void)" (?invoke_main@@YAHXZ) で参照されました
+    定義済みの一致する可能性があるシンボルに関するヒント:
+      "public: void __cdecl Window::WinMain(void)" (?WinMain@Window@@QEAAXXZ)
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\x64\Debug\HEW_2D.exe : fatal error LNK1120: 13 件の未解決の外部参照

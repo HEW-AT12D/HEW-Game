@@ -13,7 +13,7 @@ void SceneManager::Init(void)
 {
 	//! ステージ選択シーンの初期化（タイトル画面から動かないことがあるかもしれない→ステージ選択シーンはUpdateで生成のほうがいい？）
 	//! 一旦Initでステージ選択シーンを読み込む
-	Scenes.emplace(STAGESELECT, std::make_unique<StageSelectScene>());
+	Scenes.emplace(STAGESELECT, std::make_unique<StageSelectScene>(D3d11));
 
 }
 
@@ -109,6 +109,24 @@ void SceneManager::ChangeScene(SceneName _Nextscene) {
 	
 }
 
+/**
+ * @brief シーン取得関数
+ * @param _SceneName シーンのタグ
+ * @return シーンのポインタ
+*/
+IScene* SceneManager::GetScene(SceneName& _SceneName)
+{
+	auto iterator = Scenes.find(_SceneName);
+
+	// シーンが見つかれば
+	if (iterator != Scenes.end())
+	{
+		// シーンのポインタを返す
+		return iterator->second.get();
+	}
+	// 見つからなければnullptrを返す
+	return nullptr;
+}
 
 /**
  * @brief シーン削除関数

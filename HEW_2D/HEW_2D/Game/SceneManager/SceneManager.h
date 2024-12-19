@@ -32,6 +32,7 @@ enum SceneName {
 
 /**
  * @brief シーン管理クラス
+ * オブジェクト管理はタグと名前を使うが、シーンの管理はシーンの名前(こちらで定義)のみで行う
  * 
  * シーン切り替え関数が必要
 */
@@ -46,8 +47,12 @@ public:
 	*/
 	SceneManager(D3D11& _D3d11) :D3d11(_D3d11)
 	{
-		//! タイトルシーンを生成してシーン配列に追加
+		// シーン保持しているコンテナを空にする
+		Scenes.clear();
+
+		//! コンストラクタでタイトルシーンだけ生成してシーン配列に追加
 		Scenes.emplace(TITLE, std::make_unique<TitleScene>(_D3d11));
+		//Scenes.
 		CurrentScene = TITLE;
 	};
 	~SceneManager() {};
@@ -70,6 +75,12 @@ public:
 		// タグを設定してシーンを追加
 		Scenes.emplace(_SceneName, std::make_unique<T>());
 	}
+
+	/**
+	 * @brief シーン取得関数
+	 * @param _SceneName シーンのタグ
+	*/
+	IScene* GetScene(SceneName& _SceneName);
 
 	/**
 	 * @brief シーン削除関数

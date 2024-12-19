@@ -33,27 +33,27 @@ void Application::Init(void)
 
 void Application::Run(void)
 {
-	Init();
+	// ゲームの初期化（シーンマネージャの初期化）
+	game.Init();
 
-	
-	Vector3 pos = player.GetPosition();
-//	pos.x += 1.0f;
+	//Vector3 pos = player.GetPosition();
+	//pos.x += 1.0f;
 
-	if (Input::GetInstance().GetKeyPress(VK_W)) { pos.y += 1.0f; }
-	if (Input::GetInstance().GetKeyPress(VK_A)) { pos.x -= 1.0f; }
-	if (Input::GetInstance().GetKeyPress(VK_S)) { pos.y -= 1.0f; }
-	if (Input::GetInstance().GetKeyPress(VK_D)) { pos.x += 1.0f; }
+	//if (Input::GetInstance().GetKeyPress(VK_W)) { pos.y += 1.0f; }
+	//if (Input::GetInstance().GetKeyPress(VK_A)) { pos.x -= 1.0f; }
+	//if (Input::GetInstance().GetKeyPress(VK_S)) { pos.y -= 1.0f; }
+	//if (Input::GetInstance().GetKeyPress(VK_D)) { pos.x += 1.0f; }
 
-	// Iキーでフルスクリーン化
-	if (Input::GetInstance().GetKeyTrigger(VK_I)) {
-		d3d11.GetSwapChain()->SetFullscreenState(TRUE, NULL);
-	}
-	// Kキーでフルスクリーン解除
-	if (Input::GetInstance().GetKeyTrigger(VK_K)) {
-		d3d11.GetSwapChain()->SetFullscreenState(FALSE, NULL);
-	}
+	//// Iキーでフルスクリーン化
+	//if (Input::GetInstance().GetKeyTrigger(VK_I)) {
+	//	d3d11.GetSwapChain()->SetFullscreenState(TRUE, NULL);
+	//}
+	//// Kキーでフルスクリーン解除
+	//if (Input::GetInstance().GetKeyTrigger(VK_K)) {
+	//	d3d11.GetSwapChain()->SetFullscreenState(FALSE, NULL);
+	//}
 
-	player.SetPos(pos.x, pos.y, pos.z);
+	//player.SetPos(pos.x, pos.y, pos.z);
 }
 
 //void Application::Draw(void)

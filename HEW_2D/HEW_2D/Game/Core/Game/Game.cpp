@@ -1,12 +1,20 @@
 #include "Game.h"
 
 
+/**
+ * @brief 
+ * @param  
+*/
 void Game::Init(void)
 {
 	scenemanager.Init();
 }
 
 
+/**
+ * @brief ゲームのループ処理
+ * 主なゲーム処理はここに書く
+*/
 void Game::Update(void)
 {
 	scenemanager.Update();

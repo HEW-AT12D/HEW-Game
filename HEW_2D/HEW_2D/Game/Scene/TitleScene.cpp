@@ -20,25 +20,26 @@ void TitleScene::Init(void) {
 	
 	// 背景
 	objectmanager.AddObject<GameObject>(BACKGROUND, "Background1");
-	objectmanager.GetGameObject(BACKGROUND, "Background1")->Init("")
-	// タイトル
-	objectmanager.AddObject<GameObject>(IMAGE, "TitleImage");
-	// UI1(ボタン)
-	objectmanager.AddObject<GameObject>(UI, "StartButton");
-	// UI2(ボタン)
-	objectmanager.AddObject<GameObject>(UI, "ExitButton");
+	objectmanager.GetGameObject(BACKGROUND, "Background1")->Init(L"Game/Asset/BackGround/back_img_01.png");
 	// プレイヤー
+	objectmanager.AddObject<GameObject>(PLAYER, "Player");
+	objectmanager.GetGameObject(IMAGE, "Player")->Init(L"Game/Asset/Character/Player.png");
+	//// UI1(ボタン)
+	//objectmanager.AddObject<GameObject>(UI, "StartButton");
+	//// UI2(ボタン)
+	//objectmanager.AddObject<GameObject>(UI, "ExitButton");
+	//// プレイヤー
 	//objectmanager.AddObject<Player>(PLAYER);
 }
 
 void TitleScene::Update(void) {
-
+	objectmanager.Update();
 }
 
 void TitleScene::Draw(void) {
-
+	objectmanager.Draw();
 }
 
 void TitleScene::Uninit(void) {
-
+	objectmanager.Uninit();
 }
