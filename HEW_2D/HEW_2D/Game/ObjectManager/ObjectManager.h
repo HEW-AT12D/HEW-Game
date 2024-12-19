@@ -78,17 +78,18 @@ public:
 	 * @tparam ...Args オブジェクトのタグと名前
 	 * @param ..._Tag_and_Name 実引数
 	*/
-	//template <typename... Ts>
-	//void AddObject(std::pair<Tag, std::string>&&... _Tag_and_Name) {
-	//	// キーと名前の数が同じかの確認（数が合わない場合、プログラムは実行されずエラーが出る）, typename... Args
-	//	static_assert(sizeof...(Ts) == sizeof...(_Tag_and_Name), "キー(タグ)の数と追加したいオブジェクトの数が違います");
+	template <typename... Ts>
+	void AddObject(std::pair<Tag, std::string>&&... _Tag_and_Name) {
+		// キーと名前の数が同じかの確認（数が合わない場合、プログラムは実行されずエラーが出る）, typename... Args
+		static_assert(sizeof...(Ts) == sizeof...(_Tag_and_Name), "キー(タグ)の数と追加したいオブジェクトの数が違います");
 
-	//	//! std::forwardで引数の型と引数そのものをそのまま渡している
-	//	//! mapに追加		タグと名前		指定した型のオブジェクトのインスタンスをユニークポインタで作成(D3D11クラスの参照を渡す)
-	//	(Objects.emplace(std::move(_Tag_and_Name), std::make_unique<Ts>(D3d11)), ...);
-	//	(Objects.emplace(std::make_pair(std::move(_Tag_and_Name).first, std::move(_Tag_and_Name).second), std::make_unique<Ts>(D3d11)), ...);
-	//	(Objects.emplace(std::forward<std::pair<Tag, std::string>>(_Tag_and_Name), std::make_unique<Ts>(D3d11)), ...);
-	//}
+		// これ引数の渡し方が良く無い説：pairを作ってから渡したほうがいい
+
+		//! std::forwardで引数の型と引数そのものをそのまま渡している
+		//! mapに追加		タグと名前		指定した型のオブジェクトのインスタンスをユニークポインタで作成(D3D11クラスの参照を渡す)
+		(Objects.emplace(std::move(_Tag_and_Name), std::make_unique<Ts>(D3d11)), ...);
+		(Objects.emplace(std::forward<std::pair<Tag, std::string>>(_Tag_and_Name), std::make_unique<Ts>(D3d11)), ...);
+	}
 
 	/**
 	 * @brief オブジェクト削除関数
