@@ -1,7 +1,10 @@
 #include "ResultScene.h"
 
 void ResultScene::Init(void) {
-	objectmanager.AddObject<GameObject>(OBJECT);
+	// オブジェクト追加
+	objectmanager.AddObject<GameObject>(
+		std::make_pair(Tag::OBJECT, "Object1")
+	);
 }
 
 

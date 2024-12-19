@@ -19,15 +19,16 @@ void TitleScene::Init(void) {
 	// TODO:1218ここまで オブジェクトの管理をenumから変更→tagと名前にしたい
 	
 	// 背景
-	objectmanager.AddObject<GameObject>(OBJECT);
+	objectmanager.AddObject<GameObject>(BACKGROUND, "Background1");
+	objectmanager.GetGameObject(BACKGROUND, "Background1")->Init("")
 	// タイトル
-	objectmanager.AddObject<GameObject>(OBJECT);
+	objectmanager.AddObject<GameObject>(IMAGE, "TitleImage");
 	// UI1(ボタン)
-	objectmanager.AddObject<GameObject>(OBJECT);
+	objectmanager.AddObject<GameObject>(UI, "StartButton");
 	// UI2(ボタン)
-	objectmanager.AddObject<GameObject>(OBJECT);
+	objectmanager.AddObject<GameObject>(UI, "ExitButton");
 	// プレイヤー
-	objectmanager.AddObject<Player>(PLAYER);
+	//objectmanager.AddObject<Player>(PLAYER);
 }
 
 void TitleScene::Update(void) {

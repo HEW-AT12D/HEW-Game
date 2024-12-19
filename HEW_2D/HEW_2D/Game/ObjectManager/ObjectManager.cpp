@@ -8,6 +8,27 @@ size_t ObjectManager::GetObjectCount(void)
 
 
 /**
+ * @brief オブジェクト取得関数
+ * @param _Tag オブジェクトタグ
+ * @param _Name 付けたい名前
+ * @return オブジェクトの生ポインタ
+*/
+GameObject* ObjectManager::GetGameObject(const Tag& _Tag, const std::string _Name)
+{
+	// タグと名前の一致するオブジェクトを見つける(見つからない場合はend()が返ってくる)
+	auto iterator = Objects.find(std::make_pair(_Tag, _Name));
+	// 見つかった場合
+	if (iterator != Objects.end())
+	{
+		return iterator->second.get();
+	}
+
+	// 見つからなければnullprtを返す
+	return nullptr;
+}
+
+
+/**
  * @brief オブジェクト削除関数
  * @param object 
 */
