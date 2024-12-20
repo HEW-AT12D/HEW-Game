@@ -24,8 +24,3 @@ private:
 
 };
 
-// TODO:‚±‚±‚Ì“ä‚ÌƒGƒ‰[‚ğ’¼‚·
-StageSelectScene::~StageSelectScene()
-{
-
-}

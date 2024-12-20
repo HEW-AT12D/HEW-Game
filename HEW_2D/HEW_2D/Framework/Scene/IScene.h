@@ -20,7 +20,7 @@ public:
 	IScene();
 	IScene(D3D11& _D3d11) :objectmanager(_D3d11) {};
 
-	virtual ~IScene();
+	virtual ~IScene() {};
 
 	virtual void Init(void) = 0;
 	virtual void Update(void) = 0;
