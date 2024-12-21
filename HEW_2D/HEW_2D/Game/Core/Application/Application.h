@@ -9,7 +9,7 @@
  * 
  * 流れとしては、
  * ①windowの初期化をする
- * ②HWND（ウィンドウの情報持ってるアドレスへのポインタみたいなもの）を使ってDirectXの初期化をする
+ * ②HWND（ウィンドウの情報持ってるアドレスへのポインタみたいなもの）を使ってコンストラクタでDirectXの初期化をする
  * ③ゲームの中身の初期化をする
  * という流れで進む。普通に考えれば終了処理はその逆の順番なはず
  * 
@@ -17,12 +17,13 @@
 */
 class Application {
 private:
-	D3D11 d3d11;				// DirectX11管理クラス
-	//Window window;				// ウィンドウクラス
-	Game game;					// ゲームクラス
+	D3D11 d3d11;			// DirectX11管理クラス
+	//Window window;		// ウィンドウクラス
+	Game game;				// ゲームクラス
 
 public:
-	Application() :game(d3d11) {};
+	//! メンバ変数は宣言した順に初期化される→先にd3d11のコンストラクタを呼び出し、そのあとにgameクラスのコンストラクタを呼ぶ
+	Application() :d3d11(), game(d3d11) {};
 	~Application() {};
 
 
