@@ -57,10 +57,6 @@
     <Filter Include="フレームワーク\Texture">
       <UniqueIdentifier>{7ccad534-fab1-4564-97bd-1c80764cff69}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ゲーム\シェーダー">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
     <Filter Include="フレームワーク\ウィンドウ">
       <UniqueIdentifier>{bb3b72fc-e6c5-4df3-8470-371f3acafc99}</UniqueIdentifier>
     </Filter>
@@ -247,16 +243,16 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="Shader\PixelShader.hlsl">
-      <Filter>ゲーム\シェーダー</Filter>
-    </FxCompile>
-    <FxCompile Include="Shader\VertexShader.hlsl">
-      <Filter>ゲーム\シェーダー</Filter>
-    </FxCompile>
-  </ItemGroup>
-  <ItemGroup>
     <Text Include="Framework\注意点\注意点・解説.txt">
       <Filter>フレームワーク\注意点</Filter>
     </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Shader\PixelShader.hlsl">
+      <Filter>リソース ファイル</Filter>
+    </FxCompile>
+    <FxCompile Include="Shader\VertexShader.hlsl">
+      <Filter>リソース ファイル</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>

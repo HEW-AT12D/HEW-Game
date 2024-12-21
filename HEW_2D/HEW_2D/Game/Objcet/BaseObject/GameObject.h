@@ -53,7 +53,7 @@ protected:
 
 public:
 	
-	GameObject() = default;
+	//GameObject() = default;	// クラスのメンバ変数に参照が入っている場合、デフォルトコンストラクタが使えない（初期化が必須となる）
 	GameObject(D3D11& _D3d11);
 	virtual ~GameObject();
 

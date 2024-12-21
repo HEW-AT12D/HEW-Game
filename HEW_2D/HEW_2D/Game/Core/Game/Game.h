@@ -13,9 +13,8 @@
 class Game
 {
 public:
-	Game() = default;
 	Game(D3D11& _D3d11) :scenemanager(_D3d11) {};
-	~Game();
+	~Game() {};
 
 	void Init(void);
 	void Update(void);

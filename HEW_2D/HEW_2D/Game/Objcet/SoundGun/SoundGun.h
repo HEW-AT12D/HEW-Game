@@ -12,9 +12,8 @@
 class SoundGun : public GameObject
 {
 public:
-	SoundGun() = default;
 	SoundGun(D3D11& _D3d11) :GameObject(_D3d11) {};
-	~SoundGun();
+	~SoundGun() {};
 
 	
 
@@ -23,6 +22,3 @@ private:
 };
 
 
-SoundGun::~SoundGun()
-{
-}

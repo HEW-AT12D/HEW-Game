@@ -17,7 +17,11 @@ void Game::Init(void)
 */
 void Game::Update(void)
 {
-	scenemanager.Update();
+	// イベント発生まではループし続ける
+	while (true)
+	{
+		scenemanager.Update();
+	}
 }
 
 void Game::Draw(void)

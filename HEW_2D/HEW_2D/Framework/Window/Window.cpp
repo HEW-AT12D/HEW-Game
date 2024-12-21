@@ -1,16 +1,32 @@
 #include "Window.h"
 
+
+HINSTANCE Window::m_hInst = nullptr;	// インスタンスハンドル(アプリケーションを識別する情報→これはどんな設計でも単一(static)であるべき)
+HWND Window::m_hWnd = nullptr;			// ウィンドウハンドル(ウィンドウの情報を持つポインタみたいなもの→今回はウィンドウは一つなので単一(static)とする)
+uint32_t Window::m_Width = 0;			// ウィンドウの横幅
+uint32_t Window::m_Height = 0;			// ウィンドウの縦幅
+
+
+Window::Window()
+{
+}
+
+Window::~Window()
+{
+}
+
+
 /**
  * @brief インスタンス取得関数
  * @param  なし
  * @return 自身のインスタンス
- * 
+ *
  * 一度目のインスタンス呼び出しであれば自身を生成し、既にインスタンスが存在していればそれを返す
 */
 Window& Window::GetInstance(void) {
 	// 自身のインスタンスをstaticで生成
 	static Window Instance;
-	
+
 	return Instance;
 }
 
@@ -26,7 +42,7 @@ bool Window::Init(uint32_t _Screen_width, uint32_t _Screen_height) {
 	//! 引数で設定したウィンドウサイズをメンバ変数に代入
 	m_Width = _Screen_width;
 	m_Height = _Screen_height;
-	
+
 	//! ウィンドウの初期化
 	// インスタンスハンドルを取得.
 	auto hInst = GetModuleHandle(nullptr);
@@ -318,4 +334,15 @@ LRESULT CALLBACK Window::WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPa
 	}
 
 	return 0;
+}
+
+/**
+ * @brief ウィンドウハンドル取得関数
+ * ウィンドウハンドルはウィンドウの初期化処理内でウィンドウの登録などを済ませてから初めて情報として成立する
+ * →staticにする（インスタンス生成前に呼び出せるようにする）必要はない
+ * @return ウィンドウハンドル
+*/
+HWND Window::GetHandleWindow(void)
+{
+	return this->m_hWnd;
 }

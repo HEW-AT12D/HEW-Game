@@ -17,7 +17,6 @@
 class IScene
 {
 public:
-	IScene();
 	IScene(D3D11& _D3d11) :objectmanager(_D3d11) {};
 
 	virtual ~IScene() {};

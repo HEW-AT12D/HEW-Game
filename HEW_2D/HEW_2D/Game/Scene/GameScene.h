@@ -11,9 +11,8 @@
 class GameScene :public IScene
 {
 public:
-	GameScene() = default;
 	GameScene(D3D11& _D3d11) :IScene(_D3d11) {};
-	~GameScene();
+	~GameScene() {};
 	void Init(void)override;
 	void Update(void)override;
 	void Draw(void)override;
@@ -22,5 +21,4 @@ public:
 private:
 
 };
-
 

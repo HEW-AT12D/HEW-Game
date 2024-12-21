@@ -1,10 +1,5 @@
 #include "GameScene.h"
 
-
-GameScene::~GameScene()
-{
-}
-
 void GameScene::Init(void){
 
 }

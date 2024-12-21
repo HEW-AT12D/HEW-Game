@@ -36,6 +36,9 @@ void Application::Run(void)
 	// ゲームの初期化（シーンマネージャの初期化）
 	game.Init();
 
+	// ゲーム処理開始
+	game.Update();
+
 	//Vector3 pos = player.GetPosition();
 	//pos.x += 1.0f;
 

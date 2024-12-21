@@ -73,7 +73,7 @@ public:
 	void CreateScene(SceneName _SceneName)
 	{
 		// タグを設定してシーンを追加
-		Scenes.emplace(_SceneName, std::make_unique<T>());
+		Scenes.emplace(_SceneName, std::make_unique<T>(D3d11));
 	}
 
 	/**

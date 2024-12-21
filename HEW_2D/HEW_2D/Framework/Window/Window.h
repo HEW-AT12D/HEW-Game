@@ -47,13 +47,8 @@ public:
 	*/
 	static Window& GetInstance(void);
 
-	/**
-	 * @brief ウィンドウハンドル取得関数
-	 * ウィンドウハンドルはウィンドウの初期化処理内でウィンドウの登録などを済ませてから初めて情報として成立する
-	 * →staticにする（インスタンス生成前に呼び出せるようにする）必要はない
-	 * @return ウィンドウハンドル
-	*/
-	HWND GetHandleWindow(void);
+	
+	HWND GetHandleWindow(void);		//! ウィンドウハンドル取得関数
 
 private:
 	//! コンストラクタとデストラクタをprivateに配置することで、インスタンスを生成できなくする
@@ -70,10 +65,3 @@ private:
 	static uint32_t    m_Height;		// ウィンドウの縦幅
 };
 
-Window::Window()
-{
-}
-
-Window::~Window()
-{
-}
