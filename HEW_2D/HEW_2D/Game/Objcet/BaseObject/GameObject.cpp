@@ -103,7 +103,7 @@ void GameObject::Draw(void)
 	cb.color = color;
 
 	// 行列をシェーダーに渡す
-	D3d11.GetDeviceContext()->UpdateSubresource(D3d11.GetConststBuffer(), 0, NULL, &cb, 0, 0);
+	D3d11.GetDeviceContext()->UpdateSubresource(D3d11.GetConstantBuffer(), 0, NULL, &cb, 0, 0);
 
 	D3d11.GetDeviceContext()->Draw(4, 0); // 描画命令
 }

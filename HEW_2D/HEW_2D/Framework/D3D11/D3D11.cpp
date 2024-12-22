@@ -12,6 +12,7 @@
 
 D3D11::D3D11()
 {
+
 }
 
 D3D11::~D3D11()
@@ -409,7 +410,7 @@ IDXGISwapChain* D3D11::GetSwapChain(void)
 	return m_pSwapChain;
 }
 
-ID3D11Buffer* D3D11::GetConststBuffer(void)
+ID3D11Buffer* D3D11::GetConstantBuffer(void)
 {
 	return m_pConstantBuffer;
 }
