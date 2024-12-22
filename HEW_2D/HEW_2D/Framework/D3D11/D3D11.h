@@ -1,6 +1,7 @@
 #pragma once
-#include "../../Game/EntryPoint/main.h"
+#include "../Window/Window.h"
 
+// デバック時用スクリーンサイズ（ビルド時にはmain.hにある定義を使用）
 #define SCREEN_WIDTH (640)	// ウインドウの幅
 #define SCREEN_HEIGHT (480)	// ウインドウの高さ
 
@@ -13,7 +14,8 @@
 class D3D11
 {
 public:
-	D3D11();
+
+	D3D11();	//! コンストラクタ
 	~D3D11();
 
 	ID3D11Device *GetDevice(void);                 //!m_Deviceのゲッター

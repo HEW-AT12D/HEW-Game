@@ -11,10 +11,11 @@
 */
 void SceneManager::Init(void) 
 {
-	//! ステージ選択シーンの初期化（タイトル画面から動かないことがあるかもしれない→ステージ選択シーンはUpdateで生成のほうがいい？）
-	//! 一旦Initでステージ選択シーンを読み込む
-	Scenes.emplace(STAGESELECT, std::make_unique<StageSelectScene>(D3d11));
-
+	//! タイトルシーンを生成してコンテナに追加
+	Scenes.emplace(TITLE, std::make_unique<TitleScene>(D3d11));
+	//Scenes現在シーンをタイトルシーンに設定
+	CurrentScene = TITLE;
+	Scenes[CurrentScene]->Init();
 }
 
 
@@ -88,9 +89,9 @@ void SceneManager::ChangeScene(SceneName _Nextscene) {
 		case TITLE:
 			CreateScene<TitleScene>(TITLE);
 			break;
-		//case STAGESELECT:
-		//	CreateScene<StageSelectScene>(STAGESELECT);
-		//	break;
+		case STAGESELECT:
+			CreateScene<StageSelectScene>(STAGESELECT);
+			break;
 		case GAME:
 			CreateScene<GameScene>(GAME);
 			break;

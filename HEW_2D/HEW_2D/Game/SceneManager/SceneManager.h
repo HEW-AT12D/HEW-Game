@@ -49,11 +49,6 @@ public:
 	{
 		// シーン保持しているコンテナを空にする
 		Scenes.clear();
-
-		//! コンストラクタでタイトルシーンだけ生成してシーン配列に追加
-		Scenes.emplace(TITLE, std::make_unique<TitleScene>(_D3d11));
-		//Scenes.
-		CurrentScene = TITLE;
 	};
 	~SceneManager() {};
 

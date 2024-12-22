@@ -9,10 +9,16 @@
 #include <string.h>
 #include "D3D11.h"
 
-
+/**
+ * @brief コンストラクタ
+ * アプリケーションクラスのメンバ初期化子リストにあるゲームクラスにこのクラスの参照を渡すため、ここで初期化をできるだけ済ませておく
+*/
 D3D11::D3D11()
 {
-
+	HWND hWnd;						// ウィンドウハンドル代入用変数
+	Window::GetInstance().Init();	// ウィンドウ初期化
+	hWnd = Window::GetInstance().GetHandleWindow();		// ウィンドウハンドル取得
+	Init(hWnd);				// ウィンドウ情報を使ってDirectXを初期化
 }
 
 D3D11::~D3D11()

@@ -23,7 +23,7 @@ void TitleScene::Init(void) {
 	objectmanager.GetGameObject(BACKGROUND, "Background1")->Init(L"Game/Asset/BackGround/back_img_01.png");
 	// プレイヤー
 	objectmanager.AddObject<GameObject>(PLAYER, "Player");
-	objectmanager.GetGameObject(IMAGE, "Player")->Init(L"Game/Asset/Character/Player.png");
+	objectmanager.GetGameObject(PLAYER, "Player")->Init(L"Game/Asset/Character/Player.png");
 	//// UI1(ボタン)
 	//objectmanager.AddObject<GameObject>(UI, "StartButton");
 	//// UI2(ボタン)
