@@ -1,6 +1,7 @@
 #pragma once
 #include "../../../Game/SceneManager/SceneManager.h"
 #include "../../../Framework/D3D11/D3D11.h"
+#include"../../../Game/Scene/TitleScene.h"
 
 
 //class D3D11;
@@ -14,14 +15,16 @@ class Game
 {
 public:
 	Game(D3D11& _D3d11) :scenemanager(_D3d11) {};
+	
 	~Game() {};
 
 	void Init(void);
 	void Update(void);
 	void Draw(void);
 	void Uninit(void);
+	
 
 private:
 	SceneManager scenemanager;	// シーン管理クラス
-	
+
 };

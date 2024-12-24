@@ -20,10 +20,10 @@ private:
 	D3D11 d3d11;			// DirectX11管理クラス
 	//Window window;		// ウィンドウクラス
 	Game game;				// ゲームクラス
-
+	TitleScene title;
 public:
 	//! メンバ変数は宣言した順に初期化される→先にd3d11のコンストラクタを呼び出し、そのあとにgameクラスのコンストラクタを呼ぶ
-	Application() :d3d11(), game(d3d11) {};
+	Application() :d3d11(), game(d3d11),title(d3d11) {};
 	~Application() {};
 
 

@@ -1,5 +1,6 @@
 #include "IScene.h"
 
+
 bool IScene::GetChangeScene(void)
 {
 	return ChangeScene;

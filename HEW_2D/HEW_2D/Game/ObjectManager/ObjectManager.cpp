@@ -1,6 +1,8 @@
 #include "ObjectManager.h"
 
 
+
+
 size_t ObjectManager::GetObjectCount(void)
 {
 	return Objects.size();

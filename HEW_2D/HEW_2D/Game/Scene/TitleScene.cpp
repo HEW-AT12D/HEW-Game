@@ -9,6 +9,9 @@
  * シーンごとに初期化は最初の一度のみ
  * →
 */
+
+
+
 void TitleScene::Init(void) {
 	// オブジェクトマネージャ初期化
 	objectmanager.Init();
@@ -36,13 +39,17 @@ void TitleScene::Init(void) {
 	//objectmanager.AddObject<GameObject>(UI, "ExitButton");
 	//// プレイヤー
 	//objectmanager.AddObject<Player>(PLAYER);
+	
 }
+
+
 
 void TitleScene::Update(void) {
 	objectmanager.Update();
-	Vector3 vector3 = objectmanager.GetGameObject(PLAYER, "Player")->GetPosition();
-	vector3.x += 5.0f;
-	objectmanager.GetGameObject(PLAYER, "Player")->SetPosition(vector3);
+
+	Vector3 pos = objectmanager.GetGameObject(PLAYER, "Player")->GetPosition();
+	pos.x += 5.0f;
+	objectmanager.GetGameObject(PLAYER, "Player")->SetPosition(pos);
 	std::cout << "Playerの座標移動ができています" << std::endl;
 }
 
