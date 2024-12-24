@@ -23,4 +23,5 @@ public:
 
 private:
 	SceneManager scenemanager;	// シーン管理クラス
+	
 };

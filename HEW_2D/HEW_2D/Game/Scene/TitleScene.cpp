@@ -40,6 +40,10 @@ void TitleScene::Init(void) {
 
 void TitleScene::Update(void) {
 	objectmanager.Update();
+	Vector3 vector3 = objectmanager.GetGameObject(PLAYER, "Player")->GetPosition();
+	vector3.x += 5.0f;
+	objectmanager.GetGameObject(PLAYER, "Player")->SetPosition(vector3);
+	std::cout << "Player‚ÌÀ•WˆÚ“®‚ª‚Å‚«‚Ä‚¢‚Ü‚·" << std::endl;
 }
 
 void TitleScene::Draw(void) {

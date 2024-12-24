@@ -21,10 +21,12 @@ void SceneManager::Init(void)
 
 void SceneManager::Update(void)
 {
+	
 	// 動作確認用
 	// イベント発生でシーン遷移
 	if (Input::GetInstance().GetKeyTrigger(VK_RETURN))
 	{
+
 		// 現在シーンがリザルトなら
 		if (CurrentScene == RESULT)
 		{
