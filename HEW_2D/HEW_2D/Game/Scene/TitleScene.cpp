@@ -21,9 +21,15 @@ void TitleScene::Init(void) {
 	// 背景
 	objectmanager.AddObject<GameObject>(BACKGROUND, "Background1");
 	objectmanager.GetGameObject(BACKGROUND, "Background1")->Init(L"Game/Asset/BackGround/back_img_01.png");
+	objectmanager.GetGameObject(BACKGROUND, "Background1")->SetPosition(Vector3(0.0f, 0.0f, 0.0f));
+	objectmanager.GetGameObject(BACKGROUND, "Background1")->SetScale(Vector3(1920.0f, 1080.0f, 0.0f));
 	// プレイヤー
 	objectmanager.AddObject<GameObject>(PLAYER, "Player");
 	objectmanager.GetGameObject(PLAYER, "Player")->Init(L"Game/Asset/Character/Player.png");
+	objectmanager.GetGameObject(PLAYER, "Player")->SetPosition(Vector3(0.0f, 0.0f, 0.0f));
+	objectmanager.GetGameObject(PLAYER, "Player")->SetScale(Vector3(50.0f, 50.0f, 0.0f));
+
+
 	//// UI1(ボタン)
 	//objectmanager.AddObject<GameObject>(UI, "StartButton");
 	//// UI2(ボタン)

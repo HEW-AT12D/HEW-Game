@@ -66,12 +66,14 @@ void ObjectManager::Update(void) {
 }
 
 void ObjectManager::Draw(void) {
+	D3d11.StartRender();
 	// 範囲for文
 	for (auto& obj : Objects)
 	{
 		// firstがキー（ObjectName）,secondがオブジェクト本体
 		obj.second->Draw();
 	}
+	D3d11.FinishRender();
 }
 
 void ObjectManager::Uninit(void) {

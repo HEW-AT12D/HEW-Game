@@ -2,8 +2,8 @@
 
 
 /**
- * @brief 
- * @param  
+ * @brief
+ * @param
 */
 void Game::Init(void)
 {

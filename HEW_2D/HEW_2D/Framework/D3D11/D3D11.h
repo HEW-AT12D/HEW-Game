@@ -1,9 +1,6 @@
 #pragma once
 #include "../Window/Window.h"
 
-// デバック時用スクリーンサイズ（ビルド時にはmain.hにある定義を使用）
-#define SCREEN_WIDTH (640)	// ウインドウの幅
-#define SCREEN_HEIGHT (480)	// ウインドウの高さ
 
 //////////////////////////////////////////////////
 //				DirectXフレームワーク				//

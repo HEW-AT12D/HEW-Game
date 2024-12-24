@@ -12,6 +12,8 @@ public:
 	Player(D3D11& _D3d11) :GameObject(_D3d11),soundgun(_D3d11) {};
 	~Player() {};
 
+	void Update(void) override;
+
 private:
 	SoundGun soundgun;
 };

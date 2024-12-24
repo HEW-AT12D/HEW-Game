@@ -8,11 +8,11 @@ void Transform::SetPosition(Vector3 _Position) {
 }
 
 void Transform::SetRotation(Vector3 _Rotation) {
-	m_Position = _Rotation;
+	m_Rotation = _Rotation;
 }
 
 void Transform::SetScale(Vector3 _Scale) {
-	m_Position = _Scale;
+	m_Scale = _Scale;
 }
 
 Vector3 Transform::GetPosition(void) {
