@@ -21,7 +21,7 @@ void SceneManager::Init(void)
 
 void SceneManager::Update(void)
 {
-	
+	Scenes[CurrentScene]->Update();
 	// 動作確認用
 	// イベント発生でシーン遷移
 	if (Input::GetInstance().GetKeyTrigger(VK_RETURN))

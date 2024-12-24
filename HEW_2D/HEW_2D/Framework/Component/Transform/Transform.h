@@ -22,7 +22,7 @@ using namespace SimpleMath;
 class Transform
 {
 public:
-	Transform() :m_Position(0.0f, 0.0f, 0.0f), m_Rotation(0.0f, 0.0f, 0.0f), m_Scale(75.0f, 750.0f, 0.0f) {};
+	Transform() :m_Position(0.0f, 0.0f, 0.0f), m_Rotation(0.0f, 0.0f, 0.0f), m_Scale(75.0f, 75.0f, 0.0f) {};
 	~Transform() {};
 
 	void SetPosition(Vector3 _Position);	// 座標設定
@@ -36,9 +36,9 @@ public:
 	// 更新するべきなのはコンポーネントなのでここに更新はいらない？
 	// →conioのvectorとかと同じノリ？
 protected:
-	Vector3 m_Position = Vector3(0.0f, 0.0f, 0.0f);	// 座標
-	Vector3 m_Rotation = Vector3(0.0f, 0.0f, 0.0f);	// 角度
-	Vector3 m_Scale = Vector3(0.0f, 0.0f, 0.0f);	// 大きさ
+	Vector3 m_Position;	// 座標
+	Vector3 m_Rotation;	// 角度
+	Vector3 m_Scale;	// 大きさ
 };
 //
 //Transform::Transform()

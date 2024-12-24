@@ -76,7 +76,6 @@ void Application::Run(void)
 
 				//! ゲーム処理
 				game.Update();
-				title.Update();
 
 				//// カメラ更新
 				//camera.Update();

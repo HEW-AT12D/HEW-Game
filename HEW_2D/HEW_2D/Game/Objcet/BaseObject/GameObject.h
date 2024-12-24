@@ -61,15 +61,15 @@ public:
 	virtual void Update(void);					// 更新（自オブジェクトに”何か”が当たった判定だけここで確認）
 	virtual void Draw(void);					// 描画
 	virtual void Uninit(void);					// 終了
-	void SetPosition(Vector3 _Pos);		// 座標をセット
-	void SetScale(Vector3 _Size);		// 大きさをセット
-	void SetRotation(Vector3 _Rot);		// 角度をセット
-	void SetColor(Vector4 _Color);		// 色をセット
+	virtual void SetPosition(Vector3 _Pos);		// 座標をセット
+	virtual void SetScale(Vector3 _Size);		// 大きさをセット
+	virtual void SetRotation(Vector3 _Rot);		// 角度をセット
+	virtual void SetColor(Vector4 _Color);		// 色をセット
 
 	// 個別の当たり判定もここに追加？オブジェクトの基本となるクラスならここじゃなくて、判定が必要なオブジェクトにそれぞれ追加？
 
-	Vector3 GetPosition(void);			//座標を取得
-	Vector3 GetScale(void);				//大きさを取得
-	Vector3 GetRotation(void);			//角度を取得
-	Vector4 GetColor(void);				//色を取得
+	virtual Vector3 GetPosition(void);			//座標を取得
+	virtual Vector3 GetScale(void);				//大きさを取得
+	virtual Vector3 GetRotation(void);			//角度を取得
+	virtual Vector4 GetColor(void);				//色を取得
 };
