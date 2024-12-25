@@ -17,12 +17,12 @@
 */
 class Application {
 private:
-	D3D11 d3d11;			// DirectX11管理クラス
+	D3D11 m_D3d11;			// DirectX11管理クラス
 	//Window window;		// ウィンドウクラス
-	Game game;				// ゲームクラス
+	Game m_Game;			// ゲームクラス
 public:
 	//! メンバ変数は宣言した順に初期化される→先にd3d11のコンストラクタを呼び出し、そのあとにgameクラスのコンストラクタを呼ぶ
-	Application() :d3d11(), game(d3d11) {};
+	Application() :m_D3d11(), m_Game(m_D3d11) {};
 	~Application() {};
 
 

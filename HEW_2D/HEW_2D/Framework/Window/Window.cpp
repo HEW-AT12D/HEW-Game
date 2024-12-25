@@ -123,7 +123,7 @@ bool Window::Init(uint32_t _Screen_width, uint32_t _Screen_height) {
 //-----------------------------------------------------------------------------
 void Window::WinMain(void) {
 
-
+	//! MSG：ウィンドウのイベントを識別するメッセージを保持するための構造体
 	MSG msg = {};
 
 	//! 初期化
@@ -204,7 +204,7 @@ void Window::WinMain(void) {
 
 
 				// ゲーム処理実行
-
+				
 				//! 更新
 
 
