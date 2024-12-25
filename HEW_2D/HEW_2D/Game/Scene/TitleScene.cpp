@@ -1,5 +1,6 @@
 #include "TitleScene.h"
 #include "../../Game/Objcet/Player/Player.h"
+#include "../../Framework/Input/Input.h"
 
 
 
@@ -45,12 +46,20 @@ void TitleScene::Init(void) {
 
 
 void TitleScene::Update(void) {
-	objectmanager.Update();
 
-	Vector3 pos = objectmanager.GetGameObject(PLAYER, "Player")->GetPosition();
-	pos.x += 5.0f;
-	objectmanager.GetGameObject(PLAYER, "Player")->SetPosition(pos);
-	std::cout << "Player‚ÌÀ•WˆÚ“®‚ª‚Å‚«‚Ä‚¢‚Ü‚·" << std::endl;
+
+	// “ü—ÍŠÇ—
+	if (Input::GetInstance().GetKeyPress(VK_D))
+	{
+		Vector3 pos = objectmanager.GetGameObject(PLAYER, "Player")->GetPosition();
+		pos.x += 5.0f;
+		objectmanager.GetGameObject(PLAYER, "Player")->SetPosition(pos);
+		std::cout << "Player‚ÌÀ•WˆÚ“®‚ª‚Å‚«‚Ä‚¢‚Ü‚·" << std::endl;
+	}
+
+	Input::GetInstance().Update();
+	objectmanager.Update();
+	
 }
 
 void TitleScene::Draw(void) {
