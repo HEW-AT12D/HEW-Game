@@ -23,20 +23,27 @@ void SceneManager::Update(void)
 {
 	Scenes[CurrentScene]->Update();
 	// 動作確認用
-	// イベント発生でシーン遷移
-	if (Input::GetInstance().GetKeyTrigger(VK_RETURN))
+	// 現在シーンの遷移フラグが立っている場合、シーン遷移
+	if (Scenes[CurrentScene]->GetChangeScene())
 	{
-
-		// 現在シーンがリザルトなら
-		if (CurrentScene == RESULT)
+		switch (CurrentScene)
 		{
-			// タイトルへ戻り、シーンの初期化
-			ChangeScene(TITLE);
-		}
-		else
-		{
+		case TITLE:
 			// エンターでリザルトへ
 			ChangeScene(RESULT);
+			break;
+		case STAGESELECT:
+			break;
+		case GAME:
+			// エンターでリザルトへ
+			ChangeScene(RESULT);
+			break;
+		case RESULT:	// 現在シーンがリザルトなら
+			// タイトルへ戻り、シーンの初期化
+			ChangeScene(TITLE);
+			break;
+		default:
+			break;
 		}
 		
 	}

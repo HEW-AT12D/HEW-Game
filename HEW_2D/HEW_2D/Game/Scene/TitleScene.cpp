@@ -45,9 +45,10 @@ void TitleScene::Init(void) {
 
 
 
-void TitleScene::Update(void) {
-
-
+void TitleScene::Update(void)
+{
+	// 入力情報の更新
+	Input::GetInstance().Update();
 	// 入力管理
 	if (Input::GetInstance().GetKeyPress(VK_D))
 	{
@@ -57,7 +58,12 @@ void TitleScene::Update(void) {
 		std::cout << "Playerの座標移動ができています" << std::endl;
 	}
 
-	Input::GetInstance().Update();
+	// シーン遷移（デバック用
+	if (Input::GetInstance().GetKeyTrigger(VK_RETURN))
+	{
+		this->ChangeScene = true;
+	}
+
 	objectmanager.Update();
 	
 }
