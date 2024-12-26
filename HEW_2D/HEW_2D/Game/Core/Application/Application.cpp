@@ -18,17 +18,6 @@ void Application::Init(void)
 	//d3d11.Init(hWnd);				// ウィンドウ情報を使ってDirectXを初期化
 	m_Game.Init();					// ゲーム初期化
 	
-	//player.Init(L"asset/char01.png", 3, 4);				//プレイヤーを初期化
-	//player.SetPosition(Vector3(100.0f, 0.0f, 0.0f));	//位置を設定
-	//player.SetScale(Vector3(200.0f, 300.0f, 0.0f));		//大きさを設定
-	//player.SetRotation(Vector3(0.0f, 0.0f, 0.0f));		//角度を設定
-	//player.SetColor(Vector4(1.0f, 1.0f, 1.0f, 0.5f));	//角度を設定
-
-	//background.Init(L"asset/back_img_01.png");	//背景を初期化
-	//background.SetPos(0.0f, 0.0f, 0.0f);		//位置を設定
-	//background.SetSize(640.0f, 480.0f, 0.0f);	//大きさを設定
-	//background.SetAngle(0.0f);					//角度を設定
-
 }
 
 /**

@@ -1,7 +1,4 @@
 #include "SceneManager.h"
-
-
-
 // 今だけシーン遷移確認用にインクルード
 #include "../../Framework/Input/Input.h"
 
