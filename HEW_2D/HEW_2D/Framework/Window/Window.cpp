@@ -5,6 +5,7 @@ HINSTANCE Window::m_hInst = nullptr;	// ƒCƒ“ƒXƒ^ƒ“ƒXƒnƒ“ƒhƒ‹(ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ğ
 HWND Window::m_hWnd = nullptr;			// ƒEƒBƒ“ƒhƒEƒnƒ“ƒhƒ‹(ƒEƒBƒ“ƒhƒE‚Ìî•ñ‚ğ‚Âƒ|ƒCƒ“ƒ^‚İ‚½‚¢‚È‚à‚Ì¨¡‰ñ‚ÍƒEƒBƒ“ƒhƒE‚Íˆê‚Â‚È‚Ì‚Å’Pˆê(static)‚Æ‚·‚é)
 uint32_t Window::m_Width = 0;			// ƒEƒBƒ“ƒhƒE‚Ì‰¡•
 uint32_t Window::m_Height = 0;			// ƒEƒBƒ“ƒhƒE‚Ìc•
+MSG Window::m_Msg = { nullptr };		// ƒEƒBƒ“ƒhƒE‚©‚ç‚ÌƒƒbƒZ[ƒW‚ğó‚¯æ‚é\‘¢‘Ì‚ğ‰Šú‰»
 
 
 Window::Window()
@@ -119,134 +120,24 @@ bool Window::Init(uint32_t _Screen_width, uint32_t _Screen_height) {
 
 
 //-----------------------------------------------------------------------------
-// ƒƒCƒ“ƒ‹[ƒviå‚ÉÀs‚·‚éŠÖ”j
+// ƒƒbƒZ[ƒWƒ‹[ƒviƒƒbƒZ[ƒW‚ª‚ ‚éŠÔ‚¾‚¯ƒ‹[ƒv‚·‚éŠÖ”j
 //-----------------------------------------------------------------------------
-void Window::WinMain(void) {
-
-	//! MSGFƒEƒBƒ“ƒhƒE‚ÌƒCƒxƒ“ƒg‚ğ¯•Ê‚·‚éƒƒbƒZ[ƒW‚ğ•Û‚·‚é‚½‚ß‚Ì\‘¢‘Ì
-	MSG msg = {};
-
-	//! ‰Šú‰»
-
-	//// ƒtƒB[ƒ‹ƒh(ƒeƒXƒgƒIƒuƒWƒFƒNƒg)
-	//
-	////TestPlane plane;
-	////TestCube cube;
-	////TestModel model;
-	////GolfBall ball;
-
-	//// ƒIƒuƒWƒFƒNƒg”z—ñì¬
-	//std::vector<std::unique_ptr<Object>> Objects;
-	////Objects.emplace_back(new TestCube);
-	////Objects.emplace_back(new TestModel);
-	//Objects.emplace_back(new GolfBall);
-	//Objects.emplace_back(new Ground);
-
-	//// ƒJƒƒ‰iƒIƒuƒWƒFƒNƒg‚Ì‚O”Ô–Ú‚ğGolfBall*‚Éƒ_ƒEƒ“ƒLƒƒƒXƒgj
-	//GolfBall* ball = dynamic_cast<GolfBall*>(Objects[0].get());
-	//Camera camera(*ball);
-
-	//// “ü—Íˆ—
-	//Input input;
-
-	//// •`‰æ‰Šú‰»
-	//Renderer::Init();
-
-	//// ƒJƒƒ‰‰Šú‰»
-	//camera.Init();
-
-
-	//// ƒIƒuƒWƒFƒNƒg‰Šú‰»
-	//for (auto& o : Objects) {
-	//	o->Init();
-	//}
-
-	//ball->SetGround(dynamic_cast<Ground*>(Objects[1].get()));
-
-	// FPSŒv‘ª—p•Ï”
-	int fpsCounter = 0;
-	long long oldTick = GetTickCount64(); // ‘O‰ñŒv‘ª‚ÌŠÔ
-	long long nowTick = oldTick; // ¡‰ñŒv‘ª‚ÌŠÔ
-
-	// FPSŒÅ’è—p•Ï”
-	LARGE_INTEGER liWork; // work‚ª‚Â‚­•Ï”‚Íì‹Æ—p•Ï”
-	long long frequency;// ‚Ç‚ê‚­‚ç‚¢×‚©‚­ŠÔ‚ğƒJƒEƒ“ƒg‚Å‚«‚é‚©
-	QueryPerformanceFrequency(&liWork);
-	frequency = liWork.QuadPart;
-	// ŠÔi’PˆÊFƒJƒEƒ“ƒgjæ“¾
-	QueryPerformanceCounter(&liWork);
-	long long oldCount = liWork.QuadPart;// ‘O‰ñŒv‘ª‚ÌŠÔ
-	long long nowCount = oldCount;// ¡‰ñŒv‘ª‚ÌŠÔ
-
-
-	// ƒQ[ƒ€ƒ‹[ƒv
-	while (1)
+bool Window::MessageLoop(void) {
+	// V‚½‚ÉƒƒbƒZ[ƒW(WM_KEYDOWN‚Æ‚©‚»‚¤‚¢‚¤‚â‚Â)‚ª‚ ‚ê‚Î
+	while (PeekMessage(&m_Msg, NULL, 0, 0, PM_REMOVE))
 	{
-		// V‚½‚ÉƒƒbƒZ[ƒW(WM_KEYDOWN‚Æ‚©‚»‚¤‚¢‚¤‚â‚Â)‚ª‚ ‚ê‚Î
-		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
-		{
-			// ƒEƒBƒ“ƒhƒEƒvƒƒV[ƒWƒƒ‚ÉƒƒbƒZ[ƒW‚ğ‘—‚é
-			TranslateMessage(&msg);
-			DispatchMessage(&msg);
+		// ƒEƒBƒ“ƒhƒEƒvƒƒV[ƒWƒƒŠÖ”‚ÉƒƒbƒZ[ƒW‚ğ‘—‚é
+		TranslateMessage(&m_Msg);
+		DispatchMessage(&m_Msg);
 
-			// uWM_QUITvƒƒbƒZ[ƒW‚ğó‚¯æ‚Á‚½‚çƒ‹[ƒv‚ğ”²‚¯‚é
-			if (msg.message == WM_QUIT) {
-				break;
-			}
-		}
-		else
-		{
-			QueryPerformanceCounter(&liWork);// Œ»İŠÔ‚ğæ“¾
-			nowCount = liWork.QuadPart;
-			// 1/60•b‚ªŒo‰ß‚µ‚½‚©H
-			if (nowCount >= oldCount + frequency / 60) {
-
-
-
-				// ƒQ[ƒ€ˆ—Às
-				
-				//! XV
-
-
-				//// ƒJƒƒ‰XV
-				//camera.Update();
-
-				//// “ü—Íˆ—XV
-				//input.Update();
-
-
-				//// ƒIƒuƒWƒFƒNƒgXV
-				//for (auto& o : Objects) {
-				//	o->Update();
-				//}
-
-				//// •`‰æ‘Oˆ—
-				//Renderer::Begin();
-
-				//! •`‰æ
-
-
-				//// ƒJƒƒ‰ƒZƒbƒg
-				//camera.Draw();
-
-
-				//// ƒIƒuƒWƒFƒNƒg•`‰æ
-				//for (auto& o : Objects) {
-				//	o->Draw();
-				//}
-
-				//// •`‰æŒãˆ—
-				//Renderer::End();
-
-				fpsCounter++; // ƒQ[ƒ€ˆ—‚ğÀs‚µ‚½‚ç{‚P‚·‚é
-				oldCount = nowCount;
-			}
-
-
+		// uWM_QUITvƒƒbƒZ[ƒW‚ğó‚¯æ‚Á‚½‚çƒ‹[ƒv‚ğ”²‚¯‚é
+		if (m_Msg.message == WM_QUIT) {
+			// ƒQ[ƒ€I—¹iƒEƒBƒ“ƒhƒE‚ğ•Â‚¶‚éj
+			return false;
 		}
 	}
-	//! I—¹ˆ—
-	//Game::Uninit();
+	//! ƒƒbƒZ[ƒW‚ª‚È‚¢(‚È‚­‚È‚Á‚½)‚Ì‚ÅŸ‚Ìˆ—‚Ö
+	return true;
 }
 
 

@@ -26,7 +26,7 @@ public:
 	 * @return 初期化成功or失敗
 	*/
 	bool Init(uint32_t _Screen_width = SCREEN_WIDTH, uint32_t _Screen_height = SCREEN_HEIGHT);
-	void WinMain(void);			// メインのループ
+	bool MessageLoop(void);		// メッセージループ
 	void Uninit(void);			// 終了処理
 
 	/**
@@ -49,6 +49,7 @@ public:
 
 	
 	HWND GetHandleWindow(void);		//! ウィンドウハンドル取得関数
+	//MSG* GetMessage(void)
 
 private:
 	//! コンストラクタとデストラクタをprivateに配置することで、インスタンスを生成できなくする
@@ -58,10 +59,11 @@ private:
 	Window();
 	~Window();
 
-	//static Window* m_Instance;		// ウィンドウのインスタンス保持用変数（これでシングルトン実現！→メンバ変数にするとややこしいのでゲッター関数内のローカル変数としておく
-	static HINSTANCE   m_hInst;			// インスタンスハンドル(アプリケーションを識別する情報→これはどんな設計でも単一(static)であるべき)
-	static HWND        m_hWnd;			// ウィンドウハンドル(ウィンドウの情報を持つポインタみたいなもの→今回はウィンドウは一つなので単一(static)とする)
-	static uint32_t    m_Width;			// ウィンドウの横幅
-	static uint32_t    m_Height;		// ウィンドウの縦幅
+	//static Window* m_Instance;	// ウィンドウのインスタンス保持用変数（これでシングルトン実現！→メンバ変数にするとややこしいのでゲッター関数内のローカル変数としておく
+	static HINSTANCE	m_hInst;	// インスタンスハンドル(アプリケーションを識別する情報→これはどんな設計でも単一(static)であるべき)
+	static HWND			m_hWnd;		// ウィンドウハンドル(ウィンドウの情報を持つポインタみたいなもの→今回はウィンドウは一つなので単一(static)とする)
+	static uint32_t		m_Width;	// ウィンドウの横幅
+	static uint32_t		m_Height;	// ウィンドウの縦幅
+	static MSG			m_Msg;		// ウィンドウのイベントを識別するメッセージを保持するための構造体
 };
 
