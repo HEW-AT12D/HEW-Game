@@ -15,16 +15,13 @@ class Game
 {
 public:
 	Game(D3D11& _D3d11) :scenemanager(_D3d11) {};
-	
 	~Game() {};
 
 	void Init(void);
 	void Update(void);
 	void Draw(void);
 	void Uninit(void);
-	
 
 private:
 	SceneManager scenemanager;	// シーン管理クラス
-
 };
