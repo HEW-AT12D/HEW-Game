@@ -51,9 +51,6 @@
     <Filter Include="フレームワーク\ImGui">
       <UniqueIdentifier>{14696ced-9345-41dc-8e38-de4cefa9f34c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="フレームワーク\コンポーネント\コンポーネント管理">
-      <UniqueIdentifier>{b4e7f271-71d4-4d49-9abd-b17ea461da9c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="フレームワーク\Texture">
       <UniqueIdentifier>{7ccad534-fab1-4564-97bd-1c80764cff69}</UniqueIdentifier>
     </Filter>
@@ -93,6 +90,9 @@
     <Filter Include="ゲーム\オブジェクト\擬音銃\マガジン">
       <UniqueIdentifier>{27527f46-8533-49f5-b5db-9b61dc785ecc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="フレームワーク\コンポーネント管理">
+      <UniqueIdentifier>{b4e7f271-71d4-4d49-9abd-b17ea461da9c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Framework\Input\Input.cpp">
@@ -120,7 +120,7 @@
       <Filter>フレームワーク\コンポーネント\Transform</Filter>
     </ClCompile>
     <ClCompile Include="Framework\ComponentManager\ComponentManager.cpp">
-      <Filter>フレームワーク\コンポーネント\コンポーネント管理</Filter>
+      <Filter>フレームワーク\コンポーネント管理</Filter>
     </ClCompile>
     <ClCompile Include="Framework\Texture\Texture.cpp">
       <Filter>フレームワーク\Texture</Filter>
@@ -167,6 +167,9 @@
     <ClCompile Include="Game\Objcet\Player\Magazine.cpp">
       <Filter>ゲーム\オブジェクト\擬音銃\マガジン</Filter>
     </ClCompile>
+    <ClCompile Include="Framework\Component\RigitBody\RigitBody2D.cpp">
+      <Filter>フレームワーク\コンポーネント\Physic（物理）</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework\D3D11\D3D11.h">
@@ -194,7 +197,7 @@
       <Filter>フレームワーク\コンポーネント\Transform</Filter>
     </ClInclude>
     <ClInclude Include="Framework\ComponentManager\ComponentManager.h">
-      <Filter>フレームワーク\コンポーネント\コンポーネント管理</Filter>
+      <Filter>フレームワーク\コンポーネント管理</Filter>
     </ClInclude>
     <ClInclude Include="Framework\Texture\Texture.h">
       <Filter>フレームワーク\Texture</Filter>
@@ -240,6 +243,9 @@
     </ClInclude>
     <ClInclude Include="Game\Objcet\Player\Magazine.h">
       <Filter>ゲーム\オブジェクト\擬音銃\マガジン</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Component\RigitBody\RigitBody2D.h">
+      <Filter>フレームワーク\コンポーネント\Physic（物理）</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

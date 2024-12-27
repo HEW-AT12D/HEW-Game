@@ -49,6 +49,7 @@ public:
 	{
 		// シーン保持しているコンテナを空にする
 		Scenes.clear();
+		CurrentScene = {};
 	};
 	~SceneManager() {};
 

@@ -24,7 +24,7 @@ void TitleScene::Init(void) {
 	
 	// ”wŒi
 	objectmanager.AddObject<GameObject>(BACKGROUND, "Background1");
-	objectmanager.GetGameObject(BACKGROUND, "Background1")->Init(L"Game/Asset/BackGround/back_img_01.png");
+	objectmanager.GetGameObject(BACKGROUND, "Background1")->Init(L"Game/Asset/BackGround/TitleBack.png");
 	objectmanager.GetGameObject(BACKGROUND, "Background1")->SetPosition(Vector3(0.0f, 0.0f, 0.0f));
 	objectmanager.GetGameObject(BACKGROUND, "Background1")->SetScale(Vector3(1920.0f, 1080.0f, 0.0f));
 	// ƒvƒŒƒCƒ„[

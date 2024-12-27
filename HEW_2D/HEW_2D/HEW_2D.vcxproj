@@ -143,6 +143,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Framework\Component\IComponent\IComponent.cpp" />
+    <ClCompile Include="Framework\Component\RigitBody\RigitBody2D.cpp" />
     <ClCompile Include="Framework\Component\TransForm\Transform.cpp" />
     <ClCompile Include="Framework\Component\Transform\TransformComponent.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
@@ -176,6 +177,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="Framework\Component\IComponent\IComponent.h" />
+    <ClInclude Include="Framework\Component\RigitBody\RigitBody2D.h" />
     <ClInclude Include="Framework\Component\TransForm\Transform.h" />
     <ClInclude Include="Framework\Component\Transform\TransformComponent.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>

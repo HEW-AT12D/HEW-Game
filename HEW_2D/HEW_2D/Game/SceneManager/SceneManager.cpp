@@ -30,6 +30,7 @@ void SceneManager::Update(void)
 			ChangeScene(RESULT);
 			break;
 		case STAGESELECT:
+			// ステージ選択シーンは保持し続けるのでシーン遷移フラグだけをfalseに変更
 			break;
 		case GAME:
 			// エンターでリザルトへ
@@ -79,10 +80,10 @@ void SceneManager::Uninit(void) {
  * 　　→フェードアウトしたら（もしくは生成完了したら）前シーン解放し、フェードイン（ここで前シーン解放）
 */
 void SceneManager::ChangeScene(SceneName _Nextscene) {
-	// 切り替え前のシーンがタイトル、ステージ選択画面ではない場合、
+	// 切り替え前のシーンがタイトル、ステージ選択画面ではない（保持しておきたいシーンではない）場合、
 	if (CurrentScene != TITLE && CurrentScene != STAGESELECT)
 	{
-		// 現在シーンだけを解放
+		// 現在シーンを解放
 		DeleteScene(CurrentScene);
 	}
 
@@ -113,7 +114,6 @@ void SceneManager::ChangeScene(SceneName _Nextscene) {
 
 	// 切り替えたシーンの初期化
 	Scenes[CurrentScene]->Init();
-	
 }
 
 /**
@@ -123,6 +123,7 @@ void SceneManager::ChangeScene(SceneName _Nextscene) {
 */
 IScene* SceneManager::GetScene(SceneName& _SceneName)
 {
+	// シーンのイテレータを取得
 	auto iterator = Scenes.find(_SceneName);
 
 	// シーンが見つかれば
