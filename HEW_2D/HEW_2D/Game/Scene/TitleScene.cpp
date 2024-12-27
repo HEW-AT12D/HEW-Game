@@ -31,7 +31,7 @@ void TitleScene::Init(void) {
 	objectmanager.AddObject<GameObject>(PLAYER, "Player");
 	objectmanager.GetGameObject(PLAYER, "Player")->Init(L"Game/Asset/Character/Player.png");
 	objectmanager.GetGameObject(PLAYER, "Player")->SetPosition(Vector3(0.0f, 0.0f, 0.0f));
-	objectmanager.GetGameObject(PLAYER, "Player")->SetScale(Vector3(50.0f, 50.0f, 0.0f));
+	objectmanager.GetGameObject(PLAYER, "Player")->SetScale(Vector3(130.0f, 130.0f, 0.0f));
 
 
 	//// UI1(ƒ{ƒ^ƒ“)
