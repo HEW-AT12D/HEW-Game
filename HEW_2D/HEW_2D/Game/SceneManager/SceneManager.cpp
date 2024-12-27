@@ -27,7 +27,7 @@ void SceneManager::Update(void)
 		{
 		case TITLE:
 			// エンターでリザルトへ
-			ChangeScene(RESULT);
+			ChangeScene(STAGESELECT);
 			break;
 		case STAGESELECT:
 			// ステージ選択シーンは保持し続けるのでシーン遷移フラグだけをfalseに変更

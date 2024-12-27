@@ -1,7 +1,7 @@
 #include "GameScene.h"
 
 void GameScene::Init(void){
-
+	
 }
 
 void GameScene::Update(void){
@@ -13,7 +13,7 @@ void GameScene::Update(void){
 }
 
 void GameScene::Draw(void){
-
+	objectmanager.Draw();
 }
 
 void GameScene::Uninit(void){

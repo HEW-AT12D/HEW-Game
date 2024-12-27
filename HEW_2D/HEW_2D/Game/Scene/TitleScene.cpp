@@ -57,11 +57,12 @@ void TitleScene::Update(void)
 		objectmanager.GetGameObject(PLAYER, "Player")->SetPosition(pos);
 		std::cout << "Playerの座標移動ができています" << std::endl;
 	}
-
+	//ゲーム画面に遷移
 	// シーン遷移（デバック用
 	if (Input::GetInstance().GetKeyTrigger(VK_RETURN))
 	{
 		this->ChangeScene = true;
+		SetChangeScene(this->ChangeScene);
 	}
 
 	objectmanager.Update();
