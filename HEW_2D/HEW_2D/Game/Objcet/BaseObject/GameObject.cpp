@@ -142,10 +142,34 @@ void GameObject::SetColor(Vector4 _Color)
 	color.w = _Color.w;
 }
 
-void GameObject::SetUV(Vector2 _UV)
+//void GameObject::SetUV(Vector2 _UV)
+//{
+//	m_Number.x = _UV.x;
+//	m_Number.y = _UV.y;
+//}
+
+void GameObject::Animation(AnimationName animation_name,Vector2 _UV)
 {
 	m_Number.x = _UV.x;
 	m_Number.y = _UV.y;
+
+	switch (animation_name)
+	{
+	case Run:
+		if (m_Number.x == 1)
+		{
+			m_Number.x = 0;
+		}
+		else {
+			m_Number.x += 1;
+		}
+		break;
+	case Jump:
+
+		break;
+	default:
+		break;
+	}
 }
 
 Vector3 GameObject::GetPosition(void)

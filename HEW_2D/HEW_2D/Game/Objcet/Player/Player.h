@@ -13,6 +13,7 @@ public:
 	~Player() {};
 
 	void Update(void) override;
+	void Animation(AnimationName animation_name,Vector2 _UV)override;
 
 private:
 	SoundGun soundgun;

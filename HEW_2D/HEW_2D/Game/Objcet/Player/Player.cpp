@@ -4,8 +4,11 @@
 
 void Player::Update(void) 
 {
-	/*if (Input::GetInstance().GetButtonTrigger(VK_RETURN))
-	{
+	
+}
 
-	}*/
+//アニメーション関数
+void Player::Animation(AnimationName animation_name,Vector2 _UV)
+{
+	
 }
