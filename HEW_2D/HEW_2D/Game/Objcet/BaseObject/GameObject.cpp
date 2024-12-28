@@ -142,6 +142,12 @@ void GameObject::SetColor(Vector4 _Color)
 	color.w = _Color.w;
 }
 
+void GameObject::SetUV(Vector2 _UV)
+{
+	m_Number.x = _UV.x;
+	m_Number.y = _UV.y;
+}
+
 Vector3 GameObject::GetPosition(void)
 {
 	//座標をゲット
@@ -164,5 +170,11 @@ Vector4 GameObject::GetColor(void)
 {
 	//色をゲット
 	return color;
+}
+
+Vector2 GameObject::GetUV(void)
+{
+	//UV座標をゲット
+	return m_Number;
 }
             

@@ -65,6 +65,7 @@ public:
 	virtual void SetScale(Vector3 _Size);		// 大きさをセット
 	virtual void SetRotation(Vector3 _Rot);		// 角度をセット
 	virtual void SetColor(Vector4 _Color);		// 色をセット
+	virtual void SetUV(Vector2 _UV);            //UV座標をセット
 
 	// 個別の当たり判定もここに追加？オブジェクトの基本となるクラスならここじゃなくて、判定が必要なオブジェクトにそれぞれ追加？
 
@@ -72,4 +73,5 @@ public:
 	virtual Vector3 GetScale(void);				//大きさを取得
 	virtual Vector3 GetRotation(void);			//角度を取得
 	virtual Vector4 GetColor(void);				//色を取得
+	virtual Vector2 GetUV(void);                //UV座標を取得
 };

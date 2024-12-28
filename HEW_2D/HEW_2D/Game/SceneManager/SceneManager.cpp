@@ -19,6 +19,12 @@ void SceneManager::Init(void)
 void SceneManager::Update(void)
 {
 	Scenes[CurrentScene]->Update();
+
+	if (Input::GetInstance().GetKeyTrigger(VK_RETURN)) {
+		Scenes[CurrentScene]->SetChangeScene(STAGESELECT);
+		Scenes[CurrentScene]->GetChangeScene();
+	}
+
 	// 動作確認用
 	// 現在シーンの遷移フラグが立っている場合、シーン遷移
 	if (Scenes[CurrentScene]->GetChangeScene())

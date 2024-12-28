@@ -17,9 +17,7 @@ void Game::Init(void)
 */
 void Game::Update(void)
 {
-	if(Input::GetInstance().GetKeyTrigger(VK_RETURN)){ 
-		scenemanager.ChangeScene(STAGESELECT); 
-	}
+	
 	
 	// イベント発生まではループし続ける
 	scenemanager.Update();
