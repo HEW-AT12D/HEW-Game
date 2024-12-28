@@ -1,6 +1,9 @@
 #pragma once
 
 
+/**
+ * @brief •¨—‰‰Z
+*/
 class RigitBody2D
 {
 public:

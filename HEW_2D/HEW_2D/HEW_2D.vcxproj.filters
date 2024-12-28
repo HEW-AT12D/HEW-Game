@@ -93,6 +93,9 @@
     <Filter Include="フレームワーク\コンポーネント管理">
       <UniqueIdentifier>{b4e7f271-71d4-4d49-9abd-b17ea461da9c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ゲーム\オブジェクト\擬音銃\擬音">
+      <UniqueIdentifier>{dc2d3711-01fb-462f-ba0a-049a94b3abfd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Framework\Input\Input.cpp">
@@ -164,11 +167,14 @@
     <ClCompile Include="Game\Objcet\SoundGun\SoundGun.cpp">
       <Filter>ゲーム\オブジェクト\擬音銃</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Objcet\Player\Magazine.cpp">
-      <Filter>ゲーム\オブジェクト\擬音銃\マガジン</Filter>
-    </ClCompile>
     <ClCompile Include="Framework\Component\RigitBody\RigitBody2D.cpp">
       <Filter>フレームワーク\コンポーネント\Physic（物理）</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Objcet\Onomatopeia\Onomatopoeia.cpp">
+      <Filter>ゲーム\オブジェクト\擬音銃\擬音</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Objcet\SoundGun\Magazine.cpp">
+      <Filter>ゲーム\オブジェクト\擬音銃\マガジン</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -241,11 +247,14 @@
     <ClInclude Include="Game\Objcet\SoundGun\SoundGun.h">
       <Filter>ゲーム\オブジェクト\擬音銃</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Objcet\Player\Magazine.h">
-      <Filter>ゲーム\オブジェクト\擬音銃\マガジン</Filter>
-    </ClInclude>
     <ClInclude Include="Framework\Component\RigitBody\RigitBody2D.h">
       <Filter>フレームワーク\コンポーネント\Physic（物理）</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Objcet\Onomatopeia\Onomatopoeia.h">
+      <Filter>ゲーム\オブジェクト\擬音銃\擬音</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Objcet\SoundGun\Magazine.h">
+      <Filter>ゲーム\オブジェクト\擬音銃\マガジン</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

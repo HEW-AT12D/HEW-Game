@@ -40,12 +40,4 @@ protected:
 	Vector3 m_Rotation;	// Šp“x
 	Vector3 m_Scale;	// ‘å‚«‚³
 };
-//
-//Transform::Transform()
-//{
-//}
-//
-//Transform::~Transform()
-//{
-//}
 
