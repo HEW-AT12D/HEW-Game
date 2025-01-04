@@ -18,7 +18,7 @@ GameObject::GameObject(D3D11& _D3d11) :D3d11(_D3d11)
 
 GameObject::~GameObject()
 {
-
+	Uninit();
 }
 
 void GameObject::Init(const wchar_t* imgname, bool _animation = false, int sx, int sy)
