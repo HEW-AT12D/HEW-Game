@@ -4,6 +4,8 @@
 #include "../Objcet/Player/Player.h"
 #include "../Objcet/SoundGun/SoundGun.h"
 
+//TODO: いちいちダウンキャストするのめんどくさいから関数にしちゃって、指定した型にダウンキャストしたポインタを返す関数作ったほうがいい
+
 /**
  * @brief オブジェクト管理タグ
 */
