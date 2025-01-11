@@ -21,7 +21,7 @@ class Player :public GameObject
 public:
 	Player(D3D11& _D3d11) :GameObject(_D3d11),Soundgun(_D3d11) {};
 	~Player() {};
-
+	
 	void Update(void) override;		// プレイヤー固有の入力はここで取得する
 	//void Draw(void);				// 擬音使用で描画方法変更があった場合ように宣言
 	void Animation(STATE,Vector2) override;	// プレイヤー個別のアニメーション関数

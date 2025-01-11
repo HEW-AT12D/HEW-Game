@@ -26,4 +26,4 @@ private:
 
 };
 
-
+void Suction(Vector3, Vector3);//‹z‚¢‚İŠÖ”
