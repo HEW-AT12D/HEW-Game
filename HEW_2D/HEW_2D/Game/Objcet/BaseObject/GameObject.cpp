@@ -21,7 +21,7 @@ GameObject::~GameObject()
 	Uninit();
 }
 
-void GameObject::Init(const wchar_t* imgname, bool _animation = false, int sx, int sy)
+void GameObject::Init(const wchar_t* imgname, bool _animation, int sx, int sy)
 {
 	// アニメーション有無を設定
 	IsAnimation = _animation;
@@ -164,12 +164,12 @@ void GameObject::Animation(void)
 		// ここにアニメーション遷移処理を書く
 		switch (m_State)
 		{
-		case Run:
+		case RUN:
 			// 例）現在の画像番号 % アニメーション分割数 = 0　（画像番号が最後まで行った→アニメーションの折り返し）の場合
 			// 画像番号を1ずつ減らしていく、とかの書き方がよさそう
 			break;
-		case Jump:
-			break;
+	//	case Jump:
+	//		break;
 		default:
 			break;
 		}
