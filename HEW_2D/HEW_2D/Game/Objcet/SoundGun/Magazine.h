@@ -22,10 +22,3 @@ private:
 
 };
 
-Magazine::Magazine()
-{
-}
-
-Magazine::~Magazine()
-{
-}

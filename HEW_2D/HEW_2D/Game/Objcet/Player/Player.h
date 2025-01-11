@@ -24,7 +24,7 @@ public:
 
 	void Update(void) override;		// プレイヤー固有の入力はここで取得する
 	//void Draw(void);				// 擬音使用で描画方法変更があった場合ように宣言
-	void Animation(void) override;	// プレイヤー個別のアニメーション関数
+	void Animation(STATE,Vector2) override;	// プレイヤー個別のアニメーション関数
 
 private:
 	SoundGun Soundgun;					// 擬音銃

@@ -82,7 +82,7 @@ public:
 	virtual void SetRotation(Vector3 _Rot);		// 角度をセット
 	virtual void SetColor(Vector4 _Color);		// 色をセット
 	virtual void SetUV(Vector2 _UV);            // UV座標をセット
-	virtual void Animation(void);				// アニメーション
+	virtual void Animation(STATE,Vector2);				// アニメーション
 
 	// 個別の当たり判定もここに追加？オブジェクトの基本となるクラスならここじゃなくて、判定が必要なオブジェクトにそれぞれ追加？
 
