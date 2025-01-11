@@ -1,4 +1,5 @@
 #pragma once
+#include "../Onomatopeia/Onomatopoeia.h"
 
 /**
  * @brief 擬音銃に使うマガジンクラス
@@ -12,13 +13,17 @@
  * ・当たり判定は不要
  * 
 */
-class Magazine
+class Magazine : public GameObject
 {
 public:
 	Magazine();
+	Magazine(D3D11 _D3d11) :GameObject(_D3d11) {
+
+	}
+
 	~Magazine();
 
 private:
-
+	std::unique_ptr<Onomatopoeia> Onomatopoeia;
 };
 

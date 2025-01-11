@@ -24,6 +24,7 @@ public:
 	//void RemoveOwner(void);			// アタッチされているオブジェクトからの取り外し
 
 protected:
+	// コンポーネントマネージャがshared_ptrで管理してるので、ここで参照を使うとオブジェクトが消えた場合参照が消えてしまうのでNG→ポインタで管理
 	GameObject* m_pOwner;				// アタッチされているオブジェクトのポインタ(単一なのでunique_ptr？)
 };
 

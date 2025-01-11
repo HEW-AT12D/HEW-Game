@@ -183,7 +183,7 @@ void GameObject::Animation(STATE,Vector2)
 
 	switch (m_State)
 	{
-	case Run:
+	case RUN:
 		break;
 	case Jump:
 		break;

@@ -176,6 +176,9 @@
     <ClCompile Include="Game\Objcet\SoundGun\Magazine.cpp">
       <Filter>ゲーム\オブジェクト\擬音銃\マガジン</Filter>
     </ClCompile>
+    <ClCompile Include="Game\Objcet\BaseObject\Object.cpp">
+      <Filter>ゲーム\オブジェクト\基本オブジェクト</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework\D3D11\D3D11.h">
@@ -255,6 +258,9 @@
     </ClInclude>
     <ClInclude Include="Game\Objcet\SoundGun\Magazine.h">
       <Filter>ゲーム\オブジェクト\擬音銃\マガジン</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Objcet\BaseObject\Object.h">
+      <Filter>ゲーム\オブジェクト\基本オブジェクト</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

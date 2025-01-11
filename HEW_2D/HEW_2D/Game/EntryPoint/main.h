@@ -18,6 +18,7 @@
 #include <vector>
 #include <map>
 #include <unordered_map>
+#include <typeindex>
 #include <string>
 #include <DirectXMath.h>	// DirextXの数学関連のヘッダーファイル
 #include <SimpleMath.h>

@@ -68,7 +68,7 @@ void TitleScene::Update(void)
 		objectmanager.GetGameObject(PLAYER, "Player")->SetPosition(pos);
 
 		Vector2 num = objectmanager.GetGameObject(PLAYER, "Player")->GetUV();
-		objectmanager.GetGameObject(PLAYER, "Player")->Animation(RUN, num);
+		objectmanager.GetGameObject(PLAYER, "Player")->Animation();
 		
 		//デバック用
 		std::cout << "Playerの座標移動ができています" << std::endl;
