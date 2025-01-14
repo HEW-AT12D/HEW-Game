@@ -1,8 +1,8 @@
 #include"Magazine.h"
 
-Magazine::Magazine()
-{
-}
+//Magazine::Magazine()
+//{
+//}
 
 Magazine::~Magazine()
 {
