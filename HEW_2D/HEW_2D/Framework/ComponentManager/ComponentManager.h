@@ -23,26 +23,6 @@ public:
 	//-----------------------
 
 	/**
-	 * @brief 
-	 * @tparam T 
-	 *
-	 * mapにコンポーネントを追加
-	 * 同じコンポーネントが既に存在していたらエラー出したい
-	*/
-	template <typename T>
-	void AddComponent(void)
-	{
-		// 指定したコンポーネントをmapに追加
-		auto component = std::make_shared<T>();
-		// 既に同じコンポーネントが存在していればエラー出力
-		if (m_Components.find(std::type_index(typeid(T))) != m_Components.end()) 
-		{
-			cerr << "同一コンポーネントが既に存在しています" << endl;
-		}
-		
-	}
-
-	/**
 	 * @brief コンポーネント追加関数
 	 * @tparam T コンポーネント
 	 * @return コンポーネントのweak_ptr→返した側でlock()関数を使わないとポインタを使えない
@@ -68,8 +48,7 @@ public:
 	/**
 	 * @brief コンポーネント取得関数
 	 * @tparam T コンポーネントの型
-	 * @param  
-	 * @return 
+	 * @return コンポーネントのポインタ
 	*/
 	template <class T>
 	std::shared_ptr<T> GetComponent(void)
@@ -96,7 +75,7 @@ public:
 private:
 	//! アタッチしているオブジェクトの参照→アタッチ先のオブジェクトは必ず存在していないといけないため
 	GameObject& m_Owner;
-	//! 
+	//! コンポーネントの型とポインタをセットでmapに保持
 	std::unordered_map<std::type_index, std::shared_ptr<IComponent>> m_Components;
 };
 
