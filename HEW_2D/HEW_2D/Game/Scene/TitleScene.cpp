@@ -38,9 +38,9 @@ void TitleScene::Init(void) {
 
 	//ã[âπÅiÇ«Ç®ÇÒÅj
 	objectmanager.AddObject<GameObject>(OBJECT, "Gion");
-	objectmanager.GetGameObject(OBJECT, "Gion")->Init(L"Game/Asset/Gion/Ç«ÇßÇÒ.png");
-	objectmanager.GetGameObject(OBJECT, "Gion")->SetPosition(Vector3(300.0f, 0.0f, 0.0f));
-	objectmanager.GetGameObject(OBJECT, "Gion")->SetScale(Vector3(130.0f, 130.0f, 0.0f));
+	objectmanager.GetGameObject(OBJECT, "Gion")->Init(L"Game/Asset/Gion/Gion.png");
+	objectmanager.GetGameObject(OBJECT, "Gion")->SetPosition(Vector3(500.0f, 0.0f, 0.0f));
+	objectmanager.GetGameObject(OBJECT, "Gion")->SetScale(Vector3(240.0f, 120.0f, 0.0f));
 	
 
 
