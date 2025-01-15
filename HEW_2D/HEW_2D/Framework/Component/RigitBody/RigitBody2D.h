@@ -1,10 +1,10 @@
 #pragma once
-
+#include "../IComponent/IComponent.h"
 
 /**
  * @brief •¨—‰‰Z
 */
-class RigitBody2D
+class RigitBody2D :public IComponent
 {
 public:
 	RigitBody2D();
