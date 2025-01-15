@@ -96,6 +96,9 @@
     <Filter Include="ゲーム\オブジェクト\擬音銃\擬音">
       <UniqueIdentifier>{dc2d3711-01fb-462f-ba0a-049a94b3abfd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="フレームワーク\コンポーネント\カメラ">
+      <UniqueIdentifier>{6ed1615f-d3fd-4844-b5d4-f74567280372}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Framework\Input\Input.cpp">
