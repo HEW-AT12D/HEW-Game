@@ -19,10 +19,11 @@ public:
 
 	};
 
-	~IOnomatopoeia() {};
-	virtual void Action(void) = 0;	// 擬音がオブジェクトに与える動き
+	virtual ~IOnomatopoeia() {};
+	virtual void Action(void) = 0;	// 擬音のがオブジェクトに与える動き(ここで画像の動きをいじる)
 
 protected:
+	GameObject* m_AttachedObj;		// 擬音が付与されているオブジェクト
 	std::string m_Name;				// 擬音の名前
 };
 

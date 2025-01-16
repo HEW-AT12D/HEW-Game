@@ -96,6 +96,9 @@
     <Filter Include="ゲーム\オブジェクト\擬音銃\擬音">
       <UniqueIdentifier>{dc2d3711-01fb-462f-ba0a-049a94b3abfd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ゲーム\オブジェクト\擬音銃\擬音\基本擬音クラス">
+      <UniqueIdentifier>{5673c0d2-0b04-40f8-86e2-2dc9708979b6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Framework\Input\Input.cpp">
@@ -170,14 +173,17 @@
     <ClCompile Include="Framework\Component\RigitBody\RigitBody2D.cpp">
       <Filter>フレームワーク\コンポーネント\Physic（物理）</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Objcet\Onomatopeia\Onomatopoeia.cpp">
-      <Filter>ゲーム\オブジェクト\擬音銃\擬音</Filter>
-    </ClCompile>
     <ClCompile Include="Game\Objcet\SoundGun\Magazine.cpp">
       <Filter>ゲーム\オブジェクト\擬音銃\マガジン</Filter>
     </ClCompile>
     <ClCompile Include="Game\Objcet\BaseObject\Object.cpp">
       <Filter>ゲーム\オブジェクト\基本オブジェクト</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Objcet\Onomatopeia\Onomatopoeia.cpp">
+      <Filter>ゲーム\オブジェクト\擬音銃\擬音\基本擬音クラス</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Objcet\Onomatopeia\Poyon.cpp">
+      <Filter>ゲーム\オブジェクト\擬音銃\擬音</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -253,14 +259,17 @@
     <ClInclude Include="Framework\Component\RigitBody\RigitBody2D.h">
       <Filter>フレームワーク\コンポーネント\Physic（物理）</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Objcet\Onomatopeia\Onomatopoeia.h">
-      <Filter>ゲーム\オブジェクト\擬音銃\擬音</Filter>
-    </ClInclude>
     <ClInclude Include="Game\Objcet\SoundGun\Magazine.h">
       <Filter>ゲーム\オブジェクト\擬音銃\マガジン</Filter>
     </ClInclude>
     <ClInclude Include="Game\Objcet\BaseObject\Object.h">
       <Filter>ゲーム\オブジェクト\基本オブジェクト</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Objcet\Onomatopeia\Onomatopoeia.h">
+      <Filter>ゲーム\オブジェクト\擬音銃\擬音\基本擬音クラス</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Objcet\Onomatopeia\Poyon.h">
+      <Filter>ゲーム\オブジェクト\擬音銃\擬音</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
