@@ -45,7 +45,7 @@ enum STATE
  * 
 */
 class GameObject {
-private:
+protected:
 	//! 頂点データ
 	//! このゲームでは擬音を吸い込むことがあるため頂点を可変にしておく
 	std::vector<Vertex> vertices;
