@@ -1,6 +1,6 @@
 #include "SoundGun.h"
 
-void Suction(Vector3 _gion_pos, Vector3 _p_pos)
+void SoundGun::Suction(Vector3 _gion_pos, Vector3 _p_pos)
 {
 	if (_gion_pos.x-_p_pos.x <= 100)/*Player‚Æ‹[‰¹‚Ì‹——£‚ªˆê’è‚É—ˆ‚½‚çA‹[‰¹‚ª™X‚É‹ß‚Ã‚­*/
 	{

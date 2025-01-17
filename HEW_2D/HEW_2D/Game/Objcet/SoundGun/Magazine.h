@@ -1,5 +1,5 @@
 #pragma once
-#include "../Onomatopeia/Onomatopoeia.h"
+#include "../Onomatopeia/IOnomatopoeia/IOnomatopoeia.h"
 
 /**
  * @brief 擬音銃に使うマガジンクラス
@@ -24,6 +24,6 @@ public:
 	~Magazine();
 
 private:
-	std::unique_ptr<Onomatopoeia> Onomatopoeia;
+	std::unique_ptr<IOnomatopoeia> Onomatopoeia;
 };
 

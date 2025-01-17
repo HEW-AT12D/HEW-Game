@@ -87,7 +87,7 @@ void TitleScene::Update(void)
 		Vector3 p_pos = objectmanager.GetGameObject(PLAYER, "Player")->GetPosition();
 		Vector3 gion_pos = objectmanager.GetGameObject(OBJECT, "Gion")->GetPosition();
 		//Suction(gion_pos, p_pos);
-		if (gion_pos.x - p_pos.x <= 300&&gion_pos.x-p_pos.x>=0)/*Playerと擬音の距離が一定に来たら、擬音が徐々に近づく*/
+		if (gion_pos.x - p_pos.x <= 300 && gion_pos.x - p_pos.x >= 0)/*Playerと擬音の距離が一定に来たら、擬音が徐々に近づく*/
 		{
 			//ここに、近づくスピードを書く
 			gion_pos.x -= 14;

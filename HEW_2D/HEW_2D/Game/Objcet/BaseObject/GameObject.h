@@ -74,21 +74,25 @@ protected:
 	// アニメーション管理フラグ
 	bool IsAnimation = false;
 
+	// 親オブジェクトのポインタ(子は親の所有権は持たないのでweak_ptrでおｋ)
+	std::weak_ptr<GameObject> m_pParent;
+
 public:
 	//GameObject() = default;	// クラスのメンバ変数に参照が入っている場合、デフォルトコンストラクタが使えない（初期化が必須となる）
 	GameObject(D3D11& _D3d11);
 	virtual ~GameObject();
 
 	virtual void Init(const wchar_t* imgname, bool _animation = false, int sx = 1, int sy = 1); // 初期化
-	virtual void Update(void);					// 更新（自オブジェクトに”何か”が当たった判定だけここで確認）
-	virtual void Draw(void);					// 描画
-	virtual void Uninit(void);					// 終了
-	virtual void SetPosition(Vector3 _Pos);		// 座標をセット
-	virtual void SetScale(Vector3 _Size);		// 大きさをセット
-	virtual void SetRotation(Vector3 _Rot);		// 角度をセット
-	virtual void SetColor(Vector4 _Color);		// 色をセット
-	virtual void SetUV(Vector2 _UV);            // UV座標をセット
-	virtual void Animation(STATE,Vector2);				// アニメーション
+	virtual void Update(void);						// 更新（自オブジェクトに”何か”が当たった判定だけここで確認）
+	virtual void Draw(void);						// 描画
+	virtual void Uninit(void);						// 終了
+	virtual void SetPosition(Vector3 _Pos);			// 座標をセット
+	virtual void SetScale(Vector3 _Size);			// 大きさをセット
+	virtual void SetRotation(Vector3 _Rot);			// 角度をセット
+	virtual void SetColor(const Vector4 _Color);	// 色をセット
+	virtual void SetUV(const Vector2 _UV);			// UV座標をセット
+	virtual void Animation(STATE,Vector2);			// アニメーション
+	virtual void SetParent(const std::weak_ptr<GameObject> _Parent);	// 親オブジェクトをセット
 
 	// 個別の当たり判定もここに追加？オブジェクトの基本となるクラスならここじゃなくて、判定が必要なオブジェクトにそれぞれ追加？
 

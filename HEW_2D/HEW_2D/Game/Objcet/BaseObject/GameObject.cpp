@@ -152,6 +152,11 @@ void GameObject::SetUV(Vector2 _UV)
 	m_Number.y = _UV.y;
 }
 
+void GameObject::SetParent(const std::weak_ptr<GameObject> _Parent)
+{
+	m_pParent = _Parent;
+}
+
 /**
  * @brief アニメーション遷移関数
  * ここでは通常のアニメーションのみを定義し、各派生クラスで各々のアニメーション処理を定義する

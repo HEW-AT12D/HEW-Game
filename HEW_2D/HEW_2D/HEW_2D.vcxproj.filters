@@ -179,11 +179,11 @@
     <ClCompile Include="Game\Objcet\BaseObject\Object.cpp">
       <Filter>ゲーム\オブジェクト\基本オブジェクト</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Objcet\Onomatopeia\Onomatopoeia.cpp">
-      <Filter>ゲーム\オブジェクト\擬音銃\擬音\基本擬音クラス</Filter>
-    </ClCompile>
     <ClCompile Include="Game\Objcet\Onomatopeia\Poyon.cpp">
       <Filter>ゲーム\オブジェクト\擬音銃\擬音</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Objcet\Onomatopeia\IOnomatopoeia\IOnomatopoeia.cpp">
+      <Filter>ゲーム\オブジェクト\擬音銃\擬音\基本擬音クラス</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -265,11 +265,11 @@
     <ClInclude Include="Game\Objcet\BaseObject\Object.h">
       <Filter>ゲーム\オブジェクト\基本オブジェクト</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Objcet\Onomatopeia\Onomatopoeia.h">
-      <Filter>ゲーム\オブジェクト\擬音銃\擬音\基本擬音クラス</Filter>
-    </ClInclude>
     <ClInclude Include="Game\Objcet\Onomatopeia\Poyon.h">
       <Filter>ゲーム\オブジェクト\擬音銃\擬音</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Objcet\Onomatopeia\IOnomatopoeia\IOnomatopoeia.h">
+      <Filter>ゲーム\オブジェクト\擬音銃\擬音\基本擬音クラス</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
