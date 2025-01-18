@@ -1,5 +1,5 @@
 #pragma once
-#include "IOnomatopoeia/Onomatopoeia.h"
+#include "../Onomatopeia/IOnomatopoeia/IOnomatopoeia.h"
 
 
 /**

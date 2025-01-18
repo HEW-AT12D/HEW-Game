@@ -16,8 +16,7 @@
 class Magazine : public GameObject
 {
 public:
-	Magazine();
-	Magazine(D3D11 _D3d11) :GameObject(_D3d11) {
+	kMagazine(D3D11 _D3d11) :GameObject(_D3d11) {
 
 	}
 
