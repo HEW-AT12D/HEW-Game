@@ -18,10 +18,10 @@ private:
 	ComponentManager m_Componentmanager;
 };
 
-Object::Object()
-{
-}
-
-Object::~Object()
-{
-}
+//Object::Object()
+//{
+//}
+//
+//Object::~Object()
+//{
+//}

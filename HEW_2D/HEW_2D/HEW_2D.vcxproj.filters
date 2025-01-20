@@ -96,6 +96,12 @@
     <Filter Include="ゲーム\オブジェクト\擬音銃\擬音">
       <UniqueIdentifier>{dc2d3711-01fb-462f-ba0a-049a94b3abfd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="フレームワーク\コンポーネント\Collider">
+      <UniqueIdentifier>{d538a206-3c0b-4036-aa99-f3ab8f946502}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="フレームワーク\コンポーネント\Gravity">
+      <UniqueIdentifier>{4dea31f8-1555-4612-9d7e-b9e0637440a3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Framework\Input\Input.cpp">
@@ -179,6 +185,12 @@
     <ClCompile Include="Game\Objcet\BaseObject\Object.cpp">
       <Filter>ゲーム\オブジェクト\基本オブジェクト</Filter>
     </ClCompile>
+    <ClCompile Include="Framework\Component\Collider\Collider.cpp">
+      <Filter>フレームワーク\コンポーネント\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Component\Gravity\Gravity.cpp">
+      <Filter>フレームワーク\コンポーネント\Gravity</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework\D3D11\D3D11.h">
@@ -261,6 +273,12 @@
     </ClInclude>
     <ClInclude Include="Game\Objcet\BaseObject\Object.h">
       <Filter>ゲーム\オブジェクト\基本オブジェクト</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Component\Collider\Collider.h">
+      <Filter>フレームワーク\コンポーネント\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Component\Gravity\Gravity.h">
+      <Filter>フレームワーク\コンポーネント\Gravity</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
