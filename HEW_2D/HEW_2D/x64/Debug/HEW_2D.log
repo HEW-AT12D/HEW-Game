@@ -1,3 +1,1 @@
-﻿  TitleScene.cpp
-C:\Users\mhiro\OneDrive\デスクトップ\test\.git\HEW-Game\HEW_2D\HEW_2D\Game\Scene\TitleScene.cpp(34,101): warning C4305: '引数': 'int' から 'bool' へ切り詰めます。
-  HEW_2D.vcxproj -> C:\Users\mhiro\OneDrive\デスクトップ\test\.git\HEW-Game\HEW_2D\x64\Debug\HEW_2D.exe
+﻿  HEW_2D.vcxproj -> C:\Users\kuluk\OneDrive\デスクトップ\HEW-Game\HEW_2D\x64\Debug\HEW_2D.exe
