@@ -1,6 +1,7 @@
 #pragma once
 #include "../../Framework/Scene/IScene.h"
 
+
 /**
  * @brief タイトルシーンクラス
  * 
