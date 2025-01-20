@@ -9,7 +9,7 @@ class RigitBody2D :public IComponent
 public:
 	RigitBody2D();
 	~RigitBody2D();
-	int NaturalFall(int);	//!　物体の自然落下の計算
+	int NaturalFall(int,double,double);	//!　物体の自然落下の計算
 
 private:
 	double gravity = 9.8;	//!　重力

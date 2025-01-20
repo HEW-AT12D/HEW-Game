@@ -1,1 +1,7 @@
-﻿  HEW_2D.vcxproj -> C:\Users\kuluk\OneDrive\デスクトップ\HEW-Game\HEW_2D\x64\Debug\HEW_2D.exe
+﻿  RigitBody2D.cpp
+C:\Users\kuluk\OneDrive\デスクトップ\HEW-Game\HEW_2D\HEW_2D\Framework\Component\RigitBody\RigitBody2D.h(17,18): warning C4244: '初期化中': 'double' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\kuluk\OneDrive\デスクトップ\HEW-Game\HEW_2D\HEW_2D\Framework\Component\RigitBody\RigitBody2D.cpp(12,25): warning C4244: '-=': 'double' から 'int' への変換です。データが失われる可能性があります。
+  TitleScene.cpp
+C:\Users\kuluk\OneDrive\デスクトップ\HEW-Game\HEW_2D\HEW_2D\Game\Scene\TitleScene.cpp(34,101): warning C4305: '引数': 'int' から 'bool' へ切り詰めます。
+  コードを生成中...
+  HEW_2D.vcxproj -> C:\Users\kuluk\OneDrive\デスクトップ\HEW-Game\HEW_2D\x64\Debug\HEW_2D.exe
