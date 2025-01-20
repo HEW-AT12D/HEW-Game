@@ -27,8 +27,8 @@ void GameObject::Init(const wchar_t* imgname, int sx, int sy, bool _animation)
 	IsAnimation = _animation;
 
 	//UV座標を設定
-	m_Split.x = static_cast<float>(sx);
-	m_Split.y = static_cast<float>(sy);
+	m_Split.x = sx;
+	m_Split.y = sy;
 	vertices[1].u = 1.0f / m_Split.x;
 	vertices[2].v = 1.0f / m_Split.y;
 	vertices[3].u = 1.0f / m_Split.x;
@@ -162,58 +162,30 @@ void GameObject::SetParent(const std::weak_ptr<GameObject> _Parent)
  * @brief アニメーション遷移関数
  * ここでは通常のアニメーションのみを定義し、各派生クラスで各々のアニメーション処理を定義する
 */
-void GameObject::Animation(STATE,Vector2)
-{
-	// 通常アニメーションのみ
-	if (IsAnimation)
-	{
-		// ここにアニメーション遷移処理を書く
-		switch (m_State)
-		{
-		case RUN:
-			// 例）現在の画像番号 % アニメーション分割数 = 0　（画像番号が最後まで行った→アニメーションの折り返し）の場合
-			// 画像番号を1ずつ減らしていく、とかの書き方がよさそう
-			break;
-	//	case Jump:
-	//		break;
-		default:
-			break;
-		}
-	}
-	else {
-		// アニメーションしない設定の場合は関数終了
-		return;
-	}
-	/*m_Number.x = _UV.x;
-	m_Number.y = _UV.y;
-
-	switch (m_State)
-	{
-	case RUN:
-		break;
-	case Jump:
-		break;
-	default:
-		break;
-	}
-	switch (m_State)
-	{
-	case Run:
-		if (m_Number.x == 1)
-		{
-			m_Number.x = 0;
-		}
-		else {
-			m_Number.x += 1;
-		}
-		break;
-	case Jump:
-
-		break;
-	default:
-		break;
-	}*/
-}
+//void GameObject::Animation(STATE,Vector2)
+//{
+//	// 通常アニメーションのみ
+//	if (IsAnimation)
+//	{
+//		// ここにアニメーション遷移処理を書く
+//		switch (m_State)
+//		{
+//		case RUN:
+//			// 例）現在の画像番号 % アニメーション分割数 = 0　（画像番号が最後まで行った→アニメーションの折り返し）の場合
+//			// 画像番号を1ずつ減らしていく、とかの書き方がよさそう
+//			break;
+//	//	case Jump:
+//	//		break;
+//		default:
+//			break;
+//		}
+//	}
+//	else {
+//		// アニメーションしない設定の場合は関数終了
+//		return;
+//	}
+//	
+//}
 
 Vector3 GameObject::GetPosition(void)
 {
@@ -239,7 +211,7 @@ Vector4 GameObject::GetColor(void)
 	return color;
 }
 
-Vector2 GameObject::GetUV(void)
+Int2 GameObject::GetUV(void)
 {
 	//UV座標をゲット
 	return m_Number;

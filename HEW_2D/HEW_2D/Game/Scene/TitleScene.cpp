@@ -26,27 +26,27 @@ void TitleScene::Init(void) {
 	
 	// 背景
 	objectmanager.AddObject<GameObject>(BACKGROUND, "Background1");
-	objectmanager.GetGameObject(BACKGROUND, "Background1")->Init(L"Game/Asset/BackGround/TitleBack.png");
-	objectmanager.GetGameObject(BACKGROUND, "Background1")->SetPosition(Vector3(0.0f, 0.0f, 0.0f));
-	objectmanager.GetGameObject(BACKGROUND, "Background1")->SetScale(Vector3(1920.0f, 1080.0f, 0.0f));
+	objectmanager.GetGameObject<GameObject>(BACKGROUND, "Background1").lock()->Init(L"Game/Asset/BackGround/TitleBack.png");
+	objectmanager.GetGameObject<GameObject>(BACKGROUND, "Background1").lock()->SetPosition(Vector3(0.0f, 0.0f, 0.0f));
+	objectmanager.GetGameObject<GameObject>(BACKGROUND, "Background1").lock()->SetScale(Vector3(1920.0f, 1080.0f, 0.0f));
 	// プレイヤー
-	objectmanager.AddObject<GameObject>(PLAYER, "Player");
-	objectmanager.GetGameObject(PLAYER, "Player")->Init(L"Game/Asset/Character/Player_Sprite.png", 2, 3);
-	objectmanager.GetGameObject(PLAYER, "Player")->SetPosition(Vector3(-300.0f, 0.0f, 0.0f));
-	objectmanager.GetGameObject(PLAYER, "Player")->SetScale(Vector3(130.0f, 130.0f, 0.0f));
+	objectmanager.AddObject<Player>(PLAYER, "Player");
+	objectmanager.GetGameObject<Player>(PLAYER, "Player").lock()->Init(L"Game/Asset/Character/Player_Sprite.png", 2, 3);
+	objectmanager.GetGameObject<Player>(PLAYER, "Player").lock()->SetPosition(Vector3(-300.0f, 0.0f, 0.0f));
+	objectmanager.GetGameObject<Player>(PLAYER, "Player").lock()->SetScale(Vector3(130.0f, 130.0f, 0.0f));
 
 
 	//擬音（どおん）
 	objectmanager.AddObject<GameObject>(OBJECT, "Gion");	// 名前要変更
-	objectmanager.GetGameObject(OBJECT, "Gion")->Init(L"Game/Asset/Onomatopoeia/Gion.png");
-	objectmanager.GetGameObject(OBJECT, "Gion")->SetPosition(Vector3(500.0f, 0.0f, 0.0f));
-	objectmanager.GetGameObject(OBJECT, "Gion")->SetScale(Vector3(240.0f, 120.0f, 0.0f));
+	objectmanager.GetGameObject<GameObject>(OBJECT, "Gion").lock()->Init(L"Game/Asset/Onomatopoeia/Gion.png");
+	objectmanager.GetGameObject<GameObject>(OBJECT, "Gion").lock()->SetPosition(Vector3(500.0f, 0.0f, 0.0f));
+	objectmanager.GetGameObject<GameObject>(OBJECT, "Gion").lock()->SetScale(Vector3(240.0f, 120.0f, 0.0f));
 	
 	// マガジン
 	objectmanager.AddObject<GameObject>(OBJECT, "Magazine");
-	objectmanager.GetGameObject(OBJECT, "Magazine")->Init(L"Game/Asset/GameObject/Magazine.png");
-	objectmanager.GetGameObject(OBJECT, "Magazine")->SetPosition(Vector3(0.0f, 0.0f, 0.0f));
-	objectmanager.GetGameObject(OBJECT, "Magazine")->SetScale(Vector3(120.0f, 120.0f, 0.0f));
+	objectmanager.GetGameObject<GameObject>(OBJECT, "Magazine").lock()->Init(L"Game/Asset/GameObject/Magazine.png");
+	objectmanager.GetGameObject<GameObject>(OBJECT, "Magazine").lock()->SetPosition(Vector3(0.0f, 0.0f, 0.0f));
+	objectmanager.GetGameObject<GameObject>(OBJECT, "Magazine").lock()->SetScale(Vector3(120.0f, 120.0f, 0.0f));
 
 	//// UI1(ボタン)
 	//objectmanager.AddObject<GameObject>(UI, "StartButton");
@@ -64,27 +64,46 @@ void TitleScene::Update(void)
 	// 入力情報の更新
 	Input::GetInstance().Update();
 	// 入力管理
+	// 右移動
 	if (Input::GetInstance().GetKeyPress(VK_D))
 	{
-		Vector3 pos = objectmanager.GetGameObject(PLAYER, "Player")->GetPosition();
+		objectmanager.GetGameObject<Player>(PLAYER, "Player").lock()->SetMoveRight(true);
+		/*Vector3 pos = objectmanager.GetGameObject(PLAYER, "Player")->GetPosition();
 		pos.x += 5.0f;
 		objectmanager.GetGameObject(PLAYER, "Player")->SetPosition(pos);
 
 		Vector2 num = objectmanager.GetGameObject(PLAYER, "Player")->GetUV();
-	/*	objectmanager.GetGameObject(PLAYER, "Player")->Animation();*/
+		objectmanager.GetGameObject(PLAYER, "Player")->Animation();*/
 		
 		//デバック用
 		std::cout << "Playerの座標移動ができています" << std::endl;
 	}
-
+	// 左移動
 	if (Input::GetInstance().GetKeyPress(VK_A))
 	{
-		Vector3 pos = objectmanager.GetGameObject(PLAYER, "Player")->GetPosition();
+		objectmanager.GetGameObject<Player>(PLAYER, "Player").lock()->SetMoveLeft(true);
+
+		/*Vector3 pos = objectmanager.GetGameObject(PLAYER, "Player")->GetPosition();
 		pos.x -= 5.0f;
 		objectmanager.GetGameObject(PLAYER, "Player")->SetPosition(pos);
 
 		Vector2 num = objectmanager.GetGameObject(PLAYER, "Player")->GetUV();
-		/*	objectmanager.GetGameObject(PLAYER, "Player")->Animation();*/
+		objectmanager.GetGameObject(PLAYER, "Player")->Animation();*/
+
+		//デバック用
+		std::cout << "Playerの座標移動ができています" << std::endl;
+	}
+	// ジャンプ
+	if (Input::GetInstance().GetKeyTrigger(VK_SPACE))
+	{
+		objectmanager.GetGameObject<Player>(PLAYER, "Player").lock()->SetJump(true);
+
+		/*Vector3 pos = objectmanager.GetGameObject(PLAYER, "Player")->GetPosition();
+		pos.x -= 5.0f;
+		objectmanager.GetGameObject(PLAYER, "Player")->SetPosition(pos);
+
+		Vector2 num = objectmanager.GetGameObject(PLAYER, "Player")->GetUV();
+		objectmanager.GetGameObject(PLAYER, "Player")->Animation();*/
 
 		//デバック用
 		std::cout << "Playerの座標移動ができています" << std::endl;
@@ -102,15 +121,15 @@ void TitleScene::Update(void)
 	//吸い込み処理
 	if (Input::GetInstance().GetKeyPress(VK_SPACE))
 	{
-		Vector3 p_pos = objectmanager.GetGameObject(PLAYER, "Player")->GetPosition();
-		Vector3 gion_pos = objectmanager.GetGameObject(OBJECT, "Gion")->GetPosition();
+		Vector3 p_pos = objectmanager.GetGameObject<Player>(PLAYER, "Player").lock()->GetPosition();
+		Vector3 gion_pos = objectmanager.GetGameObject<GameObject>(OBJECT, "Gion").lock()->GetPosition();
 		//Suction(gion_pos, p_pos);
 		if (gion_pos.x - p_pos.x <= 300 && gion_pos.x - p_pos.x >= 0)/*Playerと擬音の距離が一定に来たら、擬音が徐々に近づく*/
 		{
 			//ここに、近づくスピードを書く
 			gion_pos.x -= 14;
 			std::cout << "吸い込んでます" << std::endl;
-			objectmanager.GetGameObject(OBJECT, "Gion")->SetPosition(gion_pos);
+			objectmanager.GetGameObject<GameObject>(OBJECT, "Gion").lock()->SetPosition(gion_pos);
 		}
 		std::cout << "擬音座標：" << gion_pos.x << std::endl;
 	}

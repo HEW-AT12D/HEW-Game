@@ -35,6 +35,28 @@ enum STATE
 };
 
 /**
+ * @brief アニメーション番号管理用構造体
+*/
+struct Int2 {
+	int x;
+	int y;
+
+	// コンストラクタ
+	Int2(int _x = 0, int _y = 0) : x(_x), y(_y) {};
+
+	// 演算子オーバーロード
+	// 加算
+	Int2 operator + (const Int2& other) const {
+		return Int2(x + other.x, y + other.y);
+	}
+
+	// 減算
+	Int2 operator - (const Int2& other) const {
+		return Int2(x - other.x, y - other.y);
+	}
+};
+
+/**
  * @brief 基本となるゲームオブジェクトクラス
  * 
  * 一旦コンポーネント指向ではなくオブジェクト指向で止めておく
@@ -63,10 +85,10 @@ protected:
 	ID3D11ShaderResourceView* m_pTextureView = nullptr;
 
 	//テクスチャが縦横に何分割されているか
-	Vector2 m_Split = { 1.0f,1.0f };
+	Int2 m_Split = { 1,1 };
 
 	//左上から何段目を切り抜いて表示するか
-	Vector2 m_Number = { 0.0f,0.0f };
+	Int2 m_Number = { 0,0 };
 
 	// アニメーション用状態管理変数
 	STATE m_State = {};
@@ -91,14 +113,14 @@ public:
 	virtual void SetRotation(Vector3 _Rot);			// 角度をセット
 	virtual void SetColor(const Vector4 _Color);	// 色をセット
 	virtual void SetUV(const Vector2 _UV);			// UV座標をセット
-	virtual void Animation(STATE,Vector2);			// アニメーション
+	//virtual void Animation(STATE,Vector2);		// アニメーション
 	virtual void SetParent(const std::weak_ptr<GameObject> _Parent);	// 親オブジェクトをセット
 
 	// 個別の当たり判定もここに追加？オブジェクトの基本となるクラスならここじゃなくて、判定が必要なオブジェクトにそれぞれ追加？
 
-	virtual Vector3 GetPosition(void);			// 座標を取得
-	virtual Vector3 GetScale(void);				// 大きさを取得
-	virtual Vector3 GetRotation(void);			// 角度を取得
-	virtual Vector4 GetColor(void);				// 色を取得
-	virtual Vector2 GetUV(void);                // UV座標を取得
+	virtual Vector3 GetPosition(void);		// 座標を取得
+	virtual Vector3 GetScale(void);			// 大きさを取得
+	virtual Vector3 GetRotation(void);		// 角度を取得
+	virtual Vector4 GetColor(void);			// 色を取得
+	virtual Int2 GetUV(void);				// UV座標を取得
 };

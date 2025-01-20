@@ -46,7 +46,7 @@ public:
 	/**
 	 * @brief オブジェクト個別追加関数
 	 * @tparam T オブジェクトの型
-	 * @param _SceneName 
+	 * @param _SceneName
 	 * 追加時にmake_pairを書かずに引数二つ書くだけで動作させたい→関数内で引数二つの型を確認し、二つの型がTagとstringであればmake_pairしてmapに追加する
 	*/
 	template <typename T>
@@ -69,7 +69,7 @@ public:
 		}
 
 		// 正常であればキーとオブジェクトをセットで追加
-		Objects.emplace(std::move(key), std::make_unique<T>(D3d11));
+		Objects.emplace(std::move(key), std::make_shared<T>(D3d11));
 	}
 
 	///**
@@ -154,7 +154,37 @@ public:
 	void DeleteObject(Tag _ObjTag);
 
 	// オブジェクト取得関数
-	GameObject* GetGameObject(const Tag& _Tag, const std::string _Name);
+	//GameObject* GetGameObject(const Tag& _Tag, const std::string _Name);
+
+
+	/**
+	 * @brief オブジェクト取得関数
+	 * @param _Tag オブジェクトタグ
+	 * @param _Name 付けたい名前
+	 * @return オブジェクトの生ポインタ(タグの型にキャストしてから返す)
+	*/
+	template <class T>
+	std::weak_ptr<T> GetGameObject(const Tag& _Tag, const std::string _Name)
+	{
+		// タグと名前の一致するオブジェクトを見つける(見つからない場合はend()が返ってくる)
+		auto iterator = Objects.find(std::make_pair(_Tag, _Name));
+		// 見つかった場合
+		if (iterator != Objects.end())
+		{
+			// ポインタを取得して型に合わせて一度shared_ptrにキャスト
+			std::shared_ptr<T> castedptr = std::dynamic_pointer_cast<T>(iterator->second);
+
+			// キャストが成功した場合(nullptrではない場合)
+			if (castedptr)
+			{
+				// ポインタを返す(ここで自動的にweak_ptrに変換される)
+				return castedptr;
+			}
+		}
+		// 見つからなければ空のweak_ptrを返す
+		return std::weak_ptr<T>();
+	}
+
 
 
 	/**
@@ -178,9 +208,9 @@ private:
 	//! (もしかしたら左にあるオブジェクトから順に配列に保持してもいいかも？→その場合もう一度設計が必要)
 	//! 
 	//! オブジェクトの管理はタグ（大まかな分類）と名前（一意のもの）を使う
-	
+
 	// unordered_mapにpairを使う場合、pairの紐づけないといけないためPairHashをmapの引数に入れる
-	std::unordered_map < std::pair<Tag, std::string>, std::unique_ptr<GameObject>, PairHash > Objects;
+	std::unordered_map <std::pair<Tag, std::string>, std::shared_ptr<GameObject>, PairHash> Objects;
 	D3D11& D3d11;
 };
 
