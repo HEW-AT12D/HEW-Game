@@ -57,7 +57,7 @@ public:
 		for (auto& component : m_Components)
 		{
 			// そのコンポーネントの型にキャストできれば
-			if (T* comp = dynamic_cast<T*>(component.second.get())
+			if (T* comp = dynamic_cast<T*>(component.second.get()))
 			{
 				//! コンポーネントのポインタを返す
 				return std::shared_ptr<T>(component.second, comp);
