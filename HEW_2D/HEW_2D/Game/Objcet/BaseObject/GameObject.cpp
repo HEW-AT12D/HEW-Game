@@ -21,7 +21,7 @@ GameObject::~GameObject()
 	Uninit();
 }
 
-void GameObject::Init(const wchar_t* imgname, bool _animation, int sx, int sy)
+void GameObject::Init(const wchar_t* imgname, int sx, int sy, bool _animation)
 {
 	// アニメーション有無を設定
 	IsAnimation = _animation;
@@ -33,6 +33,7 @@ void GameObject::Init(const wchar_t* imgname, bool _animation, int sx, int sy)
 	vertices[2].v = 1.0f / m_Split.y;
 	vertices[3].u = 1.0f / m_Split.x;
 	vertices[3].v = 1.0f / m_Split.y;
+
 
 	// 頂点バッファを作成する
 	// ※頂点バッファ→VRAMに頂点データを置くための機能

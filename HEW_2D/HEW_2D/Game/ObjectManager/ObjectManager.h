@@ -72,27 +72,68 @@ public:
 		Objects.emplace(std::move(key), std::make_unique<T>(D3d11));
 	}
 
+	///**
+	// * @brief すでに完成したオブジェクトをタグと合わせて追加する関数
+	// * @tparam T オブジェクトの型
+	// * @param  オブジェクトタグ
+	// * @param  オブジェクトのユニークポインタ
+	//*/
+	//template <typename T>
+	//void AddObject(const Tag& _Tag, std::unique_ptr<T>&& _Object) {
+	//	// 今回は弾幕シューティングなので、オブジェクトタグが弾の場合、それぞれ名前の後ろに新しく番号を振ってオブジェクト追加する
 
-	// TODO:12/19ここまで。複数追加関数は一旦あきらめて一個ずつ追加する
-	/**
-	 * @brief オブジェクト複数追加関数
-	 * @tparam ...Ts 追加するオブジェクトの型（複数でもok）
-	 * @tparam ...Args オブジェクトのタグと名前
-	 * @param ..._Tag_and_Name 実引数
-	*/
-	//template <typename... Ts>
-	//void AddObject(std::pair<Tag, std::string>&&... _Tag_and_Name) {
-	//	// キーと名前の数が同じかの確認（数が合わない場合、プログラムは実行されずエラーが出る）, typename... Args
-	//	static_assert(sizeof...(Ts) == sizeof...(_Tag_and_Name), "キー(タグ)の数と追加したいオブジェクトの数が違います");
+	//	//TODO:改善案
+	//	// 追加しようとしているオブジェクトを探す→そのオブジェクトの数+1したものを名前の後ろに付け加える
+	//	// っていう処理で全てのオブジェクトに対応できる
 
-	//	// これ引数の渡し方が良く無い説：pairを作ってから渡したほうがいい
 
-	//	//! std::forwardで引数の型と引数そのものをそのまま渡している
-	//	//! mapに追加		タグと名前		指定した型のオブジェクトのインスタンスをユニークポインタで作成(D3D11クラスの参照を渡す)
-	//	(Objects.emplace(std::move(_Tag_and_Name), std::make_unique<Ts>(D3d11)), ...);
-	//	(Objects.emplace(std::forward<std::pair<Tag, std::string>>(_Tag_and_Name), std::make_unique<Ts>(D3d11)), ...);
+	//	// 弾か敵が追加されようとしている場合
+	//	if (_Tag == PLAYER_BULLET || _Tag == ENEMY_BULLET || _Tag == ENEMY)
+	//	{
+	//		// 名前を設定
+	//		std::string name;
+	//		switch (_Tag)
+	//		{
+	//		case PLAYER_BULLET:
+	//			//TODO:弾オブジェクトごとに番号をふって、特定のタグのオブジェクト同士の当たり判定だけを確認する→負荷が少しはマシになる
+	//			BulletCount_P += 1;		// プレイヤー弾カウントを加算
+
+	//			// 名前に番号を付けて更新
+	//			name += "PlayerBullet_" + std::to_string(BulletCount_P);
+	//			break;
+	//		case ENEMY_BULLET:
+	//			BulletCount_E += 1;		// 敵弾カウント加算
+
+	//			// 名前に番号を付けて更新
+	//			name += "EnemyBullet_" + std::to_string(BulletCount_E);
+	//			break;
+	//		case ENEMY:
+	//			EnemyCount += 1;
+	//			name += "Enemy_" + std::to_string(EnemyCount);
+	//			break;
+	//		default:
+	//			break;
+	//		}
+
+	//		// 名前とタグをpairのキーにする
+	//		std::pair key = std::make_pair(_Tag, name);
+	//		// mapにオブジェクトの所有権を渡す
+	//		Objects.emplace(std::move(key), std::move(_Object));
+	//	}
 	//}
 
+	/**
+	 * @brief 指定したタグのオブジェクトをvectorで渡して追加する関数
+	*/
+	template <typename T>
+	void AddObject(Tag _Tag, std::vector<std::unique_ptr<T>> _Objects)
+	{
+		// 引数の長さ分オブジェクト追加関数を回す
+		for (auto&& object : _Objects)
+		{
+			AddObject(_Tag, std::move(object));
+		}
+	}
 
 	/**
 	 * @brief オブジェクト複数追加関数

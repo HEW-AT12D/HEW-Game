@@ -165,6 +165,7 @@
     <ClCompile Include="Game\Objcet\BaseObject\Object.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="Game\Objcet\Character\Character.cpp" />
     <ClCompile Include="Game\Objcet\Onomatopeia\IOnomatopoeia\IOnomatopoeia.cpp" />
     <ClCompile Include="Game\Objcet\Onomatopeia\Poyon.cpp" />
     <ClCompile Include="Game\Objcet\Player\Player.cpp" />
@@ -204,6 +205,7 @@
     <ClInclude Include="Game\Objcet\BaseObject\Object.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="Game\Objcet\Character\Character.h" />
     <ClInclude Include="Game\Objcet\Onomatopeia\IOnomatopoeia\IOnomatopoeia.h" />
     <ClInclude Include="Game\Objcet\Onomatopeia\Poyon.h" />
     <ClInclude Include="Game\Objcet\Player\Player.h" />

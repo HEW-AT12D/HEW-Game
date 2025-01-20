@@ -99,6 +99,15 @@
     <Filter Include="ゲーム\オブジェクト\擬音銃\擬音\基本擬音クラス">
       <UniqueIdentifier>{5673c0d2-0b04-40f8-86e2-2dc9708979b6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ゲーム\オブジェクト\擬音銃\擬音\ポヨン">
+      <UniqueIdentifier>{ef4fc5cd-6a03-43bc-b125-6bab8ace3898}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ゲーム\オブジェクト\擬音銃\擬音\ドォン">
+      <UniqueIdentifier>{3dc2c768-24b1-4e71-ad15-3db2f4565808}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ゲーム\オブジェクト\キャラクター基本クラス">
+      <UniqueIdentifier>{595fa64f-c829-4f2a-81a4-d8aeb957e436}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Framework\Input\Input.cpp">
@@ -179,11 +188,14 @@
     <ClCompile Include="Game\Objcet\BaseObject\Object.cpp">
       <Filter>ゲーム\オブジェクト\基本オブジェクト</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Objcet\Onomatopeia\Poyon.cpp">
-      <Filter>ゲーム\オブジェクト\擬音銃\擬音</Filter>
-    </ClCompile>
     <ClCompile Include="Game\Objcet\Onomatopeia\IOnomatopoeia\IOnomatopoeia.cpp">
       <Filter>ゲーム\オブジェクト\擬音銃\擬音\基本擬音クラス</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Objcet\Onomatopeia\Poyon.cpp">
+      <Filter>ゲーム\オブジェクト\擬音銃\擬音\ポヨン</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Objcet\Character\Character.cpp">
+      <Filter>ゲーム\オブジェクト\キャラクター基本クラス</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -265,11 +277,14 @@
     <ClInclude Include="Game\Objcet\BaseObject\Object.h">
       <Filter>ゲーム\オブジェクト\基本オブジェクト</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Objcet\Onomatopeia\Poyon.h">
-      <Filter>ゲーム\オブジェクト\擬音銃\擬音</Filter>
-    </ClInclude>
     <ClInclude Include="Game\Objcet\Onomatopeia\IOnomatopoeia\IOnomatopoeia.h">
       <Filter>ゲーム\オブジェクト\擬音銃\擬音\基本擬音クラス</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Objcet\Onomatopeia\Poyon.h">
+      <Filter>ゲーム\オブジェクト\擬音銃\擬音\ポヨン</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Objcet\Character\Character.h">
+      <Filter>ゲーム\オブジェクト\キャラクター基本クラス</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

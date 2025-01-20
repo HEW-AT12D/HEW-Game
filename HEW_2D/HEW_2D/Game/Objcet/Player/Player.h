@@ -16,13 +16,15 @@
  * ・擬音銃
  * ・マガジン
  * 
+ * マガジン→取ったら画像出現→以降は擬音が入っていなくても画像が見える用にする
+ * 
  * アニメーション問題：キャラごとにステート（状態）を持たせておき、その状態に応じたアニメーションを動かす
  * 
 */
 class Player :public GameObject
 {
 public:
-	Player(D3D11& _D3d11) :GameObject(_D3d11),Soundgun(_D3d11) {};
+	Player(D3D11& _D3d11) :GameObject(_D3d11) {};
 	~Player() {};
 	
 	void Update(void) override;		// プレイヤー固有の入力はここで取得する
@@ -30,7 +32,7 @@ public:
 	void Animation(STATE,Vector2) override;	// プレイヤー個別のアニメーション関数
 
 private:
-	SoundGun Soundgun;					// 擬音銃
-	std::vector<Magazine> Magazines;	// マガジン（可変長）
+	//SoundGun Soundgun;					// 擬音銃,Soundgun(_D3d11)
+	//std::vector<Magazine> Magazines;	// マガジン（可変長）
 };
 

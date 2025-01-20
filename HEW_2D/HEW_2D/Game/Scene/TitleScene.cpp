@@ -31,18 +31,22 @@ void TitleScene::Init(void) {
 	objectmanager.GetGameObject(BACKGROUND, "Background1")->SetScale(Vector3(1920.0f, 1080.0f, 0.0f));
 	// プレイヤー
 	objectmanager.AddObject<GameObject>(PLAYER, "Player");
-	objectmanager.GetGameObject(PLAYER, "Player")->Init(L"Game/Asset/Character/Character_sprit.png",2,1);
-	objectmanager.GetGameObject(PLAYER, "Player")->SetPosition(Vector3(0.0f, 0.0f, 0.0f));
+	objectmanager.GetGameObject(PLAYER, "Player")->Init(L"Game/Asset/Character/Player_Sprite.png", 2, 3);
+	objectmanager.GetGameObject(PLAYER, "Player")->SetPosition(Vector3(-300.0f, 0.0f, 0.0f));
 	objectmanager.GetGameObject(PLAYER, "Player")->SetScale(Vector3(130.0f, 130.0f, 0.0f));
 
 
 	//擬音（どおん）
-	objectmanager.AddObject<GameObject>(OBJECT, "Gion");
-	objectmanager.GetGameObject(OBJECT, "Gion")->Init(L"Game/Asset/Gion/Gion.png");
+	objectmanager.AddObject<GameObject>(OBJECT, "Gion");	// 名前要変更
+	objectmanager.GetGameObject(OBJECT, "Gion")->Init(L"Game/Asset/Onomatopoeia/Gion.png");
 	objectmanager.GetGameObject(OBJECT, "Gion")->SetPosition(Vector3(500.0f, 0.0f, 0.0f));
 	objectmanager.GetGameObject(OBJECT, "Gion")->SetScale(Vector3(240.0f, 120.0f, 0.0f));
 	
-
+	// マガジン
+	objectmanager.AddObject<GameObject>(OBJECT, "Magazine");
+	objectmanager.GetGameObject(OBJECT, "Magazine")->Init(L"Game/Asset/GameObject/Magazine.png");
+	objectmanager.GetGameObject(OBJECT, "Magazine")->SetPosition(Vector3(0.0f, 0.0f, 0.0f));
+	objectmanager.GetGameObject(OBJECT, "Magazine")->SetScale(Vector3(120.0f, 120.0f, 0.0f));
 
 	//// UI1(ボタン)
 	//objectmanager.AddObject<GameObject>(UI, "StartButton");
@@ -50,7 +54,6 @@ void TitleScene::Init(void) {
 	//objectmanager.AddObject<GameObject>(UI, "ExitButton");
 	//// プレイヤー
 	//objectmanager.AddObject<Player>(PLAYER);
-	
 }
 
 
@@ -73,6 +76,21 @@ void TitleScene::Update(void)
 		//デバック用
 		std::cout << "Playerの座標移動ができています" << std::endl;
 	}
+
+	if (Input::GetInstance().GetKeyPress(VK_A))
+	{
+		Vector3 pos = objectmanager.GetGameObject(PLAYER, "Player")->GetPosition();
+		pos.x -= 5.0f;
+		objectmanager.GetGameObject(PLAYER, "Player")->SetPosition(pos);
+
+		Vector2 num = objectmanager.GetGameObject(PLAYER, "Player")->GetUV();
+		/*	objectmanager.GetGameObject(PLAYER, "Player")->Animation();*/
+
+		//デバック用
+		std::cout << "Playerの座標移動ができています" << std::endl;
+	}
+
+
 	//ゲーム画面に遷移
 	// シーン遷移（デバック用
 	if (Input::GetInstance().GetKeyTrigger(VK_RETURN))

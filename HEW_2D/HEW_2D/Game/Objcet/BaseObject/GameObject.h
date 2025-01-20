@@ -82,7 +82,7 @@ public:
 	GameObject(D3D11& _D3d11);
 	virtual ~GameObject();
 
-	virtual void Init(const wchar_t* imgname, bool _animation = false, int sx = 1, int sy = 1); // 初期化
+	virtual void Init(const wchar_t* imgname, int sx = 1, int sy = 1, bool _animation = false); // 初期化
 	virtual void Update(void);						// 更新（自オブジェクトに”何か”が当たった判定だけここで確認）
 	virtual void Draw(void);						// 描画
 	virtual void Uninit(void);						// 終了
