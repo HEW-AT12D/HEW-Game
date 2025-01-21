@@ -40,6 +40,9 @@ void Character::SetJump(bool _flg) {
 	Jump = _flg;
 }
 
+void Character::SetOnGround(bool _flg) {
+	OnGround = _flg;
+}
 
 void Character::Update(void)
 {

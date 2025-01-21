@@ -21,6 +21,9 @@
 /// ・タグ
 /// 
 /// 
+/// 現状：TransformとRigidBody、描画機能(Renderer?程度のもの)が付いたくらいの状態
+/// 
+/// 
 /// </summary> 
 
 
@@ -74,13 +77,16 @@ protected:
 	
 	// d3dクラス
 	D3D11& D3d11;
+
 	// 座標,大きさ,角度
 	Transform transform;
+	
 	// 色
 	Vector4 color = { 1.0f, 1.0f, 1.0f, 1.0f };
 
 	// 頂点バッファ
 	ID3D11Buffer* m_pVertexBuffer = nullptr;
+	
 	// テクスチャ用変数
 	ID3D11ShaderResourceView* m_pTextureView = nullptr;
 
@@ -99,6 +105,15 @@ protected:
 	// 親オブジェクトのポインタ(子は親の所有権は持たないのでweak_ptrでおｋ)
 	std::weak_ptr<GameObject> m_pParent;
 
+	// 速度(これは毎フレーム変化する値)
+	Vector3 m_Velocity;
+
+	// 加速度
+	Vector3 m_Acceleration;
+
+	// 移動用方向ベクトル(Transform.Rotaionは回転を扱うものなので別物)
+	Vector3 m_Direction;
+
 public:
 	//GameObject() = default;	// クラスのメンバ変数に参照が入っている場合、デフォルトコンストラクタが使えない（初期化が必須となる）
 	GameObject(D3D11& _D3d11);
@@ -115,6 +130,8 @@ public:
 	virtual void SetUV(const Vector2 _UV);			// UV座標をセット
 	//virtual void Animation(STATE,Vector2);		// アニメーション
 	virtual void SetParent(const std::weak_ptr<GameObject> _Parent);	// 親オブジェクトをセット
+	virtual void AddForce(const Vector3 _Vel);		// 速度をセット(ここでは即座に値を加算する方法だけ作る→unityのforcemode.impulseみたいなやつ)
+	virtual void SetDirection(Vector3 _Dir);		// 方向ベクトルをセット
 
 	// 個別の当たり判定もここに追加？オブジェクトの基本となるクラスならここじゃなくて、判定が必要なオブジェクトにそれぞれ追加？
 
@@ -123,4 +140,6 @@ public:
 	virtual Vector3 GetRotation(void);		// 角度を取得
 	virtual Vector4 GetColor(void);			// 色を取得
 	virtual Int2 GetUV(void);				// UV座標を取得
+	virtual Vector3 GetVelocity(void);		// 速度を取得
+	virtual Vector3 GetDirection(void);		// 方向ベクトルを取得
 };

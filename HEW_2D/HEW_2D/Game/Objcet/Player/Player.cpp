@@ -2,7 +2,9 @@
 #include "../../../Framework/Input/Input.h"
 
 
-
+/**
+ * @brief 更新
+*/
 void Player::Update(void) 
 {
 	// 方向ベクトル初期化
@@ -61,8 +63,11 @@ void Player::Update(void)
 	// X成分の移動速度を方向ベクトルと移動速度から計算
 	m_Velocity.x = m_Direction.x * m_MoveSpeed;
 
-	// 重力分速度を減算
-	m_Velocity.y -= 0.5f;	// 重力加速度実装の場合ここを変更
+	// 地面の上にいない場合、重力分速度を減算
+	if (!OnGround)
+	{
+		m_Velocity.y -= 0.5f;	// 重力加速度実装の場合ここを変更
+	}
 
 	// 移動処理
 	Vector3 newpos = transform.GetPosition();
@@ -74,8 +79,9 @@ void Player::Update(void)
 
 /**
  * @brief アニメーション関数
- * @param animation_name 
- * @param _UV 
+ * @param どのアニメーションを再生するかの列挙型
+ * ジャンプ中に移動しちゃうと移動アニメーションが優先されてしまうのでそこ直したい
+ * 接地したときに左右移動キー押さないと通常時に戻らないのでそこも直す
 */
 void Player::Animation(STATE _Anim_Name)
 {

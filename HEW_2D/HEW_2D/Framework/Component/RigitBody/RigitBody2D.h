@@ -1,6 +1,8 @@
 #pragma once
 #include "../IComponent/IComponent.h"
 
+using namespace SimpleMath;
+
 /**
  * @brief •¨—‰‰Z
  * 
@@ -11,6 +13,9 @@ class RigitBody2D :public IComponent
 public:
 	RigitBody2D();
 	~RigitBody2D();
+
+	void AddForce(Vector3);
+	
 
 private:
 	bool m_DetectCollision;		// Õ“Ë”»’è‚ğ—LŒø‚É‚·‚é‚©

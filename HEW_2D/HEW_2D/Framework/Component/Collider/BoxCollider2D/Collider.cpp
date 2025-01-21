@@ -21,9 +21,14 @@ bool ColliderPlayer_Ground(Player* obj1, GameObject* obj2)
 	//プレイヤーとグラウンドの当たり判定
 	if (1.0f > Player_Left_Collider - Ground_Right_Collider && 1.0f > Ground_Left_Collider - Player_Right_Collider && 0.5f > Player_Bottom_Collider - Ground_Up_Collider)
 	{
+		// 当たったオブジェクトの速度、方向ベクトルをリセットする
+		obj1->SetDirection(Vector3({ 0.0f }));
+		obj1->AddForce(Vector3({ 0.0f }));
+		obj1->SetOnGround(true);
 		return true;
 	}
 	else {
+		obj1->SetOnGround(false);
 		return false;
 	}
 }

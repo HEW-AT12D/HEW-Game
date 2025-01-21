@@ -14,6 +14,8 @@ GameObject::GameObject(D3D11& _D3d11) :D3d11(_D3d11)
 		{ -0.5f, -0.5f, 0.5f, 1.0f,1.0f,1.0f,1.0f, 0.0f,1.0f },		// 2番目の頂点座標
 		{ 0.5f, -0.5f, 0.5f, 1.0f,1.0f,1.0f,1.0f, 1.0f,1.0f },		// 3番目の頂点座標
 	};
+	m_Direction = { 0.0f,0.0f,0.0f };
+	m_Velocity = { 0.0f,0.0f,0.0f };
 }
 
 GameObject::~GameObject()
@@ -158,6 +160,16 @@ void GameObject::SetParent(const std::weak_ptr<GameObject> _Parent)
 	m_pParent = _Parent;
 }
 
+void GameObject::AddForce(Vector3 _Vel)
+{
+	m_Velocity = _Vel;
+}
+
+void GameObject::SetDirection(Vector3 _Dir)
+{
+	m_Direction = _Dir;
+}
+
 /**
  * @brief アニメーション遷移関数
  * ここでは通常のアニメーションのみを定義し、各派生クラスで各々のアニメーション処理を定義する
@@ -217,3 +229,12 @@ Int2 GameObject::GetUV(void)
 	return m_Number;
 }
             
+Vector3 GameObject::GetVelocity(void)
+{
+	return m_Velocity;
+}
+
+Vector3 GameObject::GetDirection(void)
+{
+	return m_Direction;
+}

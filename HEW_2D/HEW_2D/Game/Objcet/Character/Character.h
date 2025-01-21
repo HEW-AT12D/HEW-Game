@@ -17,17 +17,16 @@ public:
 		MoveRight = false;
 		Jump = false;
 		Jumping = false;
+		OnGround = false;
 		m_JumpPower = 0.0f;
 		m_MoveSpeed = 0.0f;
-		m_Direction = { 0.0f,0.0f,0.0f };
-		m_Velocity = { 0.0f,0.0f,0.0f };
 	}
 
 	virtual ~Character() {};
 
 	virtual void Update(void) override;
 
-
+	// ゲッターセッター系
 	virtual bool GetMoveUp(void);
 	virtual bool GetMoveDown(void);
 	virtual bool GetMoveLeft(void);
@@ -39,20 +38,20 @@ public:
 	virtual void SetMoveLeft(bool _flg);
 	virtual void SetMoveRight(bool _flg);
 	virtual void SetJump(bool _flg);
+	virtual void SetOnGround(bool _flg);
 
 
 protected:
-	// 上下左右の移動フラグ
-	bool MoveUp;
-	bool MoveDown;
-	bool MoveLeft;
-	bool MoveRight;
-	bool Jump;
-	bool Jumping;
+	// 上下左右の移動フラグ(ステートでもいい説)
+	bool MoveUp;		// (今ないけど)上移動中か？
+	bool MoveDown;		// (今ないけど)下移動中か？
+	bool MoveLeft;		// 左移動中か？
+	bool MoveRight;		// 右移動中か？
+	bool Jump;			// ジャンプしたか？
+	bool Jumping;		// ジャンプ中か？
+	bool OnGround;		// 接地しているか？
 
 	float m_JumpPower;		// ジャンプ力
 	float m_MoveSpeed;		// 移動速度
-	Vector3 m_Velocity;		// 速度(これは毎フレーム変化する値)
-	Vector3 m_Direction;	// 移動用方向ベクトル
 };
 
