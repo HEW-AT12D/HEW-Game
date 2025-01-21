@@ -108,6 +108,9 @@
     <Filter Include="ゲーム\オブジェクト\キャラクター基本クラス">
       <UniqueIdentifier>{595fa64f-c829-4f2a-81a4-d8aeb957e436}</UniqueIdentifier>
     </Filter>
+    <Filter Include="フレームワーク\コンポーネント\BoxCollider2D">
+      <UniqueIdentifier>{45a0e2f6-9eb8-4a7e-96fc-932c997a35e2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Framework\Input\Input.cpp">
@@ -197,6 +200,12 @@
     <ClCompile Include="Game\Objcet\Character\Character.cpp">
       <Filter>ゲーム\オブジェクト\キャラクター基本クラス</Filter>
     </ClCompile>
+    <ClCompile Include="Framework\Component\Collider\BoxCollider2D\Collider.cpp">
+      <Filter>フレームワーク\コンポーネント\BoxCollider2D</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Component\RigitBody\Gravity.cpp">
+      <Filter>フレームワーク\コンポーネント\Physic（物理）</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework\D3D11\D3D11.h">
@@ -247,9 +256,6 @@
     <ClInclude Include="Game\Scene\TitleScene.h">
       <Filter>ゲーム\シーン</Filter>
     </ClInclude>
-    <ClInclude Include="Game\EntryPoint\main.h">
-      <Filter>ゲーム\エントリーポイント</Filter>
-    </ClInclude>
     <ClInclude Include="Game\Scene\StageSelectScene.h">
       <Filter>ゲーム\シーン</Filter>
     </ClInclude>
@@ -285,6 +291,15 @@
     </ClInclude>
     <ClInclude Include="Game\Objcet\Character\Character.h">
       <Filter>ゲーム\オブジェクト\キャラクター基本クラス</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\EntryPoint\main.h">
+      <Filter>ゲーム\エントリーポイント</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Component\Collider\BoxCollider2D\Collider.h">
+      <Filter>フレームワーク\コンポーネント\BoxCollider2D</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\Component\RigitBody\Gravity.h">
+      <Filter>フレームワーク\コンポーネント\Physic（物理）</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
