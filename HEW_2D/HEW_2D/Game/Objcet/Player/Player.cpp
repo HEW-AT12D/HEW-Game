@@ -62,7 +62,7 @@ void Player::Update(void)
 	m_Velocity.x = m_Direction.x * m_MoveSpeed;
 
 	// 重力分速度を減算
-	//m_Velocity.y -= 0.5f;	// 重力加速度実装の場合ここを変更
+	m_Velocity.y -= 0.5f;	// 重力加速度実装の場合ここを変更
 
 	// 移動処理
 	Vector3 newpos = transform.GetPosition();

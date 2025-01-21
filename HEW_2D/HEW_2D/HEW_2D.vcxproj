@@ -142,9 +142,9 @@
     <ClCompile Include="Framework\ComponentManager\ComponentManager.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Framework\Component\Collider\Collider.cpp" />
-    <ClCompile Include="Framework\Component\Gravity\Gravity.cpp" />
+    <ClCompile Include="Framework\Component\Collider\BoxCollider2D\Collider.cpp" />
     <ClCompile Include="Framework\Component\IComponent\IComponent.cpp" />
+    <ClCompile Include="Framework\Component\RigitBody\Gravity.cpp" />
     <ClCompile Include="Framework\Component\RigitBody\RigitBody2D.cpp" />
     <ClCompile Include="Framework\Component\TransForm\Transform.cpp" />
     <ClCompile Include="Framework\Component\Transform\TransformComponent.cpp">
@@ -184,9 +184,9 @@
     <ClInclude Include="Framework\ComponentManager\ComponentManager.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="Framework\Component\Collider\Collider.h" />
-    <ClInclude Include="Framework\Component\Gravity\Gravity.h" />
+    <ClInclude Include="Framework\Component\Collider\BoxCollider2D\Collider.h" />
     <ClInclude Include="Framework\Component\IComponent\IComponent.h" />
+    <ClInclude Include="Framework\Component\RigitBody\Gravity.h" />
     <ClInclude Include="Framework\Component\RigitBody\RigitBody2D.h" />
     <ClInclude Include="Framework\Component\TransForm\Transform.h" />
     <ClInclude Include="Framework\Component\Transform\TransformComponent.h">

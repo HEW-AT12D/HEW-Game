@@ -1,22 +1,22 @@
 #include"Collider.h"
-#include"../../../Game/Objcet/BaseObject/Object.h"
 
 
 //PlayerとGroundの当たり判定
-bool ColliderPlayer_Ground(GameObject* player, GameObject* ground)
+//template <class T, class U>
+bool ColliderPlayer_Ground(Player* obj1, GameObject* obj2)
 {
 	float Player_Right_Collider, Player_Left_Collider, Player_Up_Collider, Player_Bottom_Collider;//playerの当たり判定変数
 	float Ground_Right_Collider, Ground_Left_Collider, Ground_Up_Collider, Ground_Bottom_Collider;//groundの当たり判定変数
 
-	Player_Right_Collider = player->GetPosition().x + player->GetScale().x / 2; //プレイヤーの右当たり判定変数
-	Player_Left_Collider = player->GetPosition().x - player->GetScale().x / 2;  //プレイヤーの左当たり判定変数
-	Player_Up_Collider = player->GetPosition().y + player->GetScale().y / 2;    //プレイヤーの上当たり判定変数
-	Player_Bottom_Collider = player->GetPosition().y - player->GetScale().y / 2;//プレイヤーの下当たり判定変数
+	Player_Right_Collider = obj1->GetPosition().x + obj1->GetScale().x / 2; //プレイヤーの右当たり判定変数
+	Player_Left_Collider = obj1->GetPosition().x - obj1->GetScale().x / 2;  //プレイヤーの左当たり判定変数
+	Player_Up_Collider = obj1->GetPosition().y + obj1->GetScale().y / 2;    //プレイヤーの上当たり判定変数
+	Player_Bottom_Collider = obj1->GetPosition().y - obj1->GetScale().y / 2;//プレイヤーの下当たり判定変数
 
-	Ground_Right_Collider = ground->GetPosition().x + ground->GetScale().x / 2; //グラウンドの右の当たり判定変数
-	Ground_Left_Collider = ground->GetPosition().x - ground->GetScale().x / 2;  //グラウンドの左の当たり判定変数
-	Ground_Up_Collider = ground->GetPosition().y + ground->GetScale().y / 2;    //グラウンドの上の当たり判定変数
-	Ground_Bottom_Collider = ground->GetPosition().y - ground->GetScale().y / 2;//グラウンドの下の当たり判定変数
+	Ground_Right_Collider = obj2->GetPosition().x + obj2->GetScale().x / 2; //グラウンドの右の当たり判定変数
+	Ground_Left_Collider = obj2->GetPosition().x - obj2->GetScale().x / 2;  //グラウンドの左の当たり判定変数
+	Ground_Up_Collider = obj2->GetPosition().y + obj2->GetScale().y / 2;    //グラウンドの上の当たり判定変数
+	Ground_Bottom_Collider = obj2->GetPosition().y - obj2->GetScale().y / 2;//グラウンドの下の当たり判定変数
 
 	//プレイヤーとグラウンドの当たり判定
 	if (1.0f > Player_Left_Collider - Ground_Right_Collider && 1.0f > Ground_Left_Collider - Player_Right_Collider && 0.5f > Player_Bottom_Collider - Ground_Up_Collider)
@@ -27,6 +27,7 @@ bool ColliderPlayer_Ground(GameObject* player, GameObject* ground)
 		return false;
 	}
 }
+
 
 
 //PlayerとGionの当たり判定
@@ -49,7 +50,7 @@ bool ColliderPlayer_Gion(GameObject* player, GameObject* gion)
 	if (1.0f > Player_Left_Collider - Gion_Right_Collider && 1.0f > Gion_Left_Collider - Player_Right_Collider && 0.5f > Player_Bottom_Collider - Gion_Up_Collider)
 	{
 		std::cout << "Playerと擬音が衝突しました" << std::endl;
-  		return true;
+		return true;
 	}
 	else {
 		return false;
@@ -58,12 +59,12 @@ bool ColliderPlayer_Gion(GameObject* player, GameObject* gion)
 
 
 //扇型と擬音の当たり判定
-bool ColliderFan_Gion(GameObject*fan, GameObject*gion)
+bool ColliderFan_Gion(GameObject* fan, GameObject* gion)
 {
 	float PI = 3.14159265;
 	float fanAngle = PI / 6;
 	//扇型の情報取得
-	float fanCenterX = fan->GetPosition().x-30;   //扇型の中心X座標
+	float fanCenterX = fan->GetPosition().x - 30;   //扇型の中心X座標
 	float fanCenterY = fan->GetPosition().y;   //扇型の中心Y座標
 	float fanRadius = fan->GetScale().x / 2;   //扇型の半径（スケールのX方向を使用）
 
@@ -153,23 +154,26 @@ bool LineIntersectsCircle(float x1, float y1, float x2, float y2, float cx, floa
 }
 
 
-void DrawFan(GameObject* fan, bool isColliding)
-{
-	//扇型の情報取得
-	float centerX = fan->GetPosition().x;
-	float centerY = fan->GetPosition().y;
-	float radius = fan->GetScale().x / 2;
-	float M_PI = 3.14159265;
-	float fanAngle = M_PI / 6;//開き角度（30度）
-	float dirX = cosf(fan->GetRotation().z);
-	float dirY = sinf(fan->GetRotation().z);
+// 当たり判定着色用
+//void DrawFan(GameObject* fan, bool isColliding)
+//{
+//	//扇型の情報取得
+//	float centerX = fan->GetPosition().x;
+//	float centerY = fan->GetPosition().y;
+//	float radius = fan->GetScale().x / 2;
+//	float M_PI = 3.14159265;
+//	float fanAngle = M_PI / 6;//開き角度（30度）
+//	float dirX = cosf(fan->GetRotation().z);
+//	float dirY = sinf(fan->GetRotation().z);
 
-	//色判定
-	float r, g, b;
-	if (isColliding) {
-		r = 1.0f; g = 0.0f; b = 0.0f;//赤
-	}
-	else {
-		r = 0.0f, g = 1.0f, b = 0.0f;//緑
-	}
-}
+//	//色判定
+//	float r, g, b;
+//	if (isColliding) {
+//		r = 1.0f; g = 0.0f; b = 0.0f;//赤
+//	}
+//	else {
+//		r = 0.0f, g = 1.0f, b = 0.0f;//緑
+//	}
+//}
+
+

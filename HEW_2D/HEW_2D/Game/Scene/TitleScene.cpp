@@ -1,8 +1,8 @@
 #include "TitleScene.h"
 #include "../../Game/Objcet/Player/Player.h"
 #include "../../Framework/Input/Input.h"
-#include"../../Game/Objcet/SoundGun/SoundGun.h"
-
+#include "../../Game/Objcet/SoundGun/SoundGun.h"
+#include "../../Framework/Component/Collider/BoxCollider2D/Collider.h"
 
 
 /**
@@ -32,7 +32,7 @@ void TitleScene::Init(void) {
 	// プレイヤー
 	objectmanager.AddObject<Player>(PLAYER, "Player");
 	objectmanager.GetGameObject<Player>(PLAYER, "Player").lock()->Init(L"Game/Asset/Character/Player_Sprite.png", 2, 3);
-	objectmanager.GetGameObject<Player>(PLAYER, "Player").lock()->SetPosition(Vector3(-300.0f, 0.0f, 0.0f));
+	objectmanager.GetGameObject<Player>(PLAYER, "Player").lock()->SetPosition(Vector3(0.0f, 600.0f, 0.0f));
 	objectmanager.GetGameObject<Player>(PLAYER, "Player").lock()->SetScale(Vector3(130.0f, 130.0f, 0.0f));
 
 	//擬音（どおん）
@@ -46,6 +46,12 @@ void TitleScene::Init(void) {
 	objectmanager.GetGameObject<GameObject>(OBJECT, "Magazine").lock()->Init(L"Game/Asset/GameObject/Magazine.png");
 	objectmanager.GetGameObject<GameObject>(OBJECT, "Magazine").lock()->SetPosition(Vector3(0.0f, 0.0f, 0.0f));
 	objectmanager.GetGameObject<GameObject>(OBJECT, "Magazine").lock()->SetScale(Vector3(120.0f, 120.0f, 0.0f));
+
+	// 地面
+	objectmanager.AddObject<GameObject>(OBJECT, "Ground");
+	objectmanager.GetGameObject<GameObject>(OBJECT, "Ground").lock()->Init(L"Game/Asset/GameObject/ground.png");
+	objectmanager.GetGameObject<GameObject>(OBJECT, "Ground").lock()->SetPosition(Vector3(0.0f, 0.0f, 0.0f));
+	objectmanager.GetGameObject<GameObject>(OBJECT, "Ground").lock()->SetScale(Vector3(120.0f, 120.0f, 0.0f));
 
 	//// UI1(ボタン)
 	//objectmanager.AddObject<GameObject>(UI, "StartButton");
@@ -117,7 +123,7 @@ void TitleScene::Update(void)
 		SetChangeScene(this->ChangeScene);
 	}
 	
-	//吸い込み処理
+	// ----------------吸い込み処理→ここはプレイヤーの処理に移す-------------------------
 	if (Input::GetInstance().GetKeyPress(VK_SPACE))
 	{
 		Vector3 p_pos = objectmanager.GetGameObject<Player>(PLAYER, "Player").lock()->GetPosition();
@@ -134,6 +140,12 @@ void TitleScene::Update(void)
 	}
 	//連：メモ
 	//擬音を回収したときに、オブジェクトをただ移動させるだけじゃなくて、回収したオブジェクトの情報によって表示させるUIを変える
+
+
+	//----------------当たり判定-----------------------
+	auto playerShared = objectmanager.GetGameObject<Player>(PLAYER, "Player").lock();
+	auto groundShared = objectmanager.GetGameObject<GameObject>(OBJECT, "Ground").lock();
+	ColliderPlayer_Ground(playerShared.get(), groundShared.get());
 
 
 	objectmanager.Update();
