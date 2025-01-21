@@ -37,7 +37,7 @@ void TitleScene::Init(void) {
 	objectmanager.AddObject<GameObject>(PLAYER, "Player");
 	objectmanager.GetGameObject(PLAYER, "Player")->Init(L"Game/Asset/Character/Character_sprit.png",2,1);
 	objectmanager.GetGameObject(PLAYER, "Player")->SetPosition(Vector3(0.0f, 100.0f, 0.0f));
-	objectmanager.GetGameObject(PLAYER, "Player")->SetScale(Vector3(130.0f, 130.0f, 0.0f));
+	objectmanager.GetGameObject(PLAYER, "Player")->SetScale(Vector3(250.0f, 250.0f, 0.0f));
 
 
 	//擬音（どおん）
@@ -57,7 +57,7 @@ void TitleScene::Init(void) {
 	objectmanager.AddObject<GameObject>(OBJECT, "Saikuron");
 	objectmanager.GetGameObject(OBJECT, "Saikuron")->Init(L"Game/Asset/BackGround/saikuron.png");
 	objectmanager.GetGameObject(OBJECT, "Saikuron")->SetPosition(Vector3(100.0f, -100.0f, 0.0f));
-	objectmanager.GetGameObject(OBJECT, "Saikuron")->SetScale(Vector3(200.0f, 100.0f, 0.0f));
+	objectmanager.GetGameObject(OBJECT, "Saikuron")->SetScale(Vector3(300.0f, 150.0f, 0.0f));
 
 	//// UI1(ボタン)
 	//objectmanager.AddObject<GameObject>(UI, "StartButton");
