@@ -1,32 +1,9 @@
 #include "ObjectManager.h"
 
 
-
-
 size_t ObjectManager::GetObjectCount(void)
 {
 	return Objects.size();
-}
-
-
-/**
- * @brief オブジェクト取得関数
- * @param _Tag オブジェクトタグ
- * @param _Name 付けたい名前
- * @return オブジェクトの生ポインタ
-*/
-GameObject* ObjectManager::GetGameObject(const Tag& _Tag, const std::string _Name)
-{
-	// タグと名前の一致するオブジェクトを見つける(見つからない場合はend()が返ってくる)
-	auto iterator = Objects.find(std::make_pair(_Tag, _Name));
-	// 見つかった場合
-	if (iterator != Objects.end())
-	{
-		return iterator->second.get();
-	}
-
-	// 見つからなければnullprtを返す
-	return nullptr;
 }
 
 
@@ -66,6 +43,7 @@ void ObjectManager::Update(void) {
 			obj.second->GetPosition().y > SCREEN_HEIGHT / 2 || obj.second->GetPosition().y < 0 - SCREEN_HEIGHT / 2) {
 			//this->DeleteObject(obj.first);		// オブジェクトのキーを指定して削除
 		}
+		obj.second->Update();
 	}
 	
 }
@@ -73,10 +51,23 @@ void ObjectManager::Update(void) {
 void ObjectManager::Draw(void) {
 	D3d11.StartRender();
 	// 範囲for文
+	// 先に背景から描画
 	for (auto& obj : Objects)
 	{
-		// firstがキー（ObjectName）,secondがオブジェクト本体
-		obj.second->Draw();
+		if (obj.first.first == BACKGROUND)
+		{
+			// firstがキー（ObjectName）,secondがオブジェクト本体
+			obj.second->Draw();
+		}
+	}
+
+	// 背景以外を描画
+	for (auto& obj : Objects)
+	{
+		if (obj.first.first != BACKGROUND)
+		{
+			obj.second->Draw();
+		}
 	}
 	D3d11.FinishRender();
 }

@@ -20,10 +20,10 @@ public:
 	SoundGun(D3D11& _D3d11) :GameObject(_D3d11) {};
 	~SoundGun() {};
 
-	
+	void Suction(Vector3, Vector3);//‹z‚¢‚İŠÖ”
+
 
 private:
 
 };
 
-void Suction(Vector3, Vector3);//‹z‚¢‚İŠÖ”

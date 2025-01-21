@@ -25,7 +25,6 @@
 #include <stdlib.h>
 #include <d3d11.h>			// DirectX11を使うためのヘッダーファイル
 
-
 // DirectX::を省略したい
 using namespace DirectX;
 
