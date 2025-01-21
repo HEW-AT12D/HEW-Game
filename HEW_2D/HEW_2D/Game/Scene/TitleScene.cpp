@@ -35,7 +35,6 @@ void TitleScene::Init(void) {
 	objectmanager.GetGameObject<Player>(PLAYER, "Player").lock()->SetPosition(Vector3(-300.0f, 0.0f, 0.0f));
 	objectmanager.GetGameObject<Player>(PLAYER, "Player").lock()->SetScale(Vector3(130.0f, 130.0f, 0.0f));
 
-
 	//擬音（どおん）
 	objectmanager.AddObject<GameObject>(OBJECT, "Gion");	// 名前要変更
 	objectmanager.GetGameObject<GameObject>(OBJECT, "Gion").lock()->Init(L"Game/Asset/Onomatopoeia/Gion.png");
