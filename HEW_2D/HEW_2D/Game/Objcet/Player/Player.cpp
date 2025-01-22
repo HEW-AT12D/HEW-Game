@@ -12,8 +12,10 @@ void Player::Update(void)
 
 	// 方向ベクトルを合成
 	// ジャンプした場合
-	if (Jump)
+	if (Jump && !Jumping)
 	{
+		// ジャンプ中でなければ
+		// ジャンプ処理
 		Jumping = true;					// ジャンプ中に設定(これステートでもいいかも)
 		m_Velocity.y += m_JumpPower;	// 速度のY成分にジャンプ力を代入
 		m_Direction.y += 1.0f;			// 上向きの方向ベクトルを加算
@@ -25,9 +27,12 @@ void Player::Update(void)
 	{
 		Animation(JUMP);
 		// 地面に足がついた場合は方向ベクトルをリセット
-		if (m_Velocity.y == 0.0f)
+		if (OnGround)
 		{
+			// 着地フラグを立てて
 			Jumping = false;
+			// 通常時アニメーションへ変更
+			Animation(RUN);
 		}
 		else
 		{
@@ -39,14 +44,28 @@ void Player::Update(void)
 	if (MoveLeft)
 	{
 		m_Direction.x -= 1.0f;	// 左向きの方向ベクトルを加算
-		Animation(RUN);
+		// ジャンプ中はジャンプモーション優先
+		if (Jumping)
+		{
+			Animation(JUMP);
+		}
+		else {
+			Animation(RUN);
+		}
 		MoveLeft = false;
 	}
 	// 右移動しようとしている場合
 	if (MoveRight)
 	{
 		m_Direction.x += 1.0f;	// 右向きの方向ベクトルを加算
-		Animation(RUN);
+		// ジャンプ中はジャンプモーション優先
+		if (Jumping)
+		{
+			Animation(JUMP);
+		}
+		else {
+			Animation(RUN);
+		}
 		MoveRight = false;
 	}
 
@@ -63,18 +82,23 @@ void Player::Update(void)
 	// X成分の移動速度を方向ベクトルと移動速度から計算
 	m_Velocity.x = m_Direction.x * m_MoveSpeed;
 
+	
 	// 地面の上にいない場合、重力分速度を減算
 	if (!OnGround)
 	{
+		Jumping = true;
 		m_Velocity.y -= 0.5f;	// 重力加速度実装の場合ここを変更
 	}
-
+	else {
+		// 接地していればジャンプ中ではない
+		Jumping = false;
+	}
+	
 	// 移動処理
 	Vector3 newpos = transform.GetPosition();
 	newpos += m_Velocity;		// 方向ベクトルとX成分の移動速度を掛けた値の分だけ毎フレーム進む
 	// 新しい座標を代入
 	transform.SetPosition(newpos);
-	
 }
 
 /**

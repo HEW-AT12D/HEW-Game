@@ -110,8 +110,8 @@ HRESULT D3D11::Init(HWND hwnd)
 	D3D11_VIEWPORT viewport;
 	viewport.TopLeftX = 0;
 	viewport.TopLeftY = 0;
-	viewport.Width = (FLOAT)rect.Width();
-	viewport.Height = (FLOAT)rect.Height();
+	viewport.Width = (FLOAT)SCREEN_WIDTH;
+	viewport.Height = (FLOAT)SCREEN_HEIGHT;
 	viewport.MinDepth = 0.0f;
 	viewport.MaxDepth = 1.0f;
 	m_pDeviceContext->RSSetViewports(1, &viewport);

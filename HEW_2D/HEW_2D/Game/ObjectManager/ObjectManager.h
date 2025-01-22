@@ -50,7 +50,7 @@ public:
 	 * 追加時にmake_pairを書かずに引数二つ書くだけで動作させたい→関数内で引数二つの型を確認し、二つの型がTagとstringであればmake_pairしてmapに追加する
 	*/
 	template <typename T>
-	void AddObject(const Tag& _Tag, std::string _Name)
+	void AddObject(const Tag& _Tag, const std::string& _Name)
 	{
 		// 同一のタグと名前を持つオブジェクトが存在する場合にはエラーを出すようにする
 		// 名前が空の場合は追加しない
@@ -58,6 +58,18 @@ public:
 			std::cerr << "オブジェクトに名前が設定されていません" << std::endl;
 			return; // 無効な名前の場合は追加しない
 		}
+
+		//TODO:改善案
+		// 追加しようとしているオブジェクトを探す→そのオブジェクトの数+1したものを名前の後ろに付け加える
+		// っていう処理で全てのオブジェクトに対応できる
+		// となるとどうするべきか→同じ型、タグのオブジェクトが存在している場合、そのオブジェクトの数+1した名前をつかる
+
+		//// 同一タグ、型を持つオブジェクトの配列を取得
+		//auto SameObjects = this->GetObjects<T>(_Tag);
+		//// 名前に付与する番号
+		//int count = SameObjects.size();
+		//// 名前を変更(後ろに番号を付与)
+		//std::string newName = _Name + std::to_string(count + 1);
 
 		// 名前があればとりあえずキーとして作成
 		std::pair key = std::make_pair(_Tag, _Name);
@@ -72,21 +84,15 @@ public:
 		Objects.emplace(std::move(key), std::make_shared<T>(D3d11));
 	}
 
-	///**
-	// * @brief すでに完成したオブジェクトをタグと合わせて追加する関数
-	// * @tparam T オブジェクトの型
-	// * @param  オブジェクトタグ
-	// * @param  オブジェクトのユニークポインタ
-	//*/
+	/**
+	 * @brief すでに完成したオブジェクトをタグと合わせて追加する関数
+	 * @tparam T オブジェクトの型
+	 * @param  オブジェクトタグ
+	 * @param  オブジェクトのユニークポインタ
+	*/
 	//template <typename T>
-	//void AddObject(const Tag& _Tag, std::unique_ptr<T>&& _Object) {
+	//void AddObject(const Tag& _Tag, std::shared_ptr<T>&& _Object) {
 	//	// 今回は弾幕シューティングなので、オブジェクトタグが弾の場合、それぞれ名前の後ろに新しく番号を振ってオブジェクト追加する
-
-	//	//TODO:改善案
-	//	// 追加しようとしているオブジェクトを探す→そのオブジェクトの数+1したものを名前の後ろに付け加える
-	//	// っていう処理で全てのオブジェクトに対応できる
-
-
 	//	// 弾か敵が追加されようとしている場合
 	//	if (_Tag == PLAYER_BULLET || _Tag == ENEMY_BULLET || _Tag == ENEMY)
 	//	{
@@ -126,7 +132,7 @@ public:
 	 * @brief 指定したタグのオブジェクトをvectorで渡して追加する関数
 	*/
 	template <typename T>
-	void AddObject(Tag _Tag, std::vector<std::unique_ptr<T>> _Objects)
+	void AddObject(Tag _Tag, std::vector<std::shared_ptr<T>> _Objects)
 	{
 		// 引数の長さ分オブジェクト追加関数を回す
 		for (auto&& object : _Objects)
@@ -146,6 +152,35 @@ public:
 	{
 		(AddObject<T>(std::forward<Keys>(keys).first, std::forward<Keys>(keys).second), ...);
 	}
+
+
+	/**
+	 * @brief オブジェクト取得関数(タグ、型指定)
+	 * @tparam T オブジェクトの型
+	 * @param _tag オブジェクトタグ
+	 * @return 指定した型・タグと同一の情報を持つオブジェクトの配列
+	*/
+	template <class T>
+	std::vector<std::weak_ptr<T>> GetObjects(Tag _tag)
+	{
+		// オブジェクト保存用コンテナ
+		std::vector<std::weak_ptr<T>> objects;
+		for (auto& obj : Objects)
+		{
+			// タグが同じかを調べ、
+			if (obj.first.first == _tag)
+			{
+				auto casted = std::dynamic_pointer_cast<T>(obj.second);
+				// dynamic_pointer_castで型チェックし、型が同じであれば配列に追加
+				if (casted) {
+					objects.push_back(casted);
+				}
+			}
+		}
+		return objects;
+	}
+
+
 
 	/**
 	 * @brief オブジェクト削除関数

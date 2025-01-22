@@ -38,7 +38,6 @@ public:
 	virtual void SetMoveLeft(bool _flg);
 	virtual void SetMoveRight(bool _flg);
 	virtual void SetJump(bool _flg);
-	virtual void SetOnGround(bool _flg);
 
 
 protected:
@@ -49,7 +48,6 @@ protected:
 	bool MoveRight;		// 右移動中か？
 	bool Jump;			// ジャンプしたか？
 	bool Jumping;		// ジャンプ中か？
-	bool OnGround;		// 接地しているか？
 
 	float m_JumpPower;		// ジャンプ力
 	float m_MoveSpeed;		// 移動速度

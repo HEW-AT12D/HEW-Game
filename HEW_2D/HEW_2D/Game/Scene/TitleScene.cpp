@@ -25,10 +25,10 @@ void TitleScene::Init(void) {
 	// TODO:1218ここまで オブジェクトの管理をenumから変更→tagと名前にしたい
 	
 	// 背景
-	objectmanager.AddObject<GameObject>(BACKGROUND, "Background1");
-	objectmanager.GetGameObject<GameObject>(BACKGROUND, "Background1").lock()->Init(L"Game/Asset/BackGround/TitleBack.png");
-	objectmanager.GetGameObject<GameObject>(BACKGROUND, "Background1").lock()->SetPosition(Vector3(0.0f, 0.0f, 0.0f));
-	objectmanager.GetGameObject<GameObject>(BACKGROUND, "Background1").lock()->SetScale(Vector3(1920.0f, 1080.0f, 0.0f));
+	objectmanager.AddObject<GameObject>(BACKGROUND, "Background");
+	objectmanager.GetGameObject<GameObject>(BACKGROUND, "Background").lock()->Init(L"Game/Asset/BackGround/TitleBack.png");
+	objectmanager.GetGameObject<GameObject>(BACKGROUND, "Background").lock()->SetPosition(Vector3(0.0f, 0.0f, 0.0f));
+	objectmanager.GetGameObject<GameObject>(BACKGROUND, "Background").lock()->SetScale(Vector3(1920.0f, 1080.0f, 0.0f));
 	// プレイヤー
 	objectmanager.AddObject<Player>(PLAYER, "Player");
 	objectmanager.GetGameObject<Player>(PLAYER, "Player").lock()->Init(L"Game/Asset/Character/Player_Sprite.png", 2, 3);
@@ -42,16 +42,16 @@ void TitleScene::Init(void) {
 	objectmanager.GetGameObject<GameObject>(OBJECT, "Gion").lock()->SetScale(Vector3(240.0f, 120.0f, 0.0f));
 	
 	// マガジン
-	objectmanager.AddObject<GameObject>(OBJECT, "Magazine");
+	objectmanager.AddObject<Magazine>(OBJECT, "Magazine");
 	objectmanager.GetGameObject<GameObject>(OBJECT, "Magazine").lock()->Init(L"Game/Asset/GameObject/Magazine.png");
 	objectmanager.GetGameObject<GameObject>(OBJECT, "Magazine").lock()->SetPosition(Vector3(0.0f, 0.0f, 0.0f));
-	objectmanager.GetGameObject<GameObject>(OBJECT, "Magazine").lock()->SetScale(Vector3(120.0f, 120.0f, 0.0f));
+	objectmanager.GetGameObject<GameObject>(OBJECT, "Magazine").lock()->SetScale(Vector3(90.0f, 90.0f, 0.0f));
 
 	// 地面
 	objectmanager.AddObject<GameObject>(OBJECT, "Ground");
-	objectmanager.GetGameObject<GameObject>(OBJECT, "Ground").lock()->Init(L"Game/Asset/GameObject/ground.png");
-	objectmanager.GetGameObject<GameObject>(OBJECT, "Ground").lock()->SetPosition(Vector3(0.0f, 0.0f, 0.0f));
-	objectmanager.GetGameObject<GameObject>(OBJECT, "Ground").lock()->SetScale(Vector3(120.0f, 120.0f, 0.0f));
+	objectmanager.GetGameObject<GameObject>(OBJECT, "Ground").lock()->Init(L"Game/Asset/GameObject/Ground.png");
+	objectmanager.GetGameObject<GameObject>(OBJECT, "Ground").lock()->SetPosition(Vector3(0.0f, -400.0f, 0.0f));
+	objectmanager.GetGameObject<GameObject>(OBJECT, "Ground").lock()->SetScale(Vector3(1200.0f, 120.0f, 0.0f));
 
 	//// UI1(ボタン)
 	//objectmanager.AddObject<GameObject>(UI, "StartButton");
@@ -124,7 +124,7 @@ void TitleScene::Update(void)
 	}
 	
 	// ----------------吸い込み処理→ここはプレイヤーの処理に移す-------------------------
-	if (Input::GetInstance().GetKeyPress(VK_SPACE))
+	if (Input::GetInstance().GetKeyPress(VK_F))
 	{
 		Vector3 p_pos = objectmanager.GetGameObject<Player>(PLAYER, "Player").lock()->GetPosition();
 		Vector3 gion_pos = objectmanager.GetGameObject<GameObject>(OBJECT, "Gion").lock()->GetPosition();
@@ -143,10 +143,10 @@ void TitleScene::Update(void)
 
 
 	//----------------当たり判定-----------------------
-	auto playerShared = objectmanager.GetGameObject<Player>(PLAYER, "Player").lock();
-	auto groundShared = objectmanager.GetGameObject<GameObject>(OBJECT, "Ground").lock();
-	ColliderPlayer_Ground(playerShared.get(), groundShared.get());
-
+	auto playerShared = objectmanager.GetGameObject<Player>(PLAYER, "Player");
+	auto groundShared = objectmanager.GetGameObject<GameObject>(OBJECT, "Ground");
+	ColliderPlayer_Ground(playerShared, groundShared);
+	Collider_toGround(objectmanager.GetGameObject<Magazine>(OBJECT, "Magazine"), objectmanager.GetGameObject<GameObject>(OBJECT, "Ground"));
 
 	objectmanager.Update();
 	

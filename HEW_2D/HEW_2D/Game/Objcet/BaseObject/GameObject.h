@@ -102,6 +102,9 @@ protected:
 	// アニメーション管理フラグ
 	bool IsAnimation = false;
 
+	// 接地しているか？
+	bool OnGround;
+
 	// 親オブジェクトのポインタ(子は親の所有権は持たないのでweak_ptrでおｋ)
 	std::weak_ptr<GameObject> m_pParent;
 
@@ -132,6 +135,7 @@ public:
 	virtual void SetParent(const std::weak_ptr<GameObject> _Parent);	// 親オブジェクトをセット
 	virtual void AddForce(const Vector3 _Vel);		// 速度をセット(ここでは即座に値を加算する方法だけ作る→unityのforcemode.impulseみたいなやつ)
 	virtual void SetDirection(Vector3 _Dir);		// 方向ベクトルをセット
+	virtual void SetOnGround(bool _flg);			// 接地しているか？
 
 	// 個別の当たり判定もここに追加？オブジェクトの基本となるクラスならここじゃなくて、判定が必要なオブジェクトにそれぞれ追加？
 

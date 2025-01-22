@@ -2,8 +2,46 @@
 #include"../../../../Game/Objcet/BaseObject/Object.h"
 
 
-//template <class T, class U>
-bool ColliderPlayer_Ground(Player*, GameObject*);	//PlayerとGroundの当たり判定関数
+bool ColliderPlayer_Ground(std::weak_ptr<Player>, std::weak_ptr<GameObject>);	//PlayerとGroundの当たり判定関数
+
+/**
+ * @brief 対地面地面の当たり判定
+ * @tparam T 何かの型
+ * @param  地面
+*/
+template <class T>
+bool Collider_toGround(std::weak_ptr<T> obj1, std::weak_ptr<GameObject> obj2)
+{
+	float Player_Right_Collider, Player_Left_Collider, Player_Top_Collider, Player_Bottom_Collider;//playerの当たり判定変数
+	float Ground_Right_Collider, Ground_Left_Collider, Ground_Top_Collider, Ground_Bottom_Collider;//groundの当たり判定変数
+
+	Player_Right_Collider = obj1.lock()->GetPosition().x + obj1.lock()->GetScale().x / 2; //プレイヤーの右当たり判定変数
+	Player_Left_Collider = obj1.lock()->GetPosition().x - obj1.lock()->GetScale().x / 2;  //プレイヤーの左当たり判定変数
+	Player_Top_Collider = obj1.lock()->GetPosition().y + obj1.lock()->GetScale().y / 2;    //プレイヤーの上当たり判定変数
+	Player_Bottom_Collider = obj1.lock()->GetPosition().y - obj1.lock()->GetScale().y / 2;//プレイヤーの下当たり判定変数
+
+	Ground_Right_Collider = obj2.lock()->GetPosition().x + obj2.lock()->GetScale().x / 2; //グラウンドの右の当たり判定変数
+	Ground_Left_Collider = obj2.lock()->GetPosition().x - obj2.lock()->GetScale().x / 2;  //グラウンドの左の当たり判定変数
+	Ground_Top_Collider = obj2.lock()->GetPosition().y + obj2.lock()->GetScale().y / 2;    //グラウンドの上の当たり判定変数
+	Ground_Bottom_Collider = obj2.lock()->GetPosition().y - obj2.lock()->GetScale().y / 2;//グラウンドの下の当たり判定変数
+
+	//プレイヤーとグラウンドの当たり判定
+	if (Player_Left_Collider < Ground_Right_Collider &&
+		Ground_Left_Collider < Player_Right_Collider &&
+		Player_Bottom_Collider < Ground_Top_Collider &&
+		Player_Top_Collider > Ground_Bottom_Collider)
+	{
+		// 地面に当たったオブジェクトの速度、方向ベクトルをリセットする
+		obj1.lock()->SetDirection(Vector3({ 0.0f }));
+		obj1.lock()->AddForce(Vector3({ 0.0f }));
+		obj1.lock()->SetOnGround(true);
+		return true;
+	}
+	else {
+		obj1.lock()->SetOnGround(false);
+		return false;
+	}
+}
 
 bool ColliderPlayer_Gion(GameObject*, GameObject*);//Playerと擬音の当たり判定関数
 

@@ -57,6 +57,19 @@ void Application::Run(void)
 			fpsCounter++; // ゲーム処理を実行したら＋１する
 			oldCount = nowCount;
 		}
+		nowTick = GetTickCount64();		// 現在時間を取得
+		// 前回時間から1000ミリ秒が経過したか？
+		if (nowTick >= oldTick + 1000)
+		{
+			// FPS表示
+			char str[32];
+			wsprintfA(str, "%dFPS", fpsCounter);	// 数値を文字列に変換
+			SetWindowTextA(Window::GetInstance().GetHandleWindow(), str);				// ウィンドウタイトルに表示
+			// カウンターリセット
+			fpsCounter = 0;
+			oldTick = nowTick;
+
+		}
 	}
 	//! 終了処理
 	Uninit();

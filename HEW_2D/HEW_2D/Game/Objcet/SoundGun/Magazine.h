@@ -26,17 +26,21 @@
 class Magazine : public GameObject
 {
 public:
-	Magazine(D3D11 _D3d11) :GameObject(_D3d11) {
+	Magazine(D3D11& _D3d11) :GameObject(_D3d11) {
 		// 最初はマガジンにはどの擬音も入っていない
-		//m_Onomatopoeia = nullptr;
+		m_Onomatopoeia = nullptr;
+		OnGround = false;
+		IsFlying = false;
 	}
 
-	~Magazine();
+	~Magazine() {};
 
+	void Update(void) override;
 	// マガジンに入った場合、その擬音の所有権はマガジンに移るはずなのでunique_ptr
-	void SetOnomatopoeia(std::unique_ptr<IOnomatopoeia> _onomatopoeia);
+	void SetOnomatopoeia(std::unique_ptr<IOnomatopoeia>&& _onomatopoeia);
 
 private:
-	//std::unique_ptr<IOnomatopoeia> m_Onomatopoeia;
+	bool IsFlying;		// 飛んでいるか？
+	std::unique_ptr<IOnomatopoeia> m_Onomatopoeia;
 };
 
