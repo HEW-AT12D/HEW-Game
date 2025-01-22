@@ -111,6 +111,9 @@
     <Filter Include="フレームワーク\コンポーネント\BoxCollider2D">
       <UniqueIdentifier>{45a0e2f6-9eb8-4a7e-96fc-932c997a35e2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ゲーム\オブジェクト\カメラ">
+      <UniqueIdentifier>{59d1b71c-8ad4-4bb9-941a-c324b57185d6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Framework\Input\Input.cpp">
@@ -206,6 +209,9 @@
     <ClCompile Include="Framework\Component\RigitBody\Gravity.cpp">
       <Filter>フレームワーク\コンポーネント\Physic（物理）</Filter>
     </ClCompile>
+    <ClCompile Include="Game\Objcet\Camera\Camera.cpp">
+      <Filter>ゲーム\オブジェクト\カメラ</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework\D3D11\D3D11.h">
@@ -300,6 +306,9 @@
     </ClInclude>
     <ClInclude Include="Framework\Component\RigitBody\Gravity.h">
       <Filter>フレームワーク\コンポーネント\Physic（物理）</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Objcet\Camera\Camera.h">
+      <Filter>ゲーム\オブジェクト\カメラ</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
