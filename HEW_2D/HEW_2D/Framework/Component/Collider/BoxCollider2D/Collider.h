@@ -43,6 +43,9 @@ bool Collider_toGround(std::weak_ptr<T> obj1, std::weak_ptr<GameObject> obj2)
 	}
 }
 
+template <class T>
+//void Collider_Player_to_Object(std::weak_ptr<Player> _player,std::vector<>)
+
 bool ColliderPlayer_Gion(GameObject*, GameObject*);//Player‚Æ‹[‰¹‚Ì“–‚½‚è”»’èŠÖ”
 
 bool ColliderFan_Gion(GameObject*, GameObject*);//îŒ^‚Æ‹[‰¹‚Ì“–‚½‚è”»’èŠÖ”

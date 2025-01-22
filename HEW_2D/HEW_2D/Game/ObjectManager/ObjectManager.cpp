@@ -32,8 +32,6 @@ void ObjectManager::Init(void) {
 
 void ObjectManager::Update(void) {
 
-	
-
 	// ”ÍˆÍfor•¶
 	for (auto& obj : Objects)
 	{

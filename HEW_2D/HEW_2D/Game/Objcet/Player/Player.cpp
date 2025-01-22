@@ -92,6 +92,7 @@ void Player::Update(void)
 	else {
 		// 接地していればジャンプ中ではない
 		Jumping = false;
+		// 通常時アニメーションへ変更
 	}
 	
 	// 移動処理
@@ -100,6 +101,21 @@ void Player::Update(void)
 	// 新しい座標を代入
 	transform.SetPosition(newpos);
 }
+
+
+/**
+ * @brief 描画
+ * 吸い込みエフェクト、子オブジェクトとして設定したUIのマガジンも描画する
+*/
+void Player::Draw(void)
+{
+	// まず自身の描画
+	this->GameObject::Draw();
+
+	// アタッチされたオブジェクトの描画
+	// TODO:アニメーションの違和感を取る、ジャンプの先行入力取れてしまうのを直す
+}
+
 
 /**
  * @brief アニメーション関数

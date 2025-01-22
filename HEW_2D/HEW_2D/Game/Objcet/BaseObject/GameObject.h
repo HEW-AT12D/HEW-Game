@@ -103,10 +103,16 @@ protected:
 	bool IsAnimation = false;
 
 	// 接地しているか？
-	bool OnGround;
+	bool OnGround = false;
+
+	// 削除予定フラグ(毎フレームこのフラグを確認し、立っているオブジェクトは削除する)
+	bool IsDelete = false;
 
 	// 親オブジェクトのポインタ(子は親の所有権は持たないのでweak_ptrでおｋ)
 	std::weak_ptr<GameObject> m_pParent;
+
+	// 子オブジェクトのポインタ(親は子の所有権を持つのでshared_ptrにする)
+	std::vector<std::shared_ptr<GameObject>> m_Children;		// 子は複数存在する可能性があるのでvector
 
 	// 速度(これは毎フレーム変化する値)
 	Vector3 m_Velocity;
@@ -136,6 +142,7 @@ public:
 	virtual void AddForce(const Vector3 _Vel);		// 速度をセット(ここでは即座に値を加算する方法だけ作る→unityのforcemode.impulseみたいなやつ)
 	virtual void SetDirection(Vector3 _Dir);		// 方向ベクトルをセット
 	virtual void SetOnGround(bool _flg);			// 接地しているか？
+	virtual void SetIsDelete(bool _flg);			// 削除予定セット
 
 	// 個別の当たり判定もここに追加？オブジェクトの基本となるクラスならここじゃなくて、判定が必要なオブジェクトにそれぞれ追加？
 

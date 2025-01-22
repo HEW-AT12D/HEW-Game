@@ -159,6 +159,8 @@ public:
 	 * @tparam T オブジェクトの型
 	 * @param _tag オブジェクトタグ
 	 * @return 指定した型・タグと同一の情報を持つオブジェクトの配列
+	 * 
+	 * 2025/01/22 赤根：名前振るように作ったけどその仕組みまだ作れてないから使わないかも！！
 	*/
 	template <class T>
 	std::vector<std::weak_ptr<T>> GetObjects(Tag _tag)
@@ -195,11 +197,11 @@ public:
 	/**
 	 * @brief オブジェクト取得関数
 	 * @param _Tag オブジェクトタグ
-	 * @param _Name 付けたい名前
+	 * @param _Name 付けた
 	 * @return オブジェクトの生ポインタ(タグの型にキャストしてから返す)
 	*/
 	template <class T>
-	std::weak_ptr<T> GetGameObject(const Tag& _Tag, const std::string _Name)
+	std::weak_ptr<T> GetGameObject(const Tag& _Tag, const std::string& _Name)
 	{
 		// タグと名前の一致するオブジェクトを見つける(見つからない場合はend()が返ってくる)
 		auto iterator = Objects.find(std::make_pair(_Tag, _Name));

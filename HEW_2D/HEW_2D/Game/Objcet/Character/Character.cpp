@@ -1,5 +1,8 @@
 #include "Character.h"
 
+//-------------------------------------------
+//			移動関連のフラグのゲッター
+//-------------------------------------------
 bool Character::GetMoveUp(void) {
 	return MoveUp;
 }
@@ -20,6 +23,10 @@ bool Character::GetJump(void) {
 	return Jump;
 }
 
+
+//-------------------------------------------
+//			移動関連のフラグのセッター
+//-------------------------------------------
 void Character::SetMoveUp(bool _flg) {
 	MoveUp = _flg;
 }
@@ -39,7 +46,6 @@ void Character::SetMoveRight(bool _flg) {
 void Character::SetJump(bool _flg) {
 	Jump = _flg;
 }
-
 
 void Character::Update(void)
 {

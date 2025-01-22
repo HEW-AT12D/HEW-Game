@@ -174,6 +174,11 @@ void GameObject::SetOnGround(bool _flg) {
 	OnGround = _flg;
 }
 
+void GameObject::SetIsDelete(bool _flg)
+{
+	IsDelete = _flg;
+}
+
 /**
  * @brief アニメーション遷移関数
  * ここでは通常のアニメーションのみを定義し、各派生クラスで各々のアニメーション処理を定義する

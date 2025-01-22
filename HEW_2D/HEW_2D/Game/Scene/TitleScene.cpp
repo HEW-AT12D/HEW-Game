@@ -147,6 +147,7 @@ void TitleScene::Update(void)
 	ColliderPlayer_Ground(playerShared, groundShared);
 	Collider_toGround(objectmanager.GetGameObject<Magazine>(OBJECT, "Magazine"), objectmanager.GetGameObject<GameObject>(OBJECT, "Ground"));
 
+
 	objectmanager.Update();
 	
 }

@@ -41,7 +41,7 @@ public:
 	~Player() {};
 	
 	void Update(void) override;		// プレイヤー固有の入力はここで取得する
-	//void Draw(void) override;		// 擬音使用で描画方法変更があった場合用に宣言
+	void Draw(void) override;		// 擬音使用で描画方法変更があった場合用に宣言
 	void Animation(STATE _Anim_Name);	// プレイヤー個別のアニメーション関数
 
 private:
