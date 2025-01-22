@@ -10,10 +10,9 @@
  *
  * シーンごとに初期化は最初の一度のみ
  * →
+ * 
+ * ステージは、縦２０マス＊横４０マス
 */
-
-
-
 void TitleScene::Init(void) {
 	// オブジェクトマネージャ初期化
 	objectmanager.Init();
@@ -51,7 +50,7 @@ void TitleScene::Init(void) {
 	objectmanager.AddObject<GameObject>(OBJECT, "Ground");
 	objectmanager.GetGameObject<GameObject>(OBJECT, "Ground").lock()->Init(L"Game/Asset/GameObject/Ground.png");
 	objectmanager.GetGameObject<GameObject>(OBJECT, "Ground").lock()->SetPosition(Vector3(0.0f, -400.0f, 0.0f));
-	objectmanager.GetGameObject<GameObject>(OBJECT, "Ground").lock()->SetScale(Vector3(1200.0f, 120.0f, 0.0f));
+	objectmanager.GetGameObject<GameObject>(OBJECT, "Ground").lock()->SetScale(Vector3(1920.0f, 120.0f, 0.0f));
 
 	//// UI1(ボタン)
 	//objectmanager.AddObject<GameObject>(UI, "StartButton");

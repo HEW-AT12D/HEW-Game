@@ -5,6 +5,16 @@
 //! -----------設計メモ：ISceneを作った後の話-----------------
 //! シーンクラスはテンプレートにして、基底クラスとしてISceneを持たせとくべきじゃない？？
 
+
+enum FRAME {
+	FRAME1,
+	FRAME2,
+	FRAME3,
+	FRAME4,
+
+	FRAME_MAX
+};
+
 /**
  * @brief シーンの抽象クラス
  *
@@ -17,7 +27,9 @@
 class IScene
 {
 public:
-	IScene(D3D11& _D3d11) :objectmanager(_D3d11) {};
+	IScene(D3D11& _D3d11) :objectmanager(_D3d11) {
+		m_Frame = FRAME1;
+	};
 
 	virtual ~IScene() {};
 
@@ -31,5 +43,7 @@ public:
 
 protected:
 	ObjectManager objectmanager;
-	bool ChangeScene = false;
+	FRAME m_Frame;				// 現在フレーム
+	bool ChangeScene = false;	// シーン切り替えフラグ
+	bool ChangeFrame = false;	// フレーム切り替えフラグ
 };
