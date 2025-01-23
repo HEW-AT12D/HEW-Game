@@ -92,7 +92,8 @@ void Player::Update(void)
 	else {
 		// 接地していればジャンプ中ではない
 		Jumping = false;
-		// 通常時アニメーションへ変更
+		// 通常時アニメーションへ変更(立ち止まってる時にアニメーションはしたくないので、一番自然な状態の画像に設定)
+		m_Number.y = 0;			// 2025/01/23 赤根: なぜか二枚目のほうに設定されるけど違和感はマシになったので一旦これで置いとく
 	}
 	
 	// 移動処理
@@ -120,8 +121,8 @@ void Player::Draw(void)
 /**
  * @brief アニメーション関数
  * @param どのアニメーションを再生するかの列挙型
- * ジャンプ中に移動しちゃうと移動アニメーションが優先されてしまうのでそこ直したい
  * 接地したときに左右移動キー押さないと通常時に戻らないのでそこも直す
+ * TODO:2025/01/21 左向きに移動したときの処理がまだ！！！！！！！！！！！！！！
 */
 void Player::Animation(STATE _Anim_Name)
 {
@@ -141,7 +142,6 @@ void Player::Animation(STATE _Anim_Name)
 		break;
 	case RUN:
 		// 通常移動時
-		//TODO:2025/01/21 左向きに移動したときの処理がまだ！！！！！！！！！！！！！！
 		this->m_Number.y = 0;	// 一番上の段を使う
 
 		// フレーム数加算
@@ -211,7 +211,6 @@ void Player::Animation(STATE _Anim_Name)
 		}
 
 		break;
-
 	// ↓は画像内ので今のところ実装予定なし
 	case DAMAGED:
 		break;

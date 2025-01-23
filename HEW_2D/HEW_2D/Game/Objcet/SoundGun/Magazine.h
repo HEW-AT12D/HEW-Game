@@ -35,7 +35,8 @@ public:
 
 	~Magazine() {};
 
-	void Update(void) override;
+	void Update(void) override;		// 擬音の状態などをこっちで管理するためにオーバーライド
+	void Draw(void) override;		// 擬音装填したときにそれも描画するのでオーバーライド
 	// マガジンに入った場合、その擬音の所有権はマガジンに移るはずなのでunique_ptr
 	void SetOnomatopoeia(std::unique_ptr<IOnomatopoeia>&& _onomatopoeia);
 
