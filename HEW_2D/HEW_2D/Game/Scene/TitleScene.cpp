@@ -42,9 +42,9 @@ void TitleScene::Init(void) {
 	
 	// É}ÉKÉWÉì
 	objectmanager.AddObject<Magazine>(OBJECT, "Magazine");
-	objectmanager.GetGameObject<GameObject>(OBJECT, "Magazine").lock()->Init(L"Game/Asset/GameObject/Magazine.png");
-	objectmanager.GetGameObject<GameObject>(OBJECT, "Magazine").lock()->SetPosition(Vector3(0.0f, 0.0f, 0.0f));
-	objectmanager.GetGameObject<GameObject>(OBJECT, "Magazine").lock()->SetScale(Vector3(90.0f, 90.0f, 0.0f));
+	objectmanager.GetGameObject<Magazine>(OBJECT, "Magazine").lock()->Init(L"Game/Asset/GameObject/Magazine.png");
+	objectmanager.GetGameObject<Magazine>(OBJECT, "Magazine").lock()->SetPosition(Vector3(0.0f, 0.0f, 0.0f));
+	objectmanager.GetGameObject<Magazine>(OBJECT, "Magazine").lock()->SetScale(Vector3(90.0f, 90.0f, 0.0f));
 
 	// ínñ 
 	objectmanager.AddObject<GameObject>(OBJECT, "Ground");
@@ -145,7 +145,7 @@ void TitleScene::Update(void)
 	auto playerShared = objectmanager.GetGameObject<Player>(PLAYER, "Player");
 	auto groundShared = objectmanager.GetGameObject<GameObject>(OBJECT, "Ground");
 	ColliderPlayer_Ground(playerShared, groundShared);
-	Collider_toGround(objectmanager.GetGameObject<Magazine>(OBJECT, "Magazine"), objectmanager.GetGameObject<GameObject>(OBJECT, "Ground"));
+	Collider_toGround(objectmanager.GetGameObject<Magazine>(OBJECT, "Magazine"), groundShared);
 
 
 	objectmanager.Update();

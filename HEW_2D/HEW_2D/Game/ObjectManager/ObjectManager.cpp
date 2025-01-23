@@ -1,5 +1,5 @@
 #include "ObjectManager.h"
-
+#include "../../Framework/Component/Collider/BoxCollider2D/Collider.h"
 
 size_t ObjectManager::GetObjectCount(void)
 {
@@ -18,6 +18,51 @@ void ObjectManager::DeleteObject(Tag _ObjName) {
 		//Objects.(_ObjName);
 	}
 }
+
+
+/**
+ * @brief プレイヤーと何かの当たり判定
+ * 
+ * 
+*/
+void ObjectManager::Collider_Player_to_Object(void)
+{
+	// プレイヤー取得
+	auto playerobj = GetGameObject<Player>(PLAYER, "Player");
+	
+	// プレイヤーと当たったオブジェクトを確認
+	for (auto& obj : Objects) {
+		// タグが地面、オブジェクト、敵のものだけ当たり判定を取る
+		switch (obj.first.first)
+		{
+		// オブジェクトが地面なら
+		case BACKGROUND:
+			// 地面との当たり判定を取る
+			ColliderPlayer_Ground(playerobj, obj.second);
+			break;
+		case IMAGE:
+			// 画像は当たり判定を取らない
+			break;
+		case UI:
+			// UIも判定を取らない
+			break;
+		case OBJECT:
+			break;
+		case GROUND:
+			break;
+		case PLAYER:
+			break;
+		case ENEMY:
+			break;
+		default:
+			break;
+		}
+		
+	}
+
+}
+
+
 
 /**
  * @brief オブジェクト初期化

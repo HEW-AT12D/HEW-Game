@@ -43,8 +43,20 @@ bool Collider_toGround(std::weak_ptr<T> obj1, std::weak_ptr<GameObject> obj2)
 	}
 }
 
-template <class T>
-//void Collider_Player_to_Object(std::weak_ptr<Player> _player,std::vector<>)
+
+/**
+ * @brief プレイヤーとオブジェクトの当たり判定
+ * @param _player プレイヤー
+ * @param _objects オブジェクトのvector
+*/
+void Collider_Player_to_Object(std::weak_ptr<Player> _player, std::vector<std::weak_ptr<GameObject>> _objects);
+
+/**
+ * @brief プレイヤーとマガジンの当たり判定
+*/
+void Collider_Player_to_Magazine(std::weak_ptr<Player> obj1, std::weak_ptr<GameObject> obj2);
+
+
 
 bool ColliderPlayer_Gion(GameObject*, GameObject*);//Playerと擬音の当たり判定関数
 

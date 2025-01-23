@@ -14,6 +14,7 @@ enum Tag {
 	IMAGE,
 	UI,
 	OBJECT,
+	GROUND,
 	PLAYER,
 	ENEMY,
 };
@@ -230,6 +231,9 @@ public:
 	 * mapにしてるし、それ以外の場合でもコンテナだからサイズ返す必要あるか？
 	*/
 	size_t GetObjectCount(void);
+
+
+	void Collider_Player_to_Object(void);
 
 	void Init(void);
 	void Update(void);

@@ -1,5 +1,6 @@
 #pragma once
 #include "../Onomatopeia/IOnomatopoeia/IOnomatopoeia.h"
+#include "../../ObjectManager/ObjectManager.h"
 
 /**
  * @brief 擬音銃に使うマガジンクラス
@@ -38,10 +39,10 @@ public:
 	void Update(void) override;		// 擬音の状態などをこっちで管理するためにオーバーライド
 	void Draw(void) override;		// 擬音装填したときにそれも描画するのでオーバーライド
 	// マガジンに入った場合、その擬音の所有権はマガジンに移るはずなのでunique_ptr
-	void SetOnomatopoeia(std::unique_ptr<IOnomatopoeia>&& _onomatopoeia);
+	//void SetOnomatopoeia(Tag, std::string, std::shared_ptr<GameObject>&& _onomatopoeia);
 
 private:
 	bool IsFlying;		// 飛んでいるか？
-	std::unique_ptr<IOnomatopoeia> m_Onomatopoeia;
+	std::shared_ptr<IOnomatopoeia> m_Onomatopoeia;	
 };
 
