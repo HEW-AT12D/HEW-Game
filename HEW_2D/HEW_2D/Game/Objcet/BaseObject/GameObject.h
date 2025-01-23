@@ -26,6 +26,18 @@
 /// 
 /// </summary> 
 
+/**
+ * @brief オブジェクト管理タグ
+*/
+enum Tag {
+	BACKGROUND,
+	IMAGE,
+	UI,
+	OBJECT,
+	GROUND,
+	PLAYER,
+	ENEMY,
+};
 
 // オブジェクトの状態（ここに全部書き出しておく）
 enum STATE
@@ -112,7 +124,7 @@ protected:
 	std::weak_ptr<GameObject> m_pParent;
 
 	// 子オブジェクトのポインタ(親は子の所有権を持つのでshared_ptrにする)
-	std::vector<std::shared_ptr<GameObject>> m_Children;		// 子は複数存在する可能性があるのでvector
+	std::vector<std::shared_ptr<GameObject>> m_pChildren;		// 子は複数存在する可能性があるのでvector
 
 	// 速度(これは毎フレーム変化する値)
 	Vector3 m_Velocity;
@@ -122,6 +134,12 @@ protected:
 
 	// 移動用方向ベクトル(Transform.Rotaionは回転を扱うものなので別物)
 	Vector3 m_Direction;
+
+	// 名前(一意のもの)
+	std::string m_Name;
+
+	// タグ(オブジェクトの分類)
+	Tag m_Tag;
 
 public:
 	//GameObject() = default;	// クラスのメンバ変数に参照が入っている場合、デフォルトコンストラクタが使えない（初期化が必須となる）
@@ -143,6 +161,7 @@ public:
 	virtual void SetDirection(Vector3 _Dir);		// 方向ベクトルをセット
 	virtual void SetOnGround(bool _flg);			// 接地しているか？
 	virtual void SetIsDelete(bool _flg);			// 削除予定セット
+	virtual void SetChild(const std::weak_ptr<GameObject> _Child);		// 子オブジェクトをセット
 
 	// 個別の当たり判定もここに追加？オブジェクトの基本となるクラスならここじゃなくて、判定が必要なオブジェクトにそれぞれ追加？
 

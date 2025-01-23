@@ -1,11 +1,6 @@
 #include "ObjectManager.h"
 #include "../../Framework/Component/Collider/BoxCollider2D/Collider.h"
 
-size_t ObjectManager::GetObjectCount(void)
-{
-	return Objects.size();
-}
-
 
 /**
  * @brief オブジェクト削除関数
@@ -28,8 +23,12 @@ void ObjectManager::DeleteObject(Tag _ObjName) {
 void ObjectManager::Collider_Player_to_Object(void)
 {
 	// プレイヤー取得
-	auto playerobj = GetGameObject<Player>(PLAYER, "Player");
+	auto playerobj = GetGameObjectPtr<Player>(PLAYER, "Player");
 	
+	// 変更予定のオブジェクトを記録するリスト
+	std::vector<std::pair<std::pair<Tag, std::string>, std::shared_ptr<GameObject>>> toBeUpdated;
+
+
 	// プレイヤーと当たったオブジェクトを確認
 	for (auto& obj : Objects) {
 		// タグが地面、オブジェクト、敵のものだけ当たり判定を取る
@@ -48,7 +47,11 @@ void ObjectManager::Collider_Player_to_Object(void)
 			break;
 		// ゲームオブジェクトなら判定を取る
 		case OBJECT:
-			
+			// ここはマガジンの判定を取っている
+			if (Collider_to_Object(playerobj, obj.second))
+			{
+				toBeUpdated.push_back(obj); // 変更対象を記録
+			}
 			break;
 		case GROUND:
 			break;
@@ -62,6 +65,49 @@ void ObjectManager::Collider_Player_to_Object(void)
 		
 	}
 
+	// 記録した変更対象を処理(マガジン用だが、中身を変えればオブジェクトの削除も可能)
+	for (auto& it : toBeUpdated) {
+		auto mag = std::dynamic_pointer_cast<Magazine>(it.second);
+		if (mag) {
+			// マガジンのタグを変更
+			ChangeTag(it.first.first, it.first.second, UI);
+			// プレイヤーの子オブジェクトに設定
+			playerobj.lock()->SetChild(mag);
+			mag->SetScale(Vector3(50.0f, 50.0f, 0.0f));
+			mag->SetPosition(Vector3(-800.0f, -500.0f, 0.0f));
+		}
+	}
+}
+
+
+/**
+ * @brief タグ変更関数
+ * @param _oldtag 変更前のタグ
+ * @param _name タグを変更したいオブジェクト名
+ * @param _newTag 変更後のタグ
+ * @return 結果
+*/
+bool ObjectManager::ChangeTag(Tag _oldtag, const std::string _name, Tag _newTag)
+{
+	// 現在のキーを作成
+	auto oldKey = std::make_pair(_oldtag, _name);
+
+	// 1. 元のキーでオブジェクトを検索
+	auto it = Objects.find(oldKey);
+	if (it == Objects.end()) {
+		std::cerr << "オブジェクトが見つかりません: " << _name << std::endl;
+		return false;
+	}
+
+	// 2. オブジェクトを取得し、マップから削除
+	auto obj = it->second;
+	Objects.erase(it);
+
+	// 3. 新しいタグで再登録
+	auto newKey = std::make_pair(_newTag, _name);
+	Objects[newKey] = obj;
+
+	return true;
 }
 
 

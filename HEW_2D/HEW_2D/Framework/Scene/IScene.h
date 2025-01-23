@@ -29,6 +29,7 @@ class IScene
 public:
 	IScene(D3D11& _D3d11) :objectmanager(_D3d11) {
 		m_Frame = FRAME1;
+		m_MagCount = 1;
 	};
 
 	virtual ~IScene() {};
@@ -41,9 +42,11 @@ public:
 	void SetChangeScene(bool _Flg);
 	bool GetChangeScene(void);
 
+
 protected:
 	ObjectManager objectmanager;
 	FRAME m_Frame;				// 現在フレーム
 	bool ChangeScene = false;	// シーン切り替えフラグ
 	bool ChangeFrame = false;	// フレーム切り替えフラグ
+	int m_MagCount;				// マガジン数
 };

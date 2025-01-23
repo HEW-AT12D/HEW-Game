@@ -6,19 +6,6 @@
 
 //TODO: いちいちダウンキャストするのめんどくさいから関数にしちゃって、指定した型にダウンキャストしたポインタを返す関数作ったほうがいい
 
-/**
- * @brief オブジェクト管理タグ
-*/
-enum Tag {
-	BACKGROUND,
-	IMAGE,
-	UI,
-	OBJECT,
-	GROUND,
-	PLAYER,
-	ENEMY,
-};
-
 
 /**
  * @brief オブジェクトのmapを管理するために使うstd::pairの二つmapに紐づける関数
@@ -156,7 +143,43 @@ public:
 
 
 	/**
-	 * @brief オブジェクト取得関数(タグ、型指定)
+	 * @brief オブジェクト取得関数
+	 * @tparam T オブジェクトの型
+	 * @param _tag タグ
+	 * @param _name 名前
+	 * @return mapに登録されている状態でのオブジェクト
+	*/
+	template <class T>
+	std::pair<const std::pair<Tag, std::string>, std::shared_ptr<T>> GetGameObject(const Tag& _tag, const std::string& _name)
+	{
+		// 名前とタグを持つオブジェクトを探索
+		//std::pair<std::pair<Tag, std::string>, std::shared_ptr<T>> retobj;
+		for (auto& obj : Objects)
+		{
+			// 名前とタグが一致すれば
+			if (obj.first.first == _tag && obj.first.second == _name)
+			{
+				// ダウンキャストを試みる
+				auto castedObj = std::dynamic_pointer_cast<T>(obj.second);
+				if (castedObj)
+				{
+					// キャスト成功時、適切に返す
+					return std::make_pair(obj.first, castedObj);
+				}
+				else
+				{
+					// キャスト失敗時の処理（例外を投げる、もしくはエラーハンドリング）
+					throw std::runtime_error("指定したオブジェクトの型にキャストできませんでした");
+				}
+			}
+		}
+		// 一致するオブジェクトが見つからない場合
+		throw std::runtime_error("指定されたタグと名前のオブジェクトが見つかりませんでした");
+	}
+
+
+	/**
+	 * @brief オブジェクト取得関数(タグ、型指定してオブジェクトそのもののweak_ptrを返す)
 	 * @tparam T オブジェクトの型
 	 * @param _tag オブジェクトタグ
 	 * @return 指定した型・タグと同一の情報を持つオブジェクトの配列
@@ -202,7 +225,7 @@ public:
 	 * @return オブジェクトの生ポインタ(タグの型にキャストしてから返す)
 	*/
 	template <class T>
-	std::weak_ptr<T> GetGameObject(const Tag& _Tag, const std::string& _Name)
+	std::weak_ptr<T> GetGameObjectPtr(const Tag& _Tag, const std::string& _Name)
 	{
 		// タグと名前の一致するオブジェクトを見つける(見つからない場合はend()が返ってくる)
 		auto iterator = Objects.find(std::make_pair(_Tag, _Name));
@@ -224,13 +247,14 @@ public:
 	}
 
 
-
 	/**
-	 * @brief オブジェクトの数を返す関数
-	 * @return オブジェクト数
-	 * mapにしてるし、それ以外の場合でもコンテナだからサイズ返す必要あるか？
+	 * @brief タグ変更関数
+	 * @param _tag 
+	 * @param _name 
+	 * @param _newTag 
+	 * @return 
 	*/
-	size_t GetObjectCount(void);
+	bool ChangeTag(Tag _tag, const std::string _name, Tag _newTag);
 
 	// 当たり判定確認&場合分けした処理を行う関数
 	void Collider_Player_to_Object(void);
@@ -251,7 +275,7 @@ private:
 	//! オブジェクトの管理はタグ（大まかな分類）と名前（一意のもの）を使う
 
 	// unordered_mapにpairを使う場合、pairの紐づけないといけないためPairHashをmapの引数に入れる
-	std::unordered_map <std::pair<Tag, std::string>, std::shared_ptr<GameObject>, PairHash> Objects;
+	std::unordered_map<std::pair<Tag, std::string>, std::shared_ptr<GameObject>, PairHash> Objects;
 	D3D11& D3d11;
 };
 

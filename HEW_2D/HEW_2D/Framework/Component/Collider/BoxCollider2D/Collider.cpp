@@ -1,6 +1,15 @@
 #include"Collider.h"
 
 
+/////////////////////////////////////////////////////////////////////////////////////////////////
+/// ・基本四角で当たり判定を取る→当たったものが何かを特定さえできればオブジェクトマネージャで側からいじれる
+/// ・オブジェクトが地面に当たったかの関数も必要→今は個別で回してるのでオブジェクトマネージャで回したい
+/// 
+/// 
+/// メモ：BoxColliderにした場合→当たり判定を取り終わったオブジェクトは判定チェックから外すといいかも
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 //PlayerとGroundの当たり判定
 //template <class T, class U>
 bool ColliderPlayer_Ground(std::weak_ptr<Player> obj1, std::weak_ptr<GameObject> obj2)
@@ -39,8 +48,10 @@ bool ColliderPlayer_Ground(std::weak_ptr<Player> obj1, std::weak_ptr<GameObject>
 
 /**
  * @brief プレイヤーとマガジン
+ * 
+ * 今はこっち使わない
 */
-void Collider_Player_to_Magazine(std::weak_ptr<Player> obj1, std::weak_ptr<Magazine> obj2)
+bool Collider_Player_to_Magazine(std::weak_ptr<Player> obj1, std::weak_ptr<Magazine> obj2)
 {
 
 	// ---------------------ここ使いまわせるな？？？？？？？？？？？？？？？？
@@ -57,31 +68,26 @@ void Collider_Player_to_Magazine(std::weak_ptr<Player> obj1, std::weak_ptr<Magaz
 	Ground_Top_Collider = obj2.lock()->GetPosition().y + obj2.lock()->GetScale().y / 2;    //グラウンドの上の当たり判定変数
 	Ground_Bottom_Collider = obj2.lock()->GetPosition().y - obj2.lock()->GetScale().y / 2;//グラウンドの下の当たり判定変数
 
-
-
-
-	//プレイヤーとグラウンドの当たり判定
+	//プレイヤーとマガジンの当たり判定
 	if (Player_Left_Collider < Ground_Right_Collider &&
 		Ground_Left_Collider < Player_Right_Collider &&
 		Player_Bottom_Collider < Ground_Top_Collider &&
 		Player_Top_Collider > Ground_Bottom_Collider)
 	{
-		// 当たったオブジェクトの速度、方向ベクトルをリセットする
-		obj1.lock()->SetDirection(Vector3({ 0.0f }));
-		obj1.lock()->AddForce(Vector3({ 0.0f }));
-		obj1.lock()->SetOnGround(true);
+		return true;
 	}
 	else {
-		obj1.lock()->SetOnGround(false);
+		return false;
 	}
 }
 
 
 
 /**
- * @brief プレイヤーとオブジェクト
+ * @brief プレイヤーとオブジェクトの当たり判定
+ * @return 結果
 */
-void Collider_Player_to_Object(std::weak_ptr<Player> _player, std::vector<std::weak_ptr<GameObject>> _objects) {
+bool Collider_to_Object(std::weak_ptr<Player> _player, std::weak_ptr<GameObject> _object) {
 	float Player_Right_Collider, Player_Left_Collider, Player_Top_Collider, Player_Bottom_Collider;//playerの当たり判定変数
 	float Ground_Right_Collider, Ground_Left_Collider, Ground_Top_Collider, Ground_Bottom_Collider;//groundの当たり判定変数
 
@@ -90,30 +96,65 @@ void Collider_Player_to_Object(std::weak_ptr<Player> _player, std::vector<std::w
 	Player_Top_Collider = _player.lock()->GetPosition().y + _player.lock()->GetScale().y / 2;    //プレイヤーの上当たり判定変数
 	Player_Bottom_Collider = _player.lock()->GetPosition().y - _player.lock()->GetScale().y / 2;//プレイヤーの下当たり判定変数
 
-	// vectorのサイズ分ループ
-	for (auto& obj : _objects) {
-		Ground_Right_Collider = obj.lock()->GetPosition().x + obj.lock()->GetScale().x / 2; //グラウンドの右の当たり判定変数
-		Ground_Left_Collider = obj.lock()->GetPosition().x - obj.lock()->GetScale().x / 2;  //グラウンドの左の当たり判定変数
-		Ground_Top_Collider = obj.lock()->GetPosition().y + obj.lock()->GetScale().y / 2;    //グラウンドの上の当たり判定変数
-		Ground_Bottom_Collider = obj.lock()->GetPosition().y - obj.lock()->GetScale().y / 2;//グラウンドの下の当たり判定変数
+	Ground_Right_Collider = _object.lock()->GetPosition().x + _object.lock()->GetScale().x / 2; //グラウンドの右の当たり判定変数
+	Ground_Left_Collider = _object.lock()->GetPosition().x - _object.lock()->GetScale().x / 2;  //グラウンドの左の当たり判定変数
+	Ground_Top_Collider = _object.lock()->GetPosition().y + _object.lock()->GetScale().y / 2;    //グラウンドの上の当たり判定変数
+	Ground_Bottom_Collider = _object.lock()->GetPosition().y - _object.lock()->GetScale().y / 2;//グラウンドの下の当たり判定変数
 
-		//プレイヤーとオブジェクトの当たり判定
-		if (Player_Left_Collider < Ground_Right_Collider &&
-			Ground_Left_Collider < Player_Right_Collider &&
-			Player_Bottom_Collider < Ground_Top_Collider &&
-			Player_Top_Collider > Ground_Bottom_Collider)
-		{
-			// 当たったオブジェクトが地面であればの速度、方向ベクトルをリセットする
-			_player.lock()->SetDirection(Vector3({ 0.0f }));
-			_player.lock()->AddForce(Vector3({ 0.0f }));
-			_player.lock()->SetOnGround(true);
-		}
-		else {
-			_player.lock()->SetOnGround(false);
-		}
+	//プレイヤーとオブジェクトの当たり判定
+	if (Player_Left_Collider < Ground_Right_Collider &&
+		Ground_Left_Collider < Player_Right_Collider &&
+		Player_Bottom_Collider < Ground_Top_Collider &&
+		Player_Top_Collider > Ground_Bottom_Collider)
+	{
+		return true;
 	}
-	
+	else {
+		return false;
+	}
+
 }
+
+
+
+
+
+/**
+ * @brief プレイヤーとオブジェクト
+*/
+//void Collider_Player_to_Object(std::weak_ptr<Player> _player, std::vector<std::weak_ptr<GameObject>> _objects) {
+//	float Player_Right_Collider, Player_Left_Collider, Player_Top_Collider, Player_Bottom_Collider;//playerの当たり判定変数
+//	float Ground_Right_Collider, Ground_Left_Collider, Ground_Top_Collider, Ground_Bottom_Collider;//groundの当たり判定変数
+//
+//	Player_Right_Collider = _player.lock()->GetPosition().x + _player.lock()->GetScale().x / 2; //プレイヤーの右当たり判定変数
+//	Player_Left_Collider = _player.lock()->GetPosition().x - _player.lock()->GetScale().x / 2;  //プレイヤーの左当たり判定変数
+//	Player_Top_Collider = _player.lock()->GetPosition().y + _player.lock()->GetScale().y / 2;    //プレイヤーの上当たり判定変数
+//	Player_Bottom_Collider = _player.lock()->GetPosition().y - _player.lock()->GetScale().y / 2;//プレイヤーの下当たり判定変数
+//
+//	// vectorのサイズ分ループ
+//	for (auto& obj : _objects) {
+//		Ground_Right_Collider = obj.lock()->GetPosition().x + obj.lock()->GetScale().x / 2; //グラウンドの右の当たり判定変数
+//		Ground_Left_Collider = obj.lock()->GetPosition().x - obj.lock()->GetScale().x / 2;  //グラウンドの左の当たり判定変数
+//		Ground_Top_Collider = obj.lock()->GetPosition().y + obj.lock()->GetScale().y / 2;    //グラウンドの上の当たり判定変数
+//		Ground_Bottom_Collider = obj.lock()->GetPosition().y - obj.lock()->GetScale().y / 2;//グラウンドの下の当たり判定変数
+//
+//		//プレイヤーとオブジェクトの当たり判定
+//		if (Player_Left_Collider < Ground_Right_Collider &&
+//			Ground_Left_Collider < Player_Right_Collider &&
+//			Player_Bottom_Collider < Ground_Top_Collider &&
+//			Player_Top_Collider > Ground_Bottom_Collider)
+//		{
+//			// 当たったオブジェクトが地面であればの速度、方向ベクトルをリセットする
+//			_player.lock()->SetDirection(Vector3({ 0.0f }));
+//			_player.lock()->AddForce(Vector3({ 0.0f }));
+//			_player.lock()->SetOnGround(true);
+//		}
+//		else {
+//			_player.lock()->SetOnGround(false);
+//		}
+//	}
+//	
+//}
 
 
 
