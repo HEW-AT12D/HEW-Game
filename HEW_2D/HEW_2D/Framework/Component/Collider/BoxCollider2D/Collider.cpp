@@ -37,13 +37,49 @@ bool ColliderPlayer_Ground(std::weak_ptr<Player> obj1, std::weak_ptr<GameObject>
 }
 
 
+/**
+ * @brief プレイヤーとマガジン
+*/
+void Collider_Player_to_Magazine(std::weak_ptr<Player> obj1, std::weak_ptr<Magazine> obj2)
+{
+
+	// ---------------------ここ使いまわせるな？？？？？？？？？？？？？？？？
+	float Player_Right_Collider, Player_Left_Collider, Player_Top_Collider, Player_Bottom_Collider;//playerの当たり判定変数
+	float Ground_Right_Collider, Ground_Left_Collider, Ground_Top_Collider, Ground_Bottom_Collider;//groundの当たり判定変数
+
+	Player_Right_Collider = obj1.lock()->GetPosition().x + obj1.lock()->GetScale().x / 2; //プレイヤーの右当たり判定変数
+	Player_Left_Collider = obj1.lock()->GetPosition().x - obj1.lock()->GetScale().x / 2;  //プレイヤーの左当たり判定変数
+	Player_Top_Collider = obj1.lock()->GetPosition().y + obj1.lock()->GetScale().y / 2;    //プレイヤーの上当たり判定変数
+	Player_Bottom_Collider = obj1.lock()->GetPosition().y - obj1.lock()->GetScale().y / 2;//プレイヤーの下当たり判定変数
+
+	Ground_Right_Collider = obj2.lock()->GetPosition().x + obj2.lock()->GetScale().x / 2; //グラウンドの右の当たり判定変数
+	Ground_Left_Collider = obj2.lock()->GetPosition().x - obj2.lock()->GetScale().x / 2;  //グラウンドの左の当たり判定変数
+	Ground_Top_Collider = obj2.lock()->GetPosition().y + obj2.lock()->GetScale().y / 2;    //グラウンドの上の当たり判定変数
+	Ground_Bottom_Collider = obj2.lock()->GetPosition().y - obj2.lock()->GetScale().y / 2;//グラウンドの下の当たり判定変数
+
+
+
+
+	//プレイヤーとグラウンドの当たり判定
+	if (Player_Left_Collider < Ground_Right_Collider &&
+		Ground_Left_Collider < Player_Right_Collider &&
+		Player_Bottom_Collider < Ground_Top_Collider &&
+		Player_Top_Collider > Ground_Bottom_Collider)
+	{
+		// 当たったオブジェクトの速度、方向ベクトルをリセットする
+		obj1.lock()->SetDirection(Vector3({ 0.0f }));
+		obj1.lock()->AddForce(Vector3({ 0.0f }));
+		obj1.lock()->SetOnGround(true);
+	}
+	else {
+		obj1.lock()->SetOnGround(false);
+	}
+}
 
 
 
 /**
  * @brief プレイヤーとオブジェクト
- * @param _player 
- * @param _objects 
 */
 void Collider_Player_to_Object(std::weak_ptr<Player> _player, std::vector<std::weak_ptr<GameObject>> _objects) {
 	float Player_Right_Collider, Player_Left_Collider, Player_Top_Collider, Player_Bottom_Collider;//playerの当たり判定変数

@@ -40,13 +40,15 @@ void ObjectManager::Collider_Player_to_Object(void)
 			// 地面との当たり判定を取る
 			ColliderPlayer_Ground(playerobj, obj.second);
 			break;
+		// 画像は当たり判定を取らない
 		case IMAGE:
-			// 画像は当たり判定を取らない
 			break;
+		// UIも判定を取らない
 		case UI:
-			// UIも判定を取らない
 			break;
+		// ゲームオブジェクトなら判定を取る
 		case OBJECT:
+			
 			break;
 		case GROUND:
 			break;

@@ -54,7 +54,7 @@ void Collider_Player_to_Object(std::weak_ptr<Player> _player, std::vector<std::w
 /**
  * @brief プレイヤーとマガジンの当たり判定
 */
-void Collider_Player_to_Magazine(std::weak_ptr<Player> obj1, std::weak_ptr<GameObject> obj2);
+void Collider_Player_to_Magazine(std::weak_ptr<Player> obj1, std::weak_ptr<Magazine> obj2);
 
 
 

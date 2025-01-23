@@ -232,7 +232,7 @@ public:
 	*/
 	size_t GetObjectCount(void);
 
-
+	// “–‚½‚è”»’èŠm”F&ê‡•ª‚¯‚µ‚½ˆ—‚ğs‚¤ŠÖ”
 	void Collider_Player_to_Object(void);
 
 	void Init(void);
