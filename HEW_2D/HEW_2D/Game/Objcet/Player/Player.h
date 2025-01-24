@@ -44,11 +44,13 @@ public:
 	void Draw(void) override;		// 擬音使用で描画方法変更があった場合用に宣言
 	void Animation(STATE _Anim_Name);	// プレイヤー個別のアニメーション関数
 
+	void SetChild(std::pair<std::pair<Tag, std::string>, std::shared_ptr<GameObject>>_child) override;
+
 	// マガジンを取得したときに、UIとして表示する座標を設定したい→既に取得してUIとして表示されているマガジンの座標横に配置する→マガジンの座標が欲しい
-	//void SetMagazine()		
+	void SetMagazine(std::shared_ptr<Magazine> _mag);
 
 private:
 	//SoundGun Soundgun;					// 擬音銃,Soundgun(_D3d11)
-	//std::vector<Magazine> Magazines;	// マガジン（可変長）
+	std::vector<Magazine> Magazines;	// マガジン（可変長）
 };
 

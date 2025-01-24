@@ -121,10 +121,10 @@ protected:
 	bool IsDelete = false;
 
 	// 親オブジェクトのポインタ(子は親の所有権は持たないのでweak_ptrでおｋ)
-	std::weak_ptr<GameObject> m_pParent;
+	std::pair<std::pair<Tag, std::string>, std::weak_ptr<GameObject>> m_pParent;
 
 	// 子オブジェクトのポインタ(親は子の所有権を持つのでshared_ptrにする)
-	std::vector<std::shared_ptr<GameObject>> m_pChildren;		// 子は複数存在する可能性があるのでvector
+	std::vector<std::pair<std::pair<Tag, std::string>, std::shared_ptr<GameObject>>> m_pChildren;		// 子は複数存在する可能性があるのでvector
 
 	// 速度(これは毎フレーム変化する値)
 	Vector3 m_Velocity;
@@ -156,6 +156,7 @@ public:
 	virtual void SetColor(const Vector4 _Color);	// 色をセット
 	virtual void SetUV(const Vector2 _UV);			// UV座標をセット
 	//virtual void Animation(STATE,Vector2);		// アニメーション
+	// TODO:2025/01/24 赤根:プレイヤーに親子関係を持たせる際の関数の引数にタグと名前を入れるように変更する→プレイヤー側でオーバーライドして、タグがマガジンであればタグを変更、にしようと思ったが、それだとオブジェクトマネージャの管理外での処理が発生するかも→オブジェクトにはオブジェクトのポインタだけを持たせたほうが良いかも
 	virtual void SetParent(const std::weak_ptr<GameObject> _Parent);	// 親オブジェクトをセット
 	virtual void AddForce(const Vector3 _Vel);		// 速度をセット(ここでは即座に値を加算する方法だけ作る→unityのforcemode.impulseみたいなやつ)
 	virtual void SetDirection(Vector3 _Dir);		// 方向ベクトルをセット

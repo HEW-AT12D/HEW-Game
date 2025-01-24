@@ -42,19 +42,29 @@ void TitleScene::Init(void) {
 	
 	// マガジン(二個持った状態でスタート、落ちてるのは一個だけ)
 	// 一個目
-	objectmanager.AddObject<Magazine>(OBJECT, "Magazine1");
+	objectmanager.AddObject<Magazine>(UI, "Magazine1");
 	objectmanager.GetGameObjectPtr<Magazine>(UI, "Magazine1").lock()->Init(L"Game/Asset/GameObject/Magazine.png");
-	objectmanager.GetGameObjectPtr<Magazine>(OBJECT, "Magazine1").lock()->SetPosition(Vector3(0.0f, 0.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<Magazine>(OBJECT, "Magazine1").lock()->SetScale(Vector3(90.0f, 90.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<Magazine>(UI, "Magazine1").lock()->SetPosition(Vector3(0.0f, 0.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<Magazine>(UI, "Magazine1").lock()->SetScale(Vector3(90.0f, 90.0f, 0.0f));
 	// 二個目
-	objectmanager.AddObject<Magazine>(OBJECT, "Magazine2");
-	objectmanager.GetGameObjectPtr<Magazine>(OBJECT, "Magazine2").lock()->Init(L"Game/Asset/GameObject/Magazine.png");
-	objectmanager.GetGameObjectPtr<Magazine>(OBJECT, "Magazine2").lock()->SetPosition(Vector3(0.0f, 0.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<Magazine>(OBJECT, "Magazine2").lock()->SetScale(Vector3(90.0f, 90.0f, 0.0f));
+	objectmanager.AddObject<Magazine>(UI, "Magazine2");
+	objectmanager.GetGameObjectPtr<Magazine>(UI, "Magazine2").lock()->Init(L"Game/Asset/GameObject/Magazine.png");
+	objectmanager.GetGameObjectPtr<Magazine>(UI, "Magazine2").lock()->SetPosition(Vector3(0.0f, 0.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<Magazine>(UI, "Magazine2").lock()->SetScale(Vector3(90.0f, 90.0f, 0.0f));
 
 	// 二つは子オブジェクトに設定してUIに変更しておく
 	objectmanager.GetGameObject<Player>(PLAYER, "Player").second->SetChild(objectmanager.GetGameObjectPtr<Magazine>(OBJECT, "Magazine1"));
+	
+	// 変更するべきこと→取得したマガジンをしっかり自身の所有オブジェクトとして設定する
+	// →
+	//objectmanager.GetGameObject<Player>(PLAYER, "Player").second->Set
 	objectmanager.GetGameObject<Player>(PLAYER, "Player").second->SetChild(objectmanager.GetGameObjectPtr<Magazine>(OBJECT, "Magazine2"));
+
+	// 三個目
+	objectmanager.AddObject<Magazine>(OBJECT, "Magazine3");
+	objectmanager.GetGameObjectPtr<Magazine>(OBJECT, "Magazine3").lock()->Init(L"Game/Asset/GameObject/Magazine.png");
+	objectmanager.GetGameObjectPtr<Magazine>(OBJECT, "Magazine3").lock()->SetPosition(Vector3(400.0f, -400.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<Magazine>(OBJECT, "Magazine3").lock()->SetScale(Vector3(90.0f, 90.0f, 0.0f));
 
 	// 地面
 	objectmanager.AddObject<GameObject>(OBJECT, "Ground");
@@ -163,12 +173,12 @@ void TitleScene::Update(void)
 		// １つのシーンに落ちてるマガジン数は一個なので、シーンの持つマガジンカウントが１ならまだ当たっていない
 		// →判定チェックする
 
-		auto magShared = objectmanager.GetGameObject<Magazine>(OBJECT, "Magazine");
+		auto magShared = objectmanager.GetGameObject<Magazine>(OBJECT, "Magazine3");
 
 		// マガジンと地面
 		Collider_toGround(std::weak_ptr<Magazine>(magShared.second), groundShared);
 		// プレイヤーとマガジンが当たったら
-		if (Collider_Player_to_Magazine(playerShared, objectmanager.GetGameObjectPtr<Magazine>(OBJECT, "Magazine")))
+		if (Collider_Player_to_Magazine(playerShared, objectmanager.GetGameObjectPtr<Magazine>(OBJECT, "Magazine3")))
 		{
 			// マガジンのタグを変更
 			objectmanager.ChangeTag(magShared.first.first, magShared.first.second, UI);
