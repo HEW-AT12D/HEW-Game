@@ -161,10 +161,10 @@ void GameObject::SetParent(const std::weak_ptr<GameObject> _Parent)
 	m_pParent = _Parent;
 }
 
-void GameObject::SetChild(const std::weak_ptr<GameObject> _Child)
+void GameObject::SetChild(const std::shared_ptr<GameObject> _Child)
 {
 	// 子オブジェクトを追加
-	m_pChildren.push_back(_Child.lock());
+	m_pChildren.push_back(_Child);
 }
 
 void GameObject::AddForce(Vector3 _Vel)

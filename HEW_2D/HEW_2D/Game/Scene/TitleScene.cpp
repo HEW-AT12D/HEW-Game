@@ -1,7 +1,6 @@
 #include "TitleScene.h"
 #include "../../Game/Objcet/Player/Player.h"
 #include "../../Framework/Input/Input.h"
-#include "../../Game/Objcet/SoundGun/SoundGun.h"
 #include "../../Framework/Component/Collider/BoxCollider2D/Collider.h"
 
 
@@ -53,12 +52,12 @@ void TitleScene::Init(void) {
 	objectmanager.GetGameObjectPtr<Magazine>(UI, "Magazine2").lock()->SetScale(Vector3(90.0f, 90.0f, 0.0f));
 
 	// 二つは子オブジェクトに設定してUIに変更しておく
-	objectmanager.GetGameObject<Player>(PLAYER, "Player").second->SetChild(objectmanager.GetGameObjectPtr<Magazine>(OBJECT, "Magazine1"));
+	objectmanager.GetGameObject<Player>(PLAYER, "Player").second->SetChild(objectmanager.GetGameObject<Magazine>(UI, "Magazine1").second);
 	
 	// 変更するべきこと→取得したマガジンをしっかり自身の所有オブジェクトとして設定する
 	// →
 	//objectmanager.GetGameObject<Player>(PLAYER, "Player").second->Set
-	objectmanager.GetGameObject<Player>(PLAYER, "Player").second->SetChild(objectmanager.GetGameObjectPtr<Magazine>(OBJECT, "Magazine2"));
+	objectmanager.GetGameObject<Player>(PLAYER, "Player").second->SetChild(objectmanager.GetGameObject<Magazine>(UI, "Magazine2").second);
 
 	// 三個目
 	objectmanager.AddObject<Magazine>(OBJECT, "Magazine3");

@@ -43,6 +43,6 @@ public:
 
 private:
 	bool IsFlying;		// îÚÇÒÇ≈Ç¢ÇÈÇ©ÅH
-	std::shared_ptr<IOnomatopoeia> m_Onomatopoeia;	
+	std::shared_ptr<IOnomatopoeia> m_Onomatopoeia;
 };
 

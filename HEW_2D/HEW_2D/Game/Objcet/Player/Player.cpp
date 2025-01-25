@@ -221,3 +221,30 @@ void Player::Animation(STATE _Anim_Name)
 		break;
 	}
 }
+
+
+/**
+ * @brief 子オブジェクトをセット
+ * @param _child 子オブジェクトのポインタ
+ * 
+ * 〇マガジン取得の流れ
+ * 　・マガジンを拾う→タグをUIに変更→
+*/
+void Player::SetChild(std::shared_ptr<GameObject> _child)
+{
+	auto casted = std::dynamic_pointer_cast<Magazine>(_child);
+	// 設定する子オブジェクトがマガジンであれば(キャストできれば)
+	if (casted)
+	{
+		// プレイヤーのマガジンに追加して
+		Magazines.push_back(casted);
+		// 子オブジェクトとしても設定
+		m_pChildren.push_back(casted);
+	}
+	else
+	{
+		// 子オブジェクトに追加
+		m_pChildren.push_back(_child);
+	}
+
+}

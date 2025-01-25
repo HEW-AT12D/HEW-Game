@@ -219,7 +219,7 @@ public:
 
 
 	/**
-	 * @brief オブジェクト取得関数
+	 * @brief オブジェクト取得関数(weak_ptrを返す)
 	 * @param _Tag オブジェクトタグ
 	 * @param _Name 付けた
 	 * @return オブジェクトの生ポインタ(タグの型にキャストしてから返す)
