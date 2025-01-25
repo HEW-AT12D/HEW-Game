@@ -41,6 +41,7 @@ public:
 		m_Velocity = { 0.0f };
 		m_MoveSpeed = 5.0f;
 		m_JumpPower = 10.0f;
+		IsShot = false;
 	};
 	~Player() {};
 	
@@ -54,6 +55,7 @@ public:
 	//void SetMagazine(std::shared_ptr<Magazine> _mag);
 
 private:
+	bool IsShot;
 	//SoundGun Soundgun;					// ‹[‰¹e,Soundgun(_D3d11)
 	std::vector<std::shared_ptr<Magazine>> Magazines;	// ƒ}ƒKƒWƒ“i‰Â•Ï’·j
 };

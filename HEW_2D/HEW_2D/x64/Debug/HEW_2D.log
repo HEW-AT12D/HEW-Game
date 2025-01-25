@@ -1,2 +1,3 @@
-﻿  TitleScene.cpp
+﻿  Collider.cpp
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.cpp(194,23): warning C4305: '初期化中': 'double' から 'float' へ切り詰めます。
   HEW_2D.vcxproj -> C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\x64\Debug\HEW_2D.exe

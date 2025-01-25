@@ -177,6 +177,7 @@
     <ClCompile Include="Game\ObjectManager\ObjectManager.cpp" />
     <ClCompile Include="Game\SceneManager\SceneManager.cpp" />
     <ClCompile Include="Game\Scene\GameScene.cpp" />
+    <ClCompile Include="Game\Scene\TestScene.cpp" />
     <ClCompile Include="Game\Scene\ResultScene.cpp" />
     <ClCompile Include="Game\Scene\StageSelectScene.cpp" />
     <ClCompile Include="Game\Scene\TitleScene.cpp" />
@@ -220,6 +221,7 @@
     <ClInclude Include="Game\ObjectManager\ObjectManager.h" />
     <ClInclude Include="Game\SceneManager\SceneManager.h" />
     <ClInclude Include="Game\Scene\GameScene.h" />
+    <ClInclude Include="Game\Scene\TestScene.h" />
     <ClInclude Include="Game\Scene\ResultScene.h" />
     <ClInclude Include="Game\Scene\StageSelectScene.h" />
     <ClInclude Include="Game\Scene\TitleScene.h" />

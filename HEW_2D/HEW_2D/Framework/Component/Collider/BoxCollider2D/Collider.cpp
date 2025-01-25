@@ -16,7 +16,7 @@ bool ColliderPlayer_Ground(std::weak_ptr<Player> obj1, std::weak_ptr<GameObject>
 {
 	float Player_Right_Collider, Player_Left_Collider, Player_Top_Collider, Player_Bottom_Collider;//playerの当たり判定変数
 	float Ground_Right_Collider, Ground_Left_Collider, Ground_Top_Collider, Ground_Bottom_Collider;//groundの当たり判定変数
-
+	
 	Player_Right_Collider = obj1.lock()->GetPosition().x + obj1.lock()->GetScale().x / 2; //プレイヤーの右当たり判定変数
 	Player_Left_Collider = obj1.lock()->GetPosition().x - obj1.lock()->GetScale().x / 2;  //プレイヤーの左当たり判定変数
 	Player_Top_Collider = obj1.lock()->GetPosition().y + obj1.lock()->GetScale().y / 2;    //プレイヤーの上当たり判定変数
@@ -194,7 +194,7 @@ bool ColliderFan_Gion(GameObject* fan, GameObject* gion)
 	float PI = 3.14159265;
 	float fanAngle = PI / 6;
 	//扇型の情報取得
-	float fanCenterX = fan->GetPosition().x - 30;   //扇型の中心X座標
+	float fanCenterX = fan->GetPosition().x + 200;   //扇型の中心X座標
 	float fanCenterY = fan->GetPosition().y;   //扇型の中心Y座標
 	float fanRadius = fan->GetScale().x / 2;   //扇型の半径（スケールのX方向を使用）
 

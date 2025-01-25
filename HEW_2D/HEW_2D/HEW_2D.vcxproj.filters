@@ -212,6 +212,9 @@
     <ClCompile Include="Game\Objcet\Camera\Camera.cpp">
       <Filter>ゲーム\オブジェクト\カメラ</Filter>
     </ClCompile>
+    <ClCompile Include="Game\Scene\TestScene.cpp">
+      <Filter>ゲーム\シーン</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework\D3D11\D3D11.h">
@@ -309,6 +312,9 @@
     </ClInclude>
     <ClInclude Include="Game\Objcet\Camera\Camera.h">
       <Filter>ゲーム\オブジェクト\カメラ</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Scene\TestScene.h">
+      <Filter>ゲーム\シーン</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
