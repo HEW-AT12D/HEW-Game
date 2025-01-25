@@ -1,3 +1,42 @@
 ﻿  Collider.cpp
 C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.cpp(194,23): warning C4305: '初期化中': 'double' から 'float' へ切り詰めます。
-  HEW_2D.vcxproj -> C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\x64\Debug\HEW_2D.exe
+  Gravity.cpp
+  IScene.cpp
+  Application.cpp
+  Game.cpp
+  main.cpp
+  GameObject.cpp
+  Character.cpp
+  Enemy.cpp
+  BiriBiri.cpp
+  PataPata.cpp
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Objcet\Onomatopeia\PataPata\PataPata.h(14,55): error C2065: 'Player': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Objcet\Onomatopeia\PataPata\PataPata.h(14,46): error C2923: 'std::weak_ptr': 'Player' は、パラメーター '_Ty' の有効な テンプレート 型引数ではありません
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Objcet\Onomatopeia\PataPata\PataPata.h(14,55): message : 'Player' の宣言を確認してください
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Objcet\Onomatopeia\PataPata\PataPata.h(14,46): error C2955: 'std::weak_ptr': クラス テンプレート を使用するには テンプレート 引数リストが必要です
+C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.35.32215\include\memory(2892,1): message : 'std::weak_ptr' の宣言を確認してください
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Objcet\Onomatopeia\PataPata\PataPata.cpp(10,16): error C2511: 'void PataPata::Action(std::weak_ptr<GameObject>,std::weak_ptr<Player>)': オーバーロードされたメンバー関数が 'PataPata' にありません。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Objcet\Onomatopeia\PataPata\PataPata.h(5,7): message : 'PataPata' の宣言を確認してください
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Objcet\Onomatopeia\PataPata\PataPata.cpp(16,6): error C2597: 静的でないメンバー 'PataPata::Collider_check' への参照が正しくありません。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Objcet\Onomatopeia\PataPata\PataPata.h(17,7): message : 'PataPata::Collider_check' の宣言を確認してください
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Objcet\Onomatopeia\PataPata\PataPata.cpp(18,37): error C2597: 静的でないメンバー 'PataPata::Max_altitude' への参照が正しくありません。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Objcet\Onomatopeia\PataPata\PataPata.cpp(18,37): error C3867: 'PataPata::Max_altitude': 非標準の構文です。メンバーにポインタを作成するには '&' を使用してください
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Objcet\Onomatopeia\PataPata\PataPata.cpp(18,37): error C2568: '<=': オーバーロード関数のうち、どれを呼び出すのか決定できません。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Objcet\Onomatopeia\PataPata\PataPata.cpp(31,4): error C2597: 静的でないメンバー 'PataPata::Collider_check' への参照が正しくありません。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Objcet\Onomatopeia\PataPata\PataPata.h(17,7): message : 'PataPata::Collider_check' の宣言を確認してください
+  Poyon.cpp
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Objcet\Onomatopeia\Poyon\Poyon.h(24,7): error C3668: 'Poyon::Action': オーバーライド指定子 'override' を伴うメソッドは、基底クラス メソッドをオーバーライドしませんでした
+  Player.cpp
+  Magazine.cpp
+  SoundGun.cpp
+  ObjectManager.cpp
+  SceneManager.cpp
+  GameScene.cpp
+  TestScene.cpp
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Objcet\Onomatopeia\Poyon\Poyon.h(24,7): error C3668: 'Poyon::Action': オーバーライド指定子 'override' を伴うメソッドは、基底クラス メソッドをオーバーライドしませんでした
+  ResultScene.cpp
+  コードを生成中...
+  コンパイル中...
+  StageSelectScene.cpp
+  TitleScene.cpp
+  コードを生成中...

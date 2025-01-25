@@ -248,3 +248,46 @@ void Player::SetChild(std::shared_ptr<GameObject> _child)
 	}
 
 }
+
+
+
+void Player::Suction(std::weak_ptr<GameObject> _gion_pos, std::weak_ptr<Player> _p_pos)
+{
+	Vector3 gion_pos = _gion_pos.lock()->GetPosition();
+	Vector3 player_pos = _p_pos.lock()->GetPosition();
+	if (gion_pos.x - player_pos.x <= 200)/*Playerと擬音の距離が一定に来たら、擬音が徐々に近づく*/
+	{
+		//ここに、近づくスピードを書く
+		gion_pos.x -= 10;
+		_gion_pos.lock()->SetPosition(gion_pos);
+		std::cout << "吸い込んでます" << std::endl;
+	}
+}
+
+
+void Player::Reverse(std::weak_ptr<GameObject>_gion, std::weak_ptr<Player>_player)
+{
+	Vector3 gion_pos = _gion.lock()->GetPosition();
+	Vector3 player_pos = _player.lock()->GetPosition();
+
+	if (Input::GetInstance().GetKeyRelease(VK_W))
+	{
+		IsShot = true;
+		gion_pos.y = player_pos.y;
+		gion_pos.x = player_pos.x + 100;
+		_gion.lock()->SetPosition(player_pos);
+	}
+
+	if (IsShot == true)
+	{
+		if (gion_pos.x <= 700)
+		{
+			gion_pos.x += 10;
+			_gion.lock()->SetPosition(gion_pos);
+		}
+		else {
+			IsShot = false;
+		}
+	}
+}
+

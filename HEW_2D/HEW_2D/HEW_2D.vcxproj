@@ -169,8 +169,11 @@
     </ClCompile>
     <ClCompile Include="Game\Objcet\Camera\Camera.cpp" />
     <ClCompile Include="Game\Objcet\Character\Character.cpp" />
+    <ClCompile Include="Game\Objcet\Enemy\Enemy.cpp" />
+    <ClCompile Include="Game\Objcet\Onomatopeia\BiriBiri\BiriBiri.cpp" />
     <ClCompile Include="Game\Objcet\Onomatopeia\IOnomatopoeia\IOnomatopoeia.cpp" />
-    <ClCompile Include="Game\Objcet\Onomatopeia\Poyon.cpp" />
+    <ClCompile Include="Game\Objcet\Onomatopeia\PataPata\PataPata.cpp" />
+    <ClCompile Include="Game\Objcet\Onomatopeia\Poyon\Poyon.cpp" />
     <ClCompile Include="Game\Objcet\Player\Player.cpp" />
     <ClCompile Include="Game\Objcet\SoundGun\Magazine.cpp" />
     <ClCompile Include="Game\Objcet\SoundGun\SoundGun.cpp" />
@@ -213,8 +216,11 @@
     </ClInclude>
     <ClInclude Include="Game\Objcet\Camera\Camera.h" />
     <ClInclude Include="Game\Objcet\Character\Character.h" />
+    <ClInclude Include="Game\Objcet\Enemy\Enemy.h" />
+    <ClInclude Include="Game\Objcet\Onomatopeia\BiriBiri\BiriBiri.h" />
     <ClInclude Include="Game\Objcet\Onomatopeia\IOnomatopoeia\IOnomatopoeia.h" />
-    <ClInclude Include="Game\Objcet\Onomatopeia\Poyon.h" />
+    <ClInclude Include="Game\Objcet\Onomatopeia\PataPata\PataPata.h" />
+    <ClInclude Include="Game\Objcet\Onomatopeia\Poyon\Poyon.h" />
     <ClInclude Include="Game\Objcet\Player\Player.h" />
     <ClInclude Include="Game\Objcet\SoundGun\Magazine.h" />
     <ClInclude Include="Game\Objcet\SoundGun\SoundGun.h" />

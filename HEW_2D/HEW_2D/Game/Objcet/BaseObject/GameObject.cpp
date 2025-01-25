@@ -140,7 +140,7 @@ void GameObject::SetRotation(Vector3 _Rot)
 	transform.SetRotation(_Rot);
 }
 
-void GameObject::SetColor(Vector4 _Color)
+void GameObject::SetColor(Color _Color)
 {
 	//色をセットする
 	color.x = _Color.x;
@@ -149,7 +149,7 @@ void GameObject::SetColor(Vector4 _Color)
 	color.w = _Color.w;
 }
 
-void GameObject::SetUV(Vector2 _UV)
+void GameObject::SetUV(Int2 _UV)
 {
 	m_Number.x = _UV.x;
 	m_Number.y = _UV.y;
@@ -233,7 +233,7 @@ Vector3 GameObject::GetRotation(void)
 	return transform.GetRotation();
 }
 
-Vector4 GameObject::GetColor(void)
+Color GameObject::GetColor(void)
 {
 	//色をゲット
 	return color;

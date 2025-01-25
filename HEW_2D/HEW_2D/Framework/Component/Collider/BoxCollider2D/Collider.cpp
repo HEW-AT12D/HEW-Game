@@ -189,24 +189,24 @@ bool ColliderPlayer_Gion(GameObject* player, GameObject* gion)
 
 
 //扇型と擬音の当たり判定
-bool ColliderFan_Gion(GameObject* fan, GameObject* gion)
+bool ColliderFan_Gion(std::weak_ptr<Player> fan, std::weak_ptr<GameObject> gion)
 {
 	float PI = 3.14159265;
 	float fanAngle = PI / 6;
 	//扇型の情報取得
-	float fanCenterX = fan->GetPosition().x + 200;   //扇型の中心X座標
-	float fanCenterY = fan->GetPosition().y;   //扇型の中心Y座標
-	float fanRadius = fan->GetScale().x / 2;   //扇型の半径（スケールのX方向を使用）
+	float fanCenterX = fan.lock()->GetPosition().x + 200;   //扇型の中心X座標
+	float fanCenterY = fan.lock()->GetPosition().y;   //扇型の中心Y座標
+	float fanRadius = fan.lock()->GetScale().x / 2;   //扇型の半径（スケールのX方向を使用）
 
 	//扇型の方向ベクトルを右方向に固定
 	float fanDirX = 1.0f;//右方向の成分
 	float fanDirY = 0.0f;//上方向の成分
 
 	//擬音の情報取得
-	float Gion_Right_Collider = gion->GetPosition().x + gion->GetScale().x / 2; //擬音の右端
-	float Gion_Left_Collider = gion->GetPosition().x - gion->GetScale().x / 2;  //擬音の左端
-	float Gion_Up_Collider = gion->GetPosition().y + gion->GetScale().y / 2;    //擬音の上端
-	float Gion_Bottom_Collider = gion->GetPosition().y - gion->GetScale().y / 2;//擬音の下端
+	float Gion_Right_Collider = gion.lock()->GetPosition().x + gion.lock()->GetScale().x / 2; //擬音の右端
+	float Gion_Left_Collider = gion.lock()->GetPosition().x - gion.lock()->GetScale().x / 2;  //擬音の左端
+	float Gion_Up_Collider = gion.lock()->GetPosition().y + gion.lock()->GetScale().y / 2;    //擬音の上端
+	float Gion_Bottom_Collider = gion.lock()->GetPosition().y - gion.lock()->GetScale().y / 2;//擬音の下端
 
 	//擬音の四つの頂点
 	float vertices[4][2] = {

@@ -11,19 +11,24 @@
  * 
  * ・音のデータ(意味の数だけ)
  * ・擬音一つにつき１つ以上の動きがある
+ * 
+ * ・擬音は付与された親オブジェクトに影響を与える
 */
 class IOnomatopoeia : public GameObject
 {
 public:
+
+	virtual ~IOnomatopoeia() {};
+	// 擬音がオブジェクトに与える動き(ここで画像の動きをいじる)
+	virtual void Action(void) = 0;	// マガジンが親の場合は効果を与えない
+
+protected:
+	// コンストラクタをprotectedにすると派生クラスからしかコンストラクタを動かせない
+	// →このクラスの親クラスのGameObjectクラスは実体を作れるが、このクラスを継承した擬音クラス達はIOnomatopoeiaとして実体を持つことはできなくなる
 	IOnomatopoeia(D3D11 _D3d11) :GameObject(_D3d11) {
 
 	};
-
-	virtual ~IOnomatopoeia() {};
-	virtual void Action(void) = 0;	// 擬音のがオブジェクトに与える動き(ここで画像の動きをいじる)
-
-protected:
-	GameObject* m_AttachedObj;		// 擬音が付与されているオブジェクト
+	// 擬音が付与されているオブジェクトはGameObjectクラスのm_pParentで判断する
 	std::string m_Name;				// 擬音の名前
 };
 

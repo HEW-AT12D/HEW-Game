@@ -114,6 +114,15 @@
     <Filter Include="ゲーム\オブジェクト\カメラ">
       <UniqueIdentifier>{59d1b71c-8ad4-4bb9-941a-c324b57185d6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ゲーム\オブジェクト\スライム">
+      <UniqueIdentifier>{1f4dc30c-4199-4bea-822b-0146243f095b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ゲーム\オブジェクト\擬音銃\擬音\パタパタ">
+      <UniqueIdentifier>{80768643-32d9-4c7f-b210-7ab391e3fb8f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ゲーム\オブジェクト\擬音銃\擬音\ビリビリ">
+      <UniqueIdentifier>{1b8fd550-b846-46eb-8733-29c38851acd3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Framework\Input\Input.cpp">
@@ -197,9 +206,6 @@
     <ClCompile Include="Game\Objcet\Onomatopeia\IOnomatopoeia\IOnomatopoeia.cpp">
       <Filter>ゲーム\オブジェクト\擬音銃\擬音\基本擬音クラス</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Objcet\Onomatopeia\Poyon.cpp">
-      <Filter>ゲーム\オブジェクト\擬音銃\擬音\ポヨン</Filter>
-    </ClCompile>
     <ClCompile Include="Game\Objcet\Character\Character.cpp">
       <Filter>ゲーム\オブジェクト\キャラクター基本クラス</Filter>
     </ClCompile>
@@ -214,6 +220,18 @@
     </ClCompile>
     <ClCompile Include="Game\Scene\TestScene.cpp">
       <Filter>ゲーム\シーン</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Objcet\Enemy\Enemy.cpp">
+      <Filter>ゲーム\オブジェクト\スライム</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Objcet\Onomatopeia\BiriBiri\BiriBiri.cpp">
+      <Filter>ゲーム\オブジェクト\擬音銃\擬音\ビリビリ</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Objcet\Onomatopeia\PataPata\PataPata.cpp">
+      <Filter>ゲーム\オブジェクト\擬音銃\擬音\パタパタ</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Objcet\Onomatopeia\Poyon\Poyon.cpp">
+      <Filter>ゲーム\オブジェクト\擬音銃\擬音\ポヨン</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -295,9 +313,6 @@
     <ClInclude Include="Game\Objcet\Onomatopeia\IOnomatopoeia\IOnomatopoeia.h">
       <Filter>ゲーム\オブジェクト\擬音銃\擬音\基本擬音クラス</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Objcet\Onomatopeia\Poyon.h">
-      <Filter>ゲーム\オブジェクト\擬音銃\擬音\ポヨン</Filter>
-    </ClInclude>
     <ClInclude Include="Game\Objcet\Character\Character.h">
       <Filter>ゲーム\オブジェクト\キャラクター基本クラス</Filter>
     </ClInclude>
@@ -315,6 +330,18 @@
     </ClInclude>
     <ClInclude Include="Game\Scene\TestScene.h">
       <Filter>ゲーム\シーン</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Objcet\Enemy\Enemy.h">
+      <Filter>ゲーム\オブジェクト\スライム</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Objcet\Onomatopeia\BiriBiri\BiriBiri.h">
+      <Filter>ゲーム\オブジェクト\擬音銃\擬音\ビリビリ</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Objcet\Onomatopeia\PataPata\PataPata.h">
+      <Filter>ゲーム\オブジェクト\擬音銃\擬音\パタパタ</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Objcet\Onomatopeia\Poyon\Poyon.h">
+      <Filter>ゲーム\オブジェクト\擬音銃\擬音\ポヨン</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

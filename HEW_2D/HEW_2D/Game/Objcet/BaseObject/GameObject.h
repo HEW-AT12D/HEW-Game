@@ -94,7 +94,7 @@ protected:
 	Transform transform;
 	
 	// 色
-	Vector4 color = { 1.0f, 1.0f, 1.0f, 1.0f };
+	Color color = { 1.0f, 1.0f, 1.0f, 1.0f };
 
 	// 頂点バッファ
 	ID3D11Buffer* m_pVertexBuffer = nullptr;
@@ -153,8 +153,8 @@ public:
 	virtual void SetPosition(Vector3 _Pos);			// 座標をセット
 	virtual void SetScale(Vector3 _Size);			// 大きさをセット
 	virtual void SetRotation(Vector3 _Rot);			// 角度をセット
-	virtual void SetColor(const Vector4 _Color);	// 色をセット
-	virtual void SetUV(const Vector2 _UV);			// UV座標をセット
+	virtual void SetColor(const Color _Color);	// 色をセット
+	virtual void SetUV(const Int2 _UV);			// UV座標をセット
 	//virtual void Animation(STATE,Vector2);		// アニメーション
 	// TODO:2025/01/24 赤根:プレイヤーに親子関係を持たせる際の関数の引数にタグと名前を入れるように変更する→プレイヤー側でオーバーライドして、タグがマガジンであればタグを変更、にしようと思ったが、それだとオブジェクトマネージャの管理外での処理が発生するかも→オブジェクトにはオブジェクトのポインタだけを持たせたほうが良いかも
 	virtual void SetParent(const std::weak_ptr<GameObject> _Parent);	// 親オブジェクトをセット
@@ -169,7 +169,7 @@ public:
 	virtual Vector3 GetPosition(void);		// 座標を取得
 	virtual Vector3 GetScale(void);			// 大きさを取得
 	virtual Vector3 GetRotation(void);		// 角度を取得
-	virtual Vector4 GetColor(void);			// 色を取得
+	virtual Color GetColor(void);			// 色を取得
 	virtual Int2 GetUV(void);				// UV座標を取得
 	virtual Vector3 GetVelocity(void);		// 速度を取得
 	virtual Vector3 GetDirection(void);		// 方向ベクトルを取得

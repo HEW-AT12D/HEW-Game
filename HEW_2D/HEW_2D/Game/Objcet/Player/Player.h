@@ -54,6 +54,9 @@ public:
 	// マガジンを取得したときに、UIとして表示する座標を設定したい→既に取得してUIとして表示されているマガジンの座標横に配置する→マガジンの座標が欲しい
 	//void SetMagazine(std::shared_ptr<Magazine> _mag);
 
+	void Suction(std::weak_ptr<GameObject>, std::weak_ptr<Player>);//吸い込み関数
+	void Reverse(std::weak_ptr<GameObject>, std::weak_ptr<Player>);//擬音の発射関数
+
 private:
 	bool IsShot;
 	//SoundGun Soundgun;					// 擬音銃,Soundgun(_D3d11)

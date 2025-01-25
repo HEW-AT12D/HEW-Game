@@ -1,5 +1,7 @@
 #pragma once
-#include "../Onomatopeia/IOnomatopoeia/IOnomatopoeia.h"
+#include "../IOnomatopoeia/IOnomatopoeia.h"
+#include "../../Player/Player.h"
+
 
 
 /**
@@ -9,19 +11,19 @@
  * Å®velocityÇçÇÇﬂÇÈ
  * Å@Å®ìñÇΩÇ¡ÇΩÇÁíµÇÀï‘Ç∑
 */
+
+
+
 class Poyon : public IOnomatopoeia
 {
 public:
-	Poyon(D3D11 _D3d11) :IOnomatopoeia(_D3d11) {
+	Poyon(D3D11& _D3d11) :IOnomatopoeia(_D3d11) {
 
 	}
 	~Poyon();
-
+	void Action(std::weak_ptr<GameObject>) override;
 private:
 
 };
 
 
-Poyon::~Poyon()
-{
-}
