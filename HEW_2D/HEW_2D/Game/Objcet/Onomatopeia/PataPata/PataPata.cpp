@@ -3,6 +3,21 @@
 #include "../../Player/Player.h"
 
 
+/**
+ * @brief 更新
+ * 
+ * オブジェクトもしくはプレイヤーに付与されている時のみ、毎フレーム少しずつ上に浮き上がり、オブジェクトに付与されているときは少し浮き上がった後下降する、を繰り返
+*/
+void PataPata::Update(void)
+{
+	// この擬音の親オブジェクトが
+	if (true)
+	{
+
+	}
+}
+
+
 void PataPata::Action(void)
 {
 	

@@ -10,10 +10,11 @@
  * 付与されたオブジェクトの弾力を高める
  * →velocityを高める
  * 　→当たったら跳ね返す
+ * 
+ * 
+ * 付与されたオブジェクトに当たったものを弾き返す
+ * →どこに当たってるかを判定して、当たったオブジェクトにその向きの力を加える
 */
-
-
-
 class Poyon : public IOnomatopoeia
 {
 public:
@@ -21,7 +22,7 @@ public:
 
 	}
 	~Poyon();
-	void Action(std::weak_ptr<GameObject>) override;
+	void Action(void) override;
 private:
 
 };

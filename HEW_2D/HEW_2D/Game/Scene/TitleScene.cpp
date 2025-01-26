@@ -183,8 +183,8 @@ void TitleScene::Update(void)
 			objectmanager.ChangeTag(magShared.first.first, magShared.first.second, UI);
 			// プレイヤーの子オブジェクトに設定
 			playerShared.lock()->SetChild(magShared.second);
-			magShared.second->SetScale(Vector3(75.0f, 75.0f, 0.0f));
-			magShared.second->SetPosition(Vector3(-800.0f, -500.0f, 0.0f));
+			/*magShared.second->SetScale(Vector3(75.0f, 75.0f, 0.0f));
+			magShared.second->SetPosition(Vector3(-800.0f, -500.0f, 0.0f));*/
 			m_MagCount = 0;
 		}
 

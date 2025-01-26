@@ -16,18 +16,28 @@
 
 /**
  * @brief 更新
+ * 
+ * 自身のタグがUIなら重力加速度を受けない、とかにしたかった
+ * →無理なので、親オブジェクトがいる場合、重力加速度を受けない、とする
+ * 
+ * 
 */
 void Magazine::Update(void)
 {
-	// 重力加速度
-	if (!OnGround)
+	// 親オブジェクトがいない場合
+	if (!m_pParent.lock())
 	{
-		// 接地していなければ加算
-		m_Velocity.y -= 0.5f;
-	}
-	else {
+		// 重力加速度の影響を受ける
+		if (!OnGround)
+		{
+			// 接地していなければ加算
+			m_Velocity.y -= 0.5f;
+		}
+		else {
 
+		}
 	}
+	
 
 	// 移動処理
 	Vector3 newpos = transform.GetPosition();

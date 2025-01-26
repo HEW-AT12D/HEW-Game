@@ -152,14 +152,24 @@ void ObjectManager::Draw(void) {
 		}
 	}
 
-	// ”wŒiˆÈŠO‚ð•`‰æ
+	// ”wŒi‚ÆUIˆÈŠO‚ð•`‰æ
 	for (auto& obj : Objects)
 	{
-		if (obj.first.first != BACKGROUND)
+		if (obj.first.first != BACKGROUND && obj.first.first != UI)
 		{
 			obj.second->Draw();
 		}
 	}
+
+	// ÅŒã‚ÉUI‚ð•`‰æ
+	for (auto& obj : Objects)
+	{
+		if (obj.first.first == UI)
+		{
+			obj.second->Draw();
+		}
+	}
+
 	D3d11.FinishRender();
 }
 

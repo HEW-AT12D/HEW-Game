@@ -205,7 +205,7 @@ void TestScene::Update(void)
 			//gionShared.lock()->BriBri_check = true;
 			//gionShared.lock()->Action(playerShared);
 
-			gionShared.lock()->Action(playerShared);
+			gionShared.lock()->Action();
 
 		}
 		else {

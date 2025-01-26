@@ -1,9 +1,9 @@
 #include "Poyon.h"
 
-void Poyon::Action(std::weak_ptr<GameObject> player)
+void Poyon::Action(void)
 {
 	//playerをGameObject型→Player型に変更
-	if (auto sharedPlayer = player.lock())
+	if (auto sharedPlayer = m_pParent.lock())
 	{
 		//dynamic_pointer_castを使用して派生クラスにキャスト
 		auto derivedPlayer = std::dynamic_pointer_cast<Player>(sharedPlayer);

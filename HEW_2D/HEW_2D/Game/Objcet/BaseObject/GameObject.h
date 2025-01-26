@@ -74,6 +74,8 @@ struct Int2 {
 /**
  * @brief 基本となるゲームオブジェクトクラス
  * 
+ * std::enable_shared_from_this:自身のshared_ptrを生成するために必要
+ * 
  * 一旦コンポーネント指向ではなくオブジェクト指向で止めておく
  * @param vertices 頂点データ
  * @param d3d11 d3dクラスのポインタ（描画に使用）
@@ -81,7 +83,8 @@ struct Int2 {
  * @param color 色情報
  * 
 */
-class GameObject {
+class GameObject :public std::enable_shared_from_this<GameObject>
+{
 protected:
 	//! 頂点データ
 	//! このゲームでは擬音を吸い込むことがあるため頂点を可変にしておく

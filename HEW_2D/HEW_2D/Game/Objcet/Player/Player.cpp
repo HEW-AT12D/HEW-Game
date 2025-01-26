@@ -118,6 +118,27 @@ void Player::Draw(void)
 	// TODO:ジャンプの先行入力取れてしまうのを直す
 }
 
+/**
+ * @brief 解放処理
+*/
+void Player::Uninit(void)
+{
+	for (auto& mag : m_Magazines) {
+		// マガジンを全て開放
+		mag->Uninit();
+		// 所有権を捨てる
+		mag.reset();
+	}
+	// マガジンのコンテナを空にする
+	m_Magazines.clear();
+	// 擬音銃の解放
+	m_Soundgun->Uninit();
+	// 所有権を捨てる
+	m_Soundgun.reset();
+	// プレイヤーの解放
+	this->GameObject::Uninit();
+}
+
 
 /**
  * @brief アニメーション関数
@@ -228,17 +249,55 @@ void Player::Animation(STATE _Anim_Name)
  * @param _child 子オブジェクトのポインタ
  * 
  * 〇マガジン取得の流れ
- * 　・マガジンを拾う→タグをUIに変更→
+ * 　・マガジンを拾う→タグをUIに変更→大きさと座標を変更、としたい
 */
 void Player::SetChild(std::shared_ptr<GameObject> _child)
 {
-	auto casted = std::dynamic_pointer_cast<Magazine>(_child);
 	// 設定する子オブジェクトがマガジンであれば(キャストできれば)
-	if (casted)
+	if (auto casted = std::dynamic_pointer_cast<Magazine>(_child))
 	{
+		// マガジンの座標とスケールを変更する(ここをマガジン数によって変えたい)
+		// どうする？
+		// →マガジンの大きさをUI向きに変更→マガジン一個の大きさ分だけ右にずらして座標を設定すればいける？→いけた！
+
+		// 大きさを代入
+		casted->SetScale(Vector3(75.0f, 75.0f, 0.0f));
+		// 一個目のマガジン追加の場合、座標を直接設定
+		if (m_Magazines.empty())
+		{
+			// 座標設定
+			casted->SetPosition(Vector3(-800.0f, -500.0f, 0.0f));
+		}
+		// 既にマガジンを一個以上所持している場合は
+		else
+		{
+			// マガジン数を計算
+			size_t magcnt = m_Magazines.size();
+
+			// 描画したい座標を計算
+			Vector3 newMagPos;
+			// X座標はいちばん後ろのマガジンの座標から 追加するマガジンの大きさ / 2した値 を足した座標に表示する
+			newMagPos.x = m_Magazines.back()->GetPosition().x + casted->GetScale().x;
+			// Y座標も同じように設定
+			newMagPos.y = m_Magazines.back()->GetPosition().y ;
+			// 座標を代入
+			casted->SetPosition(newMagPos);
+		}
+
 		// プレイヤーのマガジンに追加して
-		Magazines.push_back(casted);
+		m_Magazines.push_back(casted);
 		// 子オブジェクトとしても設定
+		m_pChildren.push_back(casted);
+
+		// プレイヤーをマガジンの親として設定する
+		// shared_from_thisだけだとGameObject型になるので、Player型にキャストしてから渡す
+		_child->SetParent(std::dynamic_pointer_cast<Player>(shared_from_this()));
+	}
+	// 擬音銃なら
+	else if (auto casted = std::dynamic_pointer_cast<SoundGun>(_child))
+	{
+		// 子オブジェクトに設定
+		m_Soundgun = casted;
 		m_pChildren.push_back(casted);
 	}
 	else
@@ -246,11 +305,14 @@ void Player::SetChild(std::shared_ptr<GameObject> _child)
 		// 子オブジェクトに追加
 		m_pChildren.push_back(_child);
 	}
-
 }
 
 
-
+/**
+ * @brief 擬音吸い込み関数
+ * @param _gion_pos 
+ * @param _p_pos 
+*/
 void Player::Suction(std::weak_ptr<GameObject> _gion_pos, std::weak_ptr<Player> _p_pos)
 {
 	Vector3 gion_pos = _gion_pos.lock()->GetPosition();

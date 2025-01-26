@@ -42,11 +42,22 @@ public:
 		m_MoveSpeed = 5.0f;
 		m_JumpPower = 10.0f;
 		IsShot = false;
+		IsSuction = false;
+		m_Soundgun = nullptr;
+		m_Magazines.clear();
 	};
-	~Player() {};
+
+	/**
+	 * @brief デストラクタ
+	*/
+	~Player() {
+		Uninit();
+	};
 	
 	void Update(void) override;		// プレイヤー固有の入力はここで取得する
 	void Draw(void) override;		// 擬音使用で描画方法変更があった場合用に宣言
+	void Uninit(void) override;		// 解放
+
 	void Animation(STATE _Anim_Name);	// プレイヤー個別のアニメーション関数
 
 	void SetChild(const std::shared_ptr<GameObject> _child) override;
@@ -54,12 +65,15 @@ public:
 	// マガジンを取得したときに、UIとして表示する座標を設定したい→既に取得してUIとして表示されているマガジンの座標横に配置する→マガジンの座標が欲しい
 	//void SetMagazine(std::shared_ptr<Magazine> _mag);
 
-	void Suction(std::weak_ptr<GameObject>, std::weak_ptr<Player>);//吸い込み関数
-	void Reverse(std::weak_ptr<GameObject>, std::weak_ptr<Player>);//擬音の発射関数
+	// TODO:2025/01/27 擬音銃クラスで吸い込み関数作成→プレイヤーの吸い込みではそれを実行し、その関数の戻り値で吸い込んだ擬音を返し、マガジンにセットすれば行けるはず
+	void Suction(std::weak_ptr<GameObject>, std::weak_ptr<Player>);		// 吸い込み関数
+	void Reverse(std::weak_ptr<GameObject>, std::weak_ptr<Player>);		// 擬音の発射関数
 
 private:
-	bool IsShot;
-	//SoundGun Soundgun;					// 擬音銃,Soundgun(_D3d11)
-	std::vector<std::shared_ptr<Magazine>> Magazines;	// マガジン（可変長）
+	bool IsSuction;		// 吸い込み中か？
+	bool IsShot;		// 発射中か？
+	// 擬音銃(吸い込む竜巻画像を持たせるために使う→シェーダーリソースビューとかを配列にすれば画像は複数読み込めたかも)
+	std::shared_ptr<SoundGun> m_Soundgun;
+	std::vector<std::shared_ptr<Magazine>> m_Magazines;	// マガジン（可変長）
 };
 
