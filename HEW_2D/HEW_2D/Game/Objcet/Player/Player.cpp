@@ -147,12 +147,12 @@ void Player::Uninit(void)
 	m_Magazines.clear();
 
 	// 擬音銃の解放
-	m_Soundgun->Uninit();
+	//m_Soundgun->Uninit();   //ここばぐる
 	// 所有権を捨てる
 	m_Soundgun.reset();
 
 	// クロスヘアの解放
-	m_CrossHair->Uninit();
+	//m_CrossHair->Uninit();
 	m_CrossHair.reset();
 
 	// プレイヤーの解放

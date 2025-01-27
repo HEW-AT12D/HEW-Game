@@ -239,6 +239,9 @@
     <ClCompile Include="Game\Objcet\SoundGun\CrossHair.cpp">
       <Filter>ゲーム\オブジェクト\擬音銃\クロスヘア</Filter>
     </ClCompile>
+    <ClCompile Include="Game\Scene\Re_TitleScene.cpp">
+      <Filter>ゲーム\シーン</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework\D3D11\D3D11.h">
@@ -351,6 +354,9 @@
     </ClInclude>
     <ClInclude Include="Game\Objcet\SoundGun\CrossHair.h">
       <Filter>ゲーム\オブジェクト\擬音銃\クロスヘア</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Scene\Re_TitleScene.h">
+      <Filter>ゲーム\シーン</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
