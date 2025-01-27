@@ -67,7 +67,7 @@ void Magazine::Draw(void)
  * @brief 装填されている擬音を返す関数
  * @return 擬音の生ポインタ(所有権の移動はないので生ポを渡して管理する)
 */
-IOnomatopoeia* Magazine::GetBullet(void)
+IOnomatopoeia* Magazine::GetBulletPointer(void)
 {
 	return m_Onomatopoeia.get();
 }

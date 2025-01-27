@@ -50,7 +50,7 @@ public:
 	//void SetOnomatopoeia(Tag, std::string, std::shared_ptr<GameObject>&& _onomatopoeia);
 
 	// ‹[‰¹‚Ìî•ñ‚ğæ“¾
-	IOnomatopoeia* GetBullet(void);
+	IOnomatopoeia* GetBulletPointer(void);
 
 private:
 	bool IsFlying;		// ”ò‚ñ‚Å‚¢‚é‚©H

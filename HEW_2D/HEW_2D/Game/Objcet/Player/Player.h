@@ -69,11 +69,13 @@ public:
 
 	// TODO:2025/01/27 擬音銃クラスで吸い込み関数作成→プレイヤーの吸い込みではそれを実行し、その関数の戻り値で吸い込んだ擬音を返し、マガジンにセットすれば行けるはず
 	void Suction(std::weak_ptr<GameObject>);	// 吸い込み関数
-	void Shot(std::weak_ptr<GameObject>);		// 擬音の発射関数
+	void Shot(void);		// 擬音の発射関数
 
 	void SetIsShot(bool _flg);
 	bool GetIsShot(void);
 
+	// 撃とうとしている(選択されているマガジン内にある)擬音の情報を渡す関数
+	IOnomatopoeia* GetLoadedBullet(void);
 
 
 private:

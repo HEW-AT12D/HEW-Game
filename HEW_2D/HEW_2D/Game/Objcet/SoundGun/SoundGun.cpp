@@ -30,5 +30,5 @@ void SoundGun::Shot(std::shared_ptr<Magazine> _mag)
 	// TODO:2025/01/27 ここで下方向のベクトルを無くしておけば下に落ちることはないはず！
 	// →Playerの発射関数にやること書いてる
 	// 擬音に力を加えてまっすぐ飛ばしたい
-	_mag->GetBullet()->AddForce(velocity);
+	_mag->GetBulletPointer()->AddForce(velocity);
 }

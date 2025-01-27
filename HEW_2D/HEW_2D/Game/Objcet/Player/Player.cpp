@@ -101,6 +101,20 @@ void Player::Update(void)
 	newpos += m_Velocity;		// 方向ベクトルとX成分の移動速度を掛けた値の分だけ毎フレーム進む
 	// 新しい座標を代入
 	transform.SetPosition(newpos);
+
+
+	// 吸い込み処理は引数が必要なのでシーンで直接行う
+	
+	//if (IsSuction)
+	//{
+	//	Suction();
+	//}
+
+	// 発射処理
+	if (IsShot)
+	{
+		Shot();
+	}
 }
 
 
@@ -136,7 +150,7 @@ void Player::Uninit(void)
 	m_Soundgun->Uninit();
 	// 所有権を捨てる
 	m_Soundgun.reset();
-	
+
 	// クロスヘアの解放
 	m_CrossHair->Uninit();
 	m_CrossHair.reset();
@@ -323,11 +337,12 @@ void Player::SetChild(std::shared_ptr<GameObject> _child)
 
 /**
  * @brief 擬音吸い込み関数
- * 
- * 
+ *
+ *
  * シーンで判定した擬音との当たり判定を使って当たった擬音の座標を移動させる
- * 
+ *
  * →その擬音をマガジンに組み込む処理を追加する
+ *  →プレイヤーと当たるまで吸い込んだら、マガジンに追加
  * @param _gion_pos
  * @param _p_pos
 */
@@ -338,7 +353,7 @@ void Player::Suction(std::weak_ptr<GameObject> _gion)
 	Vector3 gion_rot = _gion.lock()->GetRotation();		// 角度
 	Vector3 gion_scale = _gion.lock()->GetScale();		// サイズ
 
-	
+
 	/*Playerと擬音の距離が一定に来たら、擬音が徐々に近づく*/
 	//ここに、近づくスピードを書く
 	gion_pos.x -= 10;
@@ -351,6 +366,7 @@ void Player::Suction(std::weak_ptr<GameObject> _gion)
 	gion_rot.z += 40;
 	_gion.lock()->SetRotation(gion_rot);	// 角度の再設定
 
+	// 吸い込み中は毎フレーム縮小される
 	if (gion_scale.y >= 0)
 	{
 		// サイズを変更して再設定
@@ -364,72 +380,94 @@ void Player::Suction(std::weak_ptr<GameObject> _gion)
 
 /**
  * @brief 擬音銃のエイムの座標を基準に擬音を発射
- * @param _gion 
- * 
+ * @param _gion
+ *
  * やること
  * →クロスヘアを擬音銃の子オブジェクトに設定→入力を取って操作可能にする→プレイヤーの発射関数でそのクロスヘア情報とマガジンに入ってる擬音情報を使えるようにする
- * 
+ *
  * やりたいこと→使う擬音(マガジン)を決める→エイム操作(これはいつでもできるようにする)→発射
 */
-void Player::Shot(std::weak_ptr<GameObject>_gion)
+void Player::Shot(void)
 {
-	//==========================================
-	//=======１月２６日現状======================
-	//Playerの０度～１８０度までしか判定をとれていない
-	//１８０度を超えると＋に変換される（例：２４０度で入力すると、１２０度で発射される）
-	//==============================================================================
-
-
-	Vector3 vertex;			// 
-	float hypotenuse;		// 斜辺の二乗
-	float root_hypotenuse;	// 平方根の計算をした斜辺
-	float Radians;			// 角度
-	float Degrees;			// 度
-	float M_PI;				// 円周率
-
-	//-----------式案----------//
-	//Playerを中心にして,照準を合わせている場所をGetPosで取って,//
-	//エイムして取ったポジションから、垂直に降ろして三点取る//
-
-	//斜辺^2 = エイムして取ったX座標のポジション ^ 2 - (エイムして取ったポジションから、垂直に降ろしたX座標 - PlayerのX座標) ^ 2//
-	//cosθ = (エイムして取ったポジションから、垂直に降ろしたX座標 - PlayerのX座標) / 斜辺
-
-	Vector3 p_aim = m_CrossHair->GetPosition();
-	Vector3 p_player = this->transform.GetPosition();
-	Vector3 p_gion = m_Magazines[UseMagNumber]->GetBullet()->GetPosition();		// 使う擬音の座標
-	vertex.x = p_aim.x - p_player.x;			// 照準とPlayerのX座標の差（底辺）
-	vertex.y = p_aim.y - p_player.y;			// 照準とPlayerのY座標差  （高さ）
-	hypotenuse = (vertex.y * vertex.y) + (vertex.x * vertex.x); //斜辺の計算（底辺の二乗＋高さの二乗＝斜辺の二乗）
-	root_hypotenuse = std::sqrt(hypotenuse);	// 斜辺の平方根の計算
-
-	/*p_aimの位置が
-	  (vertex.y, vertex.x) = ( 1, 1)…第一象限
-	　(vertex.y, vertex.x) = (-1, 1)…第二象限
-	　(vertex.y, vertex.x) = (-1,-1)…第三象限
-	　(vertex.y, vertex.x) = ( 1,-1)…第四象限
-	 って感じ*/
-	Radians = std::atan2(vertex.y, vertex.x); //p_aimのポジションが第何象限にあるか確認
-
-	// 発射したい方向→銃の向く方向を設定
-	// 角度をベクトルに変換
-	Vector3 direction;
-	direction.x = std::cos(Radians);	// ベクトルのX成分
-	direction.y = std::sin(Radians);	// ベクトルのY成分
-
-	// 銃の向きを設定
-	m_Soundgun->SetDirection(direction);
 
 	//発射
 	if (IsShot)
 	{
+		//==========================================
+		//=======１月２６日現状======================
+		//Playerの０度～１８０度までしか判定をとれていない
+		//１８０度を超えると＋に変換される（例：２４０度で入力すると、１２０度で発射される）
+		//==============================================================================
+
+
+		Vector3 vertex;			// 
+		float hypotenuse;		// 斜辺の二乗
+		float root_hypotenuse;	// 平方根の計算をした斜辺
+		float Radians;			// 角度
+		float Degrees;			// 度
+		float M_PI;				// 円周率
+
+		//-----------式案----------//
+		//Playerを中心にして,照準を合わせている場所をGetPosで取って,//
+		//エイムして取ったポジションから、垂直に降ろして三点取る//
+
+		//斜辺^2 = エイムして取ったX座標のポジション ^ 2 - (エイムして取ったポジションから、垂直に降ろしたX座標 - PlayerのX座標) ^ 2//
+		//cosθ = (エイムして取ったポジションから、垂直に降ろしたX座標 - PlayerのX座標) / 斜辺
+
+		Vector3 p_aim = m_CrossHair->GetPosition();				// クロスヘア座標
+		Vector3 p_player = this->transform.GetPosition();		// プレイヤー座標
+		Vector3 p_gion = m_Magazines[UseMagNumber]->GetBulletPointer()->GetPosition();		// 発射する擬音の座標
+		vertex.x = p_aim.x - p_player.x;			// 照準とPlayerのX座標の差（底辺）
+		vertex.y = p_aim.y - p_player.y;			// 照準とPlayerのY座標差  （高さ）
+		hypotenuse = (vertex.y * vertex.y) + (vertex.x * vertex.x); //斜辺の計算（底辺の二乗＋高さの二乗＝斜辺の二乗）
+		root_hypotenuse = std::sqrt(hypotenuse);	// 斜辺の平方根の計算
+
+		/*p_aimの位置が
+		  (vertex.y, vertex.x) = ( 1, 1)…第一象限
+		　(vertex.y, vertex.x) = (-1, 1)…第二象限
+		　(vertex.y, vertex.x) = (-1,-1)…第三象限
+		　(vertex.y, vertex.x) = ( 1,-1)…第四象限
+		 って感じ*/
+		Radians = std::atan2(vertex.y, vertex.x); //p_aimのポジションが第何象限にあるか確認
+
+		// 発射したい方向→銃の向く方向を設定
+		// 角度をベクトルに変換
+		Vector3 direction;
+		direction.x = std::cos(Radians);	// ベクトルのX成分
+		direction.y = std::sin(Radians);	// ベクトルのY成分
+
+		// 銃の向きを設定
+		m_Soundgun->SetDirection(direction);
+
+
+
+		// ここから下は毎フレーム呼び出す前提で書かれているので変更が必要
+
 		// 擬音銃の発射関数を呼び出す→毎フレーム呼び出す想定で書かれてる
 		/*p_gion.x += directionX * 5;
 		p_gion.y += directionY * 5;*/
-		_gion.lock()->SetPosition(p_gion);
+		
+		// 擬音の座標を設定
+		//m_Magazines[UseMagNumber]->GetBulletPointer()->SetPosition(p_gion);
 		// 擬音の発射関数には減速力とかは気にしなくていい→0に設定する→まっすぐ飛んでいく
 		// 使うマガジンの情報を受け取って擬音銃で発射
 		m_Soundgun->Shot(m_Magazines[UseMagNumber]);
+
+		// 発射フラグをリセット
+		IsShot = false;
 	}
+}
+
+
+
+/**
+ * @brief 選択しているマガジン内の擬音の情報を返す関数
+ * @return 装填されている擬音
+*/
+IOnomatopoeia* Player::GetLoadedBullet(void)
+{
+	// 装填中のマガジンに入ってる擬音を返す
+	return m_Magazines[UseMagNumber]->GetBulletPointer();
 }
 
 

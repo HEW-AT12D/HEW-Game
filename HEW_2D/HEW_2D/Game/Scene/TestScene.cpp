@@ -225,21 +225,21 @@ void TestScene::Update(void)
 	// ----------------‹z‚¢ž‚Ýˆ—¨‚±‚±‚ÍƒvƒŒƒCƒ„[‚Ìˆ—‚ÉˆÚ‚·-------------------------
 	if (Input::GetInstance().GetKeyPress(VK_F))
 	{
-		//‚±‚±‚ÉˆÊ’u‚ð¶“–‚½‚è”»’è’Ç‰Á‚µ‚Ä‚à‚¢‚¢‚©‚à
-		if (ColliderFan_Gion(playerShared, gionShared))
-		{
-			playerShared.lock()->Suction(gionShared);
+		////‚±‚±‚ÉˆÊ’u‚ð¶“–‚½‚è”»’è’Ç‰Á‚µ‚Ä‚à‚¢‚¢‚©‚à
+		//if (ColliderFan_Gion(playerShared, gionShared))
+		//{
+		//	playerShared.lock()->Suction(gionShared);
 
-			//‹[‰¹‚Ìƒf[ƒ^‚ð‚±‚±‚ÉŠi”[‚µ‚Ä‚¢‚éH
-			//playerShared.lock()->magazine.push_back(gionShared.lock());
-		}
+		//	//‹[‰¹‚Ìƒf[ƒ^‚ð‚±‚±‚ÉŠi”[‚µ‚Ä‚¢‚éH
+		//	//playerShared.lock()->magazine.push_back(gionShared.lock());
+		//}
 	}
 
 	//-----------------“f‚«o‚µ‚Ìˆ—--------------------//
 	if (Input::GetInstance().GetKeyPress(VK_R))
 	{
 		//“f‚«o‚µ‚Ìˆ—
-		playerShared.lock()->Reverse(gionShared);
+		playerShared.lock()->SetIsShot(true);
 	}
 	
 
