@@ -1,20 +1,12 @@
-﻿  Collider.cpp
-C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.cpp(194,23): warning C4305: '初期化中': 'double' から 'float' へ切り詰めます。
-  IScene.cpp
-  Application.cpp
-  Game.cpp
-  main.cpp
-  BiriBiri.cpp
-  PataPata.cpp
-  Poyon.cpp
-  Player.cpp
-  Magazine.cpp
-  ObjectManager.cpp
-  SceneManager.cpp
-  GameScene.cpp
+﻿  TestScene.cpp
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\TestScene.cpp(229,7): error C2664: 'std::weak_ptr<_Ty> ColliderFan_Gion(std::weak_ptr<Player>,std::vector<std::weak_ptr<_Ty>,std::allocator<std::weak_ptr<_Ty>>>)': 引数 2 を 'std::weak_ptr<Poyon>' から 'std::vector<std::weak_ptr<_Ty>,std::allocator<std::weak_ptr<_Ty>>>' へ変換できません。
+          with
+          [
+              _Ty=IOnomatopoeia
+          ]
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\TestScene.cpp(229,38): message : この変換を実行可能なユーザー定義変換演算子がないか、または演算子を呼び出せません。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(64,30): message : 'ColliderFan_Gion' の宣言を確認してください
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\TestScene.cpp(229,7): message : 引数リスト '(std::weak_ptr<Player>, std::weak_ptr<Poyon>)' を一致させようとしているとき
   ResultScene.cpp
-  StageSelectScene.cpp
-  TestScene.cpp
   TitleScene.cpp
   コードを生成中...
-  HEW_2D.vcxproj -> C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\x64\Debug\HEW_2D.exe

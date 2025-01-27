@@ -321,13 +321,11 @@ void Player::SetChild(std::shared_ptr<GameObject> _child)
 void Player::Suction(std::weak_ptr<GameObject> _gion_pos)
 {
 	Vector3 gion_pos = _gion_pos.lock()->GetPosition();
-	if (gion_pos.x - transform.GetPosition().x <= 200)/*Playerと擬音の距離が一定に来たら、擬音が徐々に近づく*/
-	{
-		//ここに、近づくスピードを書く
-		gion_pos.x -= 10;
-		_gion_pos.lock()->SetPosition(gion_pos);
-		std::cout << "吸い込んでます" << std::endl;
-	}
+	/*Playerと擬音の距離が一定に来たら、擬音が徐々に近づく*/
+	//ここに、近づくスピードを書く
+	gion_pos.x -= 10;
+	_gion_pos.lock()->SetPosition(gion_pos);
+	std::cout << "吸い込んでます" << std::endl;
 }
 
 

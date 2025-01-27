@@ -213,7 +213,7 @@ void D3D11::StartRender()
 
 	m_pDeviceContext->IASetInputLayout(m_pInputLayout);
 	m_pDeviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
-	m_pDeviceContext->VSSetShader(m_pVertexShader, NULL, 0);
+	m_pDeviceContext->VSSetShader(m_pVertexShader, NULL, 0);		// ここで描画に使うシェーダファイルを適用してる
 	m_pDeviceContext->PSSetShader(m_pPixelShader, NULL, 0);
 
 	// サンプラーをピクセルシェーダーに渡す

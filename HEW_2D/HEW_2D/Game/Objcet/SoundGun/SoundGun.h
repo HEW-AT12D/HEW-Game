@@ -2,6 +2,8 @@
 #include "../BaseObject/GameObject.h"
 
 
+class IOnomatopoeia;
+
 /**
  * @brief プレイヤーが持つ擬音銃クラス
  * 

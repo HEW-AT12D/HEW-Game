@@ -228,7 +228,7 @@ void TestScene::Update(void)
 		//‚±‚±‚ÉˆÊ’u‚ğ¶“–‚½‚è”»’è’Ç‰Á‚µ‚Ä‚à‚¢‚¢‚©‚à
 		if (ColliderFan_Gion(playerShared, gionShared))
 		{
-			playerShared.lock()->Suction(gionShared, playerShared);
+			playerShared.lock()->Suction(gionShared);
 
 			//‹[‰¹‚Ìƒf[ƒ^‚ğ‚±‚±‚ÉŠi”[‚µ‚Ä‚¢‚éH
 			//playerShared.lock()->magazine.push_back(gionShared.lock());
@@ -236,12 +236,12 @@ void TestScene::Update(void)
 	}
 
 	//-----------------“f‚«o‚µ‚Ìˆ—--------------------//
-	if (Input::GetInstance().GetKeyRelease(VK_W))
+	if (Input::GetInstance().GetKeyPress(VK_R))
 	{
-
+		//“f‚«o‚µ‚Ìˆ—
+		playerShared.lock()->Reverse(gionShared);
 	}
-	//“f‚«o‚µ‚Ìˆ—
-	playerShared.lock()->Reverse(gionShared, playerShared);
+	
 
 	//Enemy‚Ì“®ì
 	Vector3 slime_pos = objectmanager.GetGameObjectPtr<Enemy>(OBJECT, "Slime").lock()->GetPosition();
