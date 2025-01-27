@@ -123,6 +123,9 @@
     <Filter Include="ゲーム\オブジェクト\擬音銃\擬音\ビリビリ">
       <UniqueIdentifier>{1b8fd550-b846-46eb-8733-29c38851acd3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ゲーム\オブジェクト\擬音銃\クロスヘア">
+      <UniqueIdentifier>{1db5a356-7c78-48f7-93e6-613fa54940fe}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Framework\Input\Input.cpp">
@@ -233,6 +236,9 @@
     <ClCompile Include="Game\Objcet\Onomatopeia\Poyon\Poyon.cpp">
       <Filter>ゲーム\オブジェクト\擬音銃\擬音\ポヨン</Filter>
     </ClCompile>
+    <ClCompile Include="Game\Objcet\SoundGun\CrossHair.cpp">
+      <Filter>ゲーム\オブジェクト\擬音銃\クロスヘア</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework\D3D11\D3D11.h">
@@ -342,6 +348,9 @@
     </ClInclude>
     <ClInclude Include="Game\Objcet\Onomatopeia\Poyon\Poyon.h">
       <Filter>ゲーム\オブジェクト\擬音銃\擬音\ポヨン</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Objcet\SoundGun\CrossHair.h">
+      <Filter>ゲーム\オブジェクト\擬音銃\クロスヘア</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

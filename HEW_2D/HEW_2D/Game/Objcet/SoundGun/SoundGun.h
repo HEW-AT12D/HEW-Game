@@ -19,7 +19,9 @@ class IOnomatopoeia;
 class SoundGun : public GameObject
 {
 public:
-	SoundGun(D3D11& _D3d11) :GameObject(_D3d11) {};
+	SoundGun(D3D11& _D3d11) :GameObject(_D3d11) {
+		IsSuction = false;
+	};
 	~SoundGun() {};
 
 	void Suction(Vector3, Vector3);		// 吸い込み関数(吸い込む擬音のデータ、それを戻り値で渡し、マガジンに入れ込む)
@@ -27,6 +29,6 @@ public:
 
 
 private:
-
+	bool IsSuction;
 };
 

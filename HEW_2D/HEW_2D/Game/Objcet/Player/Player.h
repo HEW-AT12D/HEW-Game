@@ -2,6 +2,7 @@
 #include "../SoundGun/SoundGun.h"
 #include "../Character/Character.h"
 #include "../SoundGun/Magazine.h"
+#include "../SoundGun/CrossHair.h"
 
 
 
@@ -45,6 +46,7 @@ public:
 		IsSuction = false;
 		m_Soundgun = nullptr;
 		m_Magazines.clear();
+		UseMagNumber = 0;
 	};
 
 	/**
@@ -75,8 +77,10 @@ public:
 private:
 	bool IsSuction;		// 吸い込み中か？
 	bool IsShot;		// 発射中か？
+	int UseMagNumber;	// マガジンの何番目を使う(装填する)か
 	// 擬音銃(吸い込む竜巻画像を持たせるために使う→シェーダーリソースビューとかを配列にすれば画像は複数読み込めたかも)
-	std::shared_ptr<SoundGun> m_Soundgun;
+	std::shared_ptr<SoundGun> m_Soundgun;		// 擬音銃
 	std::vector<std::shared_ptr<Magazine>> m_Magazines;	// マガジン（可変長）
+	std::shared_ptr<CrossHair> m_CrossHair;		// クロスヘア
 };
 

@@ -34,7 +34,15 @@ public:
 		IsFlying = false;
 	}
 
-	~Magazine() {};
+	~Magazine() {
+		// 擬音が装填されていれば
+		if (m_Onomatopoeia)
+		{
+			// 擬音の解放
+			m_Onomatopoeia->Uninit();
+		}
+		m_Onomatopoeia.reset();
+	};
 
 	void Update(void) override;		// 擬音の状態などをこっちで管理するためにオーバーライド
 	void Draw(void) override;		// 擬音装填したときにそれも描画するのでオーバーライド

@@ -131,10 +131,16 @@ void Player::Uninit(void)
 	}
 	// マガジンのコンテナを空にする
 	m_Magazines.clear();
+
 	// 擬音銃の解放
 	m_Soundgun->Uninit();
 	// 所有権を捨てる
 	m_Soundgun.reset();
+	
+	// クロスヘアの解放
+	m_CrossHair->Uninit();
+	m_CrossHair.reset();
+
 	// プレイヤーの解放
 	this->GameObject::Uninit();
 }
@@ -300,6 +306,13 @@ void Player::SetChild(std::shared_ptr<GameObject> _child)
 		m_Soundgun = casted;
 		m_pChildren.push_back(casted);
 	}
+	// クロスヘアの場合
+	else if (auto casted = std::dynamic_pointer_cast<CrossHair>(_child))
+	{
+		// 子オブジェクトに設定
+		m_CrossHair = casted;
+		m_pChildren.push_back(casted);
+	}
 	else
 	{
 		// 子オブジェクトに追加
@@ -355,6 +368,8 @@ void Player::Suction(std::weak_ptr<GameObject> _gion)
  * 
  * やること
  * →クロスヘアを擬音銃の子オブジェクトに設定→入力を取って操作可能にする→プレイヤーの発射関数でそのクロスヘア情報とマガジンに入ってる擬音情報を使えるようにする
+ * 
+ * やりたいこと→使う擬音(マガジン)を決める→エイム操作(これはいつでもできるようにする)→発射
 */
 void Player::Shot(std::weak_ptr<GameObject>_gion)
 {
@@ -372,8 +387,8 @@ void Player::Shot(std::weak_ptr<GameObject>_gion)
 	//斜辺^2 = エイムして取ったX座標のポジション ^ 2 - (エイムして取ったポジションから、垂直に降ろしたX座標 - PlayerのX座標) ^ 2//
 	//cosθ = (エイムして取ったポジションから、垂直に降ろしたX座標 - PlayerのX座標) / 斜辺
 
-	Vector3 p_aim = _aim.lock()->GetPosition();
-	Vector3 p_player = _player.lock()->GetPosition();
+	Vector3 p_aim = m_CrossHair->GetPosition();
+	Vector3 p_player = this->transform.GetPosition();
 	Vector3 p_gion = _gion.lock()->GetPosition();
 	vertex.x = p_aim.x - p_player.x; //照準とPlayerのX座標の差（底辺）
 	vertex.y = p_aim.y - p_player.y; //照準とPlayerのY座標差  （高さ）

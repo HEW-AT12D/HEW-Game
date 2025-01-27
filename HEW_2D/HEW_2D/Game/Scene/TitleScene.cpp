@@ -88,10 +88,12 @@ void TitleScene::Init(void) {
 	objectmanager.GetGameObjectPtr<Enemy>(OBJECT, "Slime").lock()->SetScale(Vector3(120.0f, 120.0f, 0.0f));
 
 	//50音(臨時でエイムとして使用)
-	objectmanager.AddObject<GameObject>(UI, "Moji");
-	objectmanager.GetGameObjectPtr<GameObject>(UI, "Moji").lock()->Init(L"Game/Asset/GameObject/Moji.png", 12, 5);
-	objectmanager.GetGameObjectPtr<GameObject>(UI, "Moji").lock()->SetPosition(Vector3(200.0f, 0.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<GameObject>(UI, "Moji").lock()->SetScale(Vector3(30.0f, 30.0f, 0.0f));
+	objectmanager.AddObject<CrossHair>(UI, "CrossHair");
+	objectmanager.GetGameObjectPtr<CrossHair>(UI, "CrossHair").lock()->Init(L"Game/Asset/GameObject/Moji.png");
+	objectmanager.GetGameObjectPtr<CrossHair>(UI, "CrossHair").lock()->SetPosition(Vector3(200.0f, 0.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<CrossHair>(UI, "CrossHair").lock()->SetScale(Vector3(30.0f, 30.0f, 0.0f));
+	// クロスヘアをプレイヤーの子オブジェクトとして設定
+	objectmanager.GetGameObject<Player>(PLAYER, "Player").second->SetChild(objectmanager.GetGameObject<Magazine>(UI, "Moji").second);
 
 	//// UI1(ボタン)
 	//objectmanager.AddObject<GameObject>(UI, "StartButton");
@@ -115,7 +117,7 @@ void TitleScene::Update(void)
 	auto groundShared2 = objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "Ground2");
 	auto gionShared = objectmanager.GetGameObjectPtr<Poyon>(OBJECT, "Gion");
 	auto enemyShared = objectmanager.GetGameObjectPtr<Enemy>(OBJECT, "Slime");
-	auto mojiShared = objectmanager.GetGameObjectPtr < GameObject>(UI, "Moji");
+	auto crosshairShared = objectmanager.GetGameObjectPtr<CrossHair>(UI, "CrossHair");
 
 
 	// 入力管理
@@ -160,43 +162,58 @@ void TitleScene::Update(void)
 	ColliderPlayer_Ground(playerShared, groundShared);
 
 
-
-	//エイムのテスト
+	// クロスヘアの入力取得(本来はプレイヤーのフラグを立てて、プレイヤーの更新の中でクロスヘアを動かすべき)
 	if (Input::GetInstance().GetKeyPress(VK_UP))
 	{
-		Vector3 p_moji = mojiShared.lock()->GetPosition();
-		p_moji.y += 5;
-		mojiShared.lock()->SetPosition(p_moji);
+		crosshairShared.lock()->SetMoveUp(true);
 		/*std::cout << "directionX：" << playerShared.lock()->directionX << std::endl;
 		std::cout << "directionY：" << playerShared.lock()->directionY << std::endl;*/
 
 	}
-	else if (Input::GetInstance().GetKeyPress(VK_DOWN))
+	else {
+		crosshairShared.lock()->SetMoveUp(false);
+	}
+	
+	if (Input::GetInstance().GetKeyPress(VK_DOWN))
 	{
-		Vector3 p_moji = mojiShared.lock()->GetPosition();
-		p_moji.y -= 5;
-		mojiShared.lock()->SetPosition(p_moji);
+		crosshairShared.lock()->SetMoveDown(true);
 		/*std::cout << "directionX：" << playerShared.lock()->directionX << std::endl;
 		std::cout << "directionY：" << playerShared.lock()->directionY << std::endl;*/
 
 	}
-	else if (Input::GetInstance().GetKeyPress(VK_RIGHT))
+	else
 	{
-		Vector3 p_moji = mojiShared.lock()->GetPosition();
+		crosshairShared.lock()->SetMoveDown(false);
+	}
+	
+	if (Input::GetInstance().GetKeyPress(VK_RIGHT))
+	{
+		crosshairShared.lock()->SetMoveRight(true);
+
+		/*Vector3 p_moji = mojiShared.lock()->GetPosition();
 		p_moji.x += 5;
 		mojiShared.lock()->SetPosition(p_moji);
-		/*std::cout << "directionX：" << playerShared.lock()->directionX << std::endl;
+		std::cout << "directionX：" << playerShared.lock()->directionX << std::endl;
 		std::cout << "directionY：" << playerShared.lock()->directionY << std::endl;*/
-
 	}
-	else if (Input::GetInstance().GetKeyPress(VK_LEFT))
+	else
 	{
-		Vector3 p_moji = mojiShared.lock()->GetPosition();
+		crosshairShared.lock()->SetMoveRight(false);
+	}
+	
+	if (Input::GetInstance().GetKeyPress(VK_LEFT))
+	{
+		crosshairShared.lock()->SetMoveLeft(true);
+
+		/*Vector3 p_moji = mojiShared.lock()->GetPosition();
 		p_moji.x -= 5;
 		mojiShared.lock()->SetPosition(p_moji);
-		/*std::cout << "directionX：" << playerShared.lock()->directionX << std::endl;
+		std::cout << "directionX：" << playerShared.lock()->directionX << std::endl;
 		std::cout << "directionY：" << playerShared.lock()->directionY << std::endl;*/
-
+	}
+	else
+	{
+		crosshairShared.lock()->SetMoveLeft(false);
 	}
 
 
