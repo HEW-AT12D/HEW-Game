@@ -91,12 +91,6 @@ void TitleScene::Update(void)
 	if (Input::GetInstance().GetKeyPress(VK_D))
 	{
 		objectmanager.GetGameObjectPtr<Player>(PLAYER, "Player").lock()->SetMoveRight(true);
-		/*Vector3 pos = objectmanager.GetGameObject(PLAYER, "Player")->GetPosition();
-		pos.x += 5.0f;
-		objectmanager.GetGameObject(PLAYER, "Player")->SetPosition(pos);
-
-		Vector2 num = objectmanager.GetGameObject(PLAYER, "Player")->GetUV();
-		objectmanager.GetGameObject(PLAYER, "Player")->Animation();*/
 		
 		//デバック用
 		std::cout << "Playerの座標移動ができています" << std::endl;
@@ -106,13 +100,6 @@ void TitleScene::Update(void)
 	{
 		objectmanager.GetGameObjectPtr<Player>(PLAYER, "Player").lock()->SetMoveLeft(true);
 
-		/*Vector3 pos = objectmanager.GetGameObject(PLAYER, "Player")->GetPosition();
-		pos.x -= 5.0f;
-		objectmanager.GetGameObject(PLAYER, "Player")->SetPosition(pos);
-
-		Vector2 num = objectmanager.GetGameObject(PLAYER, "Player")->GetUV();
-		objectmanager.GetGameObject(PLAYER, "Player")->Animation();*/
-
 		//デバック用
 		std::cout << "Playerの座標移動ができています" << std::endl;
 	}
@@ -120,13 +107,6 @@ void TitleScene::Update(void)
 	if (Input::GetInstance().GetKeyTrigger(VK_SPACE))
 	{
 		objectmanager.GetGameObjectPtr<Player>(PLAYER, "Player").lock()->SetJump(true);
-
-		/*Vector3 pos = objectmanager.GetGameObject(PLAYER, "Player")->GetPosition();
-		pos.x -= 5.0f;
-		objectmanager.GetGameObject(PLAYER, "Player")->SetPosition(pos);
-
-		Vector2 num = objectmanager.GetGameObject(PLAYER, "Player")->GetUV();
-		objectmanager.GetGameObject(PLAYER, "Player")->Animation();*/
 
 		//デバック用
 		std::cout << "Playerの座標移動ができています" << std::endl;
@@ -140,30 +120,42 @@ void TitleScene::Update(void)
 		this->ChangeScene = true;
 		SetChangeScene(this->ChangeScene);
 	}
-	
-	// ----------------吸い込み処理→ここはプレイヤーの処理に移す-------------------------
-	if (Input::GetInstance().GetKeyPress(VK_F))
-	{
-		Vector3 p_pos = objectmanager.GetGameObjectPtr<Player>(PLAYER, "Player").lock()->GetPosition();
-		Vector3 gion_pos = objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "Gion").lock()->GetPosition();
-		//Suction(gion_pos, p_pos);
-		if (gion_pos.x - p_pos.x <= 300 && gion_pos.x - p_pos.x >= 0)/*Playerと擬音の距離が一定に来たら、擬音が徐々に近づく*/
-		{
-			//ここに、近づくスピードを書く
-			gion_pos.x -= 14;
-			std::cout << "吸い込んでます" << std::endl;
-			objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "Gion").lock()->SetPosition(gion_pos);
-		}
-		std::cout << "擬音座標：" << gion_pos.x << std::endl;
-	}
-	//連：メモ
-	//擬音を回収したときに、オブジェクトをただ移動させるだけじゃなくて、回収したオブジェクトの情報によって表示させるUIを変える
 
 
 	//----------------当たり判定-----------------------
 	auto playerShared = objectmanager.GetGameObjectPtr<Player>(PLAYER, "Player");
 	auto groundShared = objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "Ground");
 	ColliderPlayer_Ground(playerShared, groundShared);
+
+
+	// ----------------吸い込み処理→ここはプレイヤーの処理に移す-------------------------
+	// プレイヤー発の扇型と当たってる擬音を探す→(一番近くの)当たってる擬音を吸い込む
+	if (Input::GetInstance().GetKeyPress(VK_F))
+	{
+		// 吸い込める擬音を探す
+		// そのフレーム内のタグが擬音のもの全て取得→それとプレイヤーから出る扇型の当たり判定を取得
+		auto onomatopoeias = objectmanager.GetObjects<IOnomatopoeia>(ONOMATOPOEIA);
+		// 扇形との当たり判定を取得
+		auto HitOnomatopoeia = ColliderFan_Gion(playerShared, onomatopoeias);
+
+		// 擬音の吸い込み実行
+		playerShared.lock()->Suction(HitOnomatopoeia);
+		
+		//Vector3 p_pos = objectmanager.GetGameObjectPtr<Player>(PLAYER, "Player").lock()->GetPosition();
+		//Vector3 gion_pos = objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "Gion").lock()->GetPosition();
+		////Suction(gion_pos, p_pos);
+		//if (gion_pos.x - p_pos.x <= 300 && gion_pos.x - p_pos.x >= 0)/*Playerと擬音の距離が一定に来たら、擬音が徐々に近づく*/
+		//{
+		//	//ここに、近づくスピードを書く
+		//	gion_pos.x -= 14;
+		//	std::cout << "吸い込んでます" << std::endl;
+		//	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "Gion").lock()->SetPosition(gion_pos);
+		//}
+		//std::cout << "擬音座標：" << gion_pos.x << std::endl;
+	}
+	//連：メモ
+	//擬音を回収したときに、オブジェクトをただ移動させるだけじゃなくて、回収したオブジェクトの情報によって表示させるUIを変える
+
 
 
 	// ここでマガジンがUIになっていなければ当たり判定を取りたい

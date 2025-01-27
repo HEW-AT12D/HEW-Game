@@ -66,8 +66,8 @@ public:
 	//void SetMagazine(std::shared_ptr<Magazine> _mag);
 
 	// TODO:2025/01/27 擬音銃クラスで吸い込み関数作成→プレイヤーの吸い込みではそれを実行し、その関数の戻り値で吸い込んだ擬音を返し、マガジンにセットすれば行けるはず
-	void Suction(std::weak_ptr<GameObject>, std::weak_ptr<Player>);		// 吸い込み関数
-	void Reverse(std::weak_ptr<GameObject>, std::weak_ptr<Player>);		// 擬音の発射関数
+	void Suction(std::weak_ptr<GameObject>);		// 吸い込み関数
+	void Reverse(std::weak_ptr<GameObject>);		// 擬音の発射関数
 
 private:
 	bool IsSuction;		// 吸い込み中か？

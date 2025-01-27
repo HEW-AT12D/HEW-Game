@@ -189,7 +189,14 @@ bool ColliderPlayer_Gion(GameObject* player, GameObject* gion)
 
 
 //扇型と擬音の当たり判定
-bool ColliderFan_Gion(std::weak_ptr<Player> fan, std::weak_ptr<GameObject> gion)
+
+/**
+ * @brief プレイヤーと擬音の当たり判定
+ * @param fan プレイヤー(そこから扇型に範囲を設定)
+ * @param gion 擬音(vectorで全部渡す)
+ * @return 当たった擬音
+*/
+std::weak_ptr<IOnomatopoeia> ColliderFan_Gion(std::weak_ptr<Player> fan, std::vector<std::weak_ptr<IOnomatopoeia>> _onomatopoeias)
 {
 	float PI = 3.14159265;
 	float fanAngle = PI / 6;
@@ -201,60 +208,73 @@ bool ColliderFan_Gion(std::weak_ptr<Player> fan, std::weak_ptr<GameObject> gion)
 	//扇型の方向ベクトルを右方向に固定
 	float fanDirX = 1.0f;//右方向の成分
 	float fanDirY = 0.0f;//上方向の成分
-
+	
 	//擬音の情報取得
-	float Gion_Right_Collider = gion.lock()->GetPosition().x + gion.lock()->GetScale().x / 2; //擬音の右端
-	float Gion_Left_Collider = gion.lock()->GetPosition().x - gion.lock()->GetScale().x / 2;  //擬音の左端
-	float Gion_Up_Collider = gion.lock()->GetPosition().y + gion.lock()->GetScale().y / 2;    //擬音の上端
-	float Gion_Bottom_Collider = gion.lock()->GetPosition().y - gion.lock()->GetScale().y / 2;//擬音の下端
+	float Gion_Right_Collider;		// 擬音の右端
+	float Gion_Left_Collider;		// 擬音の左端
+	float Gion_Up_Collider;			// 擬音の上端
+	float Gion_Bottom_Collider;		// 擬音の下端
+	
+	// 擬音との当たり判定を取得
+	for (auto& onomat : _onomatopoeias) {
+		// 擬音の当たり判定範囲を取得
+		Gion_Right_Collider = onomat.lock()->GetPosition().x + onomat.lock()->GetScale().x / 2; //擬音の右端
+		Gion_Left_Collider = onomat.lock()->GetPosition().x - onomat.lock()->GetScale().x / 2;  //擬音の左端
+		Gion_Up_Collider = onomat.lock()->GetPosition().y + onomat.lock()->GetScale().y / 2;    //擬音の上端
+		Gion_Bottom_Collider = onomat.lock()->GetPosition().y - onomat.lock()->GetScale().y / 2;//擬音の
 
-	//擬音の四つの頂点
-	float vertices[4][2] = {
-		{Gion_Left_Collider,Gion_Up_Collider},//左上
-		{Gion_Right_Collider,Gion_Up_Collider},//右上
-		{Gion_Left_Collider,Gion_Bottom_Collider},//左下
-		{Gion_Right_Collider,Gion_Bottom_Collider},//右下
-	};
+		//------------扇形と擬音の四つの頂点------------
+		float vertices[4][2] = {
+			{Gion_Left_Collider,Gion_Up_Collider},//左上
+			{Gion_Right_Collider,Gion_Up_Collider},//右上
+			{Gion_Left_Collider,Gion_Bottom_Collider},//左下
+			{Gion_Right_Collider,Gion_Bottom_Collider},//右下
+		};
 
-	//四角形の各頂点が扇形内に含まれるか確認
-	for (int i = 0; i < 4; ++i) {
-		float dx = vertices[i][0] - fanCenterX;   //扇型中心から頂点へのベクトルX
-		float dy = vertices[i][1] - fanCenterY;   //扇型中心から頂点へのベクトルY
-		float distance = sqrtf(dx * dx + dy * dy);//距離を計算
+		//四角形の各頂点が扇形内に含まれるか確認
+		for (int i = 0; i < 4; ++i) {
+			float dx = vertices[i][0] - fanCenterX;   //扇型中心から頂点へのベクトルX
+			float dy = vertices[i][1] - fanCenterY;   //扇型中心から頂点へのベクトルY
+			float distance = sqrtf(dx * dx + dy * dy);//距離を計算
 
-		//距離が半径内か確認
-		if (distance <= fanRadius) {
-			//ベクトルの角度の計算（内積）
-			float dot = (dx * fanDirX + dy * fanDirY) / (distance);//cosθ=内積/(|v1|*|v2|)
+			//距離が半径内か確認
+			if (distance <= fanRadius) {
+				//ベクトルの角度の計算（内積）
+				float dot = (dx * fanDirX + dy * fanDirY) / (distance);//cosθ=内積/(|v1|*|v2|)
 
-			//角度が範囲内か確認
-			float cosLimit = cosf(fanAngle);//扇型の角度範囲のcos値
-			if (dot >= cosLimit) {
-				std::cout << "頂点が扇型内です" << std::endl;
-				return true;//頂点が扇型内
+				//角度が範囲内か確認
+				float cosLimit = cosf(fanAngle);//扇型の角度範囲のcos値
+				if (dot >= cosLimit) {
+					std::cout << "頂点が扇型内です" << std::endl;
+					// 擬音の頂点が扇型内なのでその擬音を返す
+					return onomat;
+				}
 			}
 		}
-	}
 
-	//四角形の辺が扇型の円弧と交差しているか確認
-	float edges[4][4] = {
-		{Gion_Left_Collider,Gion_Up_Collider,Gion_Right_Collider,Gion_Up_Collider},        //上辺
-		{Gion_Right_Collider,Gion_Up_Collider,Gion_Right_Collider,Gion_Bottom_Collider},   //右辺
-		{Gion_Left_Collider,Gion_Bottom_Collider,Gion_Right_Collider,Gion_Bottom_Collider},//下辺
-		{Gion_Left_Collider,Gion_Up_Collider,Gion_Left_Collider,Gion_Bottom_Collider}      //左辺
-	};
-	for (int i = 0; i < 4; ++i) {
-		if (LineIntersectsCircle(edges[i][0], edges[i][1], edges[i][2], edges[i][3], fanCenterX, fanCenterY, fanRadius)) {
-			std::cout << "四角形の辺が扇型の円弧と交差しています" << std::endl;
-			return true;//四角形の辺が扇型の円弧と交差
+		//---------------扇形と四角形の辺が扇型の円弧と交差しているか確認------------------
+		float edges[4][4] = {
+			{Gion_Left_Collider,Gion_Up_Collider,Gion_Right_Collider,Gion_Up_Collider},        //上辺
+			{Gion_Right_Collider,Gion_Up_Collider,Gion_Right_Collider,Gion_Bottom_Collider},   //右辺
+			{Gion_Left_Collider,Gion_Bottom_Collider,Gion_Right_Collider,Gion_Bottom_Collider},//下辺
+			{Gion_Left_Collider,Gion_Up_Collider,Gion_Left_Collider,Gion_Bottom_Collider}      //左辺
+		};
+		for (int i = 0; i < 4; ++i) {
+			if (LineIntersectsCircle(edges[i][0], edges[i][1], edges[i][2], edges[i][3], fanCenterX, fanCenterY, fanRadius)) {
+				std::cout << "四角形の辺が扇型の円弧と交差しています" << std::endl;
+				// 四角形の辺が扇型の円弧と交差
+				return onomat;
+			}
+		}
+		// 扇型の中心が四角形内にあるか確認
+		if (fanCenterX >= Gion_Left_Collider && fanCenterX <= Gion_Right_Collider &&
+			fanCenterY >= Gion_Bottom_Collider && fanCenterY <= Gion_Up_Collider) {
+			// 扇型の中心が四角形内
+			return onomat;
 		}
 	}
-	//扇型の中心が四角形内にあるか確認
-	if (fanCenterX >= Gion_Left_Collider && fanCenterX <= Gion_Right_Collider &&
-		fanCenterY >= Gion_Bottom_Collider && fanCenterY <= Gion_Up_Collider) {
-		return true;//扇型が中心が四角形内
-	}
-	return false;//どれにも該当しない場合、当たっていない
+	//どれにも該当しない場合、当たっていないので空のweak_ptrを返す
+	return std::weak_ptr<IOnomatopoeia>();
 }
 
 // 線分と円が交差しているか判定する関数

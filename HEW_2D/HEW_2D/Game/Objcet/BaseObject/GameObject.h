@@ -35,6 +35,7 @@ enum Tag {
 	UI,
 	OBJECT,
 	GROUND,
+	ONOMATOPOEIA,
 	PLAYER,
 	ENEMY,
 };

@@ -5,7 +5,7 @@
 /**
  * @brief 更新
 */
-void Player::Update(void) 
+void Player::Update(void)
 {
 	// 方向ベクトル初期化
 	m_Direction = { 0.0f };
@@ -82,7 +82,7 @@ void Player::Update(void)
 	// X成分の移動速度を方向ベクトルと移動速度から計算
 	m_Velocity.x = m_Direction.x * m_MoveSpeed;
 
-	
+
 	// 地面の上にいない場合、重力分速度を減算
 	if (!OnGround)
 	{
@@ -95,7 +95,7 @@ void Player::Update(void)
 		// 通常時アニメーションへ変更(立ち止まってる時にアニメーションはしたくないので、一番自然な状態の画像に設定)
 		m_Number.y = 0;			// 2025/01/23 赤根: なぜか二枚目のほうに設定されるけど違和感はマシになったので一旦これで置いとく
 	}
-	
+
 	// 移動処理
 	Vector3 newpos = transform.GetPosition();
 	newpos += m_Velocity;		// 方向ベクトルとX成分の移動速度を掛けた値の分だけ毎フレーム進む
@@ -233,7 +233,7 @@ void Player::Animation(STATE _Anim_Name)
 		}
 
 		break;
-	// ↓は画像内ので今のところ実装予定なし
+		// ↓は画像内ので今のところ実装予定なし
 	case DAMAGED:
 		break;
 	case ATTACKED:
@@ -247,7 +247,7 @@ void Player::Animation(STATE _Anim_Name)
 /**
  * @brief 子オブジェクトをセット
  * @param _child 子オブジェクトのポインタ
- * 
+ *
  * 〇マガジン取得の流れ
  * 　・マガジンを拾う→タグをUIに変更→大きさと座標を変更、としたい
 */
@@ -279,7 +279,7 @@ void Player::SetChild(std::shared_ptr<GameObject> _child)
 			// X座標はいちばん後ろのマガジンの座標から 追加するマガジンの大きさ / 2した値 を足した座標に表示する
 			newMagPos.x = m_Magazines.back()->GetPosition().x + casted->GetScale().x;
 			// Y座標も同じように設定
-			newMagPos.y = m_Magazines.back()->GetPosition().y ;
+			newMagPos.y = m_Magazines.back()->GetPosition().y;
 			// 座標を代入
 			casted->SetPosition(newMagPos);
 		}
@@ -310,14 +310,18 @@ void Player::SetChild(std::shared_ptr<GameObject> _child)
 
 /**
  * @brief 擬音吸い込み関数
- * @param _gion_pos 
- * @param _p_pos 
+ * 
+ * 
+ * シーンで判定した擬音との当たり判定を使って当たった擬音の座標を移動させる
+ * 
+ * →その擬音をマガジンに組み込む処理を追加する
+ * @param _gion_pos
+ * @param _p_pos
 */
-void Player::Suction(std::weak_ptr<GameObject> _gion_pos, std::weak_ptr<Player> _p_pos)
+void Player::Suction(std::weak_ptr<GameObject> _gion_pos)
 {
 	Vector3 gion_pos = _gion_pos.lock()->GetPosition();
-	Vector3 player_pos = _p_pos.lock()->GetPosition();
-	if (gion_pos.x - player_pos.x <= 200)/*Playerと擬音の距離が一定に来たら、擬音が徐々に近づく*/
+	if (gion_pos.x - transform.GetPosition().x <= 200)/*Playerと擬音の距離が一定に来たら、擬音が徐々に近づく*/
 	{
 		//ここに、近づくスピードを書く
 		gion_pos.x -= 10;
@@ -327,20 +331,21 @@ void Player::Suction(std::weak_ptr<GameObject> _gion_pos, std::weak_ptr<Player> 
 }
 
 
-void Player::Reverse(std::weak_ptr<GameObject>_gion, std::weak_ptr<Player>_player)
+void Player::Reverse(std::weak_ptr<GameObject>_gion)
 {
+	// 発射する擬音の座標を取得
 	Vector3 gion_pos = _gion.lock()->GetPosition();
-	Vector3 player_pos = _player.lock()->GetPosition();
 
 	if (Input::GetInstance().GetKeyRelease(VK_W))
 	{
+		// 擬音の座標をプレイヤーの少し右に設定
 		IsShot = true;
-		gion_pos.y = player_pos.y;
-		gion_pos.x = player_pos.x + 100;
-		_gion.lock()->SetPosition(player_pos);
+		gion_pos.y = transform.GetPosition().y;
+		gion_pos.x = transform.GetPosition().x + 100;
+		_gion.lock()->SetPosition(gion_pos);
 	}
 
-	if (IsShot == true)
+	if (IsShot)
 	{
 		if (gion_pos.x <= 700)
 		{

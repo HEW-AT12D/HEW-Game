@@ -20,7 +20,8 @@ public:
 	SoundGun(D3D11& _D3d11) :GameObject(_D3d11) {};
 	~SoundGun() {};
 
-	void Suction(Vector3, Vector3);//吸い込み関数
+	void Suction(Vector3, Vector3);		// 吸い込み関数(吸い込む擬音のデータ、それを戻り値で渡し、マガジンに入れ込む)
+	void Shot(std::unique_ptr<IOnomatopoeia> _onomatopoeia);		// 発射関数(選択したマガジン内の擬音を発射する)
 
 
 private:
