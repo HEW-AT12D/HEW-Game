@@ -74,6 +74,8 @@ public:
 	void SetIsShot(bool _flg);
 	bool GetIsShot(void);
 
+
+
 private:
 	bool IsSuction;		// ‹z‚¢‚İ’†‚©H
 	bool IsShot;		// ”­Ë’†‚©H

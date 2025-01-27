@@ -49,8 +49,11 @@ public:
 	// マガジンに入った場合、その擬音の所有権はマガジンに移るはずなのでunique_ptr
 	//void SetOnomatopoeia(Tag, std::string, std::shared_ptr<GameObject>&& _onomatopoeia);
 
+	// 擬音の情報を取得
+	IOnomatopoeia* GetBullet(void);
+
 private:
 	bool IsFlying;		// 飛んでいるか？
-	std::shared_ptr<IOnomatopoeia> m_Onomatopoeia;
+	std::unique_ptr<IOnomatopoeia> m_Onomatopoeia;
 };
 

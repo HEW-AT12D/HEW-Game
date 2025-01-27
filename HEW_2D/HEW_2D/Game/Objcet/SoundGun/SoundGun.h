@@ -2,7 +2,7 @@
 #include "../BaseObject/GameObject.h"
 
 
-class IOnomatopoeia;
+class Magazine;
 
 /**
  * @brief プレイヤーが持つ擬音銃クラス
@@ -21,14 +21,18 @@ class SoundGun : public GameObject
 public:
 	SoundGun(D3D11& _D3d11) :GameObject(_D3d11) {
 		IsSuction = false;
+		IsShot = false;
+		m_ShotPower = 5.0f;
 	};
 	~SoundGun() {};
 
 	void Suction(Vector3, Vector3);		// 吸い込み関数(吸い込む擬音のデータ、それを戻り値で渡し、マガジンに入れ込む)
-	void Shot(std::unique_ptr<IOnomatopoeia> _onomatopoeia);		// 発射関数(選択したマガジン内の擬音を発射する)
+	void Shot(std::shared_ptr<Magazine> _mag);		// 発射関数(選択したマガジン内の擬音を発射する)
 
 
 private:
-	bool IsSuction;
+	bool IsSuction;			// 吸い込み中か？
+	bool IsShot;			// 発射したか？
+	float m_ShotPower;		// 射撃力
 };
 

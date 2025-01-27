@@ -257,7 +257,7 @@ void TitleScene::Update(void)
 	}
 
 
-	playerShared.lock()->Shot(mojiShared, playerShared, gionShared);
+	playerShared.lock()->Shot(gionShared);
 
 
 

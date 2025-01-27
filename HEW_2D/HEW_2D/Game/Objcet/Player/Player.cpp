@@ -380,8 +380,15 @@ void Player::Shot(std::weak_ptr<GameObject>_gion)
 	//==============================================================================
 
 
+	Vector3 vertex;			// 
+	float hypotenuse;		// 斜辺の二乗
+	float root_hypotenuse;	// 平方根の計算をした斜辺
+	float Radians;			// 角度
+	float Degrees;			// 度
+	float M_PI;				// 円周率
+
 	//-----------式案----------//
-	//Playerを中心にして,照準を合している場所をGetPosで取って,//
+	//Playerを中心にして,照準を合わせている場所をGetPosで取って,//
 	//エイムして取ったポジションから、垂直に降ろして三点取る//
 
 	//斜辺^2 = エイムして取ったX座標のポジション ^ 2 - (エイムして取ったポジションから、垂直に降ろしたX座標 - PlayerのX座標) ^ 2//
@@ -389,11 +396,11 @@ void Player::Shot(std::weak_ptr<GameObject>_gion)
 
 	Vector3 p_aim = m_CrossHair->GetPosition();
 	Vector3 p_player = this->transform.GetPosition();
-	Vector3 p_gion = _gion.lock()->GetPosition();
-	vertex.x = p_aim.x - p_player.x; //照準とPlayerのX座標の差（底辺）
-	vertex.y = p_aim.y - p_player.y; //照準とPlayerのY座標差  （高さ）
+	Vector3 p_gion = m_Magazines[UseMagNumber]->GetBullet()->GetPosition();		// 使う擬音の座標
+	vertex.x = p_aim.x - p_player.x;			// 照準とPlayerのX座標の差（底辺）
+	vertex.y = p_aim.y - p_player.y;			// 照準とPlayerのY座標差  （高さ）
 	hypotenuse = (vertex.y * vertex.y) + (vertex.x * vertex.x); //斜辺の計算（底辺の二乗＋高さの二乗＝斜辺の二乗）
-	root_hypotenuse = std::sqrt(hypotenuse); //斜辺の平方根の計算
+	root_hypotenuse = std::sqrt(hypotenuse);	// 斜辺の平方根の計算
 
 	/*p_aimの位置が
 	  (vertex.y, vertex.x) = ( 1, 1)…第一象限
@@ -403,17 +410,25 @@ void Player::Shot(std::weak_ptr<GameObject>_gion)
 	 って感じ*/
 	Radians = std::atan2(vertex.y, vertex.x); //p_aimのポジションが第何象限にあるか確認
 
-	// 発射したい方向を設定
+	// 発射したい方向→銃の向く方向を設定
 	// 角度をベクトルに変換
-	directionX = std::cos(Radians); //Xベクトル
-	directionY = std::sin(Radians); //Yベクトル
+	Vector3 direction;
+	direction.x = std::cos(Radians);	// ベクトルのX成分
+	direction.y = std::sin(Radians);	// ベクトルのY成分
+
+	// 銃の向きを設定
+	m_Soundgun->SetDirection(direction);
 
 	//発射
 	if (IsShot)
 	{
-		p_gion.x += directionX * 5;
-		p_gion.y += directionY * 5;
+		// 擬音銃の発射関数を呼び出す→毎フレーム呼び出す想定で書かれてる
+		/*p_gion.x += directionX * 5;
+		p_gion.y += directionY * 5;*/
 		_gion.lock()->SetPosition(p_gion);
+		// 擬音の発射関数には減速力とかは気にしなくていい→0に設定する→まっすぐ飛んでいく
+		// 使うマガジンの情報を受け取って擬音銃で発射
+		m_Soundgun->Shot(m_Magazines[UseMagNumber]);
 	}
 }
 

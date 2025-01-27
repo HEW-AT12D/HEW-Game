@@ -61,3 +61,13 @@ void Magazine::Draw(void)
 		m_Onomatopoeia->Draw();
 	}
 }
+
+
+/**
+ * @brief 装填されている擬音を返す関数
+ * @return 擬音の生ポインタ(所有権の移動はないので生ポを渡して管理する)
+*/
+IOnomatopoeia* Magazine::GetBullet(void)
+{
+	return m_Onomatopoeia.get();
+}
