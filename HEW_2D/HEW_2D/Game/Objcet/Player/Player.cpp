@@ -318,41 +318,98 @@ void Player::SetChild(std::shared_ptr<GameObject> _child)
  * @param _gion_pos
  * @param _p_pos
 */
-void Player::Suction(std::weak_ptr<GameObject> _gion_pos)
+void Player::Suction(std::weak_ptr<GameObject> _gion)
 {
-	Vector3 gion_pos = _gion_pos.lock()->GetPosition();
+	// 吸い込む擬音の情報
+	Vector3 gion_pos = _gion.lock()->GetPosition();		// 座標
+	Vector3 gion_rot = _gion.lock()->GetRotation();		// 角度
+	Vector3 gion_scale = _gion.lock()->GetScale();		// サイズ
+
+	
 	/*Playerと擬音の距離が一定に来たら、擬音が徐々に近づく*/
 	//ここに、近づくスピードを書く
 	gion_pos.x -= 10;
-	_gion_pos.lock()->SetPosition(gion_pos);
+	_gion.lock()->SetPosition(gion_pos);
 	std::cout << "吸い込んでます" << std::endl;
+
+
+
+	// 擬音の回転、縮小
+	gion_rot.z += 40;
+	_gion.lock()->SetRotation(gion_rot);	// 角度の再設定
+
+	if (gion_scale.y >= 0)
+	{
+		// サイズを変更して再設定
+		gion_scale.x -= 8;
+		gion_scale.y -= 4;
+
+		_gion.lock()->SetScale(gion_scale);
+	}
 }
 
 
-void Player::Reverse(std::weak_ptr<GameObject>_gion)
+/**
+ * @brief 擬音銃のエイムの座標を基準に擬音を発射
+ * @param _gion 
+ * 
+ * やること
+ * →クロスヘアを擬音銃の子オブジェクトに設定→入力を取って操作可能にする→プレイヤーの発射関数でそのクロスヘア情報とマガジンに入ってる擬音情報を使えるようにする
+*/
+void Player::Shot(std::weak_ptr<GameObject>_gion)
 {
-	// 発射する擬音の座標を取得
-	Vector3 gion_pos = _gion.lock()->GetPosition();
+	//==========================================
+	//=======１月２６日現状======================
+	//Playerの０度～１８０度までしか判定をとれていない
+	//１８０度を超えると＋に変換される（例：２４０度で入力すると、１２０度で発射される）
+	//==============================================================================
 
-	if (Input::GetInstance().GetKeyRelease(VK_W))
-	{
-		// 擬音の座標をプレイヤーの少し右に設定
-		IsShot = true;
-		gion_pos.y = transform.GetPosition().y;
-		gion_pos.x = transform.GetPosition().x + 100;
-		_gion.lock()->SetPosition(gion_pos);
-	}
 
+	//-----------式案----------//
+	//Playerを中心にして,照準を合している場所をGetPosで取って,//
+	//エイムして取ったポジションから、垂直に降ろして三点取る//
+
+	//斜辺^2 = エイムして取ったX座標のポジション ^ 2 - (エイムして取ったポジションから、垂直に降ろしたX座標 - PlayerのX座標) ^ 2//
+	//cosθ = (エイムして取ったポジションから、垂直に降ろしたX座標 - PlayerのX座標) / 斜辺
+
+	Vector3 p_aim = _aim.lock()->GetPosition();
+	Vector3 p_player = _player.lock()->GetPosition();
+	Vector3 p_gion = _gion.lock()->GetPosition();
+	vertex.x = p_aim.x - p_player.x; //照準とPlayerのX座標の差（底辺）
+	vertex.y = p_aim.y - p_player.y; //照準とPlayerのY座標差  （高さ）
+	hypotenuse = (vertex.y * vertex.y) + (vertex.x * vertex.x); //斜辺の計算（底辺の二乗＋高さの二乗＝斜辺の二乗）
+	root_hypotenuse = std::sqrt(hypotenuse); //斜辺の平方根の計算
+
+	/*p_aimの位置が
+	  (vertex.y, vertex.x) = ( 1, 1)…第一象限
+	　(vertex.y, vertex.x) = (-1, 1)…第二象限
+	　(vertex.y, vertex.x) = (-1,-1)…第三象限
+	　(vertex.y, vertex.x) = ( 1,-1)…第四象限
+	 って感じ*/
+	Radians = std::atan2(vertex.y, vertex.x); //p_aimのポジションが第何象限にあるか確認
+
+	// 発射したい方向を設定
+	// 角度をベクトルに変換
+	directionX = std::cos(Radians); //Xベクトル
+	directionY = std::sin(Radians); //Yベクトル
+
+	//発射
 	if (IsShot)
 	{
-		if (gion_pos.x <= 700)
-		{
-			gion_pos.x += 10;
-			_gion.lock()->SetPosition(gion_pos);
-		}
-		else {
-			IsShot = false;
-		}
+		p_gion.x += directionX * 5;
+		p_gion.y += directionY * 5;
+		_gion.lock()->SetPosition(p_gion);
 	}
 }
 
+
+// 射撃状態のゲッター、セッター
+bool Player::GetIsShot(void)
+{
+	return IsShot;
+}
+
+void Player::SetIsShot(bool _flg)
+{
+	IsShot = _flg;
+}

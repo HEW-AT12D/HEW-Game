@@ -88,10 +88,10 @@ void TitleScene::Init(void) {
 	objectmanager.GetGameObjectPtr<Enemy>(OBJECT, "Slime").lock()->SetScale(Vector3(120.0f, 120.0f, 0.0f));
 
 	//50音(臨時でエイムとして使用)
-	objectmanager.AddObject<GameObject>(OBJECT, "Moji");
-	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "Moji").lock()->Init(L"Game/Asset/GameObject/Moji.png", 12, 5);
-	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "Moji").lock()->SetPosition(Vector3(200.0f, 0.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "Moji").lock()->SetScale(Vector3(30.0f, 30.0f, 0.0f));
+	objectmanager.AddObject<GameObject>(UI, "Moji");
+	objectmanager.GetGameObjectPtr<GameObject>(UI, "Moji").lock()->Init(L"Game/Asset/GameObject/Moji.png", 12, 5);
+	objectmanager.GetGameObjectPtr<GameObject>(UI, "Moji").lock()->SetPosition(Vector3(200.0f, 0.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(UI, "Moji").lock()->SetScale(Vector3(30.0f, 30.0f, 0.0f));
 
 	//// UI1(ボタン)
 	//objectmanager.AddObject<GameObject>(UI, "StartButton");
@@ -115,7 +115,7 @@ void TitleScene::Update(void)
 	auto groundShared2 = objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "Ground2");
 	auto gionShared = objectmanager.GetGameObjectPtr<Poyon>(OBJECT, "Gion");
 	auto enemyShared = objectmanager.GetGameObjectPtr<Enemy>(OBJECT, "Slime");
-	auto mojiShared = objectmanager.GetGameObjectPtr < GameObject>(OBJECT, "Moji");
+	auto mojiShared = objectmanager.GetGameObjectPtr < GameObject>(UI, "Moji");
 
 
 	// 入力管理
@@ -167,8 +167,8 @@ void TitleScene::Update(void)
 		Vector3 p_moji = mojiShared.lock()->GetPosition();
 		p_moji.y += 5;
 		mojiShared.lock()->SetPosition(p_moji);
-		std::cout << "directionX：" << playerShared.lock()->directionX << std::endl;
-		std::cout << "directionY：" << playerShared.lock()->directionY << std::endl;
+		/*std::cout << "directionX：" << playerShared.lock()->directionX << std::endl;
+		std::cout << "directionY：" << playerShared.lock()->directionY << std::endl;*/
 
 	}
 	else if (Input::GetInstance().GetKeyPress(VK_DOWN))
@@ -176,8 +176,8 @@ void TitleScene::Update(void)
 		Vector3 p_moji = mojiShared.lock()->GetPosition();
 		p_moji.y -= 5;
 		mojiShared.lock()->SetPosition(p_moji);
-		std::cout << "directionX：" << playerShared.lock()->directionX << std::endl;
-		std::cout << "directionY：" << playerShared.lock()->directionY << std::endl;
+		/*std::cout << "directionX：" << playerShared.lock()->directionX << std::endl;
+		std::cout << "directionY：" << playerShared.lock()->directionY << std::endl;*/
 
 	}
 	else if (Input::GetInstance().GetKeyPress(VK_RIGHT))
@@ -185,8 +185,8 @@ void TitleScene::Update(void)
 		Vector3 p_moji = mojiShared.lock()->GetPosition();
 		p_moji.x += 5;
 		mojiShared.lock()->SetPosition(p_moji);
-		std::cout << "directionX：" << playerShared.lock()->directionX << std::endl;
-		std::cout << "directionY：" << playerShared.lock()->directionY << std::endl;
+		/*std::cout << "directionX：" << playerShared.lock()->directionX << std::endl;
+		std::cout << "directionY：" << playerShared.lock()->directionY << std::endl;*/
 
 	}
 	else if (Input::GetInstance().GetKeyPress(VK_LEFT))
@@ -194,51 +194,53 @@ void TitleScene::Update(void)
 		Vector3 p_moji = mojiShared.lock()->GetPosition();
 		p_moji.x -= 5;
 		mojiShared.lock()->SetPosition(p_moji);
-		std::cout << "directionX：" << playerShared.lock()->directionX << std::endl;
-		std::cout << "directionY：" << playerShared.lock()->directionY << std::endl;
+		/*std::cout << "directionX：" << playerShared.lock()->directionX << std::endl;
+		std::cout << "directionY：" << playerShared.lock()->directionY << std::endl;*/
 
 	}
 
 
-	//擬音の吸収
-	if (Input::GetInstance().GetKeyPress(VK_F))
-	{
-		if (ColliderFan_Gion(playerShared, gionShared))
-		{
-			//この下二つを一つにまとめてもいいかも？
-			playerShared.lock()->Suction(gionShared, playerShared);
-			//擬音の吸い込み時の回転・サイズ変更
-			gionShared.lock()->Onomatopeia_ObjectMave(gionShared);
-		}
-	}
+	////擬音の吸収→247行目の吸い込み処理に変更、改良
+	//if (Input::GetInstance().GetKeyPress(VK_F))
+	//{
+	//	if (ColliderFan_Gion(playerShared, gionShared))
+	//	{
+	//		//この下二つを一つにまとめてもいいかも？
+	//		playerShared.lock()->Suction(gionShared, playerShared);
+	//		//擬音の吸い込み時の回転・サイズ変更
+	//		gionShared.lock()->Onomatopeia_ObjectMave(gionShared);
+	//	}
+	//}
 
 	//エイムの位置に発射
 	if (Input::GetInstance().GetKeyPress(VK_W))
 	{
 		if (Collider_toGround(playerShared, gionShared))
 		{
-			Vector3 r_gion = gionShared.lock()->GetRotation();
-			Vector3 s_gion = gionShared.lock()->GetScale();
-			r_gion.z = 0;
-			s_gion.y = 120;
-			s_gion.x = 240;
-			gionShared.lock()->SetRotation(r_gion);
-			gionShared.lock()->SetScale(s_gion);
-			playerShared.lock()->check = true;
+			Vector3 gion_Rot = gionShared.lock()->GetRotation();	// 擬音の回転情報
+			Vector3 gion_Scale = gionShared.lock()->GetScale();		// 擬音のサイズ情報
+			gion_Rot.z = 0;
+			// 擬音のサイズ設定
+			gion_Scale.y = 120;
+			gion_Scale.x = 240;
+			// 各情報を再設定
+			gionShared.lock()->SetRotation(gion_Rot);
+			gionShared.lock()->SetScale(gion_Scale);
+			playerShared.lock()->SetIsShot(true);
 		}
 	}
 
 
 	if (Collider_toGround(groundShared2, gionShared))
 	{
-		playerShared.lock()->check = false;
+		playerShared.lock()->SetIsShot(false);
 
 	}
 	else {
 	}
 
 
-	playerShared.lock()->Aim_Reverse(mojiShared, playerShared, gionShared);
+	playerShared.lock()->Shot(mojiShared, playerShared, gionShared);
 
 
 
