@@ -1,5 +1,6 @@
 #include "StageSelectScene.h"
 #include "../../Framework/Input/Input.h"
+#include "../../Game/SceneManager/SceneManager.h"
 
 
 
@@ -19,7 +20,8 @@ void StageSelectScene::Update(void) {
 	// シーン遷移（デバック用
 	if (Input::GetInstance().GetKeyTrigger(VK_RETURN))
 	{
-		this->ChangeScene = false;
+		GetChangeScene();
+		SetChangeScene(GAME);
 	}
 }
 
@@ -28,6 +30,6 @@ void StageSelectScene::Draw(void) {
 }
 
 void StageSelectScene::Uninit(void) {
-
+	objectmanager.Uninit();
 }
 

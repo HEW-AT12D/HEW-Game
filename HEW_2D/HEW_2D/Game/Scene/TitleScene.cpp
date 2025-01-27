@@ -105,6 +105,7 @@ void TitleScene::Init(void) {
 	// クロスヘアをプレイヤーの子オブジェクトとして設定
 	objectmanager.GetGameObject<Player>(PLAYER, "Player").second->SetChild(objectmanager.GetGameObject<CrossHair>(UI, "CrossHair").second);
 
+	std::cout << "GameSceneInit" << std::endl;
 	//// UI1(ボタン)
 	//objectmanager.AddObject<GameObject>(UI, "StartButton");
 	//// UI2(ボタン)

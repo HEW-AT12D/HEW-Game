@@ -9,7 +9,7 @@ void Re_TitleScene :: Init(void) {
 	objectmanager.GetGameObjectPtr<Player>(ENEMY, "player").lock()->Init(L"Game/Asset/GameObject/ƒoƒl.png");
 	objectmanager.GetGameObjectPtr<Player>(ENEMY, "player").lock()->SetPosition(Vector3(0.0f, 0.0f, 0.0f));
 	objectmanager.GetGameObjectPtr<Player>(ENEMY, "player").lock()->SetScale(Vector3(130.0f, 130.0f, 0.0f));
-	std::cout << "STAGESELECTSceneInit" << std::endl;
+	std::cout << "Re_TitleSceneInit" << std::endl;
 }
 
 void Re_TitleScene::Update(void) {
