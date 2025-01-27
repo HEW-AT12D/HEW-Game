@@ -1,23 +1,2 @@
-﻿  Collider.cpp
-C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.cpp(201,23): warning C4305: '初期化中': 'double' から 'float' へ切り詰めます。
-  IScene.cpp
-  Application.cpp
-  Game.cpp
-  main.cpp
-  BiriBiri.cpp
-  PataPata.cpp
-  Poyon.cpp
-  Player.cpp
-C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Objcet\Player\Player.cpp(408,9): warning C4101: 'M_PI': ローカル変数は 1 度も使われていません。
-C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Objcet\Player\Player.cpp(407,9): warning C4101: 'Degrees': ローカル変数は 1 度も使われていません。
-  Magazine.cpp
-  SoundGun.cpp
-  ObjectManager.cpp
-  SceneManager.cpp
-  GameScene.cpp
-  ResultScene.cpp
-  StageSelectScene.cpp
-  TestScene.cpp
-  TitleScene.cpp
-  コードを生成中...
+﻿  SoundGun.cpp
   HEW_2D.vcxproj -> C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\x64\Debug\HEW_2D.exe

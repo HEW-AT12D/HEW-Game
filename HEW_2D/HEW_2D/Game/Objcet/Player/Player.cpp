@@ -104,7 +104,7 @@ void Player::Update(void)
 
 
 	// 吸い込み処理は引数が必要なのでシーンで直接行う
-	
+
 	//if (IsSuction)
 	//{
 	//	Suction();
@@ -332,6 +332,8 @@ void Player::SetChild(std::shared_ptr<GameObject> _child)
 		// 子オブジェクトに追加
 		m_pChildren.push_back(_child);
 	}
+	// 子オブジェクト側にもこのオブジェクトを親として設定
+	_child->SetParent(shared_from_this());
 }
 
 
@@ -348,33 +350,8 @@ void Player::SetChild(std::shared_ptr<GameObject> _child)
 */
 void Player::Suction(std::weak_ptr<GameObject> _gion)
 {
-	// 吸い込む擬音の情報
-	Vector3 gion_pos = _gion.lock()->GetPosition();		// 座標
-	Vector3 gion_rot = _gion.lock()->GetRotation();		// 角度
-	Vector3 gion_scale = _gion.lock()->GetScale();		// サイズ
-
-
-	/*Playerと擬音の距離が一定に来たら、擬音が徐々に近づく*/
-	//ここに、近づくスピードを書く
-	gion_pos.x -= 10;
-	_gion.lock()->SetPosition(gion_pos);
-	std::cout << "吸い込んでます" << std::endl;
-
-
-
-	// 擬音の回転、縮小
-	gion_rot.z += 40;
-	_gion.lock()->SetRotation(gion_rot);	// 角度の再設定
-
-	// 吸い込み中は毎フレーム縮小される
-	if (gion_scale.y >= 0)
-	{
-		// サイズを変更して再設定
-		gion_scale.x -= 8;
-		gion_scale.y -= 4;
-
-		_gion.lock()->SetScale(gion_scale);
-	}
+	// 擬音銃の吸い込み処理を実行
+	m_Soundgun->Suction(_gion);
 }
 
 
@@ -446,7 +423,7 @@ void Player::Shot(void)
 		// 擬音銃の発射関数を呼び出す→毎フレーム呼び出す想定で書かれてる
 		/*p_gion.x += directionX * 5;
 		p_gion.y += directionY * 5;*/
-		
+
 		// 擬音の座標を設定
 		//m_Magazines[UseMagNumber]->GetBulletPointer()->SetPosition(p_gion);
 		// 擬音の発射関数には減速力とかは気にしなくていい→0に設定する→まっすぐ飛んでいく
@@ -468,6 +445,16 @@ IOnomatopoeia* Player::GetLoadedBullet(void)
 {
 	// 装填中のマガジンに入ってる擬音を返す
 	return m_Magazines[UseMagNumber]->GetBulletPointer();
+}
+
+
+/**
+ * @brief 選択してるマガジンを返す関数
+ * @return 選択中のマガジン
+*/
+std::shared_ptr<Magazine> Player::GetUsingMag(void)
+{
+	return m_Magazines[UseMagNumber];
 }
 
 

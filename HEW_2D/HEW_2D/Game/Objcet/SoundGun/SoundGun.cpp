@@ -3,18 +3,59 @@
 
 /**
  * @brief 吸い込み関数
- * @param _gion_pos 
- * @param _p_pos 
+ * @param _gion_pos
+ * @param _p_pos
 */
-void SoundGun::Suction(Vector3 _gion_pos, Vector3 _p_pos)
+void SoundGun::Suction(std::weak_ptr<GameObject> _gion)
 {
-	if (_gion_pos.x-_p_pos.x <= 100)/*Playerと擬音の距離が一定に来たら、擬音が徐々に近づく*/
+	// 親オブジェクト(プレイヤー)が存在していて、
+	if (m_pParent.lock())
 	{
+		// 吸い込む擬音の情報
+		Vector3 gion_pos = _gion.lock()->GetPosition();		// 座標
+		Vector3 gion_rot = _gion.lock()->GetRotation();		// 角度
+		Vector3 gion_scale = _gion.lock()->GetScale();		// サイズ
+
+		/*Playerと擬音の距離が一定に来たら、擬音が徐々に近づく*/
 		//ここに、近づくスピードを書く
-		_gion_pos.x--;
+		gion_pos.x -= 10;
+		_gion.lock()->SetPosition(gion_pos);
 		std::cout << "吸い込んでます" << std::endl;
-		
+
+
+		// 擬音の回転、縮小
+		gion_rot.z += 40;
+		_gion.lock()->SetRotation(gion_rot);	// 角度の再設定
+
+		// 吸い込み中は毎フレーム縮小される
+		if (gion_scale.y >= 0.0f)
+		{
+			// サイズを変更して再設定
+			gion_scale.x -= 8.0f;
+			gion_scale.y -= 4.0f;
+
+			_gion.lock()->SetScale(gion_scale);
+		}
+
+		// プレイヤーの座標に当たったら(限りなく近づいたら)
+		if (gion_pos.x - m_pParent.lock()->GetPosition().x <= 100.0f)
+		{
+			// 親オブジェクトのマガジンに格納
+			auto player = std::dynamic_pointer_cast<Player>(m_pParent.lock());
+			// ここの関数にはGameObject型で持ってきてるのでIOnomatopoeia型にキャスト
+			auto onomatopoeia = std::dynamic_pointer_cast<IOnomatopoeia>(_gion.lock());
+
+			// 擬音の座標を現在選択しているマガジンの座標に変更
+			// →今選択してるマガジンに既に擬音がある場合、次のマガジンに装填、を繰り返し、全部装填されている場合、座標は寄せるが回転、吸い込み処理は行わない
+			onomatopoeia->SetPosition(player->GetUsingMag()->GetPosition());	// 座標を設定
+			onomatopoeia->SetPosition(player->GetUsingMag()->GetRotation());	// 角度を設定
+			onomatopoeia->SetPosition(player->GetUsingMag()->GetScale());		// 大きさを設定
+			player->GetUsingMag()->SetOnomatopoeia(onomatopoeia);
+			
+			// 擬音がマガジンの座標に入らない問題を直す
+		}
 	}
+
 }
 
 

@@ -43,12 +43,14 @@ void TitleScene::Init(void) {
 	objectmanager.GetGameObjectPtr<SoundGun>(UI, "SoundGun").lock()->Init(L"Game/Asset/Character/Cyclon.png", 4, 1);
 	objectmanager.GetGameObjectPtr<SoundGun>(UI, "SoundGun").lock()->SetPosition(Vector3(0.0f, 600.0f, 0.0f));
 	objectmanager.GetGameObjectPtr<SoundGun>(UI, "SoundGun").lock()->SetScale(Vector3(130.0f, 130.0f, 0.0f));
+	objectmanager.GetGameObject<Player>(PLAYER, "Player").second->SetChild(objectmanager.GetGameObject<SoundGun>(UI, "SoundGun").second);
+
 
 	//擬音（どおん）
-	objectmanager.AddObject<Poyon>(OBJECT, "Gion");	// 名前要変更
-	objectmanager.GetGameObjectPtr<Poyon>(OBJECT, "Gion").lock()->Init(L"Game/Asset/Onomatopoeia/Gion.png");
-	objectmanager.GetGameObjectPtr<Poyon>(OBJECT, "Gion").lock()->SetPosition(Vector3(500.0f, -350.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<Poyon>(OBJECT, "Gion").lock()->SetScale(Vector3(240.0f, 120.0f, 0.0f));
+	objectmanager.AddObject<Poyon>(ONOMATOPOEIA, "Gion");	// 名前要変更
+	objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "Gion").lock()->Init(L"Game/Asset/Onomatopoeia/Gion.png");
+	objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "Gion").lock()->SetPosition(Vector3(500.0f, -350.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "Gion").lock()->SetScale(Vector3(240.0f, 120.0f, 0.0f));
 	
 	// マガジン(二個持った状態でスタート、落ちてるのは一個だけ)
 	// 一個目
@@ -76,6 +78,7 @@ void TitleScene::Init(void) {
 	objectmanager.GetGameObjectPtr<Magazine>(OBJECT, "Magazine3").lock()->SetPosition(Vector3(400.0f, -400.0f, 0.0f));
 	objectmanager.GetGameObjectPtr<Magazine>(OBJECT, "Magazine3").lock()->SetScale(Vector3(90.0f, 90.0f, 0.0f));
 
+
 	// 地面
 	objectmanager.AddObject<GameObject>(OBJECT, "Ground");
 	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "Ground").lock()->Init(L"Game/Asset/GameObject/Ground.png");
@@ -94,7 +97,7 @@ void TitleScene::Init(void) {
 	objectmanager.GetGameObjectPtr<Enemy>(OBJECT, "Slime").lock()->SetPosition(Vector3(200.0f, -300.0f, 0.0f));
 	objectmanager.GetGameObjectPtr<Enemy>(OBJECT, "Slime").lock()->SetScale(Vector3(120.0f, 120.0f, 0.0f));
 
-	//50音(臨時でエイムとして使用)
+	// クロスヘア
 	objectmanager.AddObject<CrossHair>(UI, "CrossHair");
 	objectmanager.GetGameObjectPtr<CrossHair>(UI, "CrossHair").lock()->Init(L"Game/Asset/UI/CrossHair.png");
 	objectmanager.GetGameObjectPtr<CrossHair>(UI, "CrossHair").lock()->SetPosition(Vector3(200.0f, 0.0f, 0.0f));
@@ -122,7 +125,7 @@ void TitleScene::Update(void)
 	auto playerShared = objectmanager.GetGameObjectPtr<Player>(PLAYER, "Player");
 	auto groundShared = objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "Ground");
 	auto groundShared2 = objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "Ground2");
-	auto gionShared = objectmanager.GetGameObjectPtr<Poyon>(OBJECT, "Gion");
+	auto gionShared = objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "Gion");
 	auto enemyShared = objectmanager.GetGameObjectPtr<Enemy>(OBJECT, "Slime");
 	auto crosshairShared = objectmanager.GetGameObjectPtr<CrossHair>(UI, "CrossHair");
 
@@ -234,10 +237,11 @@ void TitleScene::Update(void)
 	//	}
 	//}
 
-	//エイムの位置に発射
+	// マガジンに擬音が入っていればエイムの位置に発射
 	if (Input::GetInstance().GetKeyPress(VK_W))
 	{
-		if (Collider_toGround(playerShared, gionShared))
+		// マガジンに擬音が装填されているかチェック
+		if (playerShared.lock()->GetLoadedBullet())
 		{
 			Vector3 gion_Rot = gionShared.lock()->GetRotation();	// 擬音の回転情報
 			Vector3 gion_Scale = gionShared.lock()->GetScale();		// 擬音のサイズ情報
@@ -254,7 +258,7 @@ void TitleScene::Update(void)
 			//--------------------------------------
 			//			擬音のタグ変更処理
 			//--------------------------------------
-			
+
 			// ここで擬音のタグをUIから擬音に変更
 			// →擬音のポインタだけわかってるのにキーの特定がスムーズにできないのでやっぱり管理方法変えたほうがいい(登録されてるタグを毎フレーム確認して同期させるとか)
 

@@ -77,6 +77,9 @@ public:
 	// 撃とうとしている(選択されているマガジン内にある)擬音の情報を渡す関数
 	IOnomatopoeia* GetLoadedBullet(void);
 
+	// 銃に装填されているマガジンを返す関数
+	std::shared_ptr<Magazine> GetUsingMag(void);
+
 
 private:
 	bool IsSuction;		// 吸い込み中か？

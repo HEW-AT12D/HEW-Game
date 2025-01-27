@@ -3,7 +3,7 @@
 /**
  * @brief 擬音装填
  * @param _onomatopoeia 装填する擬音
- * 
+ *
  * 擬音を装填したい→擬音もオブジェクトマネージャで管理する→shared_ptrで管理してるので、関数で所有権をマガジンにも渡す
 */
 //void Magazine::SetOnomatopoeia(Tag, std::string, std::shared_ptr<GameObject>&& _onomatopoeia)
@@ -16,11 +16,11 @@
 
 /**
  * @brief 更新
- * 
+ *
  * 自身のタグがUIなら重力加速度を受けない、とかにしたかった
  * →無理なので、親オブジェクトがいる場合、重力加速度を受けない、とする
- * 
- * 
+ *
+ *
 */
 void Magazine::Update(void)
 {
@@ -37,7 +37,7 @@ void Magazine::Update(void)
 
 		}
 	}
-	
+
 
 	// 移動処理
 	Vector3 newpos = transform.GetPosition();
@@ -70,4 +70,14 @@ void Magazine::Draw(void)
 IOnomatopoeia* Magazine::GetBulletPointer(void)
 {
 	return m_Onomatopoeia.get();
+}
+
+
+/**
+ * @brief マガジンに擬音を装填する関数
+ * @param _onomat 擬音
+*/
+void Magazine::SetOnomatopoeia(std::shared_ptr<IOnomatopoeia> _onomat)
+{
+	m_Onomatopoeia = _onomat;
 }

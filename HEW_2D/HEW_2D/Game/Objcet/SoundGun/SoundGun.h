@@ -28,7 +28,7 @@ public:
 
 	// TODO:2025/01/27 吸い込み関数作りきる→外側でやってるからどうするかも決める、擬音銃が吸い込み中の時だけ画像とアニメーションを回す
 	// W押したらエラー吐くのを直す
-	void Suction(Vector3, Vector3);			// 吸い込み関数(吸い込む擬音のデータ、それを戻り値で渡し、マガジンに入れ込む)
+	void Suction(std::weak_ptr<GameObject> _gion);	// 吸い込み関数(吸い込む擬音のデータ、それを戻り値で渡し、マガジンに入れ込む)
 	void Shot(std::shared_ptr<Magazine> _mag);		// 発射関数(選択したマガジン内の擬音を発射する)
 
 

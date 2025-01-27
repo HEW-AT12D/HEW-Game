@@ -23,13 +23,13 @@ void CrossHair::Update(void)
 	// è„à⁄ìÆ
 	if (MoveUp)
 	{
-		newpos.x += m_Velocity.y;
+		newpos.y += m_Velocity.y;
 		transform.SetPosition(newpos);
 	}
 	// â∫à⁄ìÆ
 	if (MoveDown)
 	{
-		newpos.x -= m_Velocity.y;
+		newpos.y -= m_Velocity.y;
 		transform.SetPosition(newpos);
 	}
 }

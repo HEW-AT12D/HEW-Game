@@ -52,8 +52,11 @@ public:
 	// ‹[‰¹‚Ìî•ñ‚ğæ“¾
 	IOnomatopoeia* GetBulletPointer(void);
 
+	// ‹[‰¹‚ğƒ}ƒKƒWƒ“‚É‘•“U‚·‚éŠÖ”
+	void SetOnomatopoeia(std::shared_ptr<IOnomatopoeia> _onomat);
+
 private:
 	bool IsFlying;		// ”ò‚ñ‚Å‚¢‚é‚©H
-	std::unique_ptr<IOnomatopoeia> m_Onomatopoeia;
+	std::shared_ptr<IOnomatopoeia> m_Onomatopoeia;
 };
 
