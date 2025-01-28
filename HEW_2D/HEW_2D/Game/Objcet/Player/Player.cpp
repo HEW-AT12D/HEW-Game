@@ -130,6 +130,14 @@ void Player::Draw(void)
 	// TODO:(完了)アニメーションの違和感を取る
 	// TODO:アタッチされたオブジェクトの描画
 	// TODO:ジャンプの先行入力取れてしまうのを直す
+
+	// 擬音銃の吸い込み時の竜巻を描画したいが、今回竜巻はUIにしていて、オブジェクトとして登録してしまうと当たり判定を取ってしまうのでここで擬音銃の描画まで行う
+	// 擬音銃を持っていれば
+	if (m_Soundgun)
+	{
+		// 描画(この中で吸い込み中かを判定してる)
+		m_Soundgun->Draw();
+	}
 }
 
 /**
@@ -358,7 +366,8 @@ void Player::SetChild(std::shared_ptr<GameObject> _child)
 */
 void Player::Suction(std::weak_ptr<GameObject> _gion)
 {
-	// 擬音銃の吸い込み処理を実行
+	// フラグを立てて擬音銃の吸い込み処理を実行
+	m_Soundgun->SetIsSuction(true);
 	m_Soundgun->Suction(_gion);
 }
 
@@ -475,4 +484,15 @@ bool Player::GetIsShot(void)
 void Player::SetIsShot(bool _flg)
 {
 	IsShot = _flg;
+}
+
+// 吸い込み状態のゲッターセッター
+bool Player::GetIsSuction(void)
+{
+	return IsSuction;
+}
+
+void Player::SetIsSuction(bool _flg)
+{
+	IsSuction = _flg;
 }

@@ -31,6 +31,8 @@ public:
 	void Suction(std::weak_ptr<GameObject> _gion);	// 吸い込み関数(吸い込む擬音のデータ、それを戻り値で渡し、マガジンに入れ込む)
 	void Shot(std::shared_ptr<Magazine> _mag);		// 発射関数(選択したマガジン内の擬音を発射する)
 
+	void SetIsSuction(bool _flg);
+	bool GetIsSuction(void);
 	void Update(void) override;
 	void Draw(void)override;
 

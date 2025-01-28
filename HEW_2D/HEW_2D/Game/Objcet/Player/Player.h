@@ -75,6 +75,8 @@ public:
 
 	void SetIsShot(bool _flg);
 	bool GetIsShot(void);
+	void SetIsSuction(bool _flg);
+	bool GetIsSuction(void);
 
 	// Œ‚‚Æ‚¤‚Æ‚µ‚Ä‚¢‚é(‘I‘ğ‚³‚ê‚Ä‚¢‚éƒ}ƒKƒWƒ““à‚É‚ ‚é)‹[‰¹‚Ìî•ñ‚ğ“n‚·ŠÖ”
 	IOnomatopoeia* GetLoadedBullet(void);

@@ -40,17 +40,16 @@ void TitleScene::Init(void) {
 
 	// 擬音銃(設計的には銃を別画像で用意してプレイヤーに持たせる方が良かったが、)
 	objectmanager.AddObject<SoundGun>(UI, "SoundGun");
-	objectmanager.GetGameObjectPtr<SoundGun>(UI, "SoundGun").lock()->Init(L"Game/Asset/Character/Cyclon.png", 4, 1);
+	objectmanager.GetGameObjectPtr<SoundGun>(UI, "SoundGun").lock()->Init(L"Game/Asset/Character/Cyclon.png", 1, 4);
 	objectmanager.GetGameObjectPtr<SoundGun>(UI, "SoundGun").lock()->SetPosition(Vector3(0.0f, 600.0f, 0.0f));
 	objectmanager.GetGameObjectPtr<SoundGun>(UI, "SoundGun").lock()->SetScale(Vector3(130.0f, 130.0f, 0.0f));
 	objectmanager.GetGameObject<Player>(PLAYER, "Player").second->SetChild(objectmanager.GetGameObject<SoundGun>(UI, "SoundGun").second);
 
-
-	//擬音（どおん）
-	objectmanager.AddObject<Poyon>(ONOMATOPOEIA, "Gion");	// 名前要変更
-	objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "Gion").lock()->Init(L"Game/Asset/Onomatopoeia/Wiin.png");
-	objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "Gion").lock()->SetPosition(Vector3(500.0f, -350.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "Gion").lock()->SetScale(Vector3(240.0f, 120.0f, 0.0f));
+	//擬音（ポヨン）
+	objectmanager.AddObject<Poyon>(ONOMATOPOEIA, "Poyon");	// 名前要変更
+	objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "Poyon").lock()->Init(L"Game/Asset/Onomatopoeia/Wiin.png");
+	objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "Poyon").lock()->SetPosition(Vector3(500.0f, -350.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "Poyon").lock()->SetScale(Vector3(240.0f, 120.0f, 0.0f));
 	
 	// マガジン(二個持った状態でスタート、落ちてるのは一個だけ)
 	// 1個目(ドォン専用)
@@ -74,7 +73,7 @@ void TitleScene::Init(void) {
 	objectmanager.GetGameObject<Player>(PLAYER, "Player").second->SetChild(objectmanager.GetGameObject<Magazine>(UI, "Magazine1").second);
 	objectmanager.GetGameObject<Player>(PLAYER, "Player").second->SetChild(objectmanager.GetGameObject<Magazine>(UI, "Magazine2").second);
 
-	// 三個目
+	// 3個目(フィールドに落ちてるマガジン)
 	objectmanager.AddObject<Magazine>(OBJECT, "Magazine3");
 	objectmanager.GetGameObjectPtr<Magazine>(OBJECT, "Magazine3").lock()->Init(L"Game/Asset/GameObject/Magazine.png");
 	objectmanager.GetGameObjectPtr<Magazine>(OBJECT, "Magazine3").lock()->SetPosition(Vector3(400.0f, -400.0f, 0.0f));
@@ -128,7 +127,7 @@ void TitleScene::Update(void)
 	auto playerShared = objectmanager.GetGameObjectPtr<Player>(PLAYER, "Player");
 	auto groundShared = objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "Ground");
 	auto groundShared2 = objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "Ground2");
-	auto gionShared = objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "Gion");
+	auto gionShared = objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "Poyon");
 	auto enemyShared = objectmanager.GetGameObjectPtr<Enemy>(OBJECT, "Slime");
 	auto crosshairShared = objectmanager.GetGameObjectPtr<CrossHair>(UI, "CrossHair");
 
@@ -246,15 +245,6 @@ void TitleScene::Update(void)
 		// マガジンに擬音が装填されているかチェック
 		if (playerShared.lock()->GetLoadedBullet())
 		{
-			Vector3 gion_Rot = gionShared.lock()->GetRotation();	// 擬音の回転情報
-			Vector3 gion_Scale = gionShared.lock()->GetScale();		// 擬音のサイズ情報
-			gion_Rot.z = 0;
-			// 擬音のサイズ設定
-			gion_Scale.y = 120;
-			gion_Scale.x = 240;
-			// 各情報を再設定
-			gionShared.lock()->SetRotation(gion_Rot);
-			gionShared.lock()->SetScale(gion_Scale);
 			playerShared.lock()->SetIsShot(true);
 
 
@@ -320,7 +310,13 @@ void TitleScene::Update(void)
 		if (HitOnomatopoeia.lock())
 		{
 			// 擬音の吸い込み実行
-			playerShared.lock()->Suction(HitOnomatopoeia);
+			playerShared.lock()->SetIsSuction(true);			// 吸い込み中に設定
+			playerShared.lock()->Suction(HitOnomatopoeia);		// 吸い込み処理
+
+			// 吸い込み処理が終わった時に擬音のタグをUIに変更、射撃するときにタグを擬音に変更する処理がまだ
+
+
+
 		}
 		
 		
