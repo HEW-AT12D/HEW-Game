@@ -38,7 +38,7 @@ HRESULT Sound::Init()
 
 	/**** Create XAudio2 ****/
 	hr = XAudio2Create(&m_pXAudio2, 0);		// 第二引数は､動作フラグ デバッグモードの指定(現在は未使用なので0にする)
-	//hr=XAudio2Create(&m_pXAudio2, 0, XAUDIO2_DEFAULT_PROCESSOR);		// 第三引数は、windowsでは無視
+	//hr=XAudio2Create(&g_pXAudio2, 0, XAUDIO2_DEFAULT_PROCESSOR);		// 第三引数は、windowsでは無視
 	if (FAILED(hr)) {
 		CoUninitialize();
 		return -1;
@@ -131,37 +131,16 @@ void Sound::Play(SOUND_LABEL label)
 
 	if (pSV != nullptr)
 	{
-		pSV->DestroyVoice();		//! 一度pSVの中身を初期化している
-		pSV = nullptr;				//! 新しく音声を作成する準備
+		pSV->DestroyVoice();
+		pSV = nullptr;
 	}
 
 	// ソースボイス作成
-	m_pXAudio2->CreateSourceVoice(&pSV, &(m_wfx[(int)label].Format));	//! フォーマットを関数に引数として渡して音源を創る
-	pSV->SubmitSourceBuffer(&(m_buffer[(int)label]));	//! ボイスキューに新しいオーディオバッファーを追加
+	m_pXAudio2->CreateSourceVoice(&pSV, &(m_wfx[(int)label].Format));
+	pSV->SubmitSourceBuffer(&(m_buffer[(int)label]));	// ボイスキューに新しいオーディオバッファーを追加
 
-	//音量設定（仮：作成出口）
-	pSV->SetVolume(1.0f);	//! 更新処理でプレイヤーとオブジェクトの距離で計算すれば距離に応じて
-	//! 音の大きさを変えることが可能？	1.0fがデフォルト
-// 再生
-	pSV->Start(0);	//! 引数の０は生成遅延時間を表している
-
-}
-
-//=============================================================================
-// 音量変更
-//=============================================================================
-void Sound::ChangeVolume(SOUND_LABEL label, int distance)		//! 引数の受け渡し（volumeがおそらくできないから変更必要)
-{
-
-	IXAudio2SourceVoice*& pSV = m_pSourceVoice[(int)label];
-	if (pSV != nullptr)
-	{
-		m_param[label].volume = 0;
-	}
-	else
-	{
-		m_param[label].volume = distance;
-	}
+	// 再生
+	pSV->Start(0);
 
 }
 
@@ -170,17 +149,14 @@ void Sound::ChangeVolume(SOUND_LABEL label, int distance)		//! 引数の受け渡し（v
 //=============================================================================
 void Sound::Stop(SOUND_LABEL label)
 {
-	if (m_pSourceVoice[(int)label] == NULL) return;	//! 音声が入っていないなら関数を抜ける
+	if (m_pSourceVoice[(int)label] == NULL) return;
 
 	XAUDIO2_VOICE_STATE xa2state;
-	m_pSourceVoice[(int)label]->GetState(&xa2state);	//! 音声が今どういう状態化を確認する
-	if (xa2state.BuffersQueued)			//! ture(音声が再生中の場合）に音声を止める
+	m_pSourceVoice[(int)label]->GetState(&xa2state);
+	if (xa2state.BuffersQueued)
 	{
-		m_pSourceVoice[(int)label]->Stop(0);	//! 引数内はどのように停止するか（０は即座に強制停止）
+		m_pSourceVoice[(int)label]->Stop(0);
 	}
-
-	//! 音が流れ切った時に止めるならBuffersQueued=0の時に止めればok
-
 }
 
 //=============================================================================
@@ -250,22 +226,3 @@ HRESULT Sound::ReadChunkData(HANDLE hFile, void* buffer, DWORD buffersize, DWORD
 		hr = HRESULT_FROM_WIN32(GetLastError());
 	return hr;
 }
-
-//=============================================================================
-// volumeに関するセッター
-//=============================================================================
-int Sound::SetDistance(int distance)
-{
-	//! プレイヤーとの距離(distance)を取って来る
-	return 0;
-}
-
-
-//=============================================================================
-// volumeに関するゲッター
-//=============================================================================
-//int Sound::SetDistance(int distnace)
-//{
-//
-//	//! 今のところ中身なし
-//}

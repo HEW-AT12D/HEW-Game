@@ -16,10 +16,13 @@
  * 
  * ステージは、縦２０マス＊横４０マス
 */
+
 void TitleScene::Init(void) {
+
 	// オブジェクトマネージャ初期化
 	objectmanager.Init();
-	
+	//sound.Init();
+
 
 	//-----------------------
 	//-----オブジェクト追加-----
@@ -106,6 +109,7 @@ void TitleScene::Init(void) {
 	objectmanager.GetGameObject<Player>(PLAYER, "Player").second->SetChild(objectmanager.GetGameObject<CrossHair>(UI, "CrossHair").second);
 
 	std::cout << "GameSceneInit" << std::endl;
+
 	//// UI1(ボタン)
 	//objectmanager.AddObject<GameObject>(UI, "StartButton");
 	//// UI2(ボタン)
@@ -118,10 +122,11 @@ void TitleScene::Init(void) {
 
 void TitleScene::Update(void)
 {
-	
-	// 入力情報の更新
 	Input::GetInstance().Update();
+	//sound.Play(SOUND_LABEL_BGM000);
 
+
+	// 入力情報の更新
 	// シーン更新に必要な情報を取得
 	auto playerShared = objectmanager.GetGameObjectPtr<Player>(PLAYER, "Player");
 	auto groundShared = objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "Ground");
@@ -224,6 +229,7 @@ void TitleScene::Update(void)
 	{
 		crosshairShared.lock()->SetMoveLeft(false);
 	}
+
 
 
 	////擬音の吸収→247行目の吸い込み処理に変更、改良
@@ -376,4 +382,6 @@ void TitleScene::Draw(void) {
 
 void TitleScene::Uninit(void) {
 	objectmanager.Uninit();
+	//sound.Uninit();
+
 }
