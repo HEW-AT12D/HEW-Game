@@ -10,17 +10,15 @@ void Enemy::Update()
 	
 		// ジャンプ中でなければ
 		// ジャンプ処理
-	if (enemy_pos.y <= -400.0f)
+	if (Jump && !Jumping)
 	{
-		
+
 		Jumping = true;					// ジャンプ中に設定(これステートでもいいかも)
 		m_Velocity.y += m_JumpPower;	// 速度のY成分にジャンプ力を代入
 		m_Direction.y += 1.0f;			// 上向きの方向ベクトルを加算
-		
+		Jump = false;                   //ジャンプフラグはfalse
+
 	}
-	/*else {
-		Jump = false;
-	}*/
 		
 	
 
