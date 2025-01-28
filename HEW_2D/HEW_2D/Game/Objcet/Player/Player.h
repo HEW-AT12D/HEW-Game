@@ -46,7 +46,7 @@ public:
 		IsSuction = false;
 		m_Soundgun = nullptr;
 		m_Magazines.clear();
-		UseMagNumber = 0;
+		UseMagNumber = 1;		// 0番目のマガジンはドォン専用なので1番目からスタート
 	};
 
 	/**
@@ -68,6 +68,8 @@ public:
 	//void SetMagazine(std::shared_ptr<Magazine> _mag);
 
 	// TODO:2025/01/27 擬音銃クラスで吸い込み関数作成→プレイヤーの吸い込みではそれを実行し、その関数の戻り値で吸い込んだ擬音を返し、マガジンにセットすれば行けるはず
+	
+	// TODO:2025/01/28 移動しながら吸い込んだらうまく吸い込まれないバグを直す。吐きだし処理を完成させる
 	void Suction(std::weak_ptr<GameObject>);	// 吸い込み関数
 	void Shot(void);		// 擬音の発射関数
 
@@ -87,7 +89,7 @@ private:
 	int UseMagNumber;	// マガジンの何番目を使う(装填する)か
 	// 擬音銃(吸い込む竜巻画像を持たせるために使う→シェーダーリソースビューとかを配列にすれば画像は複数読み込めたかも)
 	std::shared_ptr<SoundGun> m_Soundgun;		// 擬音銃
-	std::vector<std::shared_ptr<Magazine>> m_Magazines;	// マガジン（可変長）
+	std::vector<std::shared_ptr<Magazine>> m_Magazines;	// マガジン（可変長）,0番目はドォン専用にして、その後はカウントを増やしてドォンを管理する？
 	std::shared_ptr<CrossHair> m_CrossHair;		// クロスヘア
 };
 

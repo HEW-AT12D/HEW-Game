@@ -1,6 +1,54 @@
 #include "SoundGun.h"
 #include "Magazine.h"
 
+
+/**
+ * @brief 更新
+*/
+void SoundGun::Update(void)
+{
+	// アニメーションカウントを増やすかの判定
+	static bool countup = true;
+	// 吸い込み中ならアニメーションを動かす
+	if (IsSuction)
+	{
+		if (countup)
+		{
+			m_Number.y++;
+			// アニメーションが最後まで行った場合
+			if (m_Number.y == m_Split.y)
+			{
+				countup = false;
+			}
+		}
+		else
+		{
+			m_Number.y--;
+			// アニメーションが最初まで戻った場合
+			if (m_Number.y == 0)
+			{
+				countup = true;
+			}
+		}
+		
+	}
+}
+
+
+/**
+ * @brief 描画
+ * 吸い込み中のみ描画を行う 
+*/
+void SoundGun::Draw(void)
+{
+	// 吸い込み中なら
+	if (IsSuction)
+	{
+		this->GameObject::Draw();
+	}
+}
+
+
 /**
  * @brief 吸い込み関数
  * @param _gion_pos

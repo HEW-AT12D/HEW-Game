@@ -282,11 +282,19 @@ void Player::SetChild(std::shared_ptr<GameObject> _child)
 
 		// 大きさを代入
 		casted->SetScale(Vector3(120.0f, 120.0f, 0.0f));
-		// 一個目のマガジン追加の場合、座標を直接設定
+		// 一個目は「ドォン」を入れるマガジンなので、座標を直接設定
 		if (m_Magazines.empty())
 		{
 			// 座標設定
-			casted->SetPosition(Vector3(-800.0f, 500.0f, 0.0f));
+			casted->SetPosition(Vector3(-850.0f, -470.0f, 0.0f));
+			// このマガジンだけ大きさを変える
+			casted->SetScale(Vector3(200.0f, 200.0f, 0.0f));
+		}
+		// 二個目のマガジン(擬音銃に装填する用のマガジン)を追加する場合
+		else if (m_Magazines.size() == 1)
+		{
+			// 座標設定
+			casted->SetPosition(Vector3(-900.0f, 500.0f, 0.0f));
 		}
 		// 既にマガジンを一個以上所持している場合は
 		else
