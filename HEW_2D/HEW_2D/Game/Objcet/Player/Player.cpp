@@ -281,12 +281,12 @@ void Player::SetChild(std::shared_ptr<GameObject> _child)
 		// →マガジンの大きさをUI向きに変更→マガジン一個の大きさ分だけ右にずらして座標を設定すればいける？→いけた！
 
 		// 大きさを代入
-		casted->SetScale(Vector3(75.0f, 75.0f, 0.0f));
+		casted->SetScale(Vector3(120.0f, 120.0f, 0.0f));
 		// 一個目のマガジン追加の場合、座標を直接設定
 		if (m_Magazines.empty())
 		{
 			// 座標設定
-			casted->SetPosition(Vector3(-800.0f, -500.0f, 0.0f));
+			casted->SetPosition(Vector3(-800.0f, 500.0f, 0.0f));
 		}
 		// 既にマガジンを一個以上所持している場合は
 		else

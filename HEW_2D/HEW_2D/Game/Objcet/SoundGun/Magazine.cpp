@@ -79,5 +79,8 @@ IOnomatopoeia* Magazine::GetBulletPointer(void)
 */
 void Magazine::SetOnomatopoeia(std::shared_ptr<IOnomatopoeia> _onomat)
 {
+	// マガジンに装填
 	m_Onomatopoeia = _onomat;
+	// 擬音をマガジンの子オブジェクトに設定
+	SetChild(_onomat);
 }
