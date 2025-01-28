@@ -21,7 +21,7 @@ void SceneManager::Update(void)
 	Scenes[CurrentScene]->Update();
 
 	if (Input::GetInstance().GetKeyTrigger(VK_RETURN)) {
-		Scenes[CurrentScene]->SetChangeScene(STAGESELECT);
+		//Scenes[CurrentScene]->SetChangeScene(STAGESELECT);
 		Scenes[CurrentScene]->GetChangeScene();
 	}
 
@@ -29,6 +29,7 @@ void SceneManager::Update(void)
 	// 現在シーンの遷移フラグが立っている場合、シーン遷移
 	if (Scenes[CurrentScene]->GetChangeScene())
 	{
+		DeleteScene(CurrentScene);
 		switch (CurrentScene)
 		{
 		case TITLE:
@@ -37,6 +38,7 @@ void SceneManager::Update(void)
 			break;
 		case STAGESELECT:
 			// ステージ選択シーンは保持し続けるのでシーン遷移フラグだけをfalseに変更
+			ChangeScene(GAME);
 			break;
 		case GAME:
 			// エンターでリザルトへ
@@ -44,7 +46,7 @@ void SceneManager::Update(void)
 			break;
 		case RESULT:	// 現在シーンがリザルトなら
 			// タイトルへ戻り、シーンの初期化
-			ChangeScene(TITLE);
+			ChangeScene(STAGESELECT);
 			break;
 		default:
 			break;
@@ -151,4 +153,5 @@ void SceneManager::DeleteScene(SceneName _SceneName)
 {
 	// 指定したシーンを削除
 	Scenes.erase(_SceneName);
+	std::cout << _SceneName << std::endl;
 }
