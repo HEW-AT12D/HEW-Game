@@ -15,13 +15,17 @@
 class Camera : public GameObject
 {
 public:
-	Camera(D3D11& _D3d11) :GameObject(_D3d11) {
+	Camera(D3D11& _D3d11,int) :GameObject(_D3d11) {
 
 	}
 
 	~Camera() {};
+	void Update(float,Vector3);	//! カメラスピードとオブジェクトの位置
 
 private:
-	Vector3 m_CameraSize;	// カメラ画面の大きさ
+	Vector3 m_CameraSize;	//! カメラ画面の大きさ
+	Vector3 m_CameraPos;	//! カメラの座標
+	float cameraSpeed;		//! カメラの移動スピード
+	int CameraLimit;		//! カメラの移動最大値
 };
 

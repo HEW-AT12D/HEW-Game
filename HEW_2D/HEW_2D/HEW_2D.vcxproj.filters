@@ -334,9 +334,6 @@
     <ClInclude Include="Framework\Component\RigitBody\Gravity.h">
       <Filter>フレームワーク\コンポーネント\Physic（物理）</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Objcet\Camera\Camera.h">
-      <Filter>ゲーム\オブジェクト\カメラ</Filter>
-    </ClInclude>
     <ClInclude Include="Game\Scene\TestScene.h">
       <Filter>ゲーム\シーン</Filter>
     </ClInclude>
@@ -357,6 +354,9 @@
     </ClInclude>
     <ClInclude Include="Game\Scene\Re_TitleScene.h">
       <Filter>ゲーム\シーン</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Objcet\Camera\Camera.h">
+      <Filter>ゲーム\オブジェクト\カメラ</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
