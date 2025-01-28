@@ -48,9 +48,9 @@ void SoundGun::Suction(std::weak_ptr<GameObject> _gion)
 			// 擬音の座標を現在選択しているマガジンの座標に変更
 			// →今選択してるマガジンに既に擬音がある場合、次のマガジンに装填、を繰り返し、全部装填されている場合、座標は寄せるが回転、吸い込み処理は行わない
 			onomatopoeia->SetPosition(player->GetUsingMag()->GetPosition());	// 座標を設定
-			onomatopoeia->SetPosition(player->GetUsingMag()->GetRotation());	// 角度を設定
-			onomatopoeia->SetPosition(player->GetUsingMag()->GetScale());		// 大きさを設定
-			player->GetUsingMag()->SetOnomatopoeia(onomatopoeia);
+			onomatopoeia->SetRotation(player->GetUsingMag()->GetRotation());	// 角度を設定
+			onomatopoeia->SetScale(player->GetUsingMag()->GetScale());			// 大きさを設定
+			player->GetUsingMag()->SetOnomatopoeia(onomatopoeia);				// マガジンに装填
 			
 			// 擬音がマガジンの座標に入らない問題を直す
 		}
