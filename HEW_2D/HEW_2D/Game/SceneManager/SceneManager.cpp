@@ -9,7 +9,7 @@
 void SceneManager::Init(void) 
 {
 	//! タイトルシーンを生成してコンテナに追加
-	Scenes.emplace(TITLE, std::make_unique<Re_TitleScene>(D3d11));
+	Scenes.emplace(TITLE, std::make_unique<Re_Stage1Scene>(D3d11));
 	//Scenes現在シーンをタイトルシーンに設定
 	CurrentScene = TITLE;
 	Scenes[CurrentScene]->Init();
@@ -105,13 +105,13 @@ void SceneManager::ChangeScene(SceneName _Nextscene) {
 		switch (_Nextscene)
 		{
 		case TITLE:
-			CreateScene<Re_TitleScene>(TITLE);
+			CreateScene<Re_Stage1Scene>(TITLE);
 			break;
 		case STAGESELECT:
 			CreateScene<StageSelectScene>(STAGESELECT);
 			break;
 		case GAME:
-			CreateScene<TitleScene>(GAME);
+			CreateScene<Stage1Scene>(GAME);
 			break;
 		case RESULT:
 			CreateScene<ResultScene>(RESULT);

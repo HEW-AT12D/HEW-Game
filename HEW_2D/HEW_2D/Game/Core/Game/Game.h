@@ -1,7 +1,9 @@
 #pragma once
 #include "../../../Game/SceneManager/SceneManager.h"
 #include "../../../Framework/D3D11/D3D11.h"
-#include"../../../Game/Scene/TitleScene.h"
+#include"../../../Game/Scene/Stage1Scene.h"
+#include "../../../Framework/Sound/sound.h"
+
 
 
 //class D3D11;
@@ -24,4 +26,5 @@ public:
 
 private:
 	SceneManager scenemanager;	// シーン管理クラス
+	Sound sound;				// サウンドをここに持たせてる(要変更)
 };

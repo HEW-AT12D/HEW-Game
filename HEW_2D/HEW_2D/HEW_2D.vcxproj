@@ -181,14 +181,14 @@
     <ClCompile Include="Game\ObjectManager\ObjectManager.cpp" />
     <ClCompile Include="Game\SceneManager\SceneManager.cpp" />
     <ClCompile Include="Game\Scene\GameScene.cpp" />
-    <ClCompile Include="Game\Scene\Re_TitleScene.cpp" />
-    <ClCompile Include="Game\Scene\STAGE1_SCENE.cpp" />
+    <ClCompile Include="Game\Scene\TitleScene.cpp" />
+    <ClCompile Include="Game\Scene\Stage2Scene.cpp" />
     <ClCompile Include="Game\Scene\TestScene.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Game\Scene\ResultScene.cpp" />
     <ClCompile Include="Game\Scene\StageSelectScene.cpp" />
-    <ClCompile Include="Game\Scene\TitleScene.cpp" />
+    <ClCompile Include="Game\Scene\Stage1Scene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework\ComponentManager\ComponentManager.h">
@@ -233,14 +233,14 @@
     <ClInclude Include="Game\ObjectManager\ObjectManager.h" />
     <ClInclude Include="Game\SceneManager\SceneManager.h" />
     <ClInclude Include="Game\Scene\GameScene.h" />
-    <ClInclude Include="Game\Scene\Re_TitleScene.h" />
-    <ClInclude Include="Game\Scene\STAGE1_SCENE.h" />
+    <ClInclude Include="Game\Scene\TitleScene.h" />
+    <ClInclude Include="Game\Scene\Stage2Scene.h" />
     <ClInclude Include="Game\Scene\TestScene.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="Game\Scene\ResultScene.h" />
     <ClInclude Include="Game\Scene\StageSelectScene.h" />
-    <ClInclude Include="Game\Scene\TitleScene.h" />
+    <ClInclude Include="Game\Scene\Stage1Scene.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Framework\注意点\注意点・解説.txt" />

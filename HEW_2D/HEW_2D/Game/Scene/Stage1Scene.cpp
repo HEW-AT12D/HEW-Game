@@ -1,4 +1,4 @@
-#include "STAGE1_SCENE.h"
+#include "Stage1Scene.h"
 #include "../../Game/Objcet/Player/Player.h"
 #include "../../Game/Objcet/Enemy/Enemy.h"
 #include "../../Framework/Input/Input.h"
@@ -13,29 +13,25 @@
  *
  * シーンごとに初期化は最初の一度のみ
  * →
- *
+ * 
  * ステージは、縦２０マス＊横４０マス
 */
-
-void STAGE1_SCENE::Init(void) {
-	//sound.Init();
-
+void Stage1Scene::Init(void) {
 	// オブジェクトマネージャ初期化
 	objectmanager.Init();
-	//sound.Init();
-
+	
 
 	//-----------------------
 	//-----オブジェクト追加-----
 	//-----------------------
 	// TODO:1218ここまで オブジェクトの管理をenumから変更→tagと名前にしたい
-
+	
 	// 背景
 	objectmanager.AddObject<GameObject>(BACKGROUND, "Background");
 	objectmanager.GetGameObjectPtr<GameObject>(BACKGROUND, "Background").lock()->Init(L"Game/Asset/BackGround/TitleBack.png");
 	objectmanager.GetGameObjectPtr<GameObject>(BACKGROUND, "Background").lock()->SetPosition(Vector3(0.0f, 0.0f, 0.0f));
 	objectmanager.GetGameObjectPtr<GameObject>(BACKGROUND, "Background").lock()->SetScale(Vector3(1920.0f, 1080.0f, 0.0f));
-
+	
 	// プレイヤー
 	objectmanager.AddObject<Player>(PLAYER, "Player");
 	objectmanager.GetGameObjectPtr<Player>(PLAYER, "Player").lock()->Init(L"Game/Asset/Character/Player_Sprite.png", 2, 3);
@@ -44,39 +40,40 @@ void STAGE1_SCENE::Init(void) {
 
 	// 擬音銃(設計的には銃を別画像で用意してプレイヤーに持たせる方が良かったが、)
 	objectmanager.AddObject<SoundGun>(UI, "SoundGun");
-	objectmanager.GetGameObjectPtr<SoundGun>(UI, "SoundGun").lock()->Init(L"Game/Asset/Character/Cyclon.png", 4, 1);
+	objectmanager.GetGameObjectPtr<SoundGun>(UI, "SoundGun").lock()->Init(L"Game/Asset/Character/Cyclon.png", 1, 4);
 	objectmanager.GetGameObjectPtr<SoundGun>(UI, "SoundGun").lock()->SetPosition(Vector3(0.0f, 600.0f, 0.0f));
 	objectmanager.GetGameObjectPtr<SoundGun>(UI, "SoundGun").lock()->SetScale(Vector3(130.0f, 130.0f, 0.0f));
 	objectmanager.GetGameObject<Player>(PLAYER, "Player").second->SetChild(objectmanager.GetGameObject<SoundGun>(UI, "SoundGun").second);
 
-
-	//擬音（どおん）
-	objectmanager.AddObject<Poyon>(ONOMATOPOEIA, "Gion");	// 名前要変更
-	objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "Gion").lock()->Init(L"Game/Asset/Onomatopoeia/BiriBiri.png");
-	objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "Gion").lock()->SetPosition(Vector3(500.0f, -350.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "Gion").lock()->SetScale(Vector3(240.0f, 120.0f, 0.0f));
-
+	//擬音（ポヨン）
+	objectmanager.AddObject<Poyon>(ONOMATOPOEIA, "Poyon");	// 名前要変更
+	objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "Poyon").lock()->Init(L"Game/Asset/Onomatopoeia/Wiin.png");
+	objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "Poyon").lock()->SetPosition(Vector3(500.0f, -350.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "Poyon").lock()->SetScale(Vector3(240.0f, 120.0f, 0.0f));
+	
 	// マガジン(二個持った状態でスタート、落ちてるのは一個だけ)
-	// 一個目
+	// 1個目(ドォン専用)
+	objectmanager.AddObject<Magazine>(UI, "SpecialMagazine");
+	objectmanager.GetGameObjectPtr<Magazine>(UI, "SpecialMagazine").lock()->Init(L"Game/Asset/GameObject/Magazine.png");
+	objectmanager.GetGameObjectPtr<Magazine>(UI, "SpecialMagazine").lock()->SetPosition(Vector3(0.0f, 0.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<Magazine>(UI, "SpecialMagazine").lock()->SetScale(Vector3(90.0f, 90.0f, 0.0f));
+	// 2個目
 	objectmanager.AddObject<Magazine>(UI, "Magazine1");
 	objectmanager.GetGameObjectPtr<Magazine>(UI, "Magazine1").lock()->Init(L"Game/Asset/GameObject/Magazine.png");
 	objectmanager.GetGameObjectPtr<Magazine>(UI, "Magazine1").lock()->SetPosition(Vector3(0.0f, 0.0f, 0.0f));
 	objectmanager.GetGameObjectPtr<Magazine>(UI, "Magazine1").lock()->SetScale(Vector3(90.0f, 90.0f, 0.0f));
-	// 二個目
+	// 3個目
 	objectmanager.AddObject<Magazine>(UI, "Magazine2");
 	objectmanager.GetGameObjectPtr<Magazine>(UI, "Magazine2").lock()->Init(L"Game/Asset/GameObject/Magazine.png");
 	objectmanager.GetGameObjectPtr<Magazine>(UI, "Magazine2").lock()->SetPosition(Vector3(0.0f, 0.0f, 0.0f));
 	objectmanager.GetGameObjectPtr<Magazine>(UI, "Magazine2").lock()->SetScale(Vector3(90.0f, 90.0f, 0.0f));
 
-	// 二つは子オブジェクトに設定してUIに変更しておく
+	// 3つは子オブジェクトに設定してUIに変更しておく
+	objectmanager.GetGameObject<Player>(PLAYER, "Player").second->SetChild(objectmanager.GetGameObject<Magazine>(UI, "SpecialMagazine").second);
 	objectmanager.GetGameObject<Player>(PLAYER, "Player").second->SetChild(objectmanager.GetGameObject<Magazine>(UI, "Magazine1").second);
-
-	// 変更するべきこと→取得したマガジンをしっかり自身の所有オブジェクトとして設定する
-	// →
-	//objectmanager.GetGameObject<Player>(PLAYER, "Player").second->Set
 	objectmanager.GetGameObject<Player>(PLAYER, "Player").second->SetChild(objectmanager.GetGameObject<Magazine>(UI, "Magazine2").second);
 
-	// 三個目
+	// 3個目(フィールドに落ちてるマガジン)
 	objectmanager.AddObject<Magazine>(OBJECT, "Magazine3");
 	objectmanager.GetGameObjectPtr<Magazine>(OBJECT, "Magazine3").lock()->Init(L"Game/Asset/GameObject/Magazine.png");
 	objectmanager.GetGameObjectPtr<Magazine>(OBJECT, "Magazine3").lock()->SetPosition(Vector3(400.0f, -400.0f, 0.0f));
@@ -109,14 +106,7 @@ void STAGE1_SCENE::Init(void) {
 	// クロスヘアをプレイヤーの子オブジェクトとして設定
 	objectmanager.GetGameObject<Player>(PLAYER, "Player").second->SetChild(objectmanager.GetGameObject<CrossHair>(UI, "CrossHair").second);
 
-	//enemy擬音
-	objectmanager.AddObject<Poyon>(ONOMATOPOEIA, "_Gion2");	// 名前要変更
-	objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "_Gion2").lock()->Init(L"Game/Asset/Onomatopoeia/Wiin.png");
-	objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "_Gion2").lock()->SetPosition(Vector3(500.0f, -350.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "_Gion2").lock()->SetScale(Vector3(240.0f, 120.0f, 0.0f));
-
 	std::cout << "GameSceneInit" << std::endl;
-
 	//// UI1(ボタン)
 	//objectmanager.AddObject<GameObject>(UI, "StartButton");
 	//// UI2(ボタン)
@@ -127,32 +117,27 @@ void STAGE1_SCENE::Init(void) {
 
 
 
-void STAGE1_SCENE::Update(void)
+void Stage1Scene::Update(void)
 {
-	Input::GetInstance().Update();
-	//sound.Play(SOUND_LABEL_BGM000);
-
-
+	
 	// 入力情報の更新
+	Input::GetInstance().Update();
+
 	// シーン更新に必要な情報を取得
 	auto playerShared = objectmanager.GetGameObjectPtr<Player>(PLAYER, "Player");
 	auto groundShared = objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "Ground");
 	auto groundShared2 = objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "Ground2");
-	auto gionShared = objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "Gion");
+	auto gionShared = objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "Poyon");
 	auto enemyShared = objectmanager.GetGameObjectPtr<Enemy>(OBJECT, "Slime");
 	auto crosshairShared = objectmanager.GetGameObjectPtr<CrossHair>(UI, "CrossHair");
-	auto enemygion = objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "_Gion2");
 
-	//Vector3 p_enemygion = enemygion.lock()->GetPosition();
-	Vector3 p_enemy = enemyShared.lock()->GetPosition();
-	//p_enemygion = p_enemy;
 
 	// 入力管理
 	// 右移動
 	if (Input::GetInstance().GetKeyPress(VK_D))
 	{
 		objectmanager.GetGameObjectPtr<Player>(PLAYER, "Player").lock()->SetMoveRight(true);
-
+		
 		//デバック用
 		std::cout << "Playerの座標移動ができています" << std::endl;
 	}
@@ -187,44 +172,6 @@ void STAGE1_SCENE::Update(void)
 
 	ColliderPlayer_Ground(playerShared, groundShared);
 
-	Vector4 poyon_color = enemygion.lock()->GetColor();
-
-	//EnemyとGroundが衝突していたら
-	/*ここでエネミーのY座標の値によって画像のα値を変動させる
-	例：高くなる程α値が増える*/
-	if (!Collider_toGround(enemyShared, groundShared))
-	{
-		poyon_color.w += 0.05f;
-		enemygion.lock()->SetColor(poyon_color);
-		enemygion.lock()->SetPosition(p_enemy);
-
-	}
-	else {
-
-		enemyShared.lock()->SetOnGround(true);
-		enemyShared.lock()->SetJump(true);
-		poyon_color.w = 0.0f;
-		enemygion.lock()->SetColor(poyon_color);
-
-	}
-
-	Vector3 enemy_Rotation = enemyShared.lock()->GetRotation();
-
-
-	if (p_enemy.x <= -300)
-	{
-		enemyShared.lock()->cb.matrixWorld = DirectX::XMMatrixScaling(-1.0f, 1.0f, 1.0f);
-		/*ID3D11DeviceContext *deviceContext;
-		deviceContext = d3d11.GetDevice();
-		deviceContext->VSSetConstantBuffers(0, 1, );*/
-		/*enemy_Rotation.z = 180;
-		enemy_Rotation.y = 180;
-
-		enemyShared.lock()->SetRotation(enemy_Rotation);*/
-	}
-	std::cout << p_enemy.x << std::endl;
-
-
 	// クロスヘアの入力取得(本来はプレイヤーのフラグを立てて、プレイヤーの更新の中でクロスヘアを動かすべき)
 	if (Input::GetInstance().GetKeyPress(VK_UP))
 	{
@@ -236,7 +183,7 @@ void STAGE1_SCENE::Update(void)
 	else {
 		crosshairShared.lock()->SetMoveUp(false);
 	}
-
+	
 	if (Input::GetInstance().GetKeyPress(VK_DOWN))
 	{
 		crosshairShared.lock()->SetMoveDown(true);
@@ -248,7 +195,7 @@ void STAGE1_SCENE::Update(void)
 	{
 		crosshairShared.lock()->SetMoveDown(false);
 	}
-
+	
 	if (Input::GetInstance().GetKeyPress(VK_RIGHT))
 	{
 		crosshairShared.lock()->SetMoveRight(true);
@@ -263,7 +210,7 @@ void STAGE1_SCENE::Update(void)
 	{
 		crosshairShared.lock()->SetMoveRight(false);
 	}
-
+	
 	if (Input::GetInstance().GetKeyPress(VK_LEFT))
 	{
 		crosshairShared.lock()->SetMoveLeft(true);
@@ -278,7 +225,6 @@ void STAGE1_SCENE::Update(void)
 	{
 		crosshairShared.lock()->SetMoveLeft(false);
 	}
-
 
 
 	////擬音の吸収→247行目の吸い込み処理に変更、改良
@@ -299,15 +245,6 @@ void STAGE1_SCENE::Update(void)
 		// マガジンに擬音が装填されているかチェック
 		if (playerShared.lock()->GetLoadedBullet())
 		{
-			Vector3 gion_Rot = gionShared.lock()->GetRotation();	// 擬音の回転情報
-			Vector3 gion_Scale = gionShared.lock()->GetScale();		// 擬音のサイズ情報
-			gion_Rot.z = 0;
-			// 擬音のサイズ設定
-			gion_Scale.y = 120;
-			gion_Scale.x = 240;
-			// 各情報を再設定
-			gionShared.lock()->SetRotation(gion_Rot);
-			gionShared.lock()->SetScale(gion_Scale);
 			playerShared.lock()->SetIsShot(true);
 
 
@@ -315,6 +252,8 @@ void STAGE1_SCENE::Update(void)
 			//			擬音のタグ変更処理
 			//--------------------------------------
 
+			// ここオブジェクトマネージャから擬音の情報持ってきたほうが良いかも？
+			
 			// ここで擬音のタグをUIから擬音に変更
 			// →擬音のポインタだけわかってるのにキーの特定がスムーズにできないのでやっぱり管理方法変えたほうがいい(登録されてるタグを毎フレーム確認して同期させるとか)
 
@@ -343,20 +282,20 @@ void STAGE1_SCENE::Update(void)
 			}
 		}
 	}
+	// ボタンを押していないときは発射状態をfalseに設定
+	playerShared.lock()->SetIsShot(false);
 
 	// 何かのオブジェクトに当たったら擬音の移動を止める処理
-	if (Collider_toGround(groundShared2, gionShared))
+	/*if (Collider_toGround(groundShared2, gionShared))
 	{
-		playerShared.lock()->SetIsShot(false);
 
 	}
 	else {
 
-	}
+	}*/
 
 
 	//playerShared.lock()->Shot(gionShared);
-
 
 
 	// ----------------吸い込み処理→ここはプレイヤーの処理に移す-------------------------
@@ -365,18 +304,32 @@ void STAGE1_SCENE::Update(void)
 	{
 		// 吸い込める擬音を探す
 		// そのフレーム内のタグが擬音のもの全て取得→それとプレイヤーから出る扇型の当たり判定を取得
-		auto onomatopoeias = objectmanager.GetObjects<IOnomatopoeia>(ONOMATOPOEIA);
-		// 扇形との当たり判定を取得
-		auto HitOnomatopoeia = ColliderFan_Gion(playerShared, onomatopoeias);
+		//auto onomatopoeias = objectmanager.GetObjects<IOnomatopoeia>(ONOMATOPOEIA);
+		auto onomatopoeias = objectmanager.GetGameObjectPair<IOnomatopoeia>(ONOMATOPOEIA);
 
-		// ポインタに値が入っていれば(扇形範囲内に当たった擬音があれば)
-		if (HitOnomatopoeia.lock())
+		// 擬音が0ではなければ
+		if (!onomatopoeias.empty())
 		{
-			// 擬音の吸い込み実行
-			playerShared.lock()->Suction(HitOnomatopoeia);
+			// 扇形との当たり判定を取得
+			auto HitOnomatopoeia = ColliderFan_Gion(playerShared, onomatopoeias);
+
+			// ポインタに値が入っていれば(扇形範囲内に当たった擬音があれば)
+			if (HitOnomatopoeia.second)
+			{
+				// 擬音の吸い込み実行
+				playerShared.lock()->SetIsSuction(true);			// プレイヤーの状態を吸い込み中に設定
+
+				// 吸い込み処理が終わったら
+				if (playerShared.lock()->Suction(HitOnomatopoeia.second))
+				{
+					// 吸い込み処理が終わった時に擬音のタグをUIに変更、射撃するときにタグを擬音に変更する処理がまだ
+					objectmanager.ChangeTag(HitOnomatopoeia.first.first, HitOnomatopoeia.first.second, UI);
+				}
+			}
 		}
-
-
+		
+		
+		
 		//Vector3 p_pos = objectmanager.GetGameObjectPtr<Player>(PLAYER, "Player").lock()->GetPosition();
 		//Vector3 gion_pos = objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "Gion").lock()->GetPosition();
 		////Suction(gion_pos, p_pos);
@@ -422,15 +375,13 @@ void STAGE1_SCENE::Update(void)
 	//objectmanager.Collider_Player_to_Object();		// ここで当たったらマガジン数を１つ減らす
 
 	objectmanager.Update();
-
+	
 }
 
-void STAGE1_SCENE::Draw(void) {
+void Stage1Scene::Draw(void) {
 	objectmanager.Draw();
 }
 
-void STAGE1_SCENE::Uninit(void) {
+void Stage1Scene::Uninit(void) {
 	objectmanager.Uninit();
-	//sound.Uninit();
-
 }

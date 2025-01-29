@@ -173,7 +173,7 @@
     <ClCompile Include="Game\Scene\ResultScene.cpp">
       <Filter>ゲーム\シーン</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Scene\TitleScene.cpp">
+    <ClCompile Include="Game\Scene\Stage1Scene.cpp">
       <Filter>ゲーム\シーン</Filter>
     </ClCompile>
     <ClCompile Include="Game\Scene\StageSelectScene.cpp">
@@ -236,10 +236,10 @@
     <ClCompile Include="Game\Objcet\SoundGun\CrossHair.cpp">
       <Filter>ゲーム\オブジェクト\擬音銃\クロスヘア</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Scene\Re_TitleScene.cpp">
+    <ClCompile Include="Game\Scene\TitleScene.cpp">
       <Filter>ゲーム\シーン</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Scene\STAGE1_SCENE.cpp">
+    <ClCompile Include="Game\Scene\Stage2Scene.cpp">
       <Filter>ゲーム\シーン</Filter>
     </ClCompile>
     <ClCompile Include="Framework\Sound\sound.cpp">
@@ -292,7 +292,7 @@
     <ClInclude Include="Game\Scene\ResultScene.h">
       <Filter>ゲーム\シーン</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Scene\TitleScene.h">
+    <ClInclude Include="Game\Scene\Stage1Scene.h">
       <Filter>ゲーム\シーン</Filter>
     </ClInclude>
     <ClInclude Include="Game\Scene\StageSelectScene.h">
@@ -358,10 +358,10 @@
     <ClInclude Include="Game\Objcet\SoundGun\CrossHair.h">
       <Filter>ゲーム\オブジェクト\擬音銃\クロスヘア</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Scene\Re_TitleScene.h">
+    <ClInclude Include="Game\Scene\TitleScene.h">
       <Filter>ゲーム\シーン</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Scene\STAGE1_SCENE.h">
+    <ClInclude Include="Game\Scene\Stage2Scene.h">
       <Filter>ゲーム\シーン</Filter>
     </ClInclude>
   </ItemGroup>
