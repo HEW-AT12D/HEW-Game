@@ -1,3 +1,21 @@
 ﻿  Collider.cpp
 C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.cpp(201,23): warning C4305: '初期化中': 'double' から 'float' へ切り詰めます。
+  Input.cpp
+  Application.cpp
+  Game.cpp
+  main.cpp
+  Camera.cpp
+  Player.cpp
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Objcet\Player\Player.cpp(405,9): warning C4101: 'M_PI': ローカル変数は 1 度も使われていません。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Objcet\Player\Player.cpp(404,9): warning C4101: 'Degrees': ローカル変数は 1 度も使われていません。
+  SceneManager.cpp
+  ResultScene.cpp
+  Stage1Scene.cpp
+  Stage2Scene.cpp
+  StageSelectScene.cpp
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\StageSelectScene.cpp(44,23): warning C4305: '引数': 'SceneName' から 'bool' へ切り詰めます。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\StageSelectScene.cpp(52,23): warning C4305: '引数': 'SceneName' から 'bool' へ切り詰めます。
+  TestScene.cpp
+  TitleScene.cpp
+  コードを生成中...
   HEW_2D.vcxproj -> C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\x64\Debug\HEW_2D.exe
