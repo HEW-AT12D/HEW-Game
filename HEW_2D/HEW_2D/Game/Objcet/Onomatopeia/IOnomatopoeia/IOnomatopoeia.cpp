@@ -38,5 +38,5 @@ void IOnomatopoeia::Fade_in_out(void)
 void IOnomatopoeia::Update(void)
 {
 	// —Í‚ª‰Á‚¦‚ç‚ê‚Ä‚¢‚éê‡A‚»‚Ì•ûŒü‚Öi‚Þ‚æ‚¤‚É‚·‚é(Œ¸‘¬‚Æ‚©‚Í“Á‚É‚È‚µ)
-
+	this->GameObject::Update();
 }

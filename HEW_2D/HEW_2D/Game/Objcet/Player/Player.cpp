@@ -115,7 +115,9 @@ void Player::Update(void)
 	if (IsShot)
 	{
 		Shot();
+		IsShot = false;
 	}
+
 }
 
 
@@ -336,6 +338,12 @@ void Player::SetChild(std::shared_ptr<GameObject> _child)
 		// 子オブジェクトに設定
 		m_Soundgun = casted;
 		m_pChildren.push_back(casted);
+
+		// 座標をプレイヤーの少し右に調整(これ座標変換できるようにしたい)
+		Vector3 newpos = transform.GetPosition();
+		newpos.x += transform.GetScale().x / 2 + casted->GetScale().x / 2;	// 擬音銃とプレイヤーの大きさのそれぞれ半分を足した値を加算して座標を設定
+		casted->SetPosition(newpos);
+
 	}
 	// クロスヘアの場合
 	else if (auto casted = std::dynamic_pointer_cast<CrossHair>(_child))
@@ -417,24 +425,38 @@ void Player::Shot(void)
 		vertex.x = p_aim.x - p_player.x;			// 照準とPlayerのX座標の差（底辺）
 		vertex.y = p_aim.y - p_player.y;			// 照準とPlayerのY座標差  （高さ）
 		hypotenuse = (vertex.y * vertex.y) + (vertex.x * vertex.x); //斜辺の計算（底辺の二乗＋高さの二乗＝斜辺の二乗）
-		root_hypotenuse = std::sqrt(hypotenuse);	// 斜辺の平方根の計算
+		root_hypotenuse = std::sqrt(hypotenuse);	// 斜辺の平方根の計算(ここでベクトルの長さが求まる)
 
-		/*p_aimの位置が
-		  (vertex.y, vertex.x) = ( 1, 1)…第一象限
-		　(vertex.y, vertex.x) = (-1, 1)…第二象限
-		　(vertex.y, vertex.x) = (-1,-1)…第三象限
-		　(vertex.y, vertex.x) = ( 1,-1)…第四象限
-		 って感じ*/
-		Radians = std::atan2(vertex.y, vertex.x); //p_aimのポジションが第何象限にあるか確認
+		// ベクトルを正規化
+		Vector3 normalized_vector;
+		normalized_vector.x = vertex.x / root_hypotenuse;
+		normalized_vector.y = vertex.y / root_hypotenuse;
 
-		// 発射したい方向→銃の向く方向を設定
-		// 角度をベクトルに変換
-		Vector3 direction;
-		direction.x = std::cos(Radians);	// ベクトルのX成分
-		direction.y = std::sin(Radians);	// ベクトルのY成分
 
-		// 銃の向きを設定
-		m_Soundgun->SetDirection(direction);
+
+
+		///////////////////////////////////////////////////////////////////////////////////////
+		///			連の頑張りを使うためにコメントアウト(↑で手計算してたので↓は使わないでいく)			///
+		///////////////////////////////////////////////////////////////////////////////////////
+		///*p_aimの位置が
+		//  (vertex.y, vertex.x) = ( 1, 1)…第一象限
+		//　(vertex.y, vertex.x) = (-1, 1)…第二象限
+		//　(vertex.y, vertex.x) = (-1,-1)…第三象限
+		//　(vertex.y, vertex.x) = ( 1,-1)…第四象限
+		// って感じ*/
+		//Radians = std::atan2(vertex.y, vertex.x); //p_aimのポジションが第何象限にあるか確認
+
+		//// 発射したい方向→銃の向く方向を設定
+		//// 角度をベクトルに変換
+		//Vector3 direction;
+		//direction.x = std::cos(Radians);	// ベクトルのX成分
+		//direction.y = std::sin(Radians);	// ベクトルのY成分
+
+		///////////////////////////////////////////////////////////////////////////////////////
+		///////////////////////////////////////////////////////////////////////////////////////
+
+		// 銃の向きを設定(↑で計算して正規化した方向ベクトルを使用)
+		m_Soundgun->SetDirection(normalized_vector);
 
 
 

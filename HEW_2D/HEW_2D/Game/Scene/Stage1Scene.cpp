@@ -40,9 +40,9 @@ void Stage1Scene::Init(void) {
 
 	// 擬音銃(設計的には銃を別画像で用意してプレイヤーに持たせる方が良かったが、)
 	objectmanager.AddObject<SoundGun>(UI, "SoundGun");
-	objectmanager.GetGameObjectPtr<SoundGun>(UI, "SoundGun").lock()->Init(L"Game/Asset/Character/Cyclon.png", 1, 4);
-	objectmanager.GetGameObjectPtr<SoundGun>(UI, "SoundGun").lock()->SetPosition(Vector3(0.0f, 600.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<SoundGun>(UI, "SoundGun").lock()->SetScale(Vector3(130.0f, 130.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<SoundGun>(UI, "SoundGun").lock()->Init(L"Game/Asset/Character/CyclonImage.png", 1, 4);
+	objectmanager.GetGameObjectPtr<SoundGun>(UI, "SoundGun").lock()->SetPosition(Vector3(0.0f, 0.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<SoundGun>(UI, "SoundGun").lock()->SetScale(Vector3(260.0f, 130.0f, 0.0f));
 	objectmanager.GetGameObject<Player>(PLAYER, "Player").second->SetChild(objectmanager.GetGameObject<SoundGun>(UI, "SoundGun").second);
 
 	//擬音（ポヨン）
@@ -282,8 +282,7 @@ void Stage1Scene::Update(void)
 			}
 		}
 	}
-	// ボタンを押していないときは発射状態をfalseに設定
-	playerShared.lock()->SetIsShot(false);
+	
 
 	// 何かのオブジェクトに当たったら擬音の移動を止める処理
 	/*if (Collider_toGround(groundShared2, gionShared))
@@ -326,6 +325,18 @@ void Stage1Scene::Update(void)
 					objectmanager.ChangeTag(HitOnomatopoeia.first.first, HitOnomatopoeia.first.second, UI);
 				}
 			}
+			// 擬音が0(吸い込み中に扇型範囲から擬音がいなくなった場合)
+			else
+			{
+				// プレイヤーの状態を変更
+				playerShared.lock()->SetIsSuction(false);		// 「非」吸い込み中に設定
+			}
+		}
+		// 擬音が0(フレーム内の擬音がない場合)
+		else
+		{
+			// プレイヤーの状態を変更
+			playerShared.lock()->SetIsSuction(false);		// 「非」吸い込み中に設定
 		}
 	}
 	//連：メモ

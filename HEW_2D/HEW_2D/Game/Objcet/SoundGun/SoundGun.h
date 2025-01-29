@@ -22,7 +22,7 @@ public:
 	SoundGun(D3D11& _D3d11) :GameObject(_D3d11) {
 		IsSuction = false;
 		IsShot = false;
-		m_ShotPower = 5.0f;
+		m_ShotPower = 25.0f;
 	};
 	~SoundGun() {};
 

@@ -33,8 +33,9 @@ void SceneManager::Update(void)
 		switch (CurrentScene)
 		{
 		case TITLE:
-			// エンターでリザルトへ
-			ChangeScene(STAGESELECT);
+			// エンターでステージ選択へ
+			// デバッグ用にステージ１へ飛ぶ
+			ChangeScene(GAME);
 			break;
 		case STAGESELECT:
 			// ステージ選択シーンは保持し続けるのでシーン遷移フラグだけをfalseに変更

@@ -72,6 +72,28 @@ void GameObject::Init(const wchar_t* imgname, int sx, int sy, bool _animation)
 */
 void GameObject::Update(void)
 {
+	// 物理挙動をここに書く
+	// 毎フレームの挙動
+	// ・重力加速度を下方向に加える
+	// ・方向ベクトルの向きに
+
+
+	// 速度分だけ移動
+	Vector3 newpos = transform.GetPosition();
+	newpos+= m_Direction * m_Velocity;
+	transform.SetPosition(newpos);
+
+	// 摩擦や空気抵抗を考慮（加速度の減少）
+	m_Velocity *= 0.95f;		// 毎フレーム5% 減衰
+	
+	// 一定以下なら完全停止
+	if (fabs(m_Velocity.x) < 0.01f) {
+		m_Velocity.x = 0.0f;
+	}
+	if (fabs(m_Velocity.y) < 0.01f)
+	{
+		m_Velocity.y = 0.0f;
+	}
 
 }
 
