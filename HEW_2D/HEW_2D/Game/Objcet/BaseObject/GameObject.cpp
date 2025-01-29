@@ -106,7 +106,7 @@ void GameObject::Draw(void)
 	cb.matrixTex = DirectX::XMMatrixTranspose(cb.matrixTex);
 
 	//頂点カラーのデータを作成
-	cb.color = color;
+	cb.color = m_Color;
 
 	// 行列をシェーダーに渡す
 	D3d11.GetDeviceContext()->UpdateSubresource(D3d11.GetConstantBuffer(), 0, NULL, &cb, 0, 0);
@@ -142,10 +142,10 @@ void GameObject::SetRotation(Vector3 _Rot)
 void GameObject::SetColor(Color _Color)
 {
 	//色をセットする
-	color.x = _Color.x;
-	color.y = _Color.y;
-	color.z = _Color.z;
-	color.w = _Color.w;
+	m_Color.x = _Color.x;
+	m_Color.y = _Color.y;
+	m_Color.z = _Color.z;
+	m_Color.w = _Color.w;
 }
 
 void GameObject::SetUV(Int2 _UV)
@@ -235,7 +235,7 @@ Vector3 GameObject::GetRotation(void)
 Color GameObject::GetColor(void)
 {
 	//色をゲット
-	return color;
+	return m_Color;
 }
 
 Int2 GameObject::GetUV(void)

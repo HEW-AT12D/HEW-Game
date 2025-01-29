@@ -147,7 +147,7 @@ public:
 	 * @tparam T オブジェクトの型
 	 * @param _tag タグ
 	 * @param _name 名前
-	 * @return mapに登録されている状態でのオブジェクト
+	 * @return mapに登録されている状態(タグと名前がセットになった状態)でのオブジェクト
 	*/
 	template <class T>
 	std::pair<const std::pair<Tag, std::string>, std::shared_ptr<T>> GetGameObject(const Tag& _tag, const std::string& _name)
@@ -179,6 +179,39 @@ public:
 
 
 	/**
+	 * @brief	オブジェクトを配列で取得する関数
+	 * @tparam T オブジェクトの型
+	 * @param  オブジェクトのタグ
+	 * @return タグで指定したオブジェクトをマネージャに登録した状態でvectorにしたもの
+	*/
+	template <class T>
+	std::vector<std::pair<std::pair<Tag, std::string>, std::shared_ptr<T>>> GetGameObjectPair(const Tag& _tag)
+	{
+		std::vector<std::pair<std::pair<Tag, std::string>, std::shared_ptr<T>>> returnobjects;
+		// map内を探索
+		for (auto& obj : Objects)
+		{
+			// タグが同じで
+			if (obj.first.first == _tag)
+			{
+				// キャストできるならキャストして配列に格納
+				if (auto casted = std::dynamic_pointer_cast<T>(obj.second))
+				{
+					returnobjects.emplace_back(obj.first, casted);
+				}
+				// 基底クラスならそのまま格納
+				else
+				{
+					returnobjects.emplace_back(obj.first, std::static_pointer_cast<T>(obj.second));
+				}
+			}
+		}
+		return returnobjects;
+	}
+
+
+
+	/**
 	 * @brief オブジェクト取得関数(タグ、型指定してオブジェクトそのもののweak_ptrを返す)
 	 * @tparam T オブジェクトの型
 	 * @param _tag オブジェクトタグ
@@ -205,6 +238,9 @@ public:
 		}
 		return objects;
 	}
+
+
+
 
 
 

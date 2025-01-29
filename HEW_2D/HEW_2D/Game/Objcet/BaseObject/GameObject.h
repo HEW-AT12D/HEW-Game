@@ -98,7 +98,7 @@ protected:
 	Transform transform;
 	
 	// 色
-	Color color = { 1.0f, 1.0f, 1.0f, 1.0f };
+	Color m_Color = { 1.0f, 1.0f, 1.0f, 1.0f };
 
 	// 頂点バッファ
 	ID3D11Buffer* m_pVertexBuffer = nullptr;

@@ -20,7 +20,9 @@ public:
 
 	virtual ~IOnomatopoeia() {};
 	// 擬音がオブジェクトに与える動き(ここで画像の動きをいじる)
-	virtual void Action(void) = 0;	// マガジンが親の場合は効果を与えない
+	virtual void Action(void) = 0;		// マガジンが親の場合は効果を与えない
+	virtual void Fade_in_out(void);		// 擬音のフェードイン/フェードアウト
+	virtual void Update(void) override;	// 更新
 
 protected:
 	// コンストラクタをprotectedにすると派生クラスからしかコンストラクタを動かせない
@@ -30,5 +32,6 @@ protected:
 	};
 	// 擬音が付与されているオブジェクトはGameObjectクラスのm_pParentで判断する
 	std::string m_Name;				// 擬音の名前
+	bool fade_check = false;
 };
 

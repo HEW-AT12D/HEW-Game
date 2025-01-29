@@ -1,12 +1,73 @@
 #include "SoundGun.h"
 #include "Magazine.h"
 
+
+/**
+ * @brief 更新
+*/
+void SoundGun::Update(void)
+{
+	// アニメーションカウントを増やすかの判定
+	static bool countup = true;
+	// 吸い込み中ならアニメーションを動かす
+	if (IsSuction)
+	{
+		if (countup)
+		{
+			m_Number.y++;
+			// アニメーションが最後まで行った場合
+			if (m_Number.y == m_Split.y)
+			{
+				countup = false;
+			}
+		}
+		else
+		{
+			m_Number.y--;
+			// アニメーションが最初まで戻った場合
+			if (m_Number.y == 0)
+			{
+				countup = true;
+			}
+		}
+		
+	}
+}
+
+
+/**
+ * @brief 描画
+ * 吸い込み中のみ描画を行う 
+*/
+void SoundGun::Draw(void)
+{
+	// 吸い込み中なら
+	if (IsSuction)
+	{
+		this->GameObject::Draw();
+	}
+}
+
+
+// 吸い込み状態のゲッターセッター
+void SoundGun::SetIsSuction(bool _flg)
+{
+	IsSuction = _flg;
+}
+
+
+bool SoundGun::GetIsSuction(void)
+{
+	return IsSuction;
+}
+
+
 /**
  * @brief 吸い込み関数
  * @param _gion_pos
  * @param _p_pos
 */
-void SoundGun::Suction(std::weak_ptr<GameObject> _gion)
+bool SoundGun::Suction(std::weak_ptr<GameObject> _gion)
 {
 	// 親オブジェクト(プレイヤー)が存在していて、
 	if (m_pParent.lock())
@@ -52,24 +113,54 @@ void SoundGun::Suction(std::weak_ptr<GameObject> _gion)
 			onomatopoeia->SetScale(player->GetUsingMag()->GetScale());			// 大きさを設定
 			player->GetUsingMag()->SetOnomatopoeia(onomatopoeia);				// マガジンに装填
 			
-			// 擬音がマガジンの座標に入らない問題を直す
+			// プレイヤーと擬音銃の吸い込み状態を解除
+			this->IsSuction = false;
+			player->SetIsSuction(false);
+
+			// 吸い込み完了の結果を返す
+			return true;
 		}
 	}
-
+	return false;
 }
 
 
 /**
  * @brief 擬音発射関数
  * @param _mag マガジン情報
+ * 
+ * 流れ
+ * 発射→マガジンの弾の所有権を銃に渡す（選択されているマガジン番号の中にある弾の所有権を渡す）→その弾を銃が発射
 */
 void SoundGun::Shot(std::shared_ptr<Magazine> _mag)
 {
+	// 引数のマガジンの中にある擬音のサイズなどを設定
+
+	auto gion = _mag->ReleaseBullet();
+
+	Vector3 gion_Rot = gion->GetRotation();		// 擬音の回転情報
+	Vector3 gion_Scale = gion->GetScale();		// 擬音のサイズ情報
+	Vector3 gion_Pos = transform.GetPosition();	// 擬音の座標(これは擬音銃の少し右に出現させるので銃基準でいじる)
+	
+	//gion_Rot.z = 0;		// 吸い込みで
+
+	// 擬音の座標を設定
+	gion_Pos.x += 5.0f;		// 擬音銃の少し右
+
+	// 擬音のサイズ設定
+	gion_Scale.y = 120.0f;
+	gion_Scale.x = 240.0f;
+
+	// 各情報を代入
+	gion->SetPosition(gion_Pos);
+	gion->SetRotation(gion_Rot);
+	gion->SetScale(gion_Scale);
+
 	// AddForceで代入するための速度用変数
 	Vector3 velocity;
 	velocity.x = m_ShotPower;
 	// TODO:2025/01/27 ここで下方向のベクトルを無くしておけば下に落ちることはないはず！
 	// →Playerの発射関数にやること書いてる
 	// 擬音に力を加えてまっすぐ飛ばしたい
-	_mag->GetBulletPointer()->AddForce(velocity);
+	gion->AddForce(velocity);
 }

@@ -130,6 +130,14 @@ void Player::Draw(void)
 	// TODO:(完了)アニメーションの違和感を取る
 	// TODO:アタッチされたオブジェクトの描画
 	// TODO:ジャンプの先行入力取れてしまうのを直す
+
+	// 擬音銃の吸い込み時の竜巻を描画したいが、今回竜巻はUIにしていて、オブジェクトとして登録してしまうと当たり判定を取ってしまうのでここで擬音銃の描画まで行う
+	// 擬音銃を持っていれば
+	if (m_Soundgun)
+	{
+		// 描画(この中で吸い込み中かを判定してる)
+		m_Soundgun->Draw();
+	}
 }
 
 /**
@@ -282,11 +290,19 @@ void Player::SetChild(std::shared_ptr<GameObject> _child)
 
 		// 大きさを代入
 		casted->SetScale(Vector3(120.0f, 120.0f, 0.0f));
-		// 一個目のマガジン追加の場合、座標を直接設定
+		// 一個目は「ドォン」を入れるマガジンなので、座標を直接設定
 		if (m_Magazines.empty())
 		{
 			// 座標設定
-			casted->SetPosition(Vector3(-800.0f, 500.0f, 0.0f));
+			casted->SetPosition(Vector3(-850.0f, -470.0f, 0.0f));
+			// このマガジンだけ大きさを変える
+			casted->SetScale(Vector3(200.0f, 200.0f, 0.0f));
+		}
+		// 二個目のマガジン(擬音銃に装填する用のマガジン)を追加する場合
+		else if (m_Magazines.size() == 1)
+		{
+			// 座標設定
+			casted->SetPosition(Vector3(-900.0f, 500.0f, 0.0f));
 		}
 		// 既にマガジンを一個以上所持している場合は
 		else
@@ -348,10 +364,13 @@ void Player::SetChild(std::shared_ptr<GameObject> _child)
  * @param _gion_pos
  * @param _p_pos
 */
-void Player::Suction(std::weak_ptr<GameObject> _gion)
+bool Player::Suction(std::weak_ptr<GameObject> _gion)
 {
-	// 擬音銃の吸い込み処理を実行
-	m_Soundgun->Suction(_gion);
+	// フラグを立てて擬音銃の吸い込み処理を実行
+	m_Soundgun->SetIsSuction(true);
+
+	// 擬音銃の吸い込みの結果を返す
+	return m_Soundgun->Suction(_gion);
 }
 
 
@@ -426,6 +445,8 @@ void Player::Shot(void)
 
 		// 擬音の座標を設定
 		//m_Magazines[UseMagNumber]->GetBulletPointer()->SetPosition(p_gion);
+
+
 		// 擬音の発射関数には減速力とかは気にしなくていい→0に設定する→まっすぐ飛んでいく
 		// 使うマガジンの情報を受け取って擬音銃で発射
 		m_Soundgun->Shot(m_Magazines[UseMagNumber]);
@@ -467,4 +488,15 @@ bool Player::GetIsShot(void)
 void Player::SetIsShot(bool _flg)
 {
 	IsShot = _flg;
+}
+
+// 吸い込み状態のゲッターセッター
+bool Player::GetIsSuction(void)
+{
+	return IsSuction;
+}
+
+void Player::SetIsSuction(bool _flg)
+{
+	IsSuction = _flg;
 }
