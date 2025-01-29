@@ -35,7 +35,7 @@ void StageSelectScene::Update(void) {
 
 	//ゲーム画面に遷移
 	// シーン遷移（デバック用
-	if (Input::GetInstance().GetKeyTrigger(VK_RETURN))
+	if (Input::GetInstance().GetButtonTrigger(XINPUT_GAMEPAD_START)|| Input::GetInstance().GetButtonTrigger(VK_RETURN))
 	{
 		SetChangeScene(GAME);
 	}

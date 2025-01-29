@@ -1,5 +1,5 @@
 #include "Camera.h"
-Camera::Camera(D3D11& _D3d11,int StageSize):GameObject(_D3d11)
+/*Camera::Camera(D3D11& _D3d11, int StageSize) :GameObject(_D3d11)
 {
 	m_CameraSize.x = 1920;
 	m_CameraSize.y = 1080;
@@ -26,4 +26,4 @@ void Camera::Update(float cameraSpeed,Vector3 pos)
 	{
 		//! オブジェクトの描画をonに
 	}
-}
+}*/
