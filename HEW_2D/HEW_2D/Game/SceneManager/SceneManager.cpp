@@ -109,10 +109,10 @@ void SceneManager::ChangeScene(SceneName _Nextscene) {
 			CreateScene<TitleScene>(TITLE);
 			break;
 		case STAGESELECT:
-			CreateScene<StageSelectScene>(STAGESELECT);
+			CreateScene<Stage2Scene>(STAGESELECT);
 			break;
 		case GAME:
-			CreateScene<Stage1Scene>(GAME);
+			CreateScene<Stage2Scene>(GAME);
 			break;
 		case RESULT:
 			CreateScene<ResultScene>(RESULT);

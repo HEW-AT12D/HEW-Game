@@ -32,14 +32,14 @@ void Stage2Scene::Init(void) {
 
 	// 背景
 	objectmanager.AddObject<GameObject>(BACKGROUND, "Background");
-	objectmanager.GetGameObjectPtr<GameObject>(BACKGROUND, "Background").lock()->Init(L"Game/Asset/BackGround/TitleBack.png");
+	objectmanager.GetGameObjectPtr<GameObject>(BACKGROUND, "Background").lock()->Init(L"Game/Asset/BackGround/ResultBack.png");
 	objectmanager.GetGameObjectPtr<GameObject>(BACKGROUND, "Background").lock()->SetPosition(Vector3(0.0f, 0.0f, 0.0f));
 	objectmanager.GetGameObjectPtr<GameObject>(BACKGROUND, "Background").lock()->SetScale(Vector3(1920.0f, 1080.0f, 0.0f));
 
 	// プレイヤー
 	objectmanager.AddObject<Player>(PLAYER, "Player");
 	objectmanager.GetGameObjectPtr<Player>(PLAYER, "Player").lock()->Init(L"Game/Asset/Character/Player_Sprite.png", 2, 3);
-	objectmanager.GetGameObjectPtr<Player>(PLAYER, "Player").lock()->SetPosition(Vector3(0.0f, 600.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<Player>(PLAYER, "Player").lock()->SetPosition(Vector3(500.0f, 600.0f, 0.0f));
 	objectmanager.GetGameObjectPtr<Player>(PLAYER, "Player").lock()->SetScale(Vector3(130.0f, 130.0f, 0.0f));
 
 	// 擬音銃(設計的には銃を別画像で用意してプレイヤーに持たせる方が良かったが、)
@@ -50,11 +50,17 @@ void Stage2Scene::Init(void) {
 	objectmanager.GetGameObject<Player>(PLAYER, "Player").second->SetChild(objectmanager.GetGameObject<SoundGun>(UI, "SoundGun").second);
 
 
-	//擬音（どおん）
+	//擬音（ビリビリ）
 	objectmanager.AddObject<Poyon>(ONOMATOPOEIA, "Gion");	// 名前要変更
 	objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "Gion").lock()->Init(L"Game/Asset/Onomatopoeia/BiriBiri.png");
 	objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "Gion").lock()->SetPosition(Vector3(500.0f, -350.0f, 0.0f));
 	objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "Gion").lock()->SetScale(Vector3(240.0f, 120.0f, 0.0f));
+
+	//擬音（ドーン）
+	objectmanager.AddObject<Poyon>(ONOMATOPOEIA, "Gion2");	// 名前要変更
+	objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "Gion2").lock()->Init(L"Game/Asset/Onomatopoeia/Doon.png");
+	objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "Gion2").lock()->SetPosition(Vector3(800.0f, 50.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "Gion2").lock()->SetScale(Vector3(240.0f, 120.0f, 0.0f));
 
 	// マガジン(二個持った状態でスタート、落ちてるのは一個だけ)
 	// 一個目
@@ -89,17 +95,18 @@ void Stage2Scene::Init(void) {
 	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "Ground").lock()->SetPosition(Vector3(0.0f, -500.0f, 0.0f));
 	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "Ground").lock()->SetScale(Vector3(1920.0f, 120.0f, 0.0f));
 
+
 	// 地面2
 	objectmanager.AddObject<GameObject>(OBJECT, "Ground2");
 	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "Ground2").lock()->Init(L"Game/Asset/GameObject/Ground.png");
-	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "Ground2").lock()->SetPosition(Vector3(700.0f, -350.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "Ground2").lock()->SetScale(Vector3(120.0f, 120.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "Ground2").lock()->SetPosition(Vector3(600.0f, -50.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "Ground2").lock()->SetScale(Vector3(900.0f, 80.0f, 0.0f));
 
 	// スライム
 	objectmanager.AddObject<Enemy>(OBJECT, "Slime");
 	objectmanager.GetGameObjectPtr<Enemy>(OBJECT, "Slime").lock()->Init(L"Game/Asset/GameObject/Slime.png");
 	objectmanager.GetGameObjectPtr<Enemy>(OBJECT, "Slime").lock()->SetPosition(Vector3(200.0f, -300.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<Enemy>(OBJECT, "Slime").lock()->SetScale(Vector3(120.0f, 120.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<Enemy>(OBJECT, "Slime").lock()->SetScale(Vector3(80.0f, 40.0f, 0.0f));
 
 	// クロスヘア
 	objectmanager.AddObject<CrossHair>(UI, "CrossHair");
@@ -111,9 +118,23 @@ void Stage2Scene::Init(void) {
 
 	//enemy擬音
 	objectmanager.AddObject<Poyon>(ONOMATOPOEIA, "_Gion2");	// 名前要変更
-	objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "_Gion2").lock()->Init(L"Game/Asset/Onomatopoeia/Wiin.png");
+	objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "_Gion2").lock()->Init(L"Game/Asset/Onomatopoeia/Poyon.png");
 	objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "_Gion2").lock()->SetPosition(Vector3(500.0f, -350.0f, 0.0f));
 	objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "_Gion2").lock()->SetScale(Vector3(240.0f, 120.0f, 0.0f));
+
+	// プレイヤー
+	objectmanager.AddObject<GameObject>(OBJECT, "bane");
+	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "bane").lock()->Init(L"Game/Asset/GameObject/Bane.png",3,1);
+	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "bane").lock()->SetPosition(Vector3(0.0f, -360.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "bane").lock()->SetScale(Vector3(330.0f, 330.0f, 0.0f));
+
+	//サンダーエフェクト
+	objectmanager.AddObject<GameObject>(UI, "Thunder_Efect");
+	objectmanager.GetGameObjectPtr<GameObject>(UI, "Thunder_Efect").lock()->Init(L"Game/Asset/Efect/Thunder_Efect.png", 4, 2);
+	objectmanager.GetGameObjectPtr<GameObject>(UI, "Thunder_Efect").lock()->SetPosition(Vector3(500.0f, -10.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(UI, "Thunder_Efect").lock()->SetScale(Vector3(600.0f, 80.0f, 0.0f));
+
+	std::cout << "TitleSceneInit" << std::endl;
 
 	std::cout << "GameSceneInit" << std::endl;
 
@@ -127,6 +148,7 @@ void Stage2Scene::Init(void) {
 
 
 
+
 void Stage2Scene::Update(void)
 {
 	Input::GetInstance().Update();
@@ -135,13 +157,19 @@ void Stage2Scene::Update(void)
 
 	// 入力情報の更新
 	// シーン更新に必要な情報を取得
-	auto playerShared = objectmanager.GetGameObjectPtr<Player>(PLAYER, "Player");
-	auto groundShared = objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "Ground");
-	auto groundShared2 = objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "Ground2");
-	auto gionShared = objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "Gion");
-	auto enemyShared = objectmanager.GetGameObjectPtr<Enemy>(OBJECT, "Slime");
-	auto crosshairShared = objectmanager.GetGameObjectPtr<CrossHair>(UI, "CrossHair");
-	auto enemygion = objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "_Gion2");
+	auto playerShared    = objectmanager.GetGameObjectPtr<Player>    (PLAYER, "Player");
+	auto groundShared    = objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "Ground");
+	auto groundShared2   = objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "Ground2");
+	auto gionShared      = objectmanager.GetGameObjectPtr<Poyon>     (ONOMATOPOEIA, "Gion");
+	auto enemyShared     = objectmanager.GetGameObjectPtr<Enemy>     (OBJECT, "Slime");
+	auto crosshairShared = objectmanager.GetGameObjectPtr<CrossHair> (UI, "CrossHair");
+	auto enemygion       = objectmanager.GetGameObjectPtr<Poyon>     (ONOMATOPOEIA, "_Gion2");
+	auto efectShared     = objectmanager.GetGameObjectPtr<GameObject>(UI, "Thunder_Efect");
+	auto baneShared      = objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "bane");
+
+
+
+	efectShared.lock()->Animation(EFECT, efectShared);
 
 	//Vector3 p_enemygion = enemygion.lock()->GetPosition();
 	Vector3 p_enemy = enemyShared.lock()->GetPosition();
@@ -185,18 +213,34 @@ void Stage2Scene::Update(void)
 
 	//----------------当たり判定-----------------------
 
-	ColliderPlayer_Ground(playerShared, groundShared);
+	//FRAME1のPlayerとGroundの当たり判定
+	if (ColliderPlayer_Ground(playerShared, groundShared)) //Playerと一番下のGroundの当たり判定
+	{
+		playerShared.lock()->SetOnGround(true);
+	}
+	else if (Collider_toGround(playerShared, groundShared2)) //Playerと上のGroundの当たり判定
+	{
+		playerShared.lock()->SetOnGround(true);
+	}else if(Collider_toGround(playerShared, baneShared)) //Playerとバネの当たり判定
+	{
+		playerShared.lock()->SetOnGround(true);
+	}
+	
+	
 
 	Vector4 poyon_color = enemygion.lock()->GetColor();
-
+	Vector3 p_poyon = p_enemy;
+	p_poyon.x =p_poyon.x+ 50;
+	p_poyon.y= p_poyon.y+ 50;
 	//EnemyとGroundが衝突していたら
 	/*ここでエネミーのY座標の値によって画像のα値を変動させる
 	例：高くなる程α値が増える*/
 	if (!Collider_toGround(enemyShared, groundShared))
 	{
 		poyon_color.w += 0.05f;
+		
 		enemygion.lock()->SetColor(poyon_color);
-		enemygion.lock()->SetPosition(p_enemy);
+		enemygion.lock()->SetPosition(p_poyon);
 
 	}
 	else {

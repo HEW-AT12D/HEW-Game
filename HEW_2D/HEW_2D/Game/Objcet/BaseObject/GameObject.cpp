@@ -211,31 +211,47 @@ void GameObject::SetIsDelete(bool _flg)
  * @brief アニメーション遷移関数
  * ここでは通常のアニメーションのみを定義し、各派生クラスで各々のアニメーション処理を定義する
 */
-//void GameObject::Animation(STATE,Vector2)
-//{
-//	// 通常アニメーションのみ
-//	if (IsAnimation)
-//	{
-//		// ここにアニメーション遷移処理を書く
-//		switch (m_State)
-//		{
-//		case RUN:
-//			// 例）現在の画像番号 % アニメーション分割数 = 0　（画像番号が最後まで行った→アニメーションの折り返し）の場合
-//			// 画像番号を1ずつ減らしていく、とかの書き方がよさそう
-//			break;
-//	//	case Jump:
-//	//		break;
-//		default:
-//			break;
-//		}
-//	}
-//	else {
-//		// アニメーションしない設定の場合は関数終了
-//		return;
-//	}
-//	
-//}
+void GameObject::Animation(STATE m_State,std::weak_ptr<GameObject> _efect)
+{
+	
+	const float uvUpdateInterval = 0.1f; // 0.1秒ごとに更新（10FPS相当）
+	
+	// 経過時間
+	static float elapsedTime = 0.0f;
+	
 
+
+		// ここにアニメーション遷移処理を書く
+		switch (m_State)
+		{
+		case EFECT:
+
+			elapsedTime += 0.03;
+
+			// 指定した時間が経過したらUVを更新
+ 			if (elapsedTime >= uvUpdateInterval) {
+				elapsedTime = 0.0f; // タイマーをリセット
+
+				Int2 efect_UV = _efect.lock()->GetUV();
+
+				if (efect_UV.x < 4) {
+					efect_UV.x++;
+				}
+				else {
+					efect_UV.x = 0;
+					efect_UV.y = (efect_UV.y == 0) ? 1 : 0;
+				}
+
+				_efect.lock()->SetUV(efect_UV);
+			}
+
+			break;
+	//	case Jump:
+	//		break;
+		default:
+			break;
+		}
+	}
 Vector3 GameObject::GetPosition(void)
 {
 	//座標をゲット
