@@ -39,7 +39,7 @@ void StageSelectScene::Update(void) {
 	Vector3 Cursol_pos = objectmanager.GetGameObjectPtr<GameObject>(UI, "Cursol").lock()->GetPosition();
 	if (Cursol_pos.y == 0)
 	{
-		if (Input::GetInstance().GetKeyTrigger(VK_RETURN))
+		if (Input::GetInstance().GetButtonTrigger(XINPUT_GAMEPAD_START))
 		{
 			SetChangeScene(GAME);
 		}
@@ -47,19 +47,19 @@ void StageSelectScene::Update(void) {
 
 	if (Cursol_pos.y == -300)
 	{
-		if (Input::GetInstance().GetKeyTrigger(VK_RETURN))
+		if (Input::GetInstance().GetButtonTrigger(XINPUT_GAMEPAD_START))
 		{
 			SetChangeScene(TEST);
 		}
 	}
 	
 
-	if (Input::GetInstance().GetKeyTrigger(VK_DOWN))
+	if (Input::GetInstance().GetButtonTrigger(XINPUT_GAMEPAD_DPAD_DOWN))
 	{
 		Cursol_pos.y = -300.0f;
 		objectmanager.GetGameObjectPtr<GameObject>(UI, "Cursol").lock()->SetPosition(Cursol_pos);
 	}else 
-	if (Input::GetInstance().GetKeyTrigger(VK_UP))
+	if (Input::GetInstance().GetButtonTrigger(XINPUT_GAMEPAD_DPAD_UP))
 	{
 		Vector3 Cursol_pos = objectmanager.GetGameObjectPtr<GameObject>(UI, "Cursol").lock()->GetPosition();
 		Cursol_pos.y = 0.0f;
