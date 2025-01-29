@@ -18,6 +18,7 @@
 #define XINPUT_RIGHT_THUMB    0x0080 //右スティック押し込み
 #define XINPUT_LEFT_SHOULDER  0x0100 //L
 #define XINPUT_RIGHT_SHOULDER 0x0200 //R
+#define TRIGGER_THRESHOLD 30		 //ZRとZLの押し込み感度の高さ
 
 #define VK_0 0x30
 #define VK_1 0x31
@@ -94,6 +95,10 @@ public:
 	bool GetKeyPress(int key);   //プレス(押している間ずっと)
 	bool GetKeyTrigger(int key); //トリガー(押し始めた時)
 	bool GetKeyRelease(int key); //リリース(押し終わった時)
+
+	//ZRとZLの入力判定
+	bool IzZRPressed();
+	bool IzZLPressed();
 
 	//アナログスティック(コントローラー)
 	DirectX::XMFLOAT2 GetLeftAnalogStick(void);

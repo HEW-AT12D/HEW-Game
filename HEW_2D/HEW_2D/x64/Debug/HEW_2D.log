@@ -1,3 +1,2 @@
-﻿  StageSelectScene.cpp
-C:\Users\kuluk\OneDrive\デスクトップ\HEW-Game\HEW_2D\HEW_2D\Game\Scene\StageSelectScene.cpp(40,22): warning C4305: '引数': 'SceneName' から 'bool' へ切り詰めます。
+﻿  TitleScene2.cpp
   HEW_2D.vcxproj -> C:\Users\kuluk\OneDrive\デスクトップ\HEW-Game\HEW_2D\x64\Debug\HEW_2D.exe

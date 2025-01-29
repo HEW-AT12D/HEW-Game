@@ -187,7 +187,10 @@
     </ClCompile>
     <ClCompile Include="Game\Scene\ResultScene.cpp" />
     <ClCompile Include="Game\Scene\StageSelectScene.cpp" />
-    <ClCompile Include="Game\Scene\TitleScene.cpp" />
+    <ClCompile Include="Game\Scene\TitleScene.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Game\Scene\TitleScene2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework\ComponentManager\ComponentManager.h">
@@ -238,7 +241,10 @@
     </ClInclude>
     <ClInclude Include="Game\Scene\ResultScene.h" />
     <ClInclude Include="Game\Scene\StageSelectScene.h" />
-    <ClInclude Include="Game\Scene\TitleScene.h" />
+    <ClInclude Include="Game\Scene\TitleScene.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="Game\Scene\TitleScene2.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Framework\注意点\注意点・解説.txt" />

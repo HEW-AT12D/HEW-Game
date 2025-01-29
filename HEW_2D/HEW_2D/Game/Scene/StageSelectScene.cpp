@@ -35,18 +35,21 @@ void StageSelectScene::Update(void) {
 
 	//ゲーム画面に遷移
 	// シーン遷移（デバック用
-	if (Input::GetInstance().GetButtonTrigger(XINPUT_GAMEPAD_START)|| Input::GetInstance().GetButtonTrigger(VK_RETURN))
+	if (Input::GetInstance().GetButtonTrigger(XINPUT_GAMEPAD_START)/* || Input::GetInstance().GetButtonTrigger(VK_RETURN)*/)
 	{
 		SetChangeScene(GAME);
 	}
 
-	if (Input::GetInstance().GetKeyTrigger(VK_DOWN))
+	//Input::GetInstance().GetKeyTrigger(VK_DOWN) || 
+	if (Input::GetInstance().GetButtonTrigger(XINPUT_GAMEPAD_DPAD_DOWN))
 	{
 		Vector3 Cursol_pos = objectmanager.GetGameObjectPtr<GameObject>(UI, "Cursol").lock()->GetPosition();
 		Cursol_pos.y = -300.0f;
 		objectmanager.GetGameObjectPtr<GameObject>(UI, "Cursol").lock()->SetPosition(Cursol_pos);
-	}else 
-	if (Input::GetInstance().GetKeyTrigger(VK_UP))
+	}
+
+	//Input::GetInstance().GetKeyTrigger(VK_UP)||
+	if (Input::GetInstance().GetButtonTrigger(XINPUT_GAMEPAD_DPAD_UP))
 	{
 		Vector3 Cursol_pos = objectmanager.GetGameObjectPtr<GameObject>(UI, "Cursol").lock()->GetPosition();
 		Cursol_pos.y = 0.0f;
