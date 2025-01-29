@@ -67,7 +67,7 @@ bool SoundGun::GetIsSuction(void)
  * @param _gion_pos
  * @param _p_pos
 */
-void SoundGun::Suction(std::weak_ptr<GameObject> _gion)
+bool SoundGun::Suction(std::weak_ptr<GameObject> _gion)
 {
 	// 親オブジェクト(プレイヤー)が存在していて、
 	if (m_pParent.lock())
@@ -116,21 +116,27 @@ void SoundGun::Suction(std::weak_ptr<GameObject> _gion)
 			// プレイヤーと擬音銃の吸い込み状態を解除
 			this->IsSuction = false;
 			player->SetIsSuction(false);
+
+			// 吸い込み完了の結果を返す
+			return true;
 		}
 	}
-
+	return false;
 }
 
 
 /**
  * @brief 擬音発射関数
  * @param _mag マガジン情報
+ * 
+ * 流れ
+ * 発射→マガジンの弾の所有権を銃に渡す（選択されているマガジン番号の中にある弾の所有権を渡す）→その弾を銃が発射
 */
 void SoundGun::Shot(std::shared_ptr<Magazine> _mag)
 {
 	// 引数のマガジンの中にある擬音のサイズなどを設定
 
-	auto gion = _mag->GetBulletPointer();
+	auto gion = _mag->ReleaseBullet();
 
 	Vector3 gion_Rot = gion->GetRotation();		// 擬音の回転情報
 	Vector3 gion_Scale = gion->GetScale();		// 擬音のサイズ情報

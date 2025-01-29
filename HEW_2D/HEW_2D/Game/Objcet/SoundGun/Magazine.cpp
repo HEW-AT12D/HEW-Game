@@ -84,3 +84,14 @@ void Magazine::SetOnomatopoeia(std::shared_ptr<IOnomatopoeia> _onomat)
 	// 擬音をマガジンの子オブジェクトに設定
 	SetChild(_onomat);
 }
+
+
+/**
+ * @brief 発射時に擬音の所有権を擬音銃に渡してマガジン内を空にする関数
+ * @return 擬音のポインタ
+*/
+std::shared_ptr<IOnomatopoeia> Magazine::ReleaseBullet(void)
+{
+	// 所有権を委譲
+	return std::move(m_Onomatopoeia);
+}

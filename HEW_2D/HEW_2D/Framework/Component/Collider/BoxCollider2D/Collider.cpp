@@ -196,7 +196,7 @@ bool ColliderPlayer_Gion(GameObject* player, GameObject* gion)
  * @param gion ‹[‰¹(vector‚Å‘S•”“n‚·)
  * @return “–‚½‚Á‚½‹[‰¹
 */
-std::weak_ptr<IOnomatopoeia> ColliderFan_Gion(std::weak_ptr<Player> fan, std::vector<std::weak_ptr<IOnomatopoeia>> _onomatopoeias)
+std::pair<std::pair<Tag, std::string>, std::shared_ptr<IOnomatopoeia>> ColliderFan_Gion(std::weak_ptr<Player> fan, std::vector<std::pair<std::pair<Tag, std::string>, std::shared_ptr<IOnomatopoeia>>> _onomatopoeias)
 {
 	float PI = 3.14159265;
 	float fanAngle = PI / 6;
@@ -218,10 +218,10 @@ std::weak_ptr<IOnomatopoeia> ColliderFan_Gion(std::weak_ptr<Player> fan, std::ve
 	// ‹[‰¹‚Æ‚Ì“–‚½‚è”»’è‚ğæ“¾
 	for (auto& onomat : _onomatopoeias) {
 		// ‹[‰¹‚Ì“–‚½‚è”»’è”ÍˆÍ‚ğæ“¾
-		Gion_Right_Collider = onomat.lock()->GetPosition().x + onomat.lock()->GetScale().x / 2; //‹[‰¹‚Ì‰E’[
-		Gion_Left_Collider = onomat.lock()->GetPosition().x - onomat.lock()->GetScale().x / 2;  //‹[‰¹‚Ì¶’[
-		Gion_Up_Collider = onomat.lock()->GetPosition().y + onomat.lock()->GetScale().y / 2;    //‹[‰¹‚Ìã’[
-		Gion_Bottom_Collider = onomat.lock()->GetPosition().y - onomat.lock()->GetScale().y / 2;//‹[‰¹‚Ì
+		Gion_Right_Collider = onomat.second->GetPosition().x + onomat.second->GetScale().x / 2; //‹[‰¹‚Ì‰E’[
+		Gion_Left_Collider = onomat.second->GetPosition().x - onomat.second->GetScale().x / 2;  //‹[‰¹‚Ì¶’[
+		Gion_Up_Collider = onomat.second->GetPosition().y + onomat.second->GetScale().y / 2;    //‹[‰¹‚Ìã’[
+		Gion_Bottom_Collider = onomat.second->GetPosition().y - onomat.second->GetScale().y / 2;//‹[‰¹‚Ì
 
 		//------------îŒ`‚Æ‹[‰¹‚Ìl‚Â‚Ì’¸“_------------
 		float vertices[4][2] = {
@@ -273,8 +273,8 @@ std::weak_ptr<IOnomatopoeia> ColliderFan_Gion(std::weak_ptr<Player> fan, std::ve
 			return onomat;
 		}
 	}
-	//‚Ç‚ê‚É‚àŠY“–‚µ‚È‚¢ê‡A“–‚½‚Á‚Ä‚¢‚È‚¢‚Ì‚Å‹ó‚Ìweak_ptr‚ğ•Ô‚·
-	return std::weak_ptr<IOnomatopoeia>();
+	//‚Ç‚ê‚É‚àŠY“–‚µ‚È‚¢ê‡A“–‚½‚Á‚Ä‚¢‚È‚¢‚Ì‚Å‰½‚à•Ô‚³‚È‚¢
+	
 }
 
 // ü•ª‚Æ‰~‚ªŒğ·‚µ‚Ä‚¢‚é‚©”»’è‚·‚éŠÖ”

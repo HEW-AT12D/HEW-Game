@@ -55,6 +55,9 @@ public:
 	// ‹[‰¹‚ğƒ}ƒKƒWƒ“‚É‘•“U‚·‚éŠÖ”
 	void SetOnomatopoeia(std::shared_ptr<IOnomatopoeia> _onomat);
 
+	// ”­Ë‚É‹[‰¹‚ÌŠ—LŒ ‚ğ‹[‰¹e‚É“n‚µ‚Äƒ}ƒKƒWƒ““à‚ğ‹ó‚É‚·‚éŠÖ”
+	std::shared_ptr<IOnomatopoeia> ReleaseBullet(void);
+
 private:
 	bool IsFlying;		// ”ò‚ñ‚Å‚¢‚é‚©H
 	std::shared_ptr<IOnomatopoeia> m_Onomatopoeia;

@@ -70,7 +70,7 @@ public:
 	// TODO:2025/01/27 擬音銃クラスで吸い込み関数作成→プレイヤーの吸い込みではそれを実行し、その関数の戻り値で吸い込んだ擬音を返し、マガジンにセットすれば行けるはず
 	
 	// TODO:2025/01/28 移動しながら吸い込んだらうまく吸い込まれないバグを直す。吐きだし処理を完成させる
-	void Suction(std::weak_ptr<GameObject>);	// 吸い込み関数
+	bool Suction(std::weak_ptr<GameObject>);	// 吸い込み関数(戻り値で吸い込み処理が終了したかを判定)
 	void Shot(void);		// 擬音の発射関数
 
 	void SetIsShot(bool _flg);

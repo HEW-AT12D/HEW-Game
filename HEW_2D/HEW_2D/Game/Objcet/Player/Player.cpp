@@ -364,11 +364,13 @@ void Player::SetChild(std::shared_ptr<GameObject> _child)
  * @param _gion_pos
  * @param _p_pos
 */
-void Player::Suction(std::weak_ptr<GameObject> _gion)
+bool Player::Suction(std::weak_ptr<GameObject> _gion)
 {
 	// ƒtƒ‰ƒO‚ð—§‚Ä‚Ä‹[‰¹e‚Ì‹z‚¢ž‚Ýˆ—‚ðŽÀs
 	m_Soundgun->SetIsSuction(true);
-	m_Soundgun->Suction(_gion);
+
+	// ‹[‰¹e‚Ì‹z‚¢ž‚Ý‚ÌŒ‹‰Ê‚ð•Ô‚·
+	return m_Soundgun->Suction(_gion);
 }
 
 
@@ -443,6 +445,8 @@ void Player::Shot(void)
 
 		// ‹[‰¹‚ÌÀ•W‚ðÝ’è
 		//m_Magazines[UseMagNumber]->GetBulletPointer()->SetPosition(p_gion);
+
+
 		// ‹[‰¹‚Ì”­ŽËŠÖ”‚É‚ÍŒ¸‘¬—Í‚Æ‚©‚Í‹C‚É‚µ‚È‚­‚Ä‚¢‚¢¨0‚ÉÝ’è‚·‚é¨‚Ü‚Á‚·‚®”ò‚ñ‚Å‚¢‚­
 		// Žg‚¤ƒ}ƒKƒWƒ“‚Ìî•ñ‚ðŽó‚¯Žæ‚Á‚Ä‹[‰¹e‚Å”­ŽË
 		m_Soundgun->Shot(m_Magazines[UseMagNumber]);
