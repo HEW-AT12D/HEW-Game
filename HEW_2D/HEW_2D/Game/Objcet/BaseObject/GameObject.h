@@ -134,7 +134,7 @@ protected:
 	Vector3 m_Velocity;
 
 	// 加速度(それぞれの軸の方向の加速度(重力とか)を設定→毎フレーム一定の値(現実だと時間)を乗算した値を速度に代入する、というように使う)
-	Vector3 m_Acceleration;
+	//Vector3 m_Acceleration;→速度から算出できるのでいらない
 
 	// 移動用方向ベクトル(Transform.Rotaionは回転を扱うものなので別物)
 	Vector3 m_Direction;

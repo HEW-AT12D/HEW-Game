@@ -191,7 +191,7 @@ void TestScene::Update(void)
 	}
 	//----------------------------------------------//
 
-	Collider_toGround(enemyShared, groundShared);//Enemy‚ÆGround‚Ì“–‚½‚è”»’è
+	Collider_toGround(enemyShared, groundShared);	//Enemy‚ÆGround‚Ì“–‚½‚è”»’è
 	Collider_toGround(objectmanager.GetGameObjectPtr<Magazine>(OBJECT, "Magazine"), objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "Ground"));//ƒ}ƒKƒWƒ“‚ÆGround‚Ì“–‚½‚è”»’è
 
 	//•t—^—\’è‚ÌGround‚Æ‚Ì“–‚½‚è”»’è
