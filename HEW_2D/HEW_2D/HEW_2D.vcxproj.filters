@@ -126,6 +126,27 @@
     <Filter Include="ゲーム\オブジェクト\擬音銃\クロスヘア">
       <UniqueIdentifier>{1db5a356-7c78-48f7-93e6-613fa54940fe}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ゲーム\シーン\未使用">
+      <UniqueIdentifier>{946576d4-ac01-42ea-a3ba-b09711da7f45}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ゲーム\シーン\タイトル">
+      <UniqueIdentifier>{f3799e0d-952b-493e-95c2-f51f68b66217}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ゲーム\シーン\リザルト">
+      <UniqueIdentifier>{bd59bc0b-86d0-40d2-b0a4-a9077ec48564}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ゲーム\シーン\ステージ2">
+      <UniqueIdentifier>{bbbab618-a5f0-4d99-afc8-a24e7ad2a266}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ゲーム\シーン\ステージ選択">
+      <UniqueIdentifier>{74ea2a15-f381-43c9-bead-be897bc554f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ゲーム\シーン\テストシーン">
+      <UniqueIdentifier>{930f698a-bf31-40a7-ab6b-2f64f63ca385}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ゲーム\シーン\ステージ1">
+      <UniqueIdentifier>{a94b0768-b83e-48ac-98ed-a75a52eb0b2c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Framework\Input\Input.cpp">
@@ -167,18 +188,6 @@
     <ClCompile Include="Game\EntryPoint\main.cpp">
       <Filter>ゲーム\エントリーポイント</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Scene\GameScene.cpp">
-      <Filter>ゲーム\シーン</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Scene\ResultScene.cpp">
-      <Filter>ゲーム\シーン</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Scene\Stage1Scene.cpp">
-      <Filter>ゲーム\シーン</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Scene\StageSelectScene.cpp">
-      <Filter>ゲーム\シーン</Filter>
-    </ClCompile>
     <ClCompile Include="Game\Core\Game\Game.cpp">
       <Filter>ゲーム\Core（ゲーム処理）\Game</Filter>
     </ClCompile>
@@ -218,9 +227,6 @@
     <ClCompile Include="Game\Objcet\Camera\Camera.cpp">
       <Filter>ゲーム\オブジェクト\カメラ</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Scene\TestScene.cpp">
-      <Filter>ゲーム\シーン</Filter>
-    </ClCompile>
     <ClCompile Include="Game\Objcet\Enemy\Enemy.cpp">
       <Filter>ゲーム\オブジェクト\スライム</Filter>
     </ClCompile>
@@ -236,14 +242,29 @@
     <ClCompile Include="Game\Objcet\SoundGun\CrossHair.cpp">
       <Filter>ゲーム\オブジェクト\擬音銃\クロスヘア</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Scene\TitleScene.cpp">
-      <Filter>ゲーム\シーン</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Scene\Stage2Scene.cpp">
-      <Filter>ゲーム\シーン</Filter>
-    </ClCompile>
     <ClCompile Include="Framework\Sound\sound.cpp">
       <Filter>フレームワーク\サウンド</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Scene\GameScene.cpp">
+      <Filter>ゲーム\シーン\未使用</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Scene\TitleScene.cpp">
+      <Filter>ゲーム\シーン\タイトル</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Scene\ResultScene.cpp">
+      <Filter>ゲーム\シーン\リザルト</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Scene\Stage2Scene.cpp">
+      <Filter>ゲーム\シーン\ステージ2</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Scene\StageSelectScene.cpp">
+      <Filter>ゲーム\シーン\ステージ選択</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Scene\TestScene.cpp">
+      <Filter>ゲーム\シーン\テストシーン</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Scene\Stage1Scene.cpp">
+      <Filter>ゲーム\シーン\ステージ1</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -285,18 +306,6 @@
     </ClInclude>
     <ClInclude Include="Game\ObjectManager\ObjectManager.h">
       <Filter>ゲーム\オブジェクト管理</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Scene\GameScene.h">
-      <Filter>ゲーム\シーン</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Scene\ResultScene.h">
-      <Filter>ゲーム\シーン</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Scene\Stage1Scene.h">
-      <Filter>ゲーム\シーン</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Scene\StageSelectScene.h">
-      <Filter>ゲーム\シーン</Filter>
     </ClInclude>
     <ClInclude Include="Game\Core\Game\Game.h">
       <Filter>ゲーム\Core（ゲーム処理）\Game</Filter>
@@ -340,9 +349,6 @@
     <ClInclude Include="Game\Objcet\Camera\Camera.h">
       <Filter>ゲーム\オブジェクト\カメラ</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Scene\TestScene.h">
-      <Filter>ゲーム\シーン</Filter>
-    </ClInclude>
     <ClInclude Include="Game\Objcet\Enemy\Enemy.h">
       <Filter>ゲーム\オブジェクト\スライム</Filter>
     </ClInclude>
@@ -358,11 +364,26 @@
     <ClInclude Include="Game\Objcet\SoundGun\CrossHair.h">
       <Filter>ゲーム\オブジェクト\擬音銃\クロスヘア</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Scene\GameScene.h">
+      <Filter>ゲーム\シーン\未使用</Filter>
+    </ClInclude>
     <ClInclude Include="Game\Scene\TitleScene.h">
-      <Filter>ゲーム\シーン</Filter>
+      <Filter>ゲーム\シーン\タイトル</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Scene\ResultScene.h">
+      <Filter>ゲーム\シーン\リザルト</Filter>
     </ClInclude>
     <ClInclude Include="Game\Scene\Stage2Scene.h">
-      <Filter>ゲーム\シーン</Filter>
+      <Filter>ゲーム\シーン\ステージ2</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Scene\StageSelectScene.h">
+      <Filter>ゲーム\シーン\ステージ選択</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Scene\TestScene.h">
+      <Filter>ゲーム\シーン\テストシーン</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Scene\Stage1Scene.h">
+      <Filter>ゲーム\シーン\ステージ1</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
