@@ -27,7 +27,7 @@ void StageSelectScene::Init(void) {
 	objectmanager.GetGameObjectPtr<GameObject>(UI, "STAGE2").lock()->SetScale(Vector3(330.0f, 130.0f, 0.0f));
 
 	
-	std::cout << "STAGESELECTSceneInit" << std::endl;
+	std::cout << "STAGE1_SCENEInit" << std::endl;
 }
 
 void StageSelectScene::Update(void) {
@@ -35,14 +35,27 @@ void StageSelectScene::Update(void) {
 
 	//ゲーム画面に遷移
 	// シーン遷移（デバック用
-	if (Input::GetInstance().GetKeyTrigger(VK_RETURN))
+
+	Vector3 Cursol_pos = objectmanager.GetGameObjectPtr<GameObject>(UI, "Cursol").lock()->GetPosition();
+	if (Cursol_pos.y == 0)
 	{
-		SetChangeScene(GAME);
+		if (Input::GetInstance().GetKeyTrigger(VK_RETURN))
+		{
+			SetChangeScene(GAME);
+		}
 	}
+
+	if (Cursol_pos.y == -300)
+	{
+		if (Input::GetInstance().GetKeyTrigger(VK_RETURN))
+		{
+			SetChangeScene(TEST);
+		}
+	}
+	
 
 	if (Input::GetInstance().GetKeyTrigger(VK_DOWN))
 	{
-		Vector3 Cursol_pos = objectmanager.GetGameObjectPtr<GameObject>(UI, "Cursol").lock()->GetPosition();
 		Cursol_pos.y = -300.0f;
 		objectmanager.GetGameObjectPtr<GameObject>(UI, "Cursol").lock()->SetPosition(Cursol_pos);
 	}else 

@@ -28,6 +28,7 @@ enum SceneName {
 	STAGESELECT,
 	GAME,
 	RESULT,
+	TEST,
 
 	SCENE_MAX
 };

@@ -38,7 +38,7 @@ void SceneManager::Update(void)
 			break;
 		case STAGESELECT:
 			// ステージ選択シーンは保持し続けるのでシーン遷移フラグだけをfalseに変更
-			ChangeScene(GAME);
+			//ChangeScene(GAME);
 			break;
 		case GAME:
 			// エンターでリザルトへ
@@ -47,6 +47,9 @@ void SceneManager::Update(void)
 		case RESULT:	// 現在シーンがリザルトなら
 			// タイトルへ戻り、シーンの初期化
 			ChangeScene(STAGESELECT);
+			break;
+		case TEST:
+			ChangeScene(RESULT);
 			break;
 		default:
 			break;
@@ -108,10 +111,13 @@ void SceneManager::ChangeScene(SceneName _Nextscene) {
 			CreateScene<StageSelectScene>(STAGESELECT);
 			break;
 		case GAME:
-			CreateScene<STAGE1_SCENE>(GAME);
+			CreateScene<TitleScene>(GAME);
 			break;
 		case RESULT:
 			CreateScene<ResultScene>(RESULT);
+			break;
+		case TEST:
+			CreateScene<STAGE1_SCENE>(TEST);
 			break;
 		default:
 			break;
