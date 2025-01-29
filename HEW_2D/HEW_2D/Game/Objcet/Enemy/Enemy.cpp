@@ -59,7 +59,7 @@ void Enemy::Update()
 	if (!OnGround)
 	{
 		Jumping = true;
-		m_Velocity.y -= 0.5f;	// 重力加速度実装の場合ここを変更
+		m_Velocity.y -= 0.2f;	// 重力加速度実装の場合ここを変更
 	}
 	else {
 		// 接地していればジャンプ中ではない

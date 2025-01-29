@@ -1,6 +1,7 @@
 #pragma once
 #include "../../Framework/Scene/IScene.h"
 #include "../../Framework/Sound/sound.h"
+#include "../../Framework/D3D11/D3D11.h"
 
 
 /**
@@ -25,7 +26,6 @@ public:
 	void Uninit(void)override;
 
 private:
-	Sound sound;
 
 };
 

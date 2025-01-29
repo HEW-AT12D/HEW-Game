@@ -1,6 +1,6 @@
 #pragma once
 #include "../../Framework/Scene/IScene.h"
-
+#include "../../Framework/Sound/sound.h"
 
 /**
  * @brief タイトルシーンクラス
@@ -24,5 +24,5 @@ public:
 	void Uninit(void)override;
 
 private:
-
+	Sound sound;
 };

@@ -87,7 +87,6 @@ void GameObject::Draw(void)
 	D3d11.GetDeviceContext()->PSSetShaderResources(0, 1, &m_pTextureView);
 
 	//定数バッファを更新
-	ConstBuffer cb;
 
 	// プロジェクション変換行列を作成
 	cb.matrixProj = DirectX::XMMatrixOrthographicLH( SCREEN_WIDTH, SCREEN_HEIGHT, 0.0f, 3.0f);

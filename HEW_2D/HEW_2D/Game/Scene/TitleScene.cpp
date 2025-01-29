@@ -21,7 +21,6 @@ void TitleScene::Init(void) {
 
 	// オブジェクトマネージャ初期化
 	objectmanager.Init();
-	//sound.Init();
 
 
 	//-----------------------
@@ -185,28 +184,6 @@ void TitleScene::Update(void)
 	//----------------当たり判定-----------------------
 
 	ColliderPlayer_Ground(playerShared, groundShared);
-
-	Vector4 poyon_color = enemygion.lock()->GetColor();
-
-	//EnemyとGroundが衝突していたら
-	/*ここでエネミーのY座標の値によって画像のα値を変動させる
-	例：高くなる程α値が増える*/
-	if (!Collider_toGround(enemyShared, groundShared))
-	{
-		poyon_color.w += 0.05f;
-		enemygion.lock()->SetColor(poyon_color);
-		enemygion.lock()->SetPosition(p_enemy);
-
-	}
-	else {
-		
-		enemyShared.lock()->SetOnGround(true);
-		enemyShared.lock()->SetJump(true);
-		poyon_color.w = 0.0f;
-		enemygion.lock()->SetColor(poyon_color);
-
-	}
-
 
 	// クロスヘアの入力取得(本来はプレイヤーのフラグを立てて、プレイヤーの更新の中でクロスヘアを動かすべき)
 	if (Input::GetInstance().GetKeyPress(VK_UP))
@@ -417,3 +394,4 @@ void TitleScene::Uninit(void) {
 	//sound.Uninit();
 
 }
+
