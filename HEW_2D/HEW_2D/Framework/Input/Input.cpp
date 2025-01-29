@@ -134,3 +134,13 @@ void Input::SetVibration(int frame, float powor)
 	VibrationTime = frame;
 }
 
+//!  ZR‚ÆZL‚Ì“ü—Í”»’è
+bool Input::IzZLPressed()
+{
+	return controllerState.Gamepad.bLeftTrigger > TRIGGER_THRESHOLD;	//!@ZL‚ªˆê’èˆÈã‰Ÿ‚µž‚Ü‚ê‚½‚©
+}
+
+bool Input::IzZRPressed()
+{
+	return controllerState.Gamepad.bRightTrigger > TRIGGER_THRESHOLD;	//!@ZL‚ªˆê’èˆÈã‰Ÿ‚µž‚Ü‚ê‚½‚©
+}
