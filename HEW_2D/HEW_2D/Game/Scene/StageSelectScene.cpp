@@ -58,7 +58,9 @@ void StageSelectScene::Update(void) {
 	{
 		Cursol_pos.y = -300.0f;
 		objectmanager.GetGameObjectPtr<GameObject>(UI, "Cursol").lock()->SetPosition(Cursol_pos);
-	}else 
+	}
+
+
 	if (Input::GetInstance().GetButtonTrigger(XINPUT_GAMEPAD_DPAD_UP))
 	{
 		Vector3 Cursol_pos = objectmanager.GetGameObjectPtr<GameObject>(UI, "Cursol").lock()->GetPosition();

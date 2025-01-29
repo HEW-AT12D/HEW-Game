@@ -111,6 +111,7 @@ void Player::Update(void)
 	//}
 
 	// ”­Ëˆ—
+
 	if (IsShot)
 	{
 		Shot();

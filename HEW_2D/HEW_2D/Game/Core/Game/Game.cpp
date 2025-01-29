@@ -8,8 +8,8 @@
 void Game::Init(void)
 {
 	// シーンマネージャ、サウンドの初期化
-	scenemanager.Init();
 	sound.Init();
+	scenemanager.Init();
 }
 
 

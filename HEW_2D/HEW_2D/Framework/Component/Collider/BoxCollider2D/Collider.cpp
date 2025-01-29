@@ -274,7 +274,7 @@ std::pair<std::pair<Tag, std::string>, std::shared_ptr<IOnomatopoeia>> ColliderF
 		}
 	}
 	//‚Ç‚ê‚É‚àŠY“–‚µ‚È‚¢ê‡A“–‚½‚Á‚Ä‚¢‚È‚¢‚Ì‚Å‰½‚à•Ô‚³‚È‚¢
-	
+	return {};
 }
 
 // ü•ª‚Æ‰~‚ªŒğ·‚µ‚Ä‚¢‚é‚©”»’è‚·‚éŠÖ”

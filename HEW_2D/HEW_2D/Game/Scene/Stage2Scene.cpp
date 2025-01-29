@@ -365,29 +365,30 @@ void Stage2Scene::Update(void)
 	{
 		// 吸い込める擬音を探す
 		// そのフレーム内のタグが擬音のもの全て取得→それとプレイヤーから出る扇型の当たり判定を取得
-		auto onomatopoeias = objectmanager.GetObjects<IOnomatopoeia>(ONOMATOPOEIA);
-		// 扇形との当たり判定を取得
-		auto HitOnomatopoeia = ColliderFan_Gion(playerShared, onomatopoeias);
+		//auto onomatopoeias = objectmanager.GetObjects<IOnomatopoeia>(ONOMATOPOEIA);
+		auto onomatopoeias = objectmanager.GetGameObjectPair<IOnomatopoeia>(ONOMATOPOEIA);
 
-		// ポインタに値が入っていれば(扇形範囲内に当たった擬音があれば)
-		if (HitOnomatopoeia.lock())
+		// 擬音が0ではなければ
+		if (!onomatopoeias.empty())
 		{
-			// 擬音の吸い込み実行
-			playerShared.lock()->Suction(HitOnomatopoeia);
+			// 扇形との当たり判定を取得
+			auto HitOnomatopoeia = ColliderFan_Gion(playerShared, onomatopoeias);
+
+			// ポインタに値が入っていれば(扇形範囲内に当たった擬音があれば)
+			if (HitOnomatopoeia.second)
+			{
+				// 擬音の吸い込み実行
+				playerShared.lock()->SetIsSuction(true);			// プレイヤーの状態を吸い込み中に設定
+
+				// 吸い込み処理が終わったら
+				if (playerShared.lock()->Suction(HitOnomatopoeia.second))
+				{
+					// 吸い込み処理が終わった時に擬音のタグをUIに変更、射撃するときにタグを擬音に変更する処理がまだ
+					objectmanager.ChangeTag(HitOnomatopoeia.first.first, HitOnomatopoeia.first.second, UI);
+				}
+			}
 		}
 
-
-		//Vector3 p_pos = objectmanager.GetGameObjectPtr<Player>(PLAYER, "Player").lock()->GetPosition();
-		//Vector3 gion_pos = objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "Gion").lock()->GetPosition();
-		////Suction(gion_pos, p_pos);
-		//if (gion_pos.x - p_pos.x <= 300 && gion_pos.x - p_pos.x >= 0)/*Playerと擬音の距離が一定に来たら、擬音が徐々に近づく*/
-		//{
-		//	//ここに、近づくスピードを書く
-		//	gion_pos.x -= 14;
-		//	std::cout << "吸い込んでます" << std::endl;
-		//	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "Gion").lock()->SetPosition(gion_pos);
-		//}
-		//std::cout << "擬音座標：" << gion_pos.x << std::endl;
 	}
 	//連：メモ
 	//擬音を回収したときに、オブジェクトをただ移動させるだけじゃなくて、回収したオブジェクトの情報によって表示させるUIを変える

@@ -327,20 +327,6 @@ void Stage1Scene::Update(void)
 				}
 			}
 		}
-		
-		
-		
-		//Vector3 p_pos = objectmanager.GetGameObjectPtr<Player>(PLAYER, "Player").lock()->GetPosition();
-		//Vector3 gion_pos = objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "Gion").lock()->GetPosition();
-		////Suction(gion_pos, p_pos);
-		//if (gion_pos.x - p_pos.x <= 300 && gion_pos.x - p_pos.x >= 0)/*Playerと擬音の距離が一定に来たら、擬音が徐々に近づく*/
-		//{
-		//	//ここに、近づくスピードを書く
-		//	gion_pos.x -= 14;
-		//	std::cout << "吸い込んでます" << std::endl;
-		//	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "Gion").lock()->SetPosition(gion_pos);
-		//}
-		//std::cout << "擬音座標：" << gion_pos.x << std::endl;
 	}
 	//連：メモ
 	//擬音を回収したときに、オブジェクトをただ移動させるだけじゃなくて、回収したオブジェクトの情報によって表示させるUIを変える

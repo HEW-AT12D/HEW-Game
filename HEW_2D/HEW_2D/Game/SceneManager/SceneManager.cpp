@@ -9,7 +9,7 @@
 void SceneManager::Init(void) 
 {
 	//! タイトルシーンを生成してコンテナに追加
-	Scenes.emplace(TITLE, std::make_unique<Re_Stage1Scene>(D3d11));
+	Scenes.emplace(TITLE, std::make_unique<TitleScene>(D3d11));
 	//Scenes現在シーンをタイトルシーンに設定
 	CurrentScene = TITLE;
 	Scenes[CurrentScene]->Init();
@@ -38,7 +38,7 @@ void SceneManager::Update(void)
 			break;
 		case STAGESELECT:
 			// ステージ選択シーンは保持し続けるのでシーン遷移フラグだけをfalseに変更
-			//ChangeScene(GAME);
+			ChangeScene(GAME);
 			break;
 		case GAME:
 			// エンターでリザルトへ
@@ -105,7 +105,7 @@ void SceneManager::ChangeScene(SceneName _Nextscene) {
 		switch (_Nextscene)
 		{
 		case TITLE:
-			CreateScene<Re_Stage1Scene>(TITLE);
+			CreateScene<TitleScene>(TITLE);
 			break;
 		case STAGESELECT:
 			CreateScene<StageSelectScene>(STAGESELECT);
@@ -117,7 +117,7 @@ void SceneManager::ChangeScene(SceneName _Nextscene) {
 			CreateScene<ResultScene>(RESULT);
 			break;
 		case TEST:
-			CreateScene<STAGE1_SCENE>(TEST);
+			CreateScene<TestScene>(TEST);
 			break;
 		default:
 			break;

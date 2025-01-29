@@ -1,10 +1,11 @@
 #pragma once
 #include "../../Game/Scene/StageSelectScene.h"
 #include "../../Game/Scene/Stage1Scene.h"
+#include "../../Game/Scene/Stage2Scene.h"
 #include "../../Game/Scene/ResultScene.h"
 #include "../../Game/Scene/GameScene.h"
-#include "../../Game/Scene/Re_Stage1Scene.h"
-#include "../../Game/Scene/STAGE1_SCENE.h"
+#include "../../Game/Scene/TitleScene2.h"
+#include "../../Game/Scene/TestScene.h"
 
 //! TODO:scenemanagerでStage1Sceneとresultsceneをインクルードすると、それぞれでインクルードされているobjectmanagerとISceneが衝突してしまう
 //! →scenemanager.cppでのみStage1Sceneとresultsceneをインクルードして解決
