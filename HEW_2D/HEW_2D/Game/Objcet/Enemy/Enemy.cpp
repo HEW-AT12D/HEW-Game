@@ -10,15 +10,14 @@ void Enemy::Update()
 	
 		// ジャンプ中でなければ
 		// ジャンプ処理
-	if (enemy_pos.y <= -200.0f)
+	if (Jump && !Jumping)
 	{
+
 		Jumping = true;					// ジャンプ中に設定(これステートでもいいかも)
 		m_Velocity.y += m_JumpPower;	// 速度のY成分にジャンプ力を代入
 		m_Direction.y += 1.0f;			// 上向きの方向ベクトルを加算
-		
-	}
-	else {
-		Jump = false;
+		Jump = false;                   //ジャンプフラグはfalse
+
 	}
 		
 	
@@ -60,7 +59,7 @@ void Enemy::Update()
 	if (!OnGround)
 	{
 		Jumping = true;
-		m_Velocity.y -= 0.5f;	// 重力加速度実装の場合ここを変更
+		m_Velocity.y -= 0.2f;	// 重力加速度実装の場合ここを変更
 	}
 	else {
 		// 接地していればジャンプ中ではない

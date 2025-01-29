@@ -137,9 +137,6 @@
     <ClCompile Include="Framework\WICTextureLoader\WICTextureLoader.cpp">
       <Filter>フレームワーク\画像読み込み</Filter>
     </ClCompile>
-    <ClCompile Include="Framework\Sound\sound.cpp">
-      <Filter>フレームワーク\サウンド</Filter>
-    </ClCompile>
     <ClCompile Include="Framework\Scene\IScene.cpp">
       <Filter>フレームワーク\シーン系\シーン</Filter>
     </ClCompile>
@@ -242,6 +239,12 @@
     <ClCompile Include="Game\Scene\Re_TitleScene.cpp">
       <Filter>ゲーム\シーン</Filter>
     </ClCompile>
+    <ClCompile Include="Game\Scene\STAGE1_SCENE.cpp">
+      <Filter>ゲーム\シーン</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Sound\sound.cpp">
+      <Filter>フレームワーク\サウンド</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework\D3D11\D3D11.h">
@@ -334,6 +337,9 @@
     <ClInclude Include="Framework\Component\RigitBody\Gravity.h">
       <Filter>フレームワーク\コンポーネント\Physic（物理）</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Objcet\Camera\Camera.h">
+      <Filter>ゲーム\オブジェクト\カメラ</Filter>
+    </ClInclude>
     <ClInclude Include="Game\Scene\TestScene.h">
       <Filter>ゲーム\シーン</Filter>
     </ClInclude>
@@ -355,8 +361,8 @@
     <ClInclude Include="Game\Scene\Re_TitleScene.h">
       <Filter>ゲーム\シーン</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Objcet\Camera\Camera.h">
-      <Filter>ゲーム\オブジェクト\カメラ</Filter>
+    <ClInclude Include="Game\Scene\STAGE1_SCENE.h">
+      <Filter>ゲーム\シーン</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

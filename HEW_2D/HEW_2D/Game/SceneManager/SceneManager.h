@@ -4,6 +4,7 @@
 #include "../../Game/Scene/ResultScene.h"
 #include "../../Game/Scene/GameScene.h"
 #include "../../Game/Scene/Re_TitleScene.h"
+#include "../../Game/Scene/STAGE1_SCENE.h"
 
 //! TODO:scenemanagerでtitlesceneとresultsceneをインクルードすると、それぞれでインクルードされているobjectmanagerとISceneが衝突してしまう
 //! →scenemanager.cppでのみtitlesceneとresultsceneをインクルードして解決

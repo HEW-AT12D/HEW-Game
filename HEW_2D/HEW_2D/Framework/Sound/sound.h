@@ -6,7 +6,7 @@
 typedef enum
 {
 
-	SOUND_LABEL_BGM000 = 0,		// サンプルBGM
+	SOUND_LABEL_BGM000,		// サンプルBGM
 	SOUND_LABEL_BGM001,			// サンプルBGM
 	SOUND_LABEL_SE000,			// サンプルSE
 	SOUND_LABEL_SE001,			// サンプルSE
@@ -21,8 +21,8 @@ typedef struct
 {
 	LPCSTR filename;	// 音声ファイルまでのパスを設定
 	bool bLoop;			// trueでループ。通常BGMはture、SEはfalse。
-	bool SandW;			//! 音の強弱の切り替えが必要なサウンドを判定
-	float volume;		//! 音の大きさ（1.0fがノーマル)
+	//bool SandW;			//! 音の強弱の切り替えが必要なサウンドを判定
+	//float volume;		//! 音の大きさ（1.0fがノーマル)
 } PARAM;		//PARAM型構造体
 
 class Sound {
@@ -32,7 +32,7 @@ private:
 
 	PARAM m_param[SOUND_LABEL_MAX] =
 	{
-		{"asset/BGM/○○○.wav", true,true,1.0f},	// サンプルBGM（ループさせるのでtrue設定）
+		{"Asset/SE/Magazine.wav", false},	// サンプルBGM（ループさせるのでtrue設定）
 //		{"asset/BGM/○○○.wav", true},	// サンプルBGM
 //		{"asset/SE/○○○.wav", false},  		// サンプルSE（ループしないのでfalse設定）
 //		{"asset/SE/○○○.wav", false},		// サンプルSE
