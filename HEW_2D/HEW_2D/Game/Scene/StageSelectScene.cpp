@@ -43,6 +43,11 @@ void StageSelectScene::Update(void) {
 		{
 			SetChangeScene(GAME);
 		}
+
+		if (Input::GetInstance().GetKeyTrigger(VK_RETURN))
+		{
+			SetChangeScene(GAME);
+		}
 	}
 
 	if (Cursol_pos.y == -300)
@@ -50,6 +55,11 @@ void StageSelectScene::Update(void) {
 		if (Input::GetInstance().GetButtonTrigger(XINPUT_GAMEPAD_START))
 		{
 			SetChangeScene(TEST);
+		}
+
+		if (Input::GetInstance().GetKeyTrigger(VK_RETURN))
+		{
+			SetChangeScene(TITLE);
 		}
 	}
 	
