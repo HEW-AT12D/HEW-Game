@@ -39,6 +39,7 @@ public:
 		// シーン保持しているコンテナを空にする
 		Scenes.clear();
 		CurrentScene = {};
+		Quit = false;
 	};
 	~SceneManager() {};
 
@@ -73,10 +74,23 @@ public:
 	*/
 	void DeleteScene(SceneName _SceneName);
 
+	/**
+	 * @brief ゲーム終了リクエストの状態を返す
+	 * @return ゲーム終了状態
+	*/
+	bool GetIsQuit(void);
+
+	/**
+	 * @brief ゲーム終了フラグを設定する関数
+	 * @param _flg 
+	*/
+	void SetIsQuit(bool _flg);
+
 private:
 	D3D11& D3d11;
 	std::unordered_map<SceneName, std::unique_ptr<IScene>> Scenes;	//! シーン配列
 	SceneName CurrentScene;
+	bool Quit = false;
 };
 
 

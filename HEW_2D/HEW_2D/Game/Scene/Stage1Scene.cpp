@@ -122,6 +122,9 @@ void Stage1Scene::Update(void)
 	
 	// 入力情報の更新
 	Input::GetInstance().Update();
+	// スティック入力値を取得
+	Vector2 RightStickInput = Input::GetInstance().GetRightAnalogStick();	// 右スティック入力
+	Vector2 LeftStickInput = Input::GetInstance().GetLeftAnalogStick();		// 左スティック入力
 
 	// シーン更新に必要な情報を取得
 	auto playerShared = objectmanager.GetGameObject<Player>(PLAYER, "Player");		// プレイヤー
@@ -136,15 +139,15 @@ void Stage1Scene::Update(void)
 
 	// 入力管理
 	// 右移動
-	if (Input::GetInstance().GetKeyPress(VK_D))
+	if (Input::GetInstance().GetKeyPress(VK_D) || LeftStickInput.x > 0.1f)
 	{
 		objectmanager.GetGameObjectPtr<Player>(PLAYER, "Player").lock()->SetMoveRight(true);
-		
+		//sound.Play(SOUND_LABEL_BGM000);
 		//デバック用
 		std::cout << "Playerの座標移動ができています" << std::endl;
 	}
 	// 左移動
-	if (Input::GetInstance().GetKeyPress(VK_A))
+	if (Input::GetInstance().GetKeyPress(VK_A) || LeftStickInput.x < -0.1f)
 	{
 		objectmanager.GetGameObjectPtr<Player>(PLAYER, "Player").lock()->SetMoveLeft(true);
 
@@ -152,7 +155,7 @@ void Stage1Scene::Update(void)
 		std::cout << "Playerの座標移動ができています" << std::endl;
 	}
 	// ジャンプ
-	if (Input::GetInstance().GetKeyTrigger(VK_SPACE))
+	if (Input::GetInstance().GetKeyTrigger(VK_SPACE) || Input::GetInstance().GetButtonPress(XINPUT_GAMEPAD_A))
 	{
 		objectmanager.GetGameObjectPtr<Player>(PLAYER, "Player").lock()->SetJump(true);
 
@@ -177,27 +180,25 @@ void Stage1Scene::Update(void)
 	//ColliderPlayer_Ground(playerShared, groundShared2);
 
 
-	// クロスヘアの入力取得(本来はプレイヤーのフラグを立てて、プレイヤーの更新の中でクロスヘアを動かすべき)
-	if (Input::GetInstance().GetKeyPress(VK_UP))
+	// クロスヘアの入力取得(本来はプレイヤーのフラグを立てて、プレイヤーの更新の中でクロスヘアを動かすべき)XINPUT_GAMEPAD_RIGHT_THUMB
+	if (Input::GetInstance().GetKeyPress(VK_UP) || RightStickInput.y > 0.1f)
 	{
 		crosshairShared.lock()->SetMoveUp(true);
-
 	}
 	else {
 		crosshairShared.lock()->SetMoveUp(false);
 	}
-	
-	if (Input::GetInstance().GetKeyPress(VK_DOWN))
+
+	if (Input::GetInstance().GetKeyPress(VK_DOWN) || RightStickInput.y < -0.1f)
 	{
 		crosshairShared.lock()->SetMoveDown(true);
-
 	}
 	else
 	{
 		crosshairShared.lock()->SetMoveDown(false);
 	}
-	
-	if (Input::GetInstance().GetKeyPress(VK_RIGHT))
+
+	if (Input::GetInstance().GetKeyPress(VK_RIGHT) || RightStickInput.x > 0.1f)
 	{
 		crosshairShared.lock()->SetMoveRight(true);
 	}
@@ -205,8 +206,8 @@ void Stage1Scene::Update(void)
 	{
 		crosshairShared.lock()->SetMoveRight(false);
 	}
-	
-	if (Input::GetInstance().GetKeyPress(VK_LEFT))
+
+	if (Input::GetInstance().GetKeyPress(VK_LEFT) || RightStickInput.x < -0.1f)
 	{
 		crosshairShared.lock()->SetMoveLeft(true);
 	}
@@ -214,6 +215,7 @@ void Stage1Scene::Update(void)
 	{
 		crosshairShared.lock()->SetMoveLeft(false);
 	}
+
 
 
 	////擬音の吸収→247行目の吸い込み処理に変更、改良
@@ -229,7 +231,7 @@ void Stage1Scene::Update(void)
 	//}
 
 	// マガジンに擬音が入っていればエイムの位置に発射
-	if (Input::GetInstance().GetKeyPress(VK_W))
+	if (Input::GetInstance().GetKeyPress(VK_W) || Input::GetInstance().GetRightTrigger())
 	{
 		// マガジンに擬音が装填されているかチェック
 		if (playerShared.second->GetLoadedBullet())
@@ -242,7 +244,7 @@ void Stage1Scene::Update(void)
 			//--------------------------------------
 
 			// ここオブジェクトマネージャから擬音の情報持ってきたほうが良いかも？
-			
+
 			// ここで擬音のタグをUIから擬音に変更
 			// →擬音のポインタだけわかってるのにキーの特定がスムーズにできないのでやっぱり管理方法変えたほうがいい(登録されてるタグを毎フレーム確認して同期させるとか)
 
@@ -278,7 +280,7 @@ void Stage1Scene::Update(void)
 
 	// ----------------吸い込み処理→ここはプレイヤーの処理に移す-------------------------
 	// プレイヤー発の扇型と当たってる擬音を探す→(一番近くの)当たってる擬音を吸い込む
-	if (Input::GetInstance().GetKeyPress(VK_F))
+	if (Input::GetInstance().GetKeyPress(VK_F) || Input::GetInstance().GetLeftTrigger())
 	{
 		// 吸い込める擬音を探す
 		// そのフレーム内のタグが擬音のもの全て取得→それとプレイヤーから出る扇型の当たり判定を取得

@@ -15,11 +15,12 @@ enum FRAME {
 };
 
 enum SceneName {
-	TITLE,
-	STAGESELECT,
-	STAGE1,
-	STAGE2,
-	RESULT,
+	TITLE,			// タイトル
+	STAGESELECT,	// ステージ選択
+	STAGE1,			// ステージ2
+	STAGE2,			// ステージ2
+	RESULT,			// リザルト
+	QUIT,			// ゲーム終了
 
 	SCENE_MAX
 };

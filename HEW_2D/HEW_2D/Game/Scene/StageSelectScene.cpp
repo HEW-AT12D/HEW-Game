@@ -42,14 +42,14 @@ void StageSelectScene::Update(void) {
 	if (Input::GetInstance().GetButtonTrigger(XINPUT_GAMEPAD_START) || Input::GetInstance().GetKeyTrigger(VK_RETURN))
 	{
 		// カーソル位置が上の場合
-		if (Cursol_pos.y == 0)
+		if (Cursol_pos.y == 0.0f)
 		{
 			// 遷移先シーンをステージに設定
 			m_RequestNext = STAGE1;
 		}
 		
 		// カーソル位置が下の場合
-		if (Cursol_pos.y == -300)
+		if (Cursol_pos.y == -300.0f)
 		{
 			// 遷移先をステージ2に設定
 			m_RequestNext = STAGE2;

@@ -14,7 +14,7 @@ public:
 		MoveRight = false;
 		MoveUp = false;
 		MoveDown = false;
-		m_Velocity = { 5.0f };	// クロスヘアの移動速度
+		m_Velocity = { 10.0f };	// クロスヘアの移動速度
 	}
 
 	~CrossHair() {};

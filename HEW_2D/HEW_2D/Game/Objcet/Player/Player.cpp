@@ -297,9 +297,9 @@ void Player::SetChild(std::shared_ptr<GameObject> _child)
 		if (m_Magazines.empty())
 		{
 			// 座標設定
-			casted->SetPosition(Vector3(-850.0f, -470.0f, 0.0f));
+			casted->SetPosition(Vector3(810.0f, 450.0f, 0.0f));
 			// このマガジンだけ大きさを変える
-			casted->SetScale(Vector3(200.0f, 200.0f, 0.0f));
+			casted->SetScale(Vector3(300.0f, 300.0f, 0.0f));
 		}
 		// 二個目のマガジン(擬音銃に装填する用のマガジン)を追加する場合
 		else if (m_Magazines.size() == 1)

@@ -27,7 +27,6 @@ void SceneManager::Update(void)
 	// 現在シーンの更新
 	Scenes[CurrentScene]->Update();
 
-
 	// 流れ
 	// 現在シーンで設定されている遷移先シーンを確認→そのシーンに遷移
 	// →同じシーンに飛ぼうとしてる場合は一旦フェードアウトし、そのシーンの初期化を行ってからフェードイン
@@ -38,36 +37,20 @@ void SceneManager::Update(void)
 		// 現在シーンがステージ選択なら、遷移先シーン確認→遷移関数実行
 		// そうでないならシーン遷移関数実行するだけ
 
-		
 		// 遷移先シーンを確認して遷移処理実行
-		ChangeScene(Scenes[CurrentScene]->GetRequestScene());
+		// 遷移先がゲーム終了でなければ
+		if (Scenes[CurrentScene]->GetRequestScene() != QUIT)
+		{
+			// シーン遷移処理実行
+			ChangeScene(Scenes[CurrentScene]->GetRequestScene());
+		}
+		// ゲーム終了が選ばれた場合
+		else
+		{
+			// ゲーム終了フラグを立てる
+			this->Quit = true;
+		}
 		
-
-		//// シーン選択以外の場合は一方通行
-		//else
-		//{
-		//	switch (CurrentScene)
-		//	{
-		//	case TITLE:
-		//		// エンターでステージ選択へ
-		//		// デバッグ用にステージ１へ飛ぶ
-		//		ChangeScene(STAGESELECT);
-		//		break;
-		//	case STAGE1:
-		//		// エンターでリザルトへ
-		//		ChangeScene(RESULT);
-		//		break;
-		//	case RESULT:	// 現在シーンがリザルトなら
-		//		// タイトルへ戻り、シーンの初期化
-		//		ChangeScene(STAGESELECT);
-		//		break;
-		//	case TEST:
-		//		ChangeScene(RESULT);
-		//		break;
-		//	default:
-		//		break;
-		//	}
-		//}
 	}
 	
 }
@@ -132,6 +115,9 @@ void SceneManager::ChangeScene(SceneName _Nextscene) {
 		case RESULT:
 			CreateScene<ResultScene>(RESULT);
 			break;
+		// ゲーム終了が選択された場合はシーン遷移処理はしないので何も書かない
+		case QUIT:
+			break;
 		default:
 			break;
 		}
@@ -173,4 +159,22 @@ void SceneManager::DeleteScene(SceneName _SceneName)
 	// 指定したシーンを削除
 	Scenes.erase(_SceneName);
 	std::cout << _SceneName << std::endl;
+}
+
+/**
+ * @brief ゲーム終了リクエストの状態を返す
+ * @return ゲーム終了状態
+*/
+bool SceneManager::GetIsQuit(void)
+{
+	return Quit;
+}
+
+/**
+ * @brief ゲーム終了フラグを設定する関数
+ * @param _flg
+*/
+void SceneManager::SetIsQuit(bool _flg)
+{
+	this->Quit = _flg;
 }

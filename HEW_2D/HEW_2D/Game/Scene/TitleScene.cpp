@@ -31,7 +31,7 @@ void TitleScene::Init(void) {
 	objectmanager.GetGameObjectPtr<GameObject>(UI, "end").lock()->SetPosition(Vector3(500.0f, -350.0f, 0.0f));
 	objectmanager.GetGameObjectPtr<GameObject>(UI, "end").lock()->SetScale(Vector3(500.0f, 400.0f, 0.0f));
 
-	//Titleカーソル
+	// カーソル
 	objectmanager.AddObject<GameObject>(UI, "Cursol");
 	objectmanager.GetGameObjectPtr<GameObject>(UI, "Cursol").lock()->Init(L"Game/Asset/UI/TitleCursol.png", 3.1);
 	objectmanager.GetGameObjectPtr<GameObject>(UI, "Cursol").lock()->SetPosition(Vector3(300.0f, -170.0f, 0.0f));
@@ -44,25 +44,60 @@ void TitleScene::Init(void) {
 	objectmanager.GetGameObjectPtr<GameObject>(UI, "Chara").lock()->SetPosition(Vector3(-400.0f, -300.0f, 0.0f));
 	objectmanager.GetGameObjectPtr<GameObject>(UI, "Chara").lock()->SetScale(Vector3(800.0f, 900.0f, 0.0f));
 	Vector3 c_rotation = objectmanager.GetGameObjectPtr<GameObject>(UI, "rogo").lock()->GetRotation();
-	c_rotation.z = (15);
+	c_rotation.z = 15.0f;
 	objectmanager.GetGameObjectPtr<GameObject>(UI, "Chara").lock()->SetRotation(c_rotation);
 
 	std::cout << "TitleSceneInit" << std::endl;
 }
 
 void TitleScene::Update(void) {
+	// 入力情報の更新
 	Input::GetInstance().Update();
+
+	// スティック入力値を取得
+	Vector2 RightStickInput = Input::GetInstance().GetRightAnalogStick();	// 右スティック入力
+	Vector2 LeftStickInput = Input::GetInstance().GetLeftAnalogStick();		// 左スティック入力
 	
-	auto rogoShared = objectmanager.GetGameObjectPtr<TitleScene>(UI, "rogo");
-	if (Input::GetInstance().GetKeyTrigger(VK_M))
-	{
-	}
-	//ゲームセレクト画面に遷移
+	Vector3 Cursol_pos = objectmanager.GetGameObjectPtr<GameObject>(UI, "Cursol").lock()->GetPosition();
+
+	
+	// ゲームセレクト画面に遷移
 	// シーン遷移（デバック用
-	if (Input::GetInstance().GetKeyTrigger(VK_RETURN))
+	if (Input::GetInstance().GetButtonTrigger(XINPUT_GAMEPAD_START) || Input::GetInstance().GetKeyTrigger(VK_RETURN))
 	{
-		this->ChangeScene = true;
-		m_RequestNext = STAGESELECT;
+		// カーソル位置が上の場合
+		if (Cursol_pos.y == -170.0f)
+		{
+			// 遷移先シーンをステージ選択に設定
+			m_RequestNext = STAGESELECT;
+		}
+
+		// カーソル位置が下の場合
+		if (Cursol_pos.y == -370.0f)
+		{
+			// 遷移先をゲーム終了に設定
+			m_RequestNext = QUIT;
+		}
+		// シーン遷移フラグを立てる
+		SetChangeScene(true);
+	}
+	else
+	{
+		// シーン遷移フラグを立てる
+		SetChangeScene(false);
+	}
+
+	if (Input::GetInstance().GetButtonTrigger(XINPUT_GAMEPAD_DPAD_DOWN) || Input::GetInstance().GetKeyPress(VK_DOWN))
+	{
+		Cursol_pos.y = -370.0f;
+		objectmanager.GetGameObjectPtr<GameObject>(UI, "Cursol").lock()->SetPosition(Cursol_pos);
+	}
+
+	// 上ボタン入力確認
+	if (Input::GetInstance().GetButtonTrigger(XINPUT_GAMEPAD_DPAD_UP) || Input::GetInstance().GetKeyPress(VK_UP))
+	{
+		Cursol_pos.y = -170.0f;
+		objectmanager.GetGameObjectPtr<GameObject>(UI, "Cursol").lock()->SetPosition(Cursol_pos);
 	}
 }
 
