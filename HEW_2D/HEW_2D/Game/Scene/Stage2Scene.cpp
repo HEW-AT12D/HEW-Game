@@ -129,7 +129,8 @@ void Stage2Scene::Init(void) {
 	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "bane").lock()->SetScale(Vector3(330.0f, 330.0f, 0.0f));
 
 	//サンダーエフェクト
-	objectmanager.GetGameObjectPtr<BiriBiri>(UI, "Thunder_Effect").lock()->Init(L"Game/Asset/Efect/Thunder_Efect.png", 8, 1);
+	objectmanager.AddObject<BiriBiri>(UI, "Thunder_Effect");
+	objectmanager.GetGameObjectPtr<BiriBiri>(UI, "Thunder_Effect").lock()->Init(L"Game/Asset/Effect/Thunder_Effect.png", 8, 1);
 	objectmanager.GetGameObjectPtr<BiriBiri>(UI, "Thunder_Effect").lock()->SetPosition(Vector3(500.0f, 20.0f, 0.0f));
 	objectmanager.GetGameObjectPtr<BiriBiri>(UI, "Thunder_Effect").lock()->SetScale(Vector3(600.0f, 1200.0f, 0.0f));
 	objectmanager.GetGameObjectPtr<BiriBiri>(UI, "Thunder_Effect").lock()->SetColor(Color(1.0f, 1.0f, 1.0f, 1.0f));
@@ -162,7 +163,7 @@ void Stage2Scene::Update(void)
 	Vector2 RightStickInput = Input::GetInstance().GetRightAnalogStick();	// 右スティック入力
 	Vector2 LeftStickInput = Input::GetInstance().GetLeftAnalogStick();		// 左スティック入力
 
-	//sound.Play(SOUND_LABEL_BGM000);
+	sound.Play(SOUND_LABEL_BGM000);
 
 
 	// 入力情報の更新
@@ -177,6 +178,7 @@ void Stage2Scene::Update(void)
 	auto enemygion       = objectmanager.GetGameObjectPtr<Poyon>     (ONOMATOPOEIA, "_Gion2");
 	auto effectShared     = objectmanager.GetGameObjectPtr<GameObject>(UI, "Thunder_Effect");
 	auto baneShared      = objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "bane");
+	auto poyonShared = objectmanager.GetGameObject<Poyon>(ONOMATOPOEIA, "Gion2");
 
 
 
@@ -220,7 +222,9 @@ void Stage2Scene::Update(void)
 	}
 	if (Input::GetInstance().GetKeyTrigger(VK_O))
 	{
-
+		Vector3 p_frame = objectmanager.GetGameObjectPtr<GameObject>(UI, "Frame").lock()->GetPosition();
+		p_frame.x = p_frame.x - 120;
+		objectmanager.GetGameObjectPtr<GameObject>(UI, "Frame").lock()->SetPosition(p_frame);
 	}
 
 
@@ -249,6 +253,11 @@ void Stage2Scene::Update(void)
 	//}
 
 	ColliderPlayer_Ground(playerShared.second, grounds);
+
+
+	//擬音当たり判定flg
+
+	
 
 	
 	
@@ -353,6 +362,7 @@ void Stage2Scene::Update(void)
 	// マガジンに擬音が入っていればエイムの位置に発射
 	if (Input::GetInstance().GetKeyPress(VK_W) || Input::GetInstance().GetRightTrigger())
 	{
+		poyonShared.second->Set_Onomatope(true); //擬音が発射中かのフラグ
 		// マガジンに擬音が装填されているかチェック
 		if (playerShared.second->GetLoadedBullet())
 		{
@@ -385,6 +395,12 @@ void Stage2Scene::Update(void)
 			else if (dynamic_cast<Poyon*>(bullet))
 			{
 				objectmanager.ChangeTag(UI, "Poyon", ONOMATOPOEIA);
+
+				//ここでオブジェクトと擬音の当たり判定を取っている
+				if (BoxCollider(enemygion.lock(), baneShared.lock()))
+				{
+					enemygion.lock()->Set_Onomatope(true); //オブジェクトに擬音をアタッチするflg
+				}
 			}
 			// それ以外(不明な型)の場合
 			else
@@ -393,16 +409,16 @@ void Stage2Scene::Update(void)
 			}
 		}
 	}
-
-	// 何かのオブジェクトに当たったら擬音の移動を止める処理
-	/*if (Collider_toGround(groundShared2, gionShared))
+	
+	//擬音が発射中なら
+	if (poyonShared.second->Get_Onomatope())
 	{
-		playerShared.lock()->SetIsShot(false);
-
+		if (BoxCollider(poyonShared.second, baneShared.lock()))
+		{
+			enemygion.lock()->Action(); //擬音の付与されら時の動作（ポヨン）
+		}
 	}
-	else {
-
-	}*/
+	
 
 
 	//playerShared.lock()->Shot(gionShared);
