@@ -210,7 +210,6 @@ public:
 	}
 
 
-
 	/**
 	 * @brief オブジェクト取得関数(タグ、型指定してオブジェクトそのもののweak_ptrを返す)
 	 * @tparam T オブジェクトの型
@@ -220,10 +219,10 @@ public:
 	 * 2025/01/22 赤根：名前振るように作ったけどその仕組みまだ作れてないから使わないかも！！
 	*/
 	template <class T>
-	std::vector<std::weak_ptr<T>> GetObjects(Tag _tag)
+	std::vector<std::shared_ptr<T>> GetObjects(Tag _tag)
 	{
 		// オブジェクト保存用コンテナ
-		std::vector<std::weak_ptr<T>> objects;
+		std::vector<std::shared_ptr<T>> objects;
 		for (auto& obj : Objects)
 		{
 			// タグが同じかを調べ、
@@ -238,9 +237,6 @@ public:
 		}
 		return objects;
 	}
-
-
-
 
 
 

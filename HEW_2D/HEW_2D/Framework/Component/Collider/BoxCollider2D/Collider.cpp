@@ -12,21 +12,21 @@
 
 //PlayerとGroundの当たり判定(配列)
 //template <class T, class U>
-bool ColliderPlayer_Ground(std::weak_ptr<Player> _player, std::vector<std::weak_ptr<GameObject>> _objects)
+bool ColliderPlayer_Ground(std::shared_ptr<Player> _player, std::vector<std::shared_ptr<GameObject>> _objects)
 {
 	// 地面の配列の要素数分ループ
 	for (auto& ground : _objects) {
 		if (BoxCollider(_player, ground))
 		{
 			// 当たったオブジェクトの速度、方向ベクトルをリセットする
-			_player.lock()->SetDirection(Vector3({ 0.0f }));
-			_player.lock()->AddForce(Vector3({ 0.0f }));
-			_player.lock()->SetOnGround(true);
+			_player->SetDirection(Vector3({ 0.0f }));
+			_player->AddForce(Vector3({ 0.0f }));
+			_player->SetOnGround(true);
 			return true;
 		}
 		else
 		{
-			_player.lock()->SetOnGround(false);
+			_player->SetOnGround(false);
 			return false;
 		}
 	}	

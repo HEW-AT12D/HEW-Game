@@ -158,7 +158,7 @@ void Stage2Scene::Update(void)
 	// 入力情報の更新
 	// シーン更新に必要な情報を取得
 	auto grounds = objectmanager.GetObjects<GameObject>(GROUND);						// 地面(配列)
-	auto playerShared    = objectmanager.GetGameObjectPtr<Player>    (PLAYER, "Player");
+	auto playerShared    = objectmanager.GetGameObject<Player>    (PLAYER, "Player");
 	auto groundShared    = objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground");
 	auto groundShared2   = objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground2");
 	auto gionShared      = objectmanager.GetGameObjectPtr<Poyon>     (ONOMATOPOEIA, "Gion");
@@ -227,7 +227,7 @@ void Stage2Scene::Update(void)
 	//	playerShared.lock()->SetOnGround(true);
 	//}
 
-	ColliderPlayer_Ground(playerShared, grounds);
+	ColliderPlayer_Ground(playerShared.second, grounds);
 
 	
 	
@@ -345,7 +345,7 @@ void Stage2Scene::Update(void)
 	if (Input::GetInstance().GetKeyPress(VK_W))
 	{
 		// マガジンに擬音が装填されているかチェック
-		if (playerShared.lock()->GetLoadedBullet())
+		if (playerShared.second->GetLoadedBullet())
 		{
 			Vector3 gion_Rot = gionShared.lock()->GetRotation();	// 擬音の回転情報
 			Vector3 gion_Scale = gionShared.lock()->GetScale();		// 擬音のサイズ情報
@@ -356,7 +356,7 @@ void Stage2Scene::Update(void)
 			// 各情報を再設定
 			gionShared.lock()->SetRotation(gion_Rot);
 			gionShared.lock()->SetScale(gion_Scale);
-			playerShared.lock()->SetIsShot(true);
+			playerShared.second->SetIsShot(true);
 
 
 			//--------------------------------------
@@ -367,7 +367,7 @@ void Stage2Scene::Update(void)
 			// →擬音のポインタだけわかってるのにキーの特定がスムーズにできないのでやっぱり管理方法変えたほうがいい(登録されてるタグを毎フレーム確認して同期させるとか)
 
 			// ここでは持ってきた擬音がキャストできた型によってその擬音のタグを変えるようにする
-			auto bullet = playerShared.lock()->GetLoadedBullet();
+			auto bullet = playerShared.second->GetLoadedBullet();
 
 			// 擬音が"パタパタ"の場合
 			if (dynamic_cast<PataPata*>(bullet))
@@ -420,16 +420,16 @@ void Stage2Scene::Update(void)
 		if (!onomatopoeias.empty())
 		{
 			// 扇形との当たり判定を取得
-			auto HitOnomatopoeia = ColliderFan_Gion(playerShared, onomatopoeias);
+			auto HitOnomatopoeia = ColliderFan_Gion(playerShared.second, onomatopoeias);
 
 			// ポインタに値が入っていれば(扇形範囲内に当たった擬音があれば)
 			if (HitOnomatopoeia.second)
 			{
 				// 擬音の吸い込み実行
-				playerShared.lock()->SetIsSuction(true);			// プレイヤーの状態を吸い込み中に設定
+				playerShared.second->SetIsSuction(true);			// プレイヤーの状態を吸い込み中に設定
 
 				// 吸い込み処理が終わったら
-				if (playerShared.lock()->Suction(HitOnomatopoeia.second))
+				if (playerShared.second->Suction(HitOnomatopoeia.second))
 				{
 					// 吸い込み処理が終わった時に擬音のタグをUIに変更、射撃するときにタグを擬音に変更する処理がまだ
 					objectmanager.ChangeTag(HitOnomatopoeia.first.first, HitOnomatopoeia.first.second, UI);
@@ -439,14 +439,14 @@ void Stage2Scene::Update(void)
 			else
 			{
 				// プレイヤーの状態を変更
-				playerShared.lock()->SetIsSuction(false);		// 「非」吸い込み中に設定
+				playerShared.second->SetIsSuction(false);		// 「非」吸い込み中に設定
 			}
 		}
 		// 擬音が0(フレーム内の擬音がない場合)
 		else
 		{
 			// プレイヤーの状態を変更
-			playerShared.lock()->SetIsSuction(false);		// 「非」吸い込み中に設定
+			playerShared.second->SetIsSuction(false);		// 「非」吸い込み中に設定
 		}
 	}
 	//連：メモ
@@ -465,12 +465,12 @@ void Stage2Scene::Update(void)
 		// マガジンと地面
 		Collider_toGround(std::weak_ptr<Magazine>(magShared.second), groundShared);
 		// プレイヤーとマガジンが当たったら
-		if (Collider_Player_to_Magazine(playerShared, objectmanager.GetGameObjectPtr<Magazine>(OBJECT, "Magazine3")))
+		if (Collider_Player_to_Magazine(playerShared.second, objectmanager.GetGameObjectPtr<Magazine>(OBJECT, "Magazine3")))
 		{
 			// マガジンのタグを変更
 			objectmanager.ChangeTag(magShared.first.first, magShared.first.second, UI);
 			// プレイヤーの子オブジェクトに設定
-			playerShared.lock()->SetChild(magShared.second);
+			playerShared.second->SetChild(magShared.second);
 			/*magShared.second->SetScale(Vector3(75.0f, 75.0f, 0.0f));
 			magShared.second->SetPosition(Vector3(-800.0f, -500.0f, 0.0f));*/
 			m_MagCount = 0;
