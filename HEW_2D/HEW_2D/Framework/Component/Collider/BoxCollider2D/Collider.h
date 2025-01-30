@@ -53,7 +53,27 @@ bool Collider_toGround(std::weak_ptr<T> _obj1, std::weak_ptr<GameObject> _obj2)
 	auto obj1 = _obj1.lock();
 	auto obj2 = _obj2.lock();
 
+<<<<<<< HEAD
 	if (BoxCollider(obj1, obj2))
+=======
+	Player_Right_Collider = obj1.lock()->GetPosition().x + obj1.lock()->GetScale().x / 2; //ƒvƒŒƒCƒ„[‚Ì‰E“–‚½‚è”»’è•Ï”
+	Player_Left_Collider = obj1.lock()->GetPosition().x - obj1.lock()->GetScale().x / 2;  //ƒvƒŒƒCƒ„[‚Ì¶“–‚½‚è”»’è•Ï”
+	Player_Top_Collider = obj1.lock()->GetPosition().y + obj1.lock()->GetScale().y / 2;    //ƒvƒŒƒCƒ„[‚Ìã“–‚½‚è”»’è•Ï”
+	Player_Bottom_Collider = obj1.lock()->GetPosition().y - obj1.lock()->GetScale().y / 2;//ƒvƒŒƒCƒ„[‚Ì‰º“–‚½‚è”»’è•Ï”
+
+	Ground_Right_Collider = obj2.lock()->GetPosition().x + obj2.lock()->GetScale().x / 2; //ƒOƒ‰ƒEƒ“ƒh‚Ì‰E‚Ì“–‚½‚è”»’è•Ï”
+	Ground_Left_Collider = obj2.lock()->GetPosition().x - obj2.lock()->GetScale().x / 2;  //ƒOƒ‰ƒEƒ“ƒh‚Ì¶‚Ì“–‚½‚è”»’è•Ï”
+	Ground_Top_Collider = obj2.lock()->GetPosition().y + obj2.lock()->GetScale().y / 2;    //ƒOƒ‰ƒEƒ“ƒh‚Ìã‚Ì“–‚½‚è”»’è•Ï”
+	Ground_Bottom_Collider = obj2.lock()->GetPosition().y - obj2.lock()->GetScale().y / 2;//ƒOƒ‰ƒEƒ“ƒh‚Ì‰º‚Ì“–‚½‚è”»’è•Ï”
+
+	Ground_Bottom_Collider = Ground_Bottom_Collider + 150; //Ground‚Ì‰º‚Ì•”•ª‚É“–‚½‚Á‚½‚Étrue‚ğ•Ô‚³‚È‚¢‚æ‚¤‚É‚·‚éi­‚µÀ•W‚ğã‚É‚ ‚°‚Ä‚éj
+
+	//ƒvƒŒƒCƒ„[‚ÆƒOƒ‰ƒEƒ“ƒh‚Ì“–‚½‚è”»’è
+	if (Player_Left_Collider < Ground_Right_Collider &&
+		Ground_Left_Collider < Player_Right_Collider &&
+		Player_Bottom_Collider < Ground_Top_Collider &&
+		Player_Top_Collider > Ground_Bottom_Collider)
+>>>>>>> ä¿é™ºãƒ–ãƒ©ãƒ³ãƒ
 	{
 		// ’n–Ê‚É“–‚½‚Á‚½ƒIƒuƒWƒFƒNƒg‚Ì‘¬“xA•ûŒüƒxƒNƒgƒ‹‚ğƒŠƒZƒbƒg‚·‚é
 		obj1->SetDirection(Vector3({0.0f}));

@@ -44,17 +44,17 @@ void Stage2Scene::Init(void) {
 
 	// 擬音銃(設計的には銃を別画像で用意してプレイヤーに持たせる方が良かったが、)
 	objectmanager.AddObject<SoundGun>(UI, "SoundGun");
-	objectmanager.GetGameObjectPtr<SoundGun>(UI, "SoundGun").lock()->Init(L"Game/Asset/Character/Cyclon.png", 4, 1);
+	objectmanager.GetGameObjectPtr<SoundGun>(UI, "SoundGun").lock()->Init(L"Game/Asset/Character/CyclonImage.png", 1, 4);
 	objectmanager.GetGameObjectPtr<SoundGun>(UI, "SoundGun").lock()->SetPosition(Vector3(0.0f, 600.0f, 0.0f));
 	objectmanager.GetGameObjectPtr<SoundGun>(UI, "SoundGun").lock()->SetScale(Vector3(130.0f, 130.0f, 0.0f));
 	objectmanager.GetGameObject<Player>(PLAYER, "Player").second->SetChild(objectmanager.GetGameObject<SoundGun>(UI, "SoundGun").second);
 
 
 	//擬音（ビリビリ）
-	objectmanager.AddObject<Poyon>(ONOMATOPOEIA, "Gion");	// 名前要変更
-	objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "Gion").lock()->Init(L"Game/Asset/Onomatopoeia/BiriBiri.png");
-	objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "Gion").lock()->SetPosition(Vector3(500.0f, -350.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "Gion").lock()->SetScale(Vector3(240.0f, 120.0f, 0.0f));
+	objectmanager.AddObject<BiriBiri>(ONOMATOPOEIA, "Gion");	// 名前要変更
+	objectmanager.GetGameObjectPtr<BiriBiri>(ONOMATOPOEIA, "Gion").lock()->Init(L"Game/Asset/Onomatopoeia/BiriBiri.png");
+	objectmanager.GetGameObjectPtr<BiriBiri>(ONOMATOPOEIA, "Gion").lock()->SetPosition(Vector3(500.0f, -350.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<BiriBiri>(ONOMATOPOEIA, "Gion").lock()->SetScale(Vector3(240.0f, 120.0f, 0.0f));
 
 	//擬音（ドーン）
 	objectmanager.AddObject<Poyon>(ONOMATOPOEIA, "Gion2");	// 名前要変更
@@ -97,10 +97,17 @@ void Stage2Scene::Init(void) {
 
 
 	// 地面2
+<<<<<<< HEAD
 	objectmanager.AddObject<GameObject>(GROUND, "Ground2");
 	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground2").lock()->Init(L"Game/Asset/GameObject/Ground.png");
 	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground2").lock()->SetPosition(Vector3(600.0f, -50.0f, 0.0f));
 	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground2").lock()->SetScale(Vector3(900.0f, 80.0f, 0.0f));
+=======
+	objectmanager.AddObject<GameObject>(OBJECT, "Ground2");
+	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "Ground2").lock()->Init(L"Game/Asset/GameObject/Ground.png");
+	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "Ground2").lock()->SetPosition(Vector3(600.0f, -50.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "Ground2").lock()->SetScale(Vector3(900.0f, 120.0f, 0.0f));
+>>>>>>> 菫晞匱繝悶Λ繝ｳ繝・
 
 	// スライム
 	objectmanager.AddObject<Enemy>(ENEMY, "Slime");
@@ -129,10 +136,10 @@ void Stage2Scene::Init(void) {
 	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "bane").lock()->SetScale(Vector3(330.0f, 330.0f, 0.0f));
 
 	//サンダーエフェクト
-	objectmanager.AddObject<GameObject>(UI, "Thunder_Efect");
-	objectmanager.GetGameObjectPtr<GameObject>(UI, "Thunder_Efect").lock()->Init(L"Game/Asset/Efect/Thunder_Efect.png", 4, 2);
-	objectmanager.GetGameObjectPtr<GameObject>(UI, "Thunder_Efect").lock()->SetPosition(Vector3(500.0f, -10.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<GameObject>(UI, "Thunder_Efect").lock()->SetScale(Vector3(600.0f, 80.0f, 0.0f));
+	objectmanager.AddObject<BiriBiri>(UI, "Thunder_Efect");
+	objectmanager.GetGameObjectPtr<BiriBiri>(UI, "Thunder_Efect").lock()->Init(L"Game/Asset/Efect/Thunder_Efect.png", 4, 2);
+	objectmanager.GetGameObjectPtr<BiriBiri>(UI, "Thunder_Efect").lock()->SetPosition(Vector3(500.0f, -10.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<BiriBiri>(UI, "Thunder_Efect").lock()->SetScale(Vector3(600.0f, 80.0f, 0.0f));
 
 	std::cout << "TitleSceneInit" << std::endl;
 
@@ -157,12 +164,20 @@ void Stage2Scene::Update(void)
 
 	// 入力情報の更新
 	// シーン更新に必要な情報を取得
+<<<<<<< HEAD
 	auto grounds = objectmanager.GetObjects<GameObject>(GROUND);						// 地面(配列)
 	auto playerShared    = objectmanager.GetGameObject<Player>    (PLAYER, "Player");
 	auto groundShared    = objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground");
 	auto groundShared2   = objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground2");
 	auto gionShared      = objectmanager.GetGameObjectPtr<Poyon>     (ONOMATOPOEIA, "Gion");
 	auto enemyShared     = objectmanager.GetGameObjectPtr<Enemy>     (ENEMY, "Slime");
+=======
+	auto playerShared    = objectmanager.GetGameObjectPtr<Player>    (PLAYER, "Player");
+	auto groundShared    = objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "Ground");
+	auto groundShared2   = objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "Ground2");
+	auto gionShared      = objectmanager.GetGameObjectPtr<BiriBiri>  (ONOMATOPOEIA, "Gion");
+	auto enemyShared     = objectmanager.GetGameObjectPtr<Enemy>     (OBJECT, "Slime");
+>>>>>>> 菫晞匱繝悶Λ繝ｳ繝・
 	auto crosshairShared = objectmanager.GetGameObjectPtr<CrossHair> (UI, "CrossHair");
 	auto enemygion       = objectmanager.GetGameObjectPtr<Poyon>     (ONOMATOPOEIA, "_Gion2");
 	auto efectShared     = objectmanager.GetGameObjectPtr<GameObject>(UI, "Thunder_Efect");
@@ -181,7 +196,7 @@ void Stage2Scene::Update(void)
 	if (Input::GetInstance().GetKeyPress(VK_D))
 	{
 		objectmanager.GetGameObjectPtr<Player>(PLAYER, "Player").lock()->SetMoveRight(true);
-
+		//sound.Play(SOUND_LABEL_BGM000);
 		//デバック用
 		std::cout << "Playerの座標移動ができています" << std::endl;
 	}
@@ -214,6 +229,7 @@ void Stage2Scene::Update(void)
 
 	//----------------当たり判定-----------------------
 
+<<<<<<< HEAD
 	////FRAME1のPlayerとGroundの当たり判定
 	//if (ColliderPlayer_Ground(playerShared, groundShared)) //Playerと一番下のGroundの当たり判定
 	//{
@@ -229,22 +245,46 @@ void Stage2Scene::Update(void)
 
 	ColliderPlayer_Ground(playerShared.second, grounds);
 
-	
-	
+=======
+	//FRAME1のPlayerとGroundの当たり判定
+	if (ColliderPlayer_Ground(playerShared, groundShared)) //Playerと一番下のGroundの当たり判定
+	{
+		playerShared.lock()->SetOnGround(true);
+	}
+	else if (Collider_toGround(playerShared, groundShared2)) //Playerと上のGroundの当たり判定
+	{
+		playerShared.lock()->SetOnGround(true);
+	}
+	else if(Collider_toGround(playerShared, baneShared)) //Playerとバネの当たり判定
+	{
+		playerShared.lock()->SetOnGround(true);
 
-	Vector4 poyon_color = enemygion.lock()->GetColor();
-	Vector3 p_poyon = p_enemy;
-	p_poyon.x =p_poyon.x+ 50;
-	p_poyon.y= p_poyon.y+ 50;
+	}
+	else if(Collider_toGround(playerShared, gionShared)) //Playerとビリビリの床の当たり判定
+	{
+		gionShared.lock()->BiriBiri_check = true;
+		gionShared.lock()->Action(playerShared);
+	}
+>>>>>>> 菫晞匱繝悶Λ繝ｳ繝・
+	
+	
+	
+	if (enemygion.lock() != nullptr)
+	{
+		Vector4 poyon_color = enemygion.lock()->GetColor(); //エラー：吸収する瞬間にenemygion自体が削除されるのでエラーが出る
+		Vector3 p_poyon = p_enemy;
+		p_poyon.x = p_poyon.x + 50;
+		p_poyon.y = p_poyon.y + 150;
+	}
+	
 	//EnemyとGroundが衝突していたら
 	/*ここでエネミーのY座標の値によって画像のα値を変動させる
 	例：高くなる程α値が増える*/
-	if (!Collider_toGround(enemyShared, groundShared))
+	/*if (!Collider_toGround(enemyShared, groundShared))
 	{
 		poyon_color.w += 0.05f;
 		
 		enemygion.lock()->SetColor(poyon_color);
-		enemygion.lock()->SetPosition(p_poyon);
 
 	}
 	else {
@@ -253,8 +293,10 @@ void Stage2Scene::Update(void)
 		enemyShared.lock()->SetJump(true);
 		poyon_color.w = 0.0f;
 		enemygion.lock()->SetColor(poyon_color);
+		enemygion.lock()->SetPosition(p_poyon);
 
-	}
+
+	}*/
 
 	Vector3 enemy_Rotation = enemyShared.lock()->GetRotation();
 
@@ -347,6 +389,7 @@ void Stage2Scene::Update(void)
 		// マガジンに擬音が装填されているかチェック
 		if (playerShared.second->GetLoadedBullet())
 		{
+<<<<<<< HEAD
 			Vector3 gion_Rot = gionShared.lock()->GetRotation();	// 擬音の回転情報
 			Vector3 gion_Scale = gionShared.lock()->GetScale();		// 擬音のサイズ情報
 			gion_Rot.z = 0;
@@ -357,11 +400,16 @@ void Stage2Scene::Update(void)
 			gionShared.lock()->SetRotation(gion_Rot);
 			gionShared.lock()->SetScale(gion_Scale);
 			playerShared.second->SetIsShot(true);
+=======
+			playerShared.lock()->SetIsShot(true);
+>>>>>>> 菫晞匱繝悶Λ繝ｳ繝・
 
 
 			//--------------------------------------
 			//			擬音のタグ変更処理
 			//--------------------------------------
+
+			// ここオブジェクトマネージャから擬音の情報持ってきたほうが良いかも？
 
 			// ここで擬音のタグをUIから擬音に変更
 			// →擬音のポインタだけわかってるのにキーの特定がスムーズにできないのでやっぱり管理方法変えたほうがいい(登録されてるタグを毎フレーム確認して同期させるとか)
@@ -439,14 +487,22 @@ void Stage2Scene::Update(void)
 			else
 			{
 				// プレイヤーの状態を変更
+<<<<<<< HEAD
 				playerShared.second->SetIsSuction(false);		// 「非」吸い込み中に設定
+=======
+				playerShared.lock()->SetIsSuction(false);		// 「非」吸い込み中に設定
+>>>>>>> 菫晞匱繝悶Λ繝ｳ繝・
 			}
 		}
 		// 擬音が0(フレーム内の擬音がない場合)
 		else
 		{
 			// プレイヤーの状態を変更
+<<<<<<< HEAD
 			playerShared.second->SetIsSuction(false);		// 「非」吸い込み中に設定
+=======
+			playerShared.lock()->SetIsSuction(false);		// 「非」吸い込み中に設定
+>>>>>>> 菫晞匱繝悶Λ繝ｳ繝・
 		}
 	}
 	//連：メモ
