@@ -73,7 +73,7 @@ bool Collider_toGround(std::weak_ptr<T> _obj1, std::weak_ptr<GameObject> _obj2)
 		Ground_Left_Collider < Player_Right_Collider &&
 		Player_Bottom_Collider < Ground_Top_Collider &&
 		Player_Top_Collider > Ground_Bottom_Collider)
->>>>>>> ä¿é™ºãƒ–ãƒ©ãƒ³ãƒ
+>>>>>>> ä¿é™ºãƒ–ãƒ©ãƒ³ãƒE
 	{
 		// ’n–Ê‚É“–‚½‚Á‚½ƒIƒuƒWƒFƒNƒg‚Ì‘¬“xA•ûŒüƒxƒNƒgƒ‹‚ðƒŠƒZƒbƒg‚·‚é
 		obj1->SetDirection(Vector3({0.0f}));

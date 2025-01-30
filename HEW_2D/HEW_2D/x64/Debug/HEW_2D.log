@@ -1,2 +1,277 @@
-﻿  Stage1Scene.cpp
-  HEW_2D.vcxproj -> C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\x64\Debug\HEW_2D.exe
+﻿  Collider.cpp
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(56,1): error C3878: 構文エラー: 予期しないトークン '<<' ('simple_declaration' の後)
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(56,1): message : エラーの回復がスキップされました: '<< << <<  . . . <'
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(56,9): error C2065: 'HEAD': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(57,2): error C3878: 構文エラー: 予期しないトークン 'if' ('id_expression' の後)
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(57,2): message : エラーの回復がスキップされました: 'if'
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(58,3): error C2760: 構文エラー: '==' は予期しないエラーでした。'式' が必要です
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(58,3): error C3878: 構文エラー: 予期しないトークン '==' ('expression' の後)
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(58,3): message : エラーの回復がスキップされました: '== == =  . . . ('
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(59,36): error C2760: 構文エラー: ')' は予期しないエラーでした。';' が必要です
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(59,36): error C3878: 構文エラー: 予期しないトークン ')' ('expression_statement' の後)
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(59,36): message : エラーの回復がスキップされました: ') ->'
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(60,2): error C2065: 'Player_Left_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(61,2): error C2065: 'Player_Top_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(62,2): error C2065: 'Player_Bottom_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(64,2): error C2065: 'Ground_Right_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(65,2): error C2065: 'Ground_Left_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(66,2): error C2065: 'Ground_Top_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(67,2): error C2065: 'Ground_Bottom_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(69,2): error C2065: 'Ground_Bottom_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(69,27): error C2065: 'Ground_Bottom_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(72,6): error C2065: 'Player_Left_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(72,29): error C2065: 'Ground_Right_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(73,3): error C2065: 'Ground_Left_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(73,26): error C2065: 'Player_Right_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(74,3): error C2065: 'Player_Bottom_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(74,28): error C2065: 'Ground_Top_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(75,3): error C2065: 'Player_Top_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(75,25): error C2065: 'Ground_Bottom_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(76,1): error C2760: 構文エラー: '>>' は予期しないエラーでした。'statement' が必要です
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(76,1): message : エラーの回復がスキップされました: '>> >> >>  . . . >'
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(76,9): error C2065: '菫晞匱繝悶Λ繝ｳ繝・': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(77,2): error C3878: 構文エラー: 予期しないトークン '{' ('expression' の後)
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(77,2): message : エラーの回復がスキップされました: '{ 識別子 ->  . . . 定数'
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(79,35): error C2760: 構文エラー: '}' は予期しないエラーでした。';' が必要です
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.cpp(187,23): warning C4305: '初期化中': 'double' から 'float' へ切り詰めます。
+  BiriBiri.cpp
+  PataPata.cpp
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(56,1): error C3878: 構文エラー: 予期しないトークン '<<' ('simple_declaration' の後)
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(56,1): message : エラーの回復がスキップされました: '<< << <<  . . . <'
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(56,9): error C2065: 'HEAD': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(57,2): error C3878: 構文エラー: 予期しないトークン 'if' ('id_expression' の後)
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(57,2): message : エラーの回復がスキップされました: 'if'
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(58,3): error C2760: 構文エラー: '==' は予期しないエラーでした。'式' が必要です
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(58,3): error C3878: 構文エラー: 予期しないトークン '==' ('expression' の後)
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(58,3): message : エラーの回復がスキップされました: '== == =  . . . ('
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(59,36): error C2760: 構文エラー: ')' は予期しないエラーでした。';' が必要です
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(59,36): error C3878: 構文エラー: 予期しないトークン ')' ('expression_statement' の後)
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(59,36): message : エラーの回復がスキップされました: ') ->'
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(60,2): error C2065: 'Player_Left_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(61,2): error C2065: 'Player_Top_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(62,2): error C2065: 'Player_Bottom_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(64,2): error C2065: 'Ground_Right_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(65,2): error C2065: 'Ground_Left_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(66,2): error C2065: 'Ground_Top_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(67,2): error C2065: 'Ground_Bottom_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(69,2): error C2065: 'Ground_Bottom_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(69,27): error C2065: 'Ground_Bottom_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(72,6): error C2065: 'Player_Left_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(72,29): error C2065: 'Ground_Right_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(73,3): error C2065: 'Ground_Left_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(73,26): error C2065: 'Player_Right_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(74,3): error C2065: 'Player_Bottom_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(74,28): error C2065: 'Ground_Top_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(75,3): error C2065: 'Player_Top_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(75,25): error C2065: 'Ground_Bottom_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(76,1): error C2760: 構文エラー: '>>' は予期しないエラーでした。'statement' が必要です
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(76,1): message : エラーの回復がスキップされました: '>> >> >>  . . . >'
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(76,9): error C2065: '菫晞匱繝悶Λ繝ｳ繝・': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(77,2): error C3878: 構文エラー: 予期しないトークン '{' ('expression' の後)
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(77,2): message : エラーの回復がスキップされました: '{ 識別子 ->  . . . 定数'
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(79,35): error C2760: 構文エラー: '}' は予期しないエラーでした。';' が必要です
+  ObjectManager.cpp
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(56,1): error C3878: 構文エラー: 予期しないトークン '<<' ('simple_declaration' の後)
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(56,1): message : エラーの回復がスキップされました: '<< << <<  . . . <'
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(56,9): error C2065: 'HEAD': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(57,2): error C3878: 構文エラー: 予期しないトークン 'if' ('id_expression' の後)
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(57,2): message : エラーの回復がスキップされました: 'if'
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(58,3): error C2760: 構文エラー: '==' は予期しないエラーでした。'式' が必要です
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(58,3): error C3878: 構文エラー: 予期しないトークン '==' ('expression' の後)
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(58,3): message : エラーの回復がスキップされました: '== == =  . . . ('
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(59,36): error C2760: 構文エラー: ')' は予期しないエラーでした。';' が必要です
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(59,36): error C3878: 構文エラー: 予期しないトークン ')' ('expression_statement' の後)
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(59,36): message : エラーの回復がスキップされました: ') ->'
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(60,2): error C2065: 'Player_Left_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(61,2): error C2065: 'Player_Top_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(62,2): error C2065: 'Player_Bottom_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(64,2): error C2065: 'Ground_Right_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(65,2): error C2065: 'Ground_Left_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(66,2): error C2065: 'Ground_Top_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(67,2): error C2065: 'Ground_Bottom_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(69,2): error C2065: 'Ground_Bottom_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(69,27): error C2065: 'Ground_Bottom_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(72,6): error C2065: 'Player_Left_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(72,29): error C2065: 'Ground_Right_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(73,3): error C2065: 'Ground_Left_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(73,26): error C2065: 'Player_Right_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(74,3): error C2065: 'Player_Bottom_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(74,28): error C2065: 'Ground_Top_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(75,3): error C2065: 'Player_Top_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(75,25): error C2065: 'Ground_Bottom_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(76,1): error C2760: 構文エラー: '>>' は予期しないエラーでした。'statement' が必要です
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(76,1): message : エラーの回復がスキップされました: '>> >> >>  . . . >'
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(76,9): error C2065: '菫晞匱繝悶Λ繝ｳ繝・': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(77,2): error C3878: 構文エラー: 予期しないトークン '{' ('expression' の後)
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(77,2): message : エラーの回復がスキップされました: '{ 識別子 ->  . . . 定数'
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(79,35): error C2760: 構文エラー: '}' は予期しないエラーでした。';' が必要です
+  SceneManager.cpp
+  Stage1Scene.cpp
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(56,1): error C3878: 構文エラー: 予期しないトークン '<<' ('simple_declaration' の後)
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(56,1): message : エラーの回復がスキップされました: '<< << <<  . . . <'
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(56,9): error C2065: 'HEAD': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(57,2): error C3878: 構文エラー: 予期しないトークン 'if' ('id_expression' の後)
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(57,2): message : エラーの回復がスキップされました: 'if'
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(58,3): error C2760: 構文エラー: '==' は予期しないエラーでした。'式' が必要です
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(58,3): error C3878: 構文エラー: 予期しないトークン '==' ('expression' の後)
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(58,3): message : エラーの回復がスキップされました: '== == =  . . . ('
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(59,36): error C2760: 構文エラー: ')' は予期しないエラーでした。';' が必要です
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(59,36): error C3878: 構文エラー: 予期しないトークン ')' ('expression_statement' の後)
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(59,36): message : エラーの回復がスキップされました: ') ->'
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(60,2): error C2065: 'Player_Left_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(61,2): error C2065: 'Player_Top_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(62,2): error C2065: 'Player_Bottom_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(64,2): error C2065: 'Ground_Right_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(65,2): error C2065: 'Ground_Left_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(66,2): error C2065: 'Ground_Top_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(67,2): error C2065: 'Ground_Bottom_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(69,2): error C2065: 'Ground_Bottom_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(69,27): error C2065: 'Ground_Bottom_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(72,6): error C2065: 'Player_Left_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(72,29): error C2065: 'Ground_Right_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(73,3): error C2065: 'Ground_Left_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(73,26): error C2065: 'Player_Right_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(74,3): error C2065: 'Player_Bottom_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(74,28): error C2065: 'Ground_Top_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(75,3): error C2065: 'Player_Top_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(75,25): error C2065: 'Ground_Bottom_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(76,1): error C2760: 構文エラー: '>>' は予期しないエラーでした。'statement' が必要です
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(76,1): message : エラーの回復がスキップされました: '>> >> >>  . . . >'
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(76,9): error C2065: '菫晞匱繝悶Λ繝ｳ繝・': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(77,2): error C3878: 構文エラー: 予期しないトークン '{' ('expression' の後)
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(77,2): message : エラーの回復がスキップされました: '{ 識別子 ->  . . . 定数'
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(79,35): error C2760: 構文エラー: '}' は予期しないエラーでした。';' が必要です
+  Stage2Scene.cpp
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(56,1): error C3878: 構文エラー: 予期しないトークン '<<' ('simple_declaration' の後)
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(56,1): message : エラーの回復がスキップされました: '<< << <<  . . . <'
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(56,9): error C2065: 'HEAD': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(57,2): error C3878: 構文エラー: 予期しないトークン 'if' ('id_expression' の後)
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(57,2): message : エラーの回復がスキップされました: 'if'
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(58,3): error C2760: 構文エラー: '==' は予期しないエラーでした。'式' が必要です
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(58,3): error C3878: 構文エラー: 予期しないトークン '==' ('expression' の後)
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(58,3): message : エラーの回復がスキップされました: '== == =  . . . ('
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(59,36): error C2760: 構文エラー: ')' は予期しないエラーでした。';' が必要です
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(59,36): error C3878: 構文エラー: 予期しないトークン ')' ('expression_statement' の後)
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(59,36): message : エラーの回復がスキップされました: ') ->'
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(60,2): error C2065: 'Player_Left_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(61,2): error C2065: 'Player_Top_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(62,2): error C2065: 'Player_Bottom_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(64,2): error C2065: 'Ground_Right_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(65,2): error C2065: 'Ground_Left_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(66,2): error C2065: 'Ground_Top_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(67,2): error C2065: 'Ground_Bottom_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(69,2): error C2065: 'Ground_Bottom_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(69,27): error C2065: 'Ground_Bottom_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(72,6): error C2065: 'Player_Left_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(72,29): error C2065: 'Ground_Right_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(73,3): error C2065: 'Ground_Left_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(73,26): error C2065: 'Player_Right_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(74,3): error C2065: 'Player_Bottom_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(74,28): error C2065: 'Ground_Top_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(75,3): error C2065: 'Player_Top_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(75,25): error C2065: 'Ground_Bottom_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(76,1): error C2760: 構文エラー: '>>' は予期しないエラーでした。'statement' が必要です
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(76,1): message : エラーの回復がスキップされました: '>> >> >>  . . . >'
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(76,9): error C2065: '菫晞匱繝悶Λ繝ｳ繝・': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(77,2): error C3878: 構文エラー: 予期しないトークン '{' ('expression' の後)
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(77,2): message : エラーの回復がスキップされました: '{ 識別子 ->  . . . 定数'
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(79,35): error C2760: 構文エラー: '}' は予期しないエラーでした。';' が必要です
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\Stage2Scene.cpp(100,1): error C2059: 構文エラー: '<<'
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\Stage2Scene.cpp(105,1): error C2059: 構文エラー: '=='
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\Stage2Scene.cpp(110,1): error C2059: 構文エラー: '>>'
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\Stage2Scene.cpp(167,1): error C2059: 構文エラー: '<<'
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\Stage2Scene.cpp(174,1): error C2059: 構文エラー: '=='
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\Stage2Scene.cpp(176,7): error C2371: 'groundShared': 再定義されています。異なる基本型です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\Stage2Scene.cpp(170,7): message : 'groundShared' の宣言を確認してください
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\Stage2Scene.cpp(177,7): error C2371: 'groundShared2': 再定義されています。異なる基本型です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\Stage2Scene.cpp(171,7): message : 'groundShared2' の宣言を確認してください
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\Stage2Scene.cpp(178,7): error C2371: 'gionShared': 再定義されています。異なる基本型です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\Stage2Scene.cpp(172,7): message : 'gionShared' の宣言を確認してください
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\Stage2Scene.cpp(179,7): error C2371: 'enemyShared': 再定義されています。異なる基本型です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\Stage2Scene.cpp(173,7): message : 'enemyShared' の宣言を確認してください
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\Stage2Scene.cpp(180,1): error C2059: 構文エラー: '>>'
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\Stage2Scene.cpp(232,1): error C2059: 構文エラー: '<<'
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\Stage2Scene.cpp(248,1): error C2059: 構文エラー: '=='
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\Stage2Scene.cpp(251,2): error C2143: 構文エラー: ';' が '{' の前にありません。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\Stage2Scene.cpp(252,16): error C2039: 'lock': 'std::pair<const std::pair<Tag,std::string>,std::shared_ptr<Player>>' のメンバーではありません
+C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.35.32215\include\utility(144,1): message : 'std::pair<const std::pair<Tag,std::string>,std::shared_ptr<Player>>' の宣言を確認してください
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\Stage2Scene.cpp(254,2): error C2181: else 文が if と一致しません。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\Stage2Scene.cpp(256,16): error C2039: 'lock': 'std::pair<const std::pair<Tag,std::string>,std::shared_ptr<Player>>' のメンバーではありません
+C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.35.32215\include\utility(144,1): message : 'std::pair<const std::pair<Tag,std::string>,std::shared_ptr<Player>>' の宣言を確認してください
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\Stage2Scene.cpp(258,10): error C2672: 'Collider_toGround': 一致するオーバーロードされた関数が見つかりませんでした。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(51,6): message : 'bool Collider_toGround(std::weak_ptr<_Ty>,std::weak_ptr<_Ty>)' の可能性があります
+          with
+          [
+              _Ty=GameObject
+          ]
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\Stage2Scene.cpp(258,10): message : 'bool Collider_toGround(std::weak_ptr<_Ty>,std::weak_ptr<_Ty>)': 'std::weak_ptr<_Ty>' の テンプレート 引数を 'std::pair<const std::pair<Tag,std::string>,std::shared_ptr<Player>>' から推測できませんでした
+          with
+          [
+              _Ty=GameObject
+          ]
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\Stage2Scene.cpp(260,16): error C2039: 'lock': 'std::pair<const std::pair<Tag,std::string>,std::shared_ptr<Player>>' のメンバーではありません
+C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.35.32215\include\utility(144,1): message : 'std::pair<const std::pair<Tag,std::string>,std::shared_ptr<Player>>' の宣言を確認してください
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\Stage2Scene.cpp(268,1): error C2059: 構文エラー: '>>'
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\Stage2Scene.cpp(273,2): error C2143: 構文エラー: ';' が '{' の前にありません。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\Stage2Scene.cpp(321,3): error C2065: 'crosshairShared': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\Stage2Scene.cpp(327,3): error C2065: 'crosshairShared': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\Stage2Scene.cpp(332,3): error C2065: 'crosshairShared': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\Stage2Scene.cpp(339,3): error C2065: 'crosshairShared': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\Stage2Scene.cpp(344,3): error C2065: 'crosshairShared': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\Stage2Scene.cpp(354,3): error C2065: 'crosshairShared': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\Stage2Scene.cpp(359,3): error C2065: 'crosshairShared': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\Stage2Scene.cpp(369,3): error C2065: 'crosshairShared': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\Stage2Scene.cpp(392,1): error C2059: 構文エラー: '<<'
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\Stage2Scene.cpp(395,4): error C2065: 'gion_Rot': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\Stage2Scene.cpp(400,35): error C2065: 'gion_Rot': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\Stage2Scene.cpp(403,1): error C2059: 構文エラー: '=='
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\Stage2Scene.cpp(405,1): error C2059: 構文エラー: '>>'
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\Stage2Scene.cpp(421,32): error C2065: 'bullet': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\Stage2Scene.cpp(426,37): error C2065: 'bullet': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\Stage2Scene.cpp(431,34): error C2065: 'bullet': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\Stage2Scene.cpp(490,1): error C2059: 構文エラー: '<<'
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\Stage2Scene.cpp(492,1): error C2059: 構文エラー: '=='
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\Stage2Scene.cpp(494,1): error C2059: 構文エラー: '>>'
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\Stage2Scene.cpp(501,1): error C2059: 構文エラー: '<<'
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\Stage2Scene.cpp(503,1): error C2059: 構文エラー: '=='
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\Stage2Scene.cpp(505,1): error C2059: 構文エラー: '>>'
+  TestScene.cpp
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(56,1): error C3878: 構文エラー: 予期しないトークン '<<' ('simple_declaration' の後)
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(56,1): message : エラーの回復がスキップされました: '<< << <<  . . . <'
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(56,9): error C2065: 'HEAD': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(57,2): error C3878: 構文エラー: 予期しないトークン 'if' ('id_expression' の後)
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(57,2): message : エラーの回復がスキップされました: 'if'
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(58,3): error C2760: 構文エラー: '==' は予期しないエラーでした。'式' が必要です
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(58,3): error C3878: 構文エラー: 予期しないトークン '==' ('expression' の後)
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(58,3): message : エラーの回復がスキップされました: '== == =  . . . ('
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(59,36): error C2760: 構文エラー: ')' は予期しないエラーでした。';' が必要です
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(59,36): error C3878: 構文エラー: 予期しないトークン ')' ('expression_statement' の後)
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(59,36): message : エラーの回復がスキップされました: ') ->'
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(60,2): error C2065: 'Player_Left_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(61,2): error C2065: 'Player_Top_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(62,2): error C2065: 'Player_Bottom_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(64,2): error C2065: 'Ground_Right_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(65,2): error C2065: 'Ground_Left_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(66,2): error C2065: 'Ground_Top_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(67,2): error C2065: 'Ground_Bottom_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(69,2): error C2065: 'Ground_Bottom_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(69,27): error C2065: 'Ground_Bottom_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(72,6): error C2065: 'Player_Left_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(72,29): error C2065: 'Ground_Right_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(73,3): error C2065: 'Ground_Left_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(73,26): error C2065: 'Player_Right_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(74,3): error C2065: 'Player_Bottom_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(74,28): error C2065: 'Ground_Top_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(75,3): error C2065: 'Player_Top_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(75,25): error C2065: 'Ground_Bottom_Collider': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(76,1): error C2760: 構文エラー: '>>' は予期しないエラーでした。'statement' が必要です
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(76,1): message : エラーの回復がスキップされました: '>> >> >>  . . . >'
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(76,9): error C2065: '菫晞匱繝悶Λ繝ｳ繝・': 定義されていない識別子です。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(77,2): error C3878: 構文エラー: 予期しないトークン '{' ('expression' の後)
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(77,2): message : エラーの回復がスキップされました: '{ 識別子 ->  . . . 定数'
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.h(79,35): error C2760: 構文エラー: '}' は予期しないエラーでした。';' が必要です
+  TitleScene.cpp
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\TitleScene.cpp(24,98): warning C4244: '引数': 'double' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\TitleScene.cpp(30,95): warning C4244: '引数': 'double' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\TitleScene.cpp(36,106): warning C4244: '引数': 'double' から 'int' への変換です。データが失われる可能性があります。
+  コードを生成中...
