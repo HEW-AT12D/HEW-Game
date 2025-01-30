@@ -30,7 +30,9 @@ void PataPata::Action(std::weak_ptr<GameObject> obj, std::weak_ptr<Player> playe
 	Vector3 player_pos = player.lock()->GetPosition();
 	auto patapataShared = obj;
 	auto playerShared = player;
-	if (Collider_check)
+
+	//フラグがTRUEなら（擬音が当たっているか）
+	if (Collision_Onomatope)
 	{
 		if (patapata_pos.y <= Max_altitude)
 		{
@@ -49,6 +51,19 @@ void PataPata::Action(std::weak_ptr<GameObject> obj, std::weak_ptr<Player> playe
 		}
 	}
 
+}
+
+
+//擬音のセッター
+void PataPata::Set_Onomatope(bool _flg)
+{
+	Collision_Onomatope = _flg;
+}
+
+//擬音のゲッター
+bool PataPata::Get_Onomatope(void)
+{
+	return Collision_Onomatope;
 }
 
 

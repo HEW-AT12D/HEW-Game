@@ -6,7 +6,7 @@ void BiriBiri::Action(std::weak_ptr<GameObject> player)
 	Vector3 player_pos = player.lock()->GetPosition();
 	Vector3 player_rotation = player.lock()->GetRotation();
 	//playerをGameObject型→Player型に変更
-	if (BiriBiri_check)
+	if (Collision_Onomatope) //フラグがTRUEなら（擬音が当たっているか）
 	{
 		if (auto sharedPlayer = player.lock())
 		{
@@ -34,5 +34,17 @@ void BiriBiri::Action(std::weak_ptr<GameObject> player)
 	}
 }
 
+
+//擬音のセッター
+void BiriBiri::Set_Onomatope(bool _flg)
+{
+	Collision_Onomatope = _flg;
+}
+
+//擬音のゲッター
+bool BiriBiri::Get_Onomatope(void)
+{
+	return Collision_Onomatope;
+}
 
 BiriBiri::~BiriBiri(){}

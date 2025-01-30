@@ -130,9 +130,22 @@ void Stage2Scene::Init(void) {
 
 	//サンダーエフェクト
 	objectmanager.AddObject<BiriBiri>(UI, "Thunder_Effect");
+<<<<<<< HEAD
 	objectmanager.GetGameObjectPtr<BiriBiri>(UI, "Thunder_Effect").lock()->Init(L"Game/Asset/Efect/Thunder_Efect.png", 4, 2);
 	objectmanager.GetGameObjectPtr<BiriBiri>(UI, "Thunder_Effect").lock()->SetPosition(Vector3(500.0f, -10.0f, 0.0f));
 	objectmanager.GetGameObjectPtr<BiriBiri>(UI, "Thunder_Effect").lock()->SetScale(Vector3(600.0f, 80.0f, 0.0f));
+=======
+	objectmanager.GetGameObjectPtr<BiriBiri>(UI, "Thunder_Effect").lock()->Init(L"Game/Asset/Efect/Thunder_Efect.png", 8, 1);
+	objectmanager.GetGameObjectPtr<BiriBiri>(UI, "Thunder_Effect").lock()->SetPosition(Vector3(500.0f, 20.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<BiriBiri>(UI, "Thunder_Effect").lock()->SetScale(Vector3(600.0f, 1200.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<BiriBiri>(UI, "Thunder_Effect").lock()->SetColor(Color(1.0f, 1.0f, 1.0f, 1.0f));
+
+	//マガジンの外枠
+	objectmanager.AddObject<GameObject>(UI, "Frame");	// 名前要変更
+	objectmanager.GetGameObjectPtr<GameObject>(UI, "Frame").lock()->Init(L"Game/Asset/UI/Frame.png");
+	objectmanager.GetGameObjectPtr<GameObject>(UI, "Frame").lock()->SetPosition(Vector3(-900.0f, 495.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(UI, "Frame").lock()->SetScale(Vector3(120.0f, 80.0f, 0.0f));
+>>>>>>> Main2
 
 	std::cout << "TitleSceneInit" << std::endl;
 
@@ -204,6 +217,17 @@ void Stage2Scene::Update(void)
 
 		//デバック用
 		std::cout << "Playerの座標移動ができています" << std::endl;
+	}
+	//擬音の選択
+	if (Input::GetInstance().GetKeyTrigger(VK_P))
+	{
+		Vector3 p_frame = objectmanager.GetGameObjectPtr<GameObject>(UI, "Frame").lock()->GetPosition();
+		p_frame.x = p_frame.x + 120;
+		objectmanager.GetGameObjectPtr<GameObject>(UI, "Frame").lock()->SetPosition(p_frame);
+	}
+	if (Input::GetInstance().GetKeyTrigger(VK_O))
+	{
+
 	}
 
 
