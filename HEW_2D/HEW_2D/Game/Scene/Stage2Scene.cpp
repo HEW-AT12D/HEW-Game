@@ -246,7 +246,7 @@ void Stage2Scene::Update(void)
 	//EnemyとGroundが衝突していたら
 	/*ここでエネミーのY座標の値によって画像のα値を変動させる
 	例：高くなる程α値が増える*/
-	if (!Collider_toGround(enemyShared, groundShared))
+	/*if (!Collider_toGround(enemyShared, groundShared))
 	{
 		poyon_color.w += 0.05f;
 		
@@ -262,7 +262,7 @@ void Stage2Scene::Update(void)
 		enemygion.lock()->SetPosition(p_poyon);
 
 
-	}
+	}*/
 
 	Vector3 enemy_Rotation = enemyShared.lock()->GetRotation();
 
