@@ -235,7 +235,7 @@ void GameObject::Animation(STATE m_State,std::weak_ptr<GameObject> _efect)
 
 				Int2 efect_UV = _efect.lock()->GetUV();
 
-				if (efect_UV.x < 4) {
+				if (efect_UV.x < 8) {
 					efect_UV.x++;
 				}
 				else {

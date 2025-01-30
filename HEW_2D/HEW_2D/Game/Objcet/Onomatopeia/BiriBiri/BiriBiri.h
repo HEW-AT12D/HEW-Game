@@ -13,6 +13,8 @@ public:
 	void Action(std::weak_ptr<GameObject>);		//ビリビリ特性の関数
 
 	bool BiriBiri_check;
+	void Set_Onomatope(bool)override;//擬音のAction関数を動かすためのゲッター、セッター
+	bool Get_Onomatope(void)override;
 private:
 	float knockback_power;//ノックバックパワー
 };

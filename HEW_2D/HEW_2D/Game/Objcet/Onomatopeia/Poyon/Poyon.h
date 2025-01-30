@@ -23,6 +23,8 @@ public:
 	}
 	~Poyon();
 	void Action(void) override;
+	void Set_Onomatope(bool)override;//擬音のAction関数を動かすためのゲッター、セッター
+	bool Get_Onomatope(void)override;
 private:
 
 };
