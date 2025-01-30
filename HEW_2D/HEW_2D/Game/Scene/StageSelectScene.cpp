@@ -57,6 +57,11 @@ void StageSelectScene::Update(void) {
 		// シーン遷移フラグを立てる
 		SetChangeScene(true);
 	}
+	else
+	{
+		// シーン遷移フラグを立てる
+		SetChangeScene(false);
+	}
 
 
 	

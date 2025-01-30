@@ -16,6 +16,7 @@ GameObject::GameObject(D3D11& _D3d11) :D3d11(_D3d11)
 	};
 	m_Direction = { 0.0f,0.0f,0.0f };
 	m_Velocity = { 0.0f,0.0f,0.0f };
+	m_AttachedOnomatopoeia = nullptr;
 }
 
 GameObject::~GameObject()

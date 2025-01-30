@@ -73,6 +73,8 @@ struct Int2 {
 	}
 };
 
+class IOnomatopoeia;
+
 /**
  * @brief 基本となるゲームオブジェクトクラス
  * 
@@ -139,6 +141,9 @@ protected:
 
 	// 移動用方向ベクトル(Transform.Rotaionは回転を扱うものなので別物)
 	Vector3 m_Direction;
+
+	// 付与されている擬音
+	std::shared_ptr<IOnomatopoeia> m_AttachedOnomatopoeia;
 
 	//// 名前(一意のもの)
 	//std::string m_Name;

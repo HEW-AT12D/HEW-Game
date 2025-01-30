@@ -128,6 +128,7 @@ void Stage1Scene::Update(void)
 	auto grounds = objectmanager.GetObjects<GameObject>(GROUND);						// 地面(配列)
 	auto groundShared = objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground");	// 地面1(個別)
 	auto groundShared2 = objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground2");	// 地面2
+	auto onopatopoeias = objectmanager.GetObjects<IOnomatopoeia>(ONOMATOPOEIA);			// 擬音(配列)
 	auto gionShared = objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "Poyon");		// 擬音(個別)
 	auto enemyShared = objectmanager.GetGameObjectPtr<Enemy>(ENEMY, "Slime");			// 敵(個別)
 	auto crosshairShared = objectmanager.GetGameObjectPtr<CrossHair>(UI, "CrossHair");	// クロスヘア
@@ -171,7 +172,8 @@ void Stage1Scene::Update(void)
 
 	//----------------当たり判定-----------------------
 
-	ColliderPlayer_Ground(playerShared, grounds);
+	ColliderPlayer_Ground(playerShared, grounds);			// プレイヤーと地面
+	Collider_Objects_Objects(onopatopoeias,grounds);		// 擬音と地面
 	//ColliderPlayer_Ground(playerShared, groundShared2);
 
 

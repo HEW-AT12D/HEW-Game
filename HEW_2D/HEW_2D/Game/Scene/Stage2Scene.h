@@ -14,7 +14,7 @@ public:
 	Stage2Scene(D3D11& _D3d11) :IScene(_D3d11) {
 		// オブジェクトの追加はシーンの初期化で行う
 		// サウンドとかこのシーンのみ存在するものがあればその初期化を行う
-
+		ChangeScene = false;
 	};
 	~Stage2Scene() {};
 	void Init(void)override;

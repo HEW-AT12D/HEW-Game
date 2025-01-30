@@ -2,6 +2,43 @@
 #include"../../../../Game/Objcet/BaseObject/Object.h"
 
 
+/**
+ * @brief 四角と四角の当たり判定
+ * @param  
+ * @param  
+ * @return 結果
+*/
+template <class T, class U>
+bool BoxCollider(std::weak_ptr<T> obj1, std::weak_ptr<U> obj2)
+{
+	float Object1_Right_Collider, Object1_Left_Collider, Object1_Top_Collider, Object1_Bottom_Collider;//playerの当たり判定変数
+	float Object2_Right_Collider, Object2_Left_Collider, Object2_Top_Collider, Object2_Bottom_Collider;//groundの当たり判定変数
+
+	Object1_Right_Collider = obj1.lock()->GetPosition().x + obj1.lock()->GetScale().x / 2; //プレイヤーの右当たり判定変数
+	Object1_Left_Collider = obj1.lock()->GetPosition().x - obj1.lock()->GetScale().x / 2;  //プレイヤーの左当たり判定変数
+	Object1_Top_Collider = obj1.lock()->GetPosition().y + obj1.lock()->GetScale().y / 2;    //プレイヤーの上当たり判定変数
+	Object1_Bottom_Collider = obj1.lock()->GetPosition().y - obj1.lock()->GetScale().y / 2;//プレイヤーの下当たり判定変数
+
+	Object2_Right_Collider = obj2.lock()->GetPosition().x + obj2.lock()->GetScale().x / 2; //グラウンドの右の当たり判定変数
+	Object2_Left_Collider = obj2.lock()->GetPosition().x - obj2.lock()->GetScale().x / 2;  //グラウンドの左の当たり判定変数
+	Object2_Top_Collider = obj2.lock()->GetPosition().y + obj2.lock()->GetScale().y / 2;    //グラウンドの上の当たり判定変数
+	Object2_Bottom_Collider = obj2.lock()->GetPosition().y - obj2.lock()->GetScale().y / 2;//グラウンドの下の当たり判定変数
+
+	// 四角と四角の当たり判定
+	if (Object1_Right_Collider < Object2_Right_Collider &&
+		Object2_Left_Collider < Object1_Left_Collider &&
+		Object1_Bottom_Collider < Object2_Top_Collider &&
+		Object1_Top_Collider > Object2_Top_Collider)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+
 bool ColliderPlayer_Ground(std::weak_ptr<Player>, std::vector<std::weak_ptr<GameObject>>);	//PlayerとGroundの当たり判定関数
 
 /**
@@ -12,24 +49,7 @@ bool ColliderPlayer_Ground(std::weak_ptr<Player>, std::vector<std::weak_ptr<Game
 template <class T>
 bool Collider_toGround(std::weak_ptr<T> obj1, std::weak_ptr<GameObject> obj2)
 {
-	float Player_Right_Collider, Player_Left_Collider, Player_Top_Collider, Player_Bottom_Collider;//playerの当たり判定変数
-	float Ground_Right_Collider, Ground_Left_Collider, Ground_Top_Collider, Ground_Bottom_Collider;//groundの当たり判定変数
-
-	Player_Right_Collider = obj1.lock()->GetPosition().x + obj1.lock()->GetScale().x / 2; //プレイヤーの右当たり判定変数
-	Player_Left_Collider = obj1.lock()->GetPosition().x - obj1.lock()->GetScale().x / 2;  //プレイヤーの左当たり判定変数
-	Player_Top_Collider = obj1.lock()->GetPosition().y + obj1.lock()->GetScale().y / 2;    //プレイヤーの上当たり判定変数
-	Player_Bottom_Collider = obj1.lock()->GetPosition().y - obj1.lock()->GetScale().y / 2;//プレイヤーの下当たり判定変数
-
-	Ground_Right_Collider = obj2.lock()->GetPosition().x + obj2.lock()->GetScale().x / 2; //グラウンドの右の当たり判定変数
-	Ground_Left_Collider = obj2.lock()->GetPosition().x - obj2.lock()->GetScale().x / 2;  //グラウンドの左の当たり判定変数
-	Ground_Top_Collider = obj2.lock()->GetPosition().y + obj2.lock()->GetScale().y / 2;    //グラウンドの上の当たり判定変数
-	Ground_Bottom_Collider = obj2.lock()->GetPosition().y - obj2.lock()->GetScale().y / 2;//グラウンドの下の当たり判定変数
-
-	//プレイヤーとグラウンドの当たり判定
-	if (Player_Left_Collider < Ground_Right_Collider &&
-		Ground_Left_Collider < Player_Right_Collider &&
-		Player_Bottom_Collider < Ground_Top_Collider &&
-		Player_Top_Collider > Ground_Bottom_Collider)
+	if (BoxCollider(obj1, obj2))
 	{
 		// 地面に当たったオブジェクトの速度、方向ベクトルをリセットする
 		obj1.lock()->SetDirection(Vector3({ 0.0f }));
@@ -42,6 +62,44 @@ bool Collider_toGround(std::weak_ptr<T> obj1, std::weak_ptr<GameObject> obj2)
 		return false;
 	}
 }
+
+
+/**
+ * @brief オブジェクト配列同士の当たり判定を取得(全て四角)
+ * @tparam T
+ * @tparam U
+ * @param _objects1
+ * @param _objects2
+ * 
+ * 中で第一引数のベクトルをリセットする
+ * 
+ * @return
+*/
+template <class T, class U>
+bool Collider_Objects_Objects(std::vector<std::weak_ptr<T>>_objects1, std::vector<std::weak_ptr<U>>_objects2)
+{
+	// オブジェクトごとにBoxColliderを回す
+	for (auto& obj2 : _objects2)
+	{
+		for (auto& obj1 : _objects1)
+		{
+			// 当たった場合
+			if (BoxCollider(obj1, obj2))
+			{
+				// 第一引数側のオブジェクトのベクトルをリセット
+				obj1.lock()->SetDirection(Vector3({ 0.0f }));
+				obj1.lock()->AddForce(Vector3({ 0.0f }));
+				obj1.lock()->SetOnGround(true);
+				return true;
+			}
+			else {
+				obj1.lock()->SetOnGround(false);
+				return false;
+			}
+		}
+	}
+}
+
 
 
 /**

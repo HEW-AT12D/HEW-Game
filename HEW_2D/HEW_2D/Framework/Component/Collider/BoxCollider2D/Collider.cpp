@@ -14,29 +14,9 @@
 //template <class T, class U>
 bool ColliderPlayer_Ground(std::weak_ptr<Player> _player, std::vector<std::weak_ptr<GameObject>> _objects)
 {
-	float Player_Right_Collider, Player_Left_Collider, Player_Top_Collider, Player_Bottom_Collider;//playerの当たり判定変数
-	float Ground_Right_Collider, Ground_Left_Collider, Ground_Top_Collider, Ground_Bottom_Collider;//groundの当たり判定変数
-	
-	Player_Right_Collider = _player.lock()->GetPosition().x + _player.lock()->GetScale().x / 2; //プレイヤーの右当たり判定変数
-	Player_Left_Collider = _player.lock()->GetPosition().x - _player.lock()->GetScale().x / 2;  //プレイヤーの左当たり判定変数
-	Player_Top_Collider = _player.lock()->GetPosition().y + _player.lock()->GetScale().y / 2;    //プレイヤーの上当たり判定変数
-	Player_Bottom_Collider = _player.lock()->GetPosition().y - _player.lock()->GetScale().y / 2;//プレイヤーの下当たり判定変数
-
-
 	// 地面の配列の要素数分ループ
 	for (auto& ground : _objects) {
-		Ground_Right_Collider = ground.lock()->GetPosition().x + ground.lock()->GetScale().x / 2; //グラウンドの右の当たり判定変数
-		Ground_Left_Collider = ground.lock()->GetPosition().x - ground.lock()->GetScale().x / 2;  //グラウンドの左の当たり判定変数
-		Ground_Top_Collider = ground.lock()->GetPosition().y + ground.lock()->GetScale().y / 2;    //グラウンドの上の当たり判定変数
-		Ground_Bottom_Collider = ground.lock()->GetPosition().y - ground.lock()->GetScale().y / 2;//グラウンドの下の当たり判定変数
-
-
-		// 地面のどれか一個に当たってたらプレイヤーの速度と方向ベクトルをリセットする
-		//プレイヤーとグラウンドの当たり判定
-		if (Player_Left_Collider < Ground_Right_Collider &&
-			Ground_Left_Collider < Player_Right_Collider &&
-			Player_Bottom_Collider < Ground_Top_Collider &&
-			Player_Top_Collider > Ground_Bottom_Collider)
+		if (BoxCollider(_player, ground))
 		{
 			// 当たったオブジェクトの速度、方向ベクトルをリセットする
 			_player.lock()->SetDirection(Vector3({ 0.0f }));
@@ -44,15 +24,12 @@ bool ColliderPlayer_Ground(std::weak_ptr<Player> _player, std::vector<std::weak_
 			_player.lock()->SetOnGround(true);
 			return true;
 		}
-		else {
+		else
+		{
 			_player.lock()->SetOnGround(false);
 			return false;
 		}
-
-	}
-	
-
-	
+	}	
 }
 
 
@@ -63,7 +40,6 @@ bool ColliderPlayer_Ground(std::weak_ptr<Player> _player, std::vector<std::weak_
 */
 bool Collider_Player_to_Magazine(std::weak_ptr<Player> obj1, std::weak_ptr<Magazine> obj2)
 {
-
 	// ---------------------ここ使いまわせるな？？？？？？？？？？？？？？？？
 	float Player_Right_Collider, Player_Left_Collider, Player_Top_Collider, Player_Bottom_Collider;//playerの当たり判定変数
 	float Ground_Right_Collider, Ground_Left_Collider, Ground_Top_Collider, Ground_Bottom_Collider;//groundの当たり判定変数
