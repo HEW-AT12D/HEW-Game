@@ -37,7 +37,7 @@ void ObjectManager::Collider_Player_to_Object(void)
 		// オブジェクトが地面なら
 		case BACKGROUND:
 			// 地面との当たり判定を取る
-			ColliderPlayer_Ground(playerobj, obj.second);
+			Collider_toGround(playerobj, obj.second);
 			break;
 		// 画像は当たり判定を取らない
 		case IMAGE:

@@ -11,11 +11,6 @@ void StageSelectScene::Init(void) {
 	objectmanager.GetGameObjectPtr<Player>(ENEMY, "player").lock()->SetPosition(Vector3(-300.0f, -150.0f, 0.0f));
 	objectmanager.GetGameObjectPtr<Player>(ENEMY, "player").lock()->SetScale(Vector3(130.0f, 130.0f, 0.0f));
 
-	objectmanager.AddObject<GameObject>(UI, "Cursol");
-	objectmanager.GetGameObjectPtr<GameObject>(UI, "Cursol").lock()->Init(L"Game/Asset/UI/CrossHair.png");
-	objectmanager.GetGameObjectPtr<GameObject>(UI, "Cursol").lock()->SetPosition(Vector3(200.0f, -300.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<GameObject>(UI, "Cursol").lock()->SetScale(Vector3(100.0f, 100.0f, 0.0f));
-
 	objectmanager.AddObject<GameObject>(UI, "STAGE1");
 	objectmanager.GetGameObjectPtr<GameObject>(UI, "STAGE1").lock()->Init(L"Game/Asset/UI/STAGE1.png");
 	objectmanager.GetGameObjectPtr<GameObject>(UI, "STAGE1").lock()->SetPosition(Vector3(0.0f, 0.0f, 0.0f));
@@ -26,7 +21,11 @@ void StageSelectScene::Init(void) {
 	objectmanager.GetGameObjectPtr<GameObject>(UI, "STAGE2").lock()->SetPosition(Vector3(0.0f, -300.0f, 0.0f));
 	objectmanager.GetGameObjectPtr<GameObject>(UI, "STAGE2").lock()->SetScale(Vector3(330.0f, 130.0f, 0.0f));
 
-	
+	objectmanager.AddObject<GameObject>(UI, "Cursol");
+	objectmanager.GetGameObjectPtr<GameObject>(UI, "Cursol").lock()->Init(L"Game/Asset/UI/CrossHair.png");
+	objectmanager.GetGameObjectPtr<GameObject>(UI, "Cursol").lock()->SetPosition(Vector3(200.0f, 0.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(UI, "Cursol").lock()->SetScale(Vector3(100.0f, 100.0f, 0.0f));
+
 	std::cout << "STAGE1_SCENEInit" << std::endl;
 }
 
@@ -37,49 +36,52 @@ void StageSelectScene::Update(void) {
 	// シーン遷移（デバック用
 
 	Vector3 Cursol_pos = objectmanager.GetGameObjectPtr<GameObject>(UI, "Cursol").lock()->GetPosition();
-	if (Cursol_pos.y == 0)
-	{
-		if (Input::GetInstance().GetButtonTrigger(XINPUT_GAMEPAD_START))
-		{
-			SetChangeScene(GAME);
-		}
 
-		if (Input::GetInstance().GetKeyTrigger(VK_RETURN))
+	// スタートボタン入力取得
+	// (デバッグ用)エンターキー入力取得
+	if (Input::GetInstance().GetButtonTrigger(XINPUT_GAMEPAD_START) || Input::GetInstance().GetKeyTrigger(VK_RETURN))
+	{
+		// カーソル位置が上の場合
+		if (Cursol_pos.y == 0)
 		{
-			SetChangeScene(GAME);
+			// 遷移先シーンをステージに設定
+			m_RequestNext = STAGE1;
 		}
+		
+		// カーソル位置が下の場合
+		if (Cursol_pos.y == -300)
+		{
+			// 遷移先をステージ2に設定
+			m_RequestNext = STAGE2;
+		}
+		// シーン遷移フラグを立てる
+		SetChangeScene(true);
 	}
 
-	if (Cursol_pos.y == -300)
-	{
-		if (Input::GetInstance().GetButtonTrigger(XINPUT_GAMEPAD_START))
-		{
-			SetChangeScene(TEST);
-		}
 
-		if (Input::GetInstance().GetKeyTrigger(VK_RETURN))
-		{
-			SetChangeScene(TITLE);
-		}
-	}
 	
-
-	if (Input::GetInstance().GetButtonTrigger(XINPUT_GAMEPAD_DPAD_DOWN))
+	
+	//////////////////////////////////
+	//			カーソル移動
+	//////////////////////////////////
+	
+	// 下ボタン入力確認
+	if (Input::GetInstance().GetButtonTrigger(XINPUT_GAMEPAD_DPAD_DOWN) || Input::GetInstance().GetKeyPress(VK_DOWN))
 	{
 		Cursol_pos.y = -300.0f;
 		objectmanager.GetGameObjectPtr<GameObject>(UI, "Cursol").lock()->SetPosition(Cursol_pos);
 	}
 
-
-	if (Input::GetInstance().GetButtonTrigger(XINPUT_GAMEPAD_DPAD_UP))
+	// 上ボタン入力確認
+	if (Input::GetInstance().GetButtonTrigger(XINPUT_GAMEPAD_DPAD_UP) || Input::GetInstance().GetKeyPress(VK_UP))
 	{
 		Vector3 Cursol_pos = objectmanager.GetGameObjectPtr<GameObject>(UI, "Cursol").lock()->GetPosition();
 		Cursol_pos.y = 0.0f;
 		objectmanager.GetGameObjectPtr<GameObject>(UI, "Cursol").lock()->SetPosition(Cursol_pos);
 	}
-
-	
 }
+
+
 
 void StageSelectScene::Draw(void) {
 	objectmanager.Draw();

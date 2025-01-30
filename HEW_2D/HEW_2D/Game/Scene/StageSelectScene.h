@@ -19,7 +19,8 @@ public:
 	void Draw(void)override;
 	void Uninit(void)override;
 
-private:
 
+private:
+	
 };
 

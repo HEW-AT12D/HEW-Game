@@ -81,22 +81,22 @@ void Stage1Scene::Init(void) {
 
 
 	// 地面
-	objectmanager.AddObject<GameObject>(OBJECT, "Ground");
-	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "Ground").lock()->Init(L"Game/Asset/GameObject/Ground.png");
-	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "Ground").lock()->SetPosition(Vector3(0.0f, -500.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "Ground").lock()->SetScale(Vector3(1920.0f, 120.0f, 0.0f));
+	objectmanager.AddObject<GameObject>(GROUND, "Ground");
+	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground").lock()->Init(L"Game/Asset/GameObject/Ground.png");
+	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground").lock()->SetPosition(Vector3(0.0f, -500.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground").lock()->SetScale(Vector3(1920.0f, 120.0f, 0.0f));
 
 	// 地面2
-	objectmanager.AddObject<GameObject>(OBJECT, "Ground2");
-	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "Ground2").lock()->Init(L"Game/Asset/GameObject/Ground.png");
-	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "Ground2").lock()->SetPosition(Vector3(700.0f, -350.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "Ground2").lock()->SetScale(Vector3(120.0f, 120.0f, 0.0f));
+	objectmanager.AddObject<GameObject>(GROUND, "Ground2");
+	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground2").lock()->Init(L"Game/Asset/GameObject/Ground.png");
+	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground2").lock()->SetPosition(Vector3(700.0f, -350.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground2").lock()->SetScale(Vector3(120.0f, 120.0f, 0.0f));
 
 	// スライム
-	objectmanager.AddObject<Enemy>(OBJECT, "Slime");
-	objectmanager.GetGameObjectPtr<Enemy>(OBJECT, "Slime").lock()->Init(L"Game/Asset/GameObject/Slime.png");
-	objectmanager.GetGameObjectPtr<Enemy>(OBJECT, "Slime").lock()->SetPosition(Vector3(200.0f, -300.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<Enemy>(OBJECT, "Slime").lock()->SetScale(Vector3(120.0f, 120.0f, 0.0f));
+	objectmanager.AddObject<Enemy>(ENEMY, "Slime");
+	objectmanager.GetGameObjectPtr<Enemy>(ENEMY, "Slime").lock()->Init(L"Game/Asset/GameObject/Slime.png");
+	objectmanager.GetGameObjectPtr<Enemy>(ENEMY, "Slime").lock()->SetPosition(Vector3(200.0f, -300.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<Enemy>(ENEMY, "Slime").lock()->SetScale(Vector3(120.0f, 120.0f, 0.0f));
 
 	// クロスヘア
 	objectmanager.AddObject<CrossHair>(UI, "CrossHair");
@@ -124,12 +124,13 @@ void Stage1Scene::Update(void)
 	Input::GetInstance().Update();
 
 	// シーン更新に必要な情報を取得
-	auto playerShared = objectmanager.GetGameObjectPtr<Player>(PLAYER, "Player");
-	auto groundShared = objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "Ground");
-	auto groundShared2 = objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "Ground2");
-	auto gionShared = objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "Poyon");
-	auto enemyShared = objectmanager.GetGameObjectPtr<Enemy>(OBJECT, "Slime");
-	auto crosshairShared = objectmanager.GetGameObjectPtr<CrossHair>(UI, "CrossHair");
+	auto playerShared = objectmanager.GetGameObjectPtr<Player>(PLAYER, "Player");		// プレイヤー
+	auto grounds = objectmanager.GetObjects<GameObject>(GROUND);						// 地面(配列)
+	auto groundShared = objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground");	// 地面1(個別)
+	auto groundShared2 = objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground2");	// 地面2
+	auto gionShared = objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "Poyon");		// 擬音(個別)
+	auto enemyShared = objectmanager.GetGameObjectPtr<Enemy>(ENEMY, "Slime");			// 敵(個別)
+	auto crosshairShared = objectmanager.GetGameObjectPtr<CrossHair>(UI, "CrossHair");	// クロスヘア
 
 
 	// 入力管理
@@ -170,14 +171,14 @@ void Stage1Scene::Update(void)
 
 	//----------------当たり判定-----------------------
 
-	ColliderPlayer_Ground(playerShared, groundShared);
+	ColliderPlayer_Ground(playerShared, grounds);
+	//ColliderPlayer_Ground(playerShared, groundShared2);
+
 
 	// クロスヘアの入力取得(本来はプレイヤーのフラグを立てて、プレイヤーの更新の中でクロスヘアを動かすべき)
 	if (Input::GetInstance().GetKeyPress(VK_UP))
 	{
 		crosshairShared.lock()->SetMoveUp(true);
-		/*std::cout << "directionX：" << playerShared.lock()->directionX << std::endl;
-		std::cout << "directionY：" << playerShared.lock()->directionY << std::endl;*/
 
 	}
 	else {
@@ -187,8 +188,6 @@ void Stage1Scene::Update(void)
 	if (Input::GetInstance().GetKeyPress(VK_DOWN))
 	{
 		crosshairShared.lock()->SetMoveDown(true);
-		/*std::cout << "directionX：" << playerShared.lock()->directionX << std::endl;
-		std::cout << "directionY：" << playerShared.lock()->directionY << std::endl;*/
 
 	}
 	else
@@ -199,12 +198,6 @@ void Stage1Scene::Update(void)
 	if (Input::GetInstance().GetKeyPress(VK_RIGHT))
 	{
 		crosshairShared.lock()->SetMoveRight(true);
-
-		/*Vector3 p_moji = mojiShared.lock()->GetPosition();
-		p_moji.x += 5;
-		mojiShared.lock()->SetPosition(p_moji);
-		std::cout << "directionX：" << playerShared.lock()->directionX << std::endl;
-		std::cout << "directionY：" << playerShared.lock()->directionY << std::endl;*/
 	}
 	else
 	{
@@ -214,12 +207,6 @@ void Stage1Scene::Update(void)
 	if (Input::GetInstance().GetKeyPress(VK_LEFT))
 	{
 		crosshairShared.lock()->SetMoveLeft(true);
-
-		/*Vector3 p_moji = mojiShared.lock()->GetPosition();
-		p_moji.x -= 5;
-		mojiShared.lock()->SetPosition(p_moji);
-		std::cout << "directionX：" << playerShared.lock()->directionX << std::endl;
-		std::cout << "directionY：" << playerShared.lock()->directionY << std::endl;*/
 	}
 	else
 	{
@@ -282,16 +269,6 @@ void Stage1Scene::Update(void)
 			}
 		}
 	}
-	
-
-	// 何かのオブジェクトに当たったら擬音の移動を止める処理
-	/*if (Collider_toGround(groundShared2, gionShared))
-	{
-
-	}
-	else {
-
-	}*/
 
 
 	//playerShared.lock()->Shot(gionShared);
@@ -341,7 +318,6 @@ void Stage1Scene::Update(void)
 	}
 	//連：メモ
 	//擬音を回収したときに、オブジェクトをただ移動させるだけじゃなくて、回収したオブジェクトの情報によって表示させるUIを変える
-
 
 
 	// ここでマガジンがUIになっていなければ当たり判定を取りたい

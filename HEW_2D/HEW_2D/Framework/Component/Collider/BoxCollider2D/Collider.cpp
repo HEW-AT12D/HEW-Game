@@ -10,39 +10,49 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-//PlayerとGroundの当たり判定
+//PlayerとGroundの当たり判定(配列)
 //template <class T, class U>
-bool ColliderPlayer_Ground(std::weak_ptr<Player> obj1, std::weak_ptr<GameObject> obj2)
+bool ColliderPlayer_Ground(std::weak_ptr<Player> _player, std::vector<std::weak_ptr<GameObject>> _objects)
 {
 	float Player_Right_Collider, Player_Left_Collider, Player_Top_Collider, Player_Bottom_Collider;//playerの当たり判定変数
 	float Ground_Right_Collider, Ground_Left_Collider, Ground_Top_Collider, Ground_Bottom_Collider;//groundの当たり判定変数
 	
-	Player_Right_Collider = obj1.lock()->GetPosition().x + obj1.lock()->GetScale().x / 2; //プレイヤーの右当たり判定変数
-	Player_Left_Collider = obj1.lock()->GetPosition().x - obj1.lock()->GetScale().x / 2;  //プレイヤーの左当たり判定変数
-	Player_Top_Collider = obj1.lock()->GetPosition().y + obj1.lock()->GetScale().y / 2;    //プレイヤーの上当たり判定変数
-	Player_Bottom_Collider = obj1.lock()->GetPosition().y - obj1.lock()->GetScale().y / 2;//プレイヤーの下当たり判定変数
+	Player_Right_Collider = _player.lock()->GetPosition().x + _player.lock()->GetScale().x / 2; //プレイヤーの右当たり判定変数
+	Player_Left_Collider = _player.lock()->GetPosition().x - _player.lock()->GetScale().x / 2;  //プレイヤーの左当たり判定変数
+	Player_Top_Collider = _player.lock()->GetPosition().y + _player.lock()->GetScale().y / 2;    //プレイヤーの上当たり判定変数
+	Player_Bottom_Collider = _player.lock()->GetPosition().y - _player.lock()->GetScale().y / 2;//プレイヤーの下当たり判定変数
 
-	Ground_Right_Collider = obj2.lock()->GetPosition().x + obj2.lock()->GetScale().x / 2; //グラウンドの右の当たり判定変数
-	Ground_Left_Collider = obj2.lock()->GetPosition().x - obj2.lock()->GetScale().x / 2;  //グラウンドの左の当たり判定変数
-	Ground_Top_Collider = obj2.lock()->GetPosition().y + obj2.lock()->GetScale().y / 2;    //グラウンドの上の当たり判定変数
-	Ground_Bottom_Collider = obj2.lock()->GetPosition().y - obj2.lock()->GetScale().y / 2;//グラウンドの下の当たり判定変数
 
-	//プレイヤーとグラウンドの当たり判定
-	if (Player_Left_Collider < Ground_Right_Collider && 
-		Ground_Left_Collider < Player_Right_Collider && 
-		Player_Bottom_Collider < Ground_Top_Collider && 
-		Player_Top_Collider > Ground_Bottom_Collider)
-	{
-		// 当たったオブジェクトの速度、方向ベクトルをリセットする
-		obj1.lock()->SetDirection(Vector3({ 0.0f }));
-		obj1.lock()->AddForce(Vector3({ 0.0f }));
-		obj1.lock()->SetOnGround(true);
-		return true;
+	// 地面の配列の要素数分ループ
+	for (auto& ground : _objects) {
+		Ground_Right_Collider = ground.lock()->GetPosition().x + ground.lock()->GetScale().x / 2; //グラウンドの右の当たり判定変数
+		Ground_Left_Collider = ground.lock()->GetPosition().x - ground.lock()->GetScale().x / 2;  //グラウンドの左の当たり判定変数
+		Ground_Top_Collider = ground.lock()->GetPosition().y + ground.lock()->GetScale().y / 2;    //グラウンドの上の当たり判定変数
+		Ground_Bottom_Collider = ground.lock()->GetPosition().y - ground.lock()->GetScale().y / 2;//グラウンドの下の当たり判定変数
+
+
+		// 地面のどれか一個に当たってたらプレイヤーの速度と方向ベクトルをリセットする
+		//プレイヤーとグラウンドの当たり判定
+		if (Player_Left_Collider < Ground_Right_Collider &&
+			Ground_Left_Collider < Player_Right_Collider &&
+			Player_Bottom_Collider < Ground_Top_Collider &&
+			Player_Top_Collider > Ground_Bottom_Collider)
+		{
+			// 当たったオブジェクトの速度、方向ベクトルをリセットする
+			_player.lock()->SetDirection(Vector3({ 0.0f }));
+			_player.lock()->AddForce(Vector3({ 0.0f }));
+			_player.lock()->SetOnGround(true);
+			return true;
+		}
+		else {
+			_player.lock()->SetOnGround(false);
+			return false;
+		}
+
 	}
-	else {
-		obj1.lock()->SetOnGround(false);
-		return false;
-	}
+	
+
+	
 }
 
 

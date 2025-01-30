@@ -2,7 +2,7 @@
 #include"../../../../Game/Objcet/BaseObject/Object.h"
 
 
-bool ColliderPlayer_Ground(std::weak_ptr<Player>, std::weak_ptr<GameObject>);	//Player‚ÆGround‚Ì“–‚½‚è”»’èŠÖ”
+bool ColliderPlayer_Ground(std::weak_ptr<Player>, std::vector<std::weak_ptr<GameObject>>);	//Player‚ÆGround‚Ì“–‚½‚è”»’èŠÖ”
 
 /**
  * @brief ‘Î’n–Ê’n–Ê‚Ì“–‚½‚è”»’è

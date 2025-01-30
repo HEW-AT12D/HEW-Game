@@ -1,7 +1,11 @@
 #include "SceneManager.h"
-// 今だけシーン遷移確認用にインクルード
-#include "../../Framework/Input/Input.h"
-
+#include "../../Game/Scene/StageSelectScene.h"
+#include "../../Game/Scene/Stage1Scene.h"
+#include "../../Game/Scene/Stage2Scene.h"
+#include "../../Game/Scene/ResultScene.h"
+#include "../../Game/Scene/GameScene.h"
+#include "../../Game/Scene/TitleScene2.h"
+#include "../../Game/Scene/TestScene.h"
 
 /**
  * @brief シーン配列初期化
@@ -15,47 +19,55 @@ void SceneManager::Init(void)
 	Scenes[CurrentScene]->Init();
 }
 
-
+/**
+ * @brief 更新
+*/
 void SceneManager::Update(void)
 {
+	// 現在シーンの更新
 	Scenes[CurrentScene]->Update();
 
-	if (Input::GetInstance().GetKeyTrigger(VK_RETURN)) {
-		//Scenes[CurrentScene]->SetChangeScene(STAGESELECT);
-		Scenes[CurrentScene]->GetChangeScene();
-	}
 
-	// 動作確認用
+	// 流れ
+	// 現在シーンで設定されている遷移先シーンを確認→そのシーンに遷移
+	// →同じシーンに飛ぼうとしてる場合は一旦フェードアウトし、そのシーンの初期化を行ってからフェードイン
+
 	// 現在シーンの遷移フラグが立っている場合、シーン遷移
 	if (Scenes[CurrentScene]->GetChangeScene())
 	{
-		DeleteScene(CurrentScene);
-		switch (CurrentScene)
-		{
-		case TITLE:
-			// エンターでステージ選択へ
-			// デバッグ用にステージ１へ飛ぶ
-			ChangeScene(GAME);
-			break;
-		case STAGESELECT:
-			// ステージ選択シーンは保持し続けるのでシーン遷移フラグだけをfalseに変更
-			ChangeScene(GAME);
-			break;
-		case GAME:
-			// エンターでリザルトへ
-			ChangeScene(RESULT);
-			break;
-		case RESULT:	// 現在シーンがリザルトなら
-			// タイトルへ戻り、シーンの初期化
-			ChangeScene(STAGESELECT);
-			break;
-		case TEST:
-			ChangeScene(RESULT);
-			break;
-		default:
-			break;
-		}
+		// 現在シーンがステージ選択なら、遷移先シーン確認→遷移関数実行
+		// そうでないならシーン遷移関数実行するだけ
+
 		
+		// 遷移先シーンを確認して遷移処理実行
+		ChangeScene(Scenes[CurrentScene]->GetRequestScene());
+		
+
+		//// シーン選択以外の場合は一方通行
+		//else
+		//{
+		//	switch (CurrentScene)
+		//	{
+		//	case TITLE:
+		//		// エンターでステージ選択へ
+		//		// デバッグ用にステージ１へ飛ぶ
+		//		ChangeScene(STAGESELECT);
+		//		break;
+		//	case STAGE1:
+		//		// エンターでリザルトへ
+		//		ChangeScene(RESULT);
+		//		break;
+		//	case RESULT:	// 現在シーンがリザルトなら
+		//		// タイトルへ戻り、シーンの初期化
+		//		ChangeScene(STAGESELECT);
+		//		break;
+		//	case TEST:
+		//		ChangeScene(RESULT);
+		//		break;
+		//	default:
+		//		break;
+		//	}
+		//}
 	}
 	
 }
@@ -92,8 +104,8 @@ void SceneManager::Uninit(void) {
  * 　　→フェードアウトしたら（もしくは生成完了したら）前シーン解放し、フェードイン（ここで前シーン解放）
 */
 void SceneManager::ChangeScene(SceneName _Nextscene) {
-	// 切り替え前のシーンがタイトル、ステージ選択画面ではない（保持しておきたいシーンではない）場合、
-	if (CurrentScene != TITLE && CurrentScene != STAGESELECT)
+	// 切り替え前のシーンステージ選択画面ではない（保持しておきたいシーンではない）場合、
+	if (CurrentScene != STAGESELECT)
 	{
 		// 現在シーンを解放
 		DeleteScene(CurrentScene);
@@ -109,16 +121,16 @@ void SceneManager::ChangeScene(SceneName _Nextscene) {
 			CreateScene<TitleScene>(TITLE);
 			break;
 		case STAGESELECT:
-			CreateScene<Stage2Scene>(STAGESELECT);
+			CreateScene<StageSelectScene>(STAGESELECT);
 			break;
-		case GAME:
-			CreateScene<Stage2Scene>(GAME);
+		case STAGE1:
+			CreateScene<Stage1Scene>(STAGE1);
+			break;
+		case STAGE2:
+			CreateScene<Stage2Scene>(STAGE2);
 			break;
 		case RESULT:
 			CreateScene<ResultScene>(RESULT);
-			break;
-		case TEST:
-			CreateScene<TestScene>(TEST);
 			break;
 		default:
 			break;
@@ -127,7 +139,7 @@ void SceneManager::ChangeScene(SceneName _Nextscene) {
 	// 現在シーンを切り替え
 	this->CurrentScene = _Nextscene;
 
-	// 切り替えたシーンの初期化
+	// 切り替えたシーンの初期化→ここ切り替え前シーンと同じシーンに以降としてる場合はもう一度プレイしようとしてるので初期化するまでにフェードアウト・イン処理とか必要
 	Scenes[CurrentScene]->Init();
 }
 

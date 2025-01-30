@@ -90,23 +90,23 @@ void Stage2Scene::Init(void) {
 
 
 	// 地面
-	objectmanager.AddObject<GameObject>(OBJECT, "Ground");
-	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "Ground").lock()->Init(L"Game/Asset/GameObject/Ground.png");
-	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "Ground").lock()->SetPosition(Vector3(0.0f, -500.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "Ground").lock()->SetScale(Vector3(1920.0f, 120.0f, 0.0f));
+	objectmanager.AddObject<GameObject>(GROUND, "Ground");
+	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground").lock()->Init(L"Game/Asset/GameObject/Ground.png");
+	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground").lock()->SetPosition(Vector3(0.0f, -500.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground").lock()->SetScale(Vector3(1920.0f, 120.0f, 0.0f));
 
 
 	// 地面2
-	objectmanager.AddObject<GameObject>(OBJECT, "Ground2");
-	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "Ground2").lock()->Init(L"Game/Asset/GameObject/Ground.png");
-	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "Ground2").lock()->SetPosition(Vector3(600.0f, -50.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "Ground2").lock()->SetScale(Vector3(900.0f, 80.0f, 0.0f));
+	objectmanager.AddObject<GameObject>(GROUND, "Ground2");
+	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground2").lock()->Init(L"Game/Asset/GameObject/Ground.png");
+	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground2").lock()->SetPosition(Vector3(600.0f, -50.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground2").lock()->SetScale(Vector3(900.0f, 80.0f, 0.0f));
 
 	// スライム
-	objectmanager.AddObject<Enemy>(OBJECT, "Slime");
-	objectmanager.GetGameObjectPtr<Enemy>(OBJECT, "Slime").lock()->Init(L"Game/Asset/GameObject/Slime.png");
-	objectmanager.GetGameObjectPtr<Enemy>(OBJECT, "Slime").lock()->SetPosition(Vector3(200.0f, -300.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<Enemy>(OBJECT, "Slime").lock()->SetScale(Vector3(80.0f, 40.0f, 0.0f));
+	objectmanager.AddObject<Enemy>(ENEMY, "Slime");
+	objectmanager.GetGameObjectPtr<Enemy>(ENEMY, "Slime").lock()->Init(L"Game/Asset/GameObject/Slime.png");
+	objectmanager.GetGameObjectPtr<Enemy>(ENEMY, "Slime").lock()->SetPosition(Vector3(200.0f, -300.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<Enemy>(ENEMY, "Slime").lock()->SetScale(Vector3(80.0f, 40.0f, 0.0f));
 
 	// クロスヘア
 	objectmanager.AddObject<CrossHair>(UI, "CrossHair");
@@ -157,11 +157,12 @@ void Stage2Scene::Update(void)
 
 	// 入力情報の更新
 	// シーン更新に必要な情報を取得
+	auto grounds = objectmanager.GetObjects<GameObject>(GROUND);						// 地面(配列)
 	auto playerShared    = objectmanager.GetGameObjectPtr<Player>    (PLAYER, "Player");
-	auto groundShared    = objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "Ground");
-	auto groundShared2   = objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "Ground2");
+	auto groundShared    = objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground");
+	auto groundShared2   = objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground2");
 	auto gionShared      = objectmanager.GetGameObjectPtr<Poyon>     (ONOMATOPOEIA, "Gion");
-	auto enemyShared     = objectmanager.GetGameObjectPtr<Enemy>     (OBJECT, "Slime");
+	auto enemyShared     = objectmanager.GetGameObjectPtr<Enemy>     (ENEMY, "Slime");
 	auto crosshairShared = objectmanager.GetGameObjectPtr<CrossHair> (UI, "CrossHair");
 	auto enemygion       = objectmanager.GetGameObjectPtr<Poyon>     (ONOMATOPOEIA, "_Gion2");
 	auto efectShared     = objectmanager.GetGameObjectPtr<GameObject>(UI, "Thunder_Efect");
@@ -213,18 +214,21 @@ void Stage2Scene::Update(void)
 
 	//----------------当たり判定-----------------------
 
-	//FRAME1のPlayerとGroundの当たり判定
-	if (ColliderPlayer_Ground(playerShared, groundShared)) //Playerと一番下のGroundの当たり判定
-	{
-		playerShared.lock()->SetOnGround(true);
-	}
-	else if (Collider_toGround(playerShared, groundShared2)) //Playerと上のGroundの当たり判定
-	{
-		playerShared.lock()->SetOnGround(true);
-	}else if(Collider_toGround(playerShared, baneShared)) //Playerとバネの当たり判定
-	{
-		playerShared.lock()->SetOnGround(true);
-	}
+	////FRAME1のPlayerとGroundの当たり判定
+	//if (ColliderPlayer_Ground(playerShared, groundShared)) //Playerと一番下のGroundの当たり判定
+	//{
+	//	playerShared.lock()->SetOnGround(true);
+	//}
+	//else if (Collider_toGround(playerShared, groundShared2)) //Playerと上のGroundの当たり判定
+	//{
+	//	playerShared.lock()->SetOnGround(true);
+	//}else if(Collider_toGround(playerShared, baneShared)) //Playerとバネの当たり判定
+	//{
+	//	playerShared.lock()->SetOnGround(true);
+	//}
+
+	ColliderPlayer_Ground(playerShared, grounds);
+
 	
 	
 
@@ -389,14 +393,14 @@ void Stage2Scene::Update(void)
 	}
 
 	// 何かのオブジェクトに当たったら擬音の移動を止める処理
-	if (Collider_toGround(groundShared2, gionShared))
+	/*if (Collider_toGround(groundShared2, gionShared))
 	{
 		playerShared.lock()->SetIsShot(false);
 
 	}
 	else {
 
-	}
+	}*/
 
 
 	//playerShared.lock()->Shot(gionShared);
@@ -431,8 +435,19 @@ void Stage2Scene::Update(void)
 					objectmanager.ChangeTag(HitOnomatopoeia.first.first, HitOnomatopoeia.first.second, UI);
 				}
 			}
+			// 擬音が0(吸い込み中に扇型範囲から擬音がいなくなった場合)
+			else
+			{
+				// プレイヤーの状態を変更
+				playerShared.lock()->SetIsSuction(false);		// 「非」吸い込み中に設定
+			}
 		}
-
+		// 擬音が0(フレーム内の擬音がない場合)
+		else
+		{
+			// プレイヤーの状態を変更
+			playerShared.lock()->SetIsSuction(false);		// 「非」吸い込み中に設定
+		}
 	}
 	//連：メモ
 	//擬音を回収したときに、オブジェクトをただ移動させるだけじゃなくて、回収したオブジェクトの情報によって表示させるUIを変える

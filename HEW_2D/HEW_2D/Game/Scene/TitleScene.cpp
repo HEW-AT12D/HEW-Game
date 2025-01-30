@@ -26,7 +26,7 @@ void TitleScene::Update(void) {
 	if (Input::GetInstance().GetKeyTrigger(VK_RETURN))
 	{
 		this->ChangeScene = true;
-		SetChangeScene(this->ChangeScene);
+		m_RequestNext = STAGESELECT;
 	}
 }
 

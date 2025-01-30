@@ -1,7 +1,6 @@
 #pragma once
 #include "../../Game/ObjectManager/ObjectManager.h"
 
-
 //! -----------設計メモ：ISceneを作った後の話-----------------
 //! シーンクラスはテンプレートにして、基底クラスとしてISceneを持たせとくべきじゃない？？
 
@@ -14,6 +13,17 @@ enum FRAME {
 
 	FRAME_MAX
 };
+
+enum SceneName {
+	TITLE,
+	STAGESELECT,
+	STAGE1,
+	STAGE2,
+	RESULT,
+
+	SCENE_MAX
+};
+
 
 /**
  * @brief シーンの抽象クラス
@@ -39,14 +49,16 @@ public:
 	virtual void Draw(void) = 0;
 	virtual void Uninit(void) = 0;
 
-	void SetChangeScene(bool _Flg);
-	bool GetChangeScene(void);
+	virtual void SetChangeScene(bool _Flg);
+	virtual bool GetChangeScene(void);
 
+	virtual SceneName GetRequestScene(void);		// 次に遷移したいシーンを取得する関数
 
 protected:
-	ObjectManager objectmanager;
-	FRAME m_Frame;				// 現在フレーム
-	bool ChangeScene = false;	// シーン切り替えフラグ
-	bool ChangeFrame = false;	// フレーム切り替えフラグ
-	int m_MagCount;				// マガジン数
+	ObjectManager objectmanager;	// オブジェクトマネージャ
+	SceneName m_RequestNext;		// 次に遷移したいシーン
+	FRAME m_Frame;					// 現在フレーム
+	bool ChangeScene = false;		// シーン切り替えフラグ
+	bool ChangeFrame = false;		// フレーム切り替えフラグ
+	int m_MagCount;					// マガジン数
 };
