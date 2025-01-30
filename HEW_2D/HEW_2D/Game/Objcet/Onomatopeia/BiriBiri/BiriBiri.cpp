@@ -34,4 +34,5 @@ void BiriBiri::Action(std::weak_ptr<GameObject> player)
 	}
 }
 
+
 BiriBiri::~BiriBiri(){}

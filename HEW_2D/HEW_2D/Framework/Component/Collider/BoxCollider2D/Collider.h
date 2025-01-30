@@ -25,6 +25,8 @@ bool Collider_toGround(std::weak_ptr<T> obj1, std::weak_ptr<GameObject> obj2)
 	Ground_Top_Collider = obj2.lock()->GetPosition().y + obj2.lock()->GetScale().y / 2;    //グラウンドの上の当たり判定変数
 	Ground_Bottom_Collider = obj2.lock()->GetPosition().y - obj2.lock()->GetScale().y / 2;//グラウンドの下の当たり判定変数
 
+	Ground_Bottom_Collider = Ground_Bottom_Collider + 150; //Groundの下の部分に当たった時にtrueを返さないようにする（少し座標を上にあげてる）
+
 	//プレイヤーとグラウンドの当たり判定
 	if (Player_Left_Collider < Ground_Right_Collider &&
 		Ground_Left_Collider < Player_Right_Collider &&

@@ -9,6 +9,7 @@ public:
 		BiriBiri_check = false;
 	}
 	~BiriBiri();	//デストラクタ
+	void Action(void) {};
 	void Action(std::weak_ptr<GameObject>);		//ビリビリ特性の関数
 
 	bool BiriBiri_check;

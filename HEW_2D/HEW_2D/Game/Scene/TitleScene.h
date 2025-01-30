@@ -15,7 +15,6 @@ public:
 	TitleScene(D3D11& _D3d11) :IScene(_D3d11) {
 		// オブジェクトの追加はシーンの初期化で行う
 		// サウンドとかこのシーンのみ存在するものがあればその初期化を行う
-
 	};
 	~TitleScene() {};
 	void Init(void)override;
@@ -23,6 +22,8 @@ public:
 	void Draw(void)override;
 	void Uninit(void)override;
 
-private:
+	void Title_Onomatope_Move(std::weak_ptr<GameObject>,float); //TitleSceneの装飾用の擬音の動き
 
+protected:
+	
 };
