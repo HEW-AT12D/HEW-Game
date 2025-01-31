@@ -26,6 +26,8 @@ public:
 	virtual void Update(void) override;	// 更新
 	virtual void Set_Onomatope(bool) = 0;   //擬音のフラグセット
 	virtual bool Get_Onomatope(void) = 0;   //擬音のフラグゲット
+	virtual void Set_gion(bool) = 0;
+	virtual bool Get_gion(void) = 0;
 
 protected:
 	// コンストラクタをprotectedにすると派生クラスからしかコンストラクタを動かせない
@@ -37,5 +39,6 @@ protected:
 	std::string m_Name;				// 擬音の名前
 	bool fade_check = false;
 	bool Collision_Onomatope = false; //擬音がオブジェクトに付与されているかの判断フラグ
+	bool Collision_gion = false;
 };
 

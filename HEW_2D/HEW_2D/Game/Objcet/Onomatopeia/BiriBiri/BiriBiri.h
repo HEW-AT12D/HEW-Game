@@ -15,6 +15,8 @@ public:
 	bool BiriBiri_check;
 	void Set_Onomatope(bool)override;//擬音のAction関数を動かすためのゲッター、セッター
 	bool Get_Onomatope(void)override;
+	void Set_gion(bool)override;
+	bool Get_gion(void)override;
 private:
 	float knockback_power;//ノックバックパワー
 };

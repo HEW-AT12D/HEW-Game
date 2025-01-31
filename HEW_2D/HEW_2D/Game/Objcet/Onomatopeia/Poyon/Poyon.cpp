@@ -38,6 +38,15 @@ bool Poyon::Get_Onomatope(void)
 	return Collision_Onomatope;
 }
 
+void Poyon::Set_gion(bool _flg)
+{
+	Collision_gion = _flg;
+}
+
+bool Poyon::Get_gion(void)
+{
+	return Collision_gion;
+}
 
 Poyon::~Poyon()
 {

@@ -130,9 +130,10 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -141,15 +142,13 @@
   <ItemGroup>
     <ClCompile Include="Framework\ComponentManager\ComponentManager.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Framework\Component\Collider\BoxCollider2D\Collider.cpp" />
     <ClCompile Include="Framework\Component\IComponent\IComponent.cpp" />
     <ClCompile Include="Framework\Component\RigitBody\Gravity.cpp" />
     <ClCompile Include="Framework\Component\RigitBody\RigitBody2D.cpp" />
     <ClCompile Include="Framework\Component\TransForm\Transform.cpp" />
-    <ClCompile Include="Framework\Component\Transform\TransformComponent.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="Framework\D3D11\D3D11.cpp" />
     <ClCompile Include="Framework\Input\Input.cpp" />
     <ClCompile Include="Framework\Scene\IScene.cpp" />
@@ -193,6 +192,7 @@
   <ItemGroup>
     <ClInclude Include="Framework\ComponentManager\ComponentManager.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="Framework\Component\Collider\BoxCollider2D\Collider.h" />
     <ClInclude Include="Framework\Component\IComponent\IComponent.h" />
@@ -201,6 +201,7 @@
     <ClInclude Include="Framework\Component\TransForm\Transform.h" />
     <ClInclude Include="Framework\Component\Transform\TransformComponent.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="Framework\D3D11\D3D11.h" />
     <ClInclude Include="Framework\Input\Input.h" />

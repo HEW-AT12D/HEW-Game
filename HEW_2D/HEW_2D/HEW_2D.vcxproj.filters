@@ -167,9 +167,6 @@
     <ClCompile Include="Framework\Component\IComponent\IComponent.cpp">
       <Filter>フレームワーク\コンポーネント\基本コンポーネント</Filter>
     </ClCompile>
-    <ClCompile Include="Framework\Component\Transform\TransformComponent.cpp">
-      <Filter>フレームワーク\コンポーネント\Transform</Filter>
-    </ClCompile>
     <ClCompile Include="Framework\ComponentManager\ComponentManager.cpp">
       <Filter>フレームワーク\コンポーネント管理</Filter>
     </ClCompile>

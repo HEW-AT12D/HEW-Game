@@ -12,6 +12,7 @@ void Player::Update(void)
 
 	// 方向ベクトルを合成
 	// ジャンプした場合
+
 	if (Jump && !Jumping)
 	{
 		// ジャンプ中でなければ
