@@ -66,6 +66,16 @@ bool PataPata::Get_Onomatope(void)
 	return Collision_Onomatope;
 }
 
+void PataPata::Set_gion(bool _flg)
+{
+	Collision_gion = _flg;
+}
+
+bool PataPata::Get_gion(void)
+{
+	return Collision_gion;
+}
+
 
 PataPata::~PataPata()
 {

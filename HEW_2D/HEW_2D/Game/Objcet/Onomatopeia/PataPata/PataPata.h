@@ -29,6 +29,8 @@ public:
 	void Action(std::weak_ptr<GameObject>, std::weak_ptr<Player>);	//オーバーロード
 	void Set_Onomatope(bool)override; //擬音のAction関数を動かすためのゲッター、セッター
 	bool Get_Onomatope(void)override;
+	void Set_gion(bool)override;
+	bool Get_gion(void)override;
 
 private:
 	bool Collider_check;

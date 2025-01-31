@@ -123,7 +123,7 @@ bool Collider_Player_to_Magazine(std::weak_ptr<Player> obj1, std::weak_ptr<Magaz
 
 
 
-bool ColliderPlayer_Gion(GameObject*, GameObject*);//Player‚Æ‹[‰¹‚Ì“–‚½‚è”»’èŠÖ”
+bool ColliderPlayer_Gion(std::shared_ptr<Player>, std::shared_ptr<GameObject>);//Player‚Æ‹[‰¹‚Ì“–‚½‚è”»’èŠÖ”
 
 // îŒ^‚Æ‹[‰¹‚Ì“–‚½‚è”»’èŠÖ”
 std::pair<std::pair<Tag, std::string>, std::shared_ptr<IOnomatopoeia>> ColliderFan_Gion(std::weak_ptr<Player> fan, std::vector<std::pair<std::pair<Tag, std::string>, std::shared_ptr<IOnomatopoeia>>>);

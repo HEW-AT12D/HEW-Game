@@ -47,4 +47,14 @@ bool BiriBiri::Get_Onomatope(void)
 	return Collision_Onomatope;
 }
 
+void BiriBiri::Set_gion(bool _flg)
+{
+	Collision_gion = _flg;
+}
+
+bool BiriBiri::Get_gion(void)
+{
+	return Collision_gion;
+}
+
 BiriBiri::~BiriBiri(){}
