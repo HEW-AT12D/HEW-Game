@@ -18,6 +18,7 @@ public:
 		// オブジェクトの追加はシーンの初期化で行う
 		// サウンドとかこのシーンのみ存在するものがあればその初期化を行う
 		ChangeScene = false;
+		frame = FRAME1;
 	};
 	~Stage1Scene() {};
 	void Init(void)override;
@@ -26,7 +27,7 @@ public:
 	void Uninit(void)override;
 
 private:
-
+	FRAME frame; //ステージ別に分ける変数
 };
 
 
