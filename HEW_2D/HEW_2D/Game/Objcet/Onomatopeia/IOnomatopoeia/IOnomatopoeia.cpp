@@ -12,7 +12,7 @@ void IOnomatopoeia::Fade_in_out(void)
 	Color c_obj = m_Color;
 	if (fade_check)
 	{
-		c_obj.w += 0.05f;
+		c_obj.w += 0.02f;
 		if (c_obj.w >= 1.0f)
 		{
 			c_obj.w = 1.0f;
@@ -21,7 +21,7 @@ void IOnomatopoeia::Fade_in_out(void)
 		m_Color = c_obj;
 	}
 	else {
-		c_obj.w -= 0.05f;
+		c_obj.w -= 0.02f;
 		if (c_obj.w <= 0.0f)
 		{
 			c_obj.w = 0.0f;

@@ -89,6 +89,12 @@ void Stage2Scene::Init(void) {
 	objectmanager.GetGameObjectPtr<Magazine>(OBJECT, "Magazine3").lock()->SetScale(Vector3(90.0f, 90.0f, 0.0f));
 
 
+	// バネ
+	objectmanager.AddObject<GameObject>(OBJECT, "bane");
+	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "bane").lock()->Init(L"Game/Asset/GameObject/Ground.png");
+	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "bane").lock()->SetPosition(Vector3(0.0f, -400.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "bane").lock()->SetScale(Vector3(100.0f, 100.0f, 0.0f));
+
 	// 地面
 	objectmanager.AddObject<GameObject>(GROUND, "Ground");
 	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground").lock()->Init(L"Game/Asset/GameObject/Ground.png");
@@ -117,19 +123,15 @@ void Stage2Scene::Init(void) {
 	objectmanager.GetGameObject<Player>(PLAYER, "Player").second->SetChild(objectmanager.GetGameObject<CrossHair>(UI, "CrossHair").second);
 
 	//enemy擬音
-	objectmanager.AddObject<Poyon>(ONOMATOPOEIA, "_Gion2");	// 名前要変更
-	objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "_Gion2").lock()->Init(L"Game/Asset/Onomatopoeia/Poyon.png");
-	objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "_Gion2").lock()->SetPosition(Vector3(500.0f, -350.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "_Gion2").lock()->SetScale(Vector3(240.0f, 120.0f, 0.0f));
+	objectmanager.AddObject<Poyon>(ONOMATOPOEIA, "Poyon");	// 名前要変更
+	objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "Poyon").lock()->Init(L"Game/Asset/Onomatopoeia/Poyon.png");
+	objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "Poyon").lock()->SetPosition(Vector3(500.0f, -350.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "Poyon").lock()->SetScale(Vector3(240.0f, 120.0f, 0.0f));
 
-	// プレイヤー
-	objectmanager.AddObject<GameObject>(OBJECT, "bane");
-	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "bane").lock()->Init(L"Game/Asset/GameObject/Bane.png",3,1);
-	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "bane").lock()->SetPosition(Vector3(0.0f, -360.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "bane").lock()->SetScale(Vector3(330.0f, 330.0f, 0.0f));
 
 	//サンダーエフェクト
-	objectmanager.GetGameObjectPtr<BiriBiri>(UI, "Thunder_Effect").lock()->Init(L"Game/Asset/Efect/Thunder_Efect.png", 8, 1);
+	objectmanager.AddObject<BiriBiri>(UI, "Thunder_Effect");
+	objectmanager.GetGameObjectPtr<BiriBiri>(UI, "Thunder_Effect").lock()->Init(L"Game/Asset/Effect/Thunder_Effect.png", 8, 1);
 	objectmanager.GetGameObjectPtr<BiriBiri>(UI, "Thunder_Effect").lock()->SetPosition(Vector3(500.0f, 20.0f, 0.0f));
 	objectmanager.GetGameObjectPtr<BiriBiri>(UI, "Thunder_Effect").lock()->SetScale(Vector3(600.0f, 1200.0f, 0.0f));
 	objectmanager.GetGameObjectPtr<BiriBiri>(UI, "Thunder_Effect").lock()->SetColor(Color(1.0f, 1.0f, 1.0f, 1.0f));
@@ -174,10 +176,10 @@ void Stage2Scene::Update(void)
 	auto enemyShared     = objectmanager.GetGameObjectPtr<Enemy>     (ENEMY, "Slime");
 	auto gionShared      = objectmanager.GetGameObjectPtr<BiriBiri>  (ONOMATOPOEIA, "Gion");
 	auto crosshairShared = objectmanager.GetGameObjectPtr<CrossHair> (UI, "CrossHair");
-	auto enemygion       = objectmanager.GetGameObjectPtr<Poyon>     (ONOMATOPOEIA, "_Gion2");
+	auto enemygion       = objectmanager.GetGameObjectPtr<Poyon>     (ONOMATOPOEIA, "Poyon");
 	auto effectShared     = objectmanager.GetGameObjectPtr<GameObject>(UI, "Thunder_Effect");
 	auto baneShared      = objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "bane");
-
+	auto poyonShared = objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "Gion2");
 
 
 	effectShared.lock()->Animation(EFECT, effectShared);
@@ -193,7 +195,7 @@ void Stage2Scene::Update(void)
 		objectmanager.GetGameObjectPtr<Player>(PLAYER, "Player").lock()->SetMoveRight(true);
 		//sound.Play(SOUND_LABEL_BGM000);
 		//デバック用
-		std::cout << "Playerの座標移動ができています" << std::endl;
+		//std::cout << "Playerの座標移動ができています" << std::endl;
 	}
 	// 左移動
 	if (Input::GetInstance().GetKeyPress(VK_A) || LeftStickInput.x < -0.1f)
@@ -201,7 +203,7 @@ void Stage2Scene::Update(void)
 		objectmanager.GetGameObjectPtr<Player>(PLAYER, "Player").lock()->SetMoveLeft(true);
 
 		//デバック用
-		std::cout << "Playerの座標移動ができています" << std::endl;
+		//std::cout << "Playerの座標移動ができています" << std::endl;
 	}
 	// ジャンプ
 	if (Input::GetInstance().GetKeyTrigger(VK_SPACE) || Input::GetInstance().GetButtonPress(XINPUT_GAMEPAD_A))
@@ -209,7 +211,7 @@ void Stage2Scene::Update(void)
 		objectmanager.GetGameObjectPtr<Player>(PLAYER, "Player").lock()->SetJump(true);
 
 		//デバック用
-		std::cout << "Playerの座標移動ができています" << std::endl;
+		//std::cout << "Playerの座標移動ができています" << std::endl;
 	}
 	//擬音の選択
 	if (Input::GetInstance().GetKeyTrigger(VK_P))
@@ -220,7 +222,9 @@ void Stage2Scene::Update(void)
 	}
 	if (Input::GetInstance().GetKeyTrigger(VK_O))
 	{
-
+		Vector3 p_frame = objectmanager.GetGameObjectPtr<GameObject>(UI, "Frame").lock()->GetPosition();
+		p_frame.x = p_frame.x - 120;
+		objectmanager.GetGameObjectPtr<GameObject>(UI, "Frame").lock()->SetPosition(p_frame);
 	}
 
 
@@ -248,7 +252,14 @@ void Stage2Scene::Update(void)
 	//	playerShared.lock()->SetOnGround(true);
 	//}
 
+
+	//当たり判定
+	Collider_to_Object(playerShared.second, baneShared.lock());
 	ColliderPlayer_Ground(playerShared.second, grounds);
+
+	//擬音当たり判定flg
+
+	
 
 	
 	
@@ -296,7 +307,7 @@ void Stage2Scene::Update(void)
 
 		enemyShared.lock()->SetRotation(enemy_Rotation);*/
 	}
-	std::cout << p_enemy.x << std::endl;
+	//std::cout << p_enemy.x << std::endl;
 
 
 	// クロスヘアの入力取得(本来はプレイヤーのフラグを立てて、プレイヤーの更新の中でクロスヘアを動かすべき)XINPUT_GAMEPAD_RIGHT_THUMB
@@ -353,6 +364,7 @@ void Stage2Scene::Update(void)
 	// マガジンに擬音が入っていればエイムの位置に発射
 	if (Input::GetInstance().GetKeyPress(VK_W) || Input::GetInstance().GetRightTrigger())
 	{
+		poyonShared.lock()->Set_Onomatope(true); //擬音が発射中かのフラグ
 		// マガジンに擬音が装填されているかチェック
 		if (playerShared.second->GetLoadedBullet())
 		{
@@ -393,20 +405,26 @@ void Stage2Scene::Update(void)
 			}
 		}
 	}
-
-	// 何かのオブジェクトに当たったら擬音の移動を止める処理
-	/*if (Collider_toGround(groundShared2, gionShared))
-	{
-		playerShared.lock()->SetIsShot(false);
-
-	}
-	else {
-
-	}*/
-
-
 	//playerShared.lock()->Shot(gionShared);
 
+	/*if (poyonShared.lock() == nullptr)
+	{
+
+		std::cout << "nullptr" << std::endl;
+	}
+	else {
+		if (poyonShared.lock()->Get_Onomatope())
+		{
+			auto poyonshared = objectmanager.GetGameObject<Poyon>(ONOMATOPOEIA, "Poyon");
+			poyonshared.second->Action();
+
+			if (BoxCollider(poyonshared.second, baneShared.lock()))
+			{
+			}
+		}
+	}*/
+	
+	
 
 
 	// ----------------吸い込み処理→ここはプレイヤーの処理に移す-------------------------
@@ -456,6 +474,42 @@ void Stage2Scene::Update(void)
 
 
 
+	//enemygionがemptyでないかチェック
+	if (enemygion.lock())
+	{
+		//ポヨンの画像とバネの画像が当たっているか
+		if (BoxCollider(enemygion.lock(), baneShared.lock()))
+		{
+			Vector3 _p_poyon = baneShared.lock()->GetPosition(); //ポヨンの座標
+			Vector3 _r_poyon = baneShared.lock()->GetRotation();  //ポヨンの回転
+			enemygion.lock()->Set_Onomatope(true); //当たってたらフラグをtrue
+			_p_poyon.x = _p_poyon.x + 30;
+			_p_poyon.y = _p_poyon.y + 20;
+			_r_poyon.z = _r_poyon.z - 15;
+			enemygion.lock()->SetPosition(_p_poyon); //ポヨンの画像の座標をバネにくっつける
+			enemygion.lock()->SetRotation(_r_poyon); //ポヨンの画像の回転を更新
+			std::cout << "当りました" << std::endl;
+		}
+		else
+		{
+			//std::cout << "当たっていません" << std::endl;
+		}
+	
+		//二回目の回収をするまではずっとtrue
+		if (enemygion.lock()->Get_Onomatope())
+		{
+			enemygion.lock()->Fade_in_out();
+			//Playerと付与したオブジェクトが当たっているか
+			if (BoxCollider(playerShared.second, baneShared.lock()))
+			{
+				enemygion.lock()->Action(playerShared.second); //当たっていればAction関数実行
+			}
+		}
+	}
+	else {
+		std::cout << "enemygionがemptyです" << std::endl;
+	}
+
 	// ここでマガジンがUIになっていなければ当たり判定を取りたい
 	if (m_MagCount >= 1)
 	{
@@ -479,6 +533,9 @@ void Stage2Scene::Update(void)
 		}
 
 	}
+
+	//BoxCollider()
+
 
 	// マガジンとの当たり判定を毎フレーム取る→マガジンを取得したらその判定チェックはしなくておｋ
 	//objectmanager.Collider_Player_to_Object();		// ここで当たったらマガジン数を１つ減らす

@@ -88,16 +88,52 @@ bool Collider_to_Object(std::weak_ptr<Player> _player, std::weak_ptr<GameObject>
 	Ground_Bottom_Collider = _object.lock()->GetPosition().y - _object.lock()->GetScale().y / 2;//グラウンドの下の当たり判定変数
 
 	//プレイヤーとオブジェクトの当たり判定
-	if (Player_Left_Collider < Ground_Right_Collider &&
+	/*if (Player_Left_Collider < Ground_Right_Collider &&
 		Ground_Left_Collider < Player_Right_Collider &&
 		Player_Bottom_Collider < Ground_Top_Collider &&
 		Player_Top_Collider > Ground_Bottom_Collider)
 	{
+		_player.lock()->SetOnGround(true);
 		return true;
 	}
 	else {
+		_player.lock()->SetOnGround(false);
 		return false;
+	}*/
+
+	/*if (Player_Left_Collider < Ground_Left_Collider &&
+		Ground_Left_Collider < Player_Right_Collider &&
+		Player_Bottom_Collider < Ground_Top_Collider &&
+		Player_Top_Collider > Ground_Bottom_Collider)
+	{
+		_player.lock()->SetOnGround(true);
+		std::cout << "上側当たっています" << std::endl;
+ 		return true;
 	}
+	else {
+		_player.lock()->SetOnGround(false);
+		return false;
+	}*/
+
+	//Playerとオブジェクトが衝突したとき左に進めない
+	if (Player_Right_Collider > Ground_Left_Collider &&
+		Player_Bottom_Collider <= Ground_Top_Collider &&
+		Player_Left_Collider < Ground_Left_Collider)
+	{
+		_player.lock()->SetMoveRight(false);
+		std::cout << "右側当たっています" << std::endl;
+		return true;
+	}
+	else if (Player_Left_Collider < Ground_Right_Collider &&
+		Player_Bottom_Collider <= Ground_Top_Collider &&
+		Player_Right_Collider > Ground_Right_Collider)
+	{
+		_player.lock()->SetMoveLeft(false);
+		std::cout << "左側当たっています" << std::endl;
+		return true;
+	}
+	
+	
 
 }
 

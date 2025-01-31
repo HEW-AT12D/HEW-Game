@@ -26,10 +26,10 @@ bool BoxCollider(std::shared_ptr<T> _obj1, std::shared_ptr<U> _obj2)
 	Object2_Bottom_Collider = _obj2->GetPosition().y - _obj2->GetScale().y / 2;//グラウンドの下の当たり判定変数
 
 	// 四角と四角の当たり判定
-	if (Object1_Right_Collider < Object2_Right_Collider &&
-		Object2_Left_Collider < Object1_Left_Collider &&
+	if (Object1_Right_Collider > Object2_Left_Collider &&
+		Object2_Right_Collider > Object1_Left_Collider &&
 		Object1_Bottom_Collider < Object2_Top_Collider &&
-		Object1_Top_Collider > Object2_Top_Collider)
+		Object1_Top_Collider > Object2_Bottom_Collider)
 	{
 		return true;
 	}
@@ -37,6 +37,8 @@ bool BoxCollider(std::shared_ptr<T> _obj1, std::shared_ptr<U> _obj2)
 	{
 		return false;
 	}
+
+	
 }
 
 

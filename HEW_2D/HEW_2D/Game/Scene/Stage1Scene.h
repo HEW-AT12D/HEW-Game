@@ -26,7 +26,7 @@ public:
 	void Uninit(void)override;
 
 private:
-
+	Sound sound;
 };
 
 
