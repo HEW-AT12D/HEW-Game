@@ -6,10 +6,10 @@
 typedef enum
 {
 
-	SOUND_LABEL_BGM000,		// サンプルBGM
-	SOUND_LABEL_BGM001,			// サンプルBGM
-	SOUND_LABEL_SE000,			// サンプルSE
-	SOUND_LABEL_SE001,			// サンプルSE
+	SOUND_LABEL_BGM01,		// BGM
+	SOUND_LABEL_BGM02,		// サンプルBGM
+	SOUND_LABEL_SE01,		// SE
+	SOUND_LABEL_SE02,		// SE
 
 
 
@@ -25,10 +25,15 @@ typedef struct
 	//float volume;		//! 音の大きさ（1.0fがノーマル)
 } PARAM;		//PARAM型構造体
 
+
+/**
+ * @brief サウンドマネージャのような状態
+ * 
+ * 今回は時間がないのでシングルトンで全部のデータを入れて管理する
+*/
 class Sound {
 
 private:
-	
 
 	PARAM m_param[SOUND_LABEL_MAX] =
 	{
