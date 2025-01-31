@@ -26,5 +26,5 @@ public:
 
 private:
 	SceneManager scenemanager;	// シーン管理クラス
-	Sound sound;				// サウンドをここに持たせてる(要変更)
+
 };

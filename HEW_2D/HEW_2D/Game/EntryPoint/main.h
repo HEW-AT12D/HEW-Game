@@ -23,6 +23,7 @@
 #include <DirectXMath.h>	// DirextXの数学関連のヘッダーファイル
 #include <SimpleMath.h>
 #include <stdlib.h>
+#include <algorithm>
 #include <d3d11.h>			// DirectX11を使うためのヘッダーファイル
 
 // DirectX::を省略したい
@@ -36,5 +37,5 @@ constexpr uint32_t SCREEN_HEIGHT = 1080;
 
 // 定数定義
 const auto ClassName = TEXT("HEW2D");			//!< ウィンドウクラス名.
-const auto WindowName = TEXT("おとめるパレット");	//!< ウィンドウ名.
+const auto WindowName = TEXT("おとマトペ");		//!< ウィンドウ名.
 

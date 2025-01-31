@@ -20,6 +20,9 @@
 void Stage1Scene::Init(void) {
 	// オブジェクトマネージャ初期化
 	objectmanager.Init();
+
+	// BGM再生
+	Sound::GetInstance().Play(BGM_INGAME);
 	
 
 	//-----------------------
@@ -80,7 +83,6 @@ void Stage1Scene::Init(void) {
 	objectmanager.GetGameObjectPtr<Magazine>(OBJECT, "Magazine3").lock()->SetPosition(Vector3(400.0f, -400.0f, 0.0f));
 	objectmanager.GetGameObjectPtr<Magazine>(OBJECT, "Magazine3").lock()->SetScale(Vector3(90.0f, 90.0f, 0.0f));
 
-
 	// 地面
 	objectmanager.AddObject<GameObject>(GROUND, "Ground");
 	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground").lock()->Init(L"Game/Asset/GameObject/Ground.png");
@@ -132,7 +134,6 @@ void Stage1Scene::Init(void) {
 
 void Stage1Scene::Update(void)
 {
-	//sound.Play(SOUND_LABEL_BGM000);
 
 	// 入力情報の更新
 	Input::GetInstance().Update();
@@ -182,8 +183,7 @@ void Stage1Scene::Update(void)
 	// シーン遷移（デバック用
 	if (Input::GetInstance().GetKeyTrigger(VK_RETURN))
 	{
-		this->ChangeScene = true;
-		SetChangeScene(this->ChangeScene);
+		SetChangeScene(true);
 	}
 
 
@@ -194,7 +194,7 @@ void Stage1Scene::Update(void)
 	//ColliderPlayer_Ground(playerShared, groundShared2);
 
 
-	// クロスヘアの入力取得(本来はプレイヤーのフラグを立てて、プレイヤーの更新の中でクロスヘアを動かすべき)XINPUT_GAMEPAD_RIGHT_THUMB
+	// クロスヘアの入力取得(本来はプレイヤーのフラグを立てて、プレイヤーの更新の中でクロスヘアを動かすべき)
 	if (Input::GetInstance().GetKeyPress(VK_UP) || RightStickInput.y > 0.1f)
 	{
 		crosshairShared.lock()->SetMoveUp(true);
@@ -285,6 +285,8 @@ void Stage1Scene::Update(void)
 			{
 				throw std::runtime_error("擬音をキャストできませんでした");
 			}
+			// SE再生
+			Sound::GetInstance().Play(SE_SHOT);
 		}
 	}
 
@@ -296,6 +298,11 @@ void Stage1Scene::Update(void)
 	// プレイヤー発の扇型と当たってる擬音を探す→(一番近くの)当たってる擬音を吸い込む
 	if (Input::GetInstance().GetKeyPress(VK_F) || Input::GetInstance().GetLeftTrigger())
 	{
+		// 吸い込める擬音がなくても演出だけ行う
+		// SE再生
+		Sound::GetInstance().Play(SE_SUCTION);
+		// 
+
 		// 吸い込める擬音を探す
 		// そのフレーム内のタグが擬音のもの全て取得→それとプレイヤーから出る扇型の当たり判定を取得
 		//auto onomatopoeias = objectmanager.GetObjects<IOnomatopoeia>(ONOMATOPOEIA);
@@ -318,7 +325,7 @@ void Stage1Scene::Update(void)
 				{
 					// 吸い込み処理が終わった時に擬音のタグをUIに変更して
 					objectmanager.ChangeTag(HitOnomatopoeia.first.first, HitOnomatopoeia.first.second, UI);
-					
+
 					//// マガジン番号を次へ移行
 					//playerShared.second->SetMagNumber(playerShared.second->GetMagNumber() + 1);
 				}
@@ -336,6 +343,7 @@ void Stage1Scene::Update(void)
 			// プレイヤーの状態を変更
 			playerShared.second->SetIsSuction(false);		// 「非」吸い込み中に設定
 		}
+		
 	}
 	//連：メモ
 	//擬音を回収したときに、オブジェクトをただ移動させるだけじゃなくて、回収したオブジェクトの情報によって表示させるUIを変える
@@ -362,6 +370,9 @@ void Stage1Scene::Update(void)
 			/*magShared.second->SetScale(Vector3(75.0f, 75.0f, 0.0f));
 			magShared.second->SetPosition(Vector3(-800.0f, -500.0f, 0.0f));*/
 			m_MagCount = 0;
+
+			// サウンド再生
+			Sound::GetInstance().Play(SE_GETMAGAZINE);
 		}
 
 	}
@@ -394,6 +405,8 @@ void Stage1Scene::Update(void)
 		}
 		// 座標を設定
 		objectmanager.GetGameObjectPtr<GameObject>(UI, "Frame").lock()->SetPosition(p_frame);
+		// SE再生
+		Sound::GetInstance().Play(SE_CLICK);
 	}
 	// L1でマガジンカーソル左移動
 	if (Input::GetInstance().GetKeyTrigger(VK_O) || Input::GetInstance().GetButtonTrigger(XINPUT_GAMEPAD_LEFT_SHOULDER))
@@ -404,6 +417,7 @@ void Stage1Scene::Update(void)
 		// ドォン用マガジンを除く一番最初のマガジンを選択していなければ
 		if (playerShared.second->GetMagNumber() != 1)
 		{
+			Sound::GetInstance().Play(SE_CLICK);
 			// マガジン選択番号を１減らして
 			playerShared.second->SetMagNumber(playerShared.second->GetMagNumber() - 1);
 			// カーソルを左に移動
@@ -421,6 +435,8 @@ void Stage1Scene::Update(void)
 		}
 		// 座標を設定
 		objectmanager.GetGameObjectPtr<GameObject>(UI, "Frame").lock()->SetPosition(p_frame);
+		// SE再生
+		Sound::GetInstance().Play(SE_CLICK);
 	}
 
 	// マガジンとの当たり判定を毎フレーム取る→マガジンを取得したらその判定チェックはしなくておｋ
@@ -435,5 +451,7 @@ void Stage1Scene::Draw(void) {
 }
 
 void Stage1Scene::Uninit(void) {
+	// BGM停止
+	Sound::GetInstance().Stop(BGM_INGAME);
 	objectmanager.Uninit();
 }

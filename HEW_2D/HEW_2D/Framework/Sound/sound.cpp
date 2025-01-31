@@ -226,3 +226,9 @@ HRESULT Sound::ReadChunkData(HANDLE hFile, void* buffer, DWORD buffersize, DWORD
 		hr = HRESULT_FROM_WIN32(GetLastError());
 	return hr;
 }
+
+Sound& Sound::GetInstance(void)
+{
+	static Sound Instance;
+	return Instance;
+}

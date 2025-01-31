@@ -5,11 +5,19 @@
 // サウンドファイル
 typedef enum
 {
-
-	SOUND_LABEL_BGM000,		// サンプルBGM
-	SOUND_LABEL_BGM001,			// サンプルBGM
-	SOUND_LABEL_SE000,			// サンプルSE
-	SOUND_LABEL_SE001,			// サンプルSE
+	BGM_STAGESELECT,	// ステージ選択BGM
+	BGM_GAMECLEAR,		// ゲームクリアシーンBGM
+	BGM_INGAME,			// インゲームBGM
+	BGM_GAMEOVER,		// ゲームオーバーBGM
+	BGM_TITLE,			// タイトルシーBGM
+	SE_BIRIBIRI,		// ビリビリSE
+	SE_CLICK,			// クリックSE
+	SE_DOON,			// ドォンSE
+	SE_GETMAGAZINE,		// マガジン取得SE
+	SE_PATAPATA,		// パタパタSE
+	SE_SHOT,			// 擬音発射SE
+	SE_POYON,			// ポヨンSE
+	SE_SUCTION,			// 吸い込みSE
 
 
 
@@ -25,18 +33,31 @@ typedef struct
 	//float volume;		//! 音の大きさ（1.0fがノーマル)
 } PARAM;		//PARAM型構造体
 
+
+/**
+ * @brief サウンドマネージャのような状態
+ * 
+ * 今回は時間がないのでシングルトンで全部のデータを入れて管理する
+*/
 class Sound {
 
 private:
-	
 
 	PARAM m_param[SOUND_LABEL_MAX] =
 	{
-		{"Asset/SE/Magazine.wav", false},	// サンプルBGM（ループさせるのでtrue設定）
-//		{"asset/BGM/○○○.wav", true},	// サンプルBGM
-//		{"asset/SE/○○○.wav", false},  		// サンプルSE（ループしないのでfalse設定）
-//		{"asset/SE/○○○.wav", false},		// サンプルSE
-
+		{"Game/Asset/Sound/BGM/StageSelectSceneBGM.wav", true},	// ステージ選択BGM（ループさせるのでtrue設定）
+		{"Game/Asset/Sound/BGM/ClearSceneBGM.wav", true},		// ゲームクリアシーンBGM
+		{"Game/Asset/Sound/BGM/GameBGM.wav", true},  			// インゲームBGM
+		{"Game/Asset/Sound/BGM/GameOverSceneBGM.wav", true},	// ゲームオーバーシーンBGM
+		{"Game/Asset/Sound/BGM/TitleSceneBGM.wav", true},		// タイトルシーンBGM
+		{"Game/Asset/Sound/SE/BiriBiri.wav", false},			// 「ビリビリ」SE（ループしないのでfalse設定）
+		{"Game/Asset/Sound/SE/Click.wav", false},				// クリックSE（ループしないのでfalse設定）
+		{"Game/Asset/Sound/SE/Doon.wav", false},				// 「ビリビリ」SE（ループしないのでfalse設定）
+		{"Game/Asset/Sound/SE/Magazine.wav", false},			// マガジン取得SE（ループしないのでfalse設定）
+		{"Game/Asset/Sound/SE/PataPata.wav", false},			// 「パタパタ」SE（ループしないのでfalse設定）
+		{"Game/Asset/Sound/SE/Shot.wav", false},				// 擬音発射SE（ループしないのでfalse設定）		
+		{"Game/Asset/Sound/SE/Slime_Poyon.wav", false},			// 「ポヨン」SE（ループしないのでfalse設定）
+		{"Game/Asset/Sound/SE/Suction.wav", false},				// 吸い込みSE（ループしないのでfalse設定）
 
 
 	};
@@ -52,6 +73,8 @@ private:
 	HRESULT ReadChunkData(HANDLE, void*, DWORD, DWORD);
 
 	int Distance = 0;	//プレイヤーとオブジェクトの距離をもらう変数
+
+
 
 public:
 	// ゲームループ開始前に呼び出すサウンドの初期化処理
@@ -75,6 +98,11 @@ public:
 	//volume変数のセッター・ゲッター関数（音量調整のため）
 	int SetDistance(int);
 	int GetDistance(void);
+
+
+	static Sound& GetInstance(void);
+
+
 
 	/*===サウンドフレームワーク設計===*/
 
