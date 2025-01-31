@@ -6,6 +6,7 @@
 #include "../../Game/Objcet/Onomatopeia/PataPata/PataPata.h"
 #include "../../Game/Objcet/Onomatopeia/BiriBiri/BiriBiri.h"
 #include "../../Framework/Component/Collider/BoxCollider2D/Collider.h"
+#include "../Objcet/Camera/Camera.h"
 
 
 /**
@@ -105,6 +106,18 @@ void Stage1Scene::Init(void) {
 	objectmanager.GetGameObjectPtr<CrossHair>(UI, "CrossHair").lock()->SetScale(Vector3(30.0f, 30.0f, 0.0f));
 	// クロスヘアをプレイヤーの子オブジェクトとして設定
 	objectmanager.GetGameObject<Player>(PLAYER, "Player").second->SetChild(objectmanager.GetGameObject<CrossHair>(UI, "CrossHair").second);
+
+	//マガジンの外枠(初期位置は一番左上のマガジン)
+	objectmanager.AddObject<GameObject>(UI, "Frame");    // 名前要変更
+	objectmanager.GetGameObjectPtr<GameObject>(UI, "Frame").lock()->Init(L"Game/Asset/UI/Frame.png");
+	objectmanager.GetGameObjectPtr<GameObject>(UI, "Frame").lock()->SetPosition(Vector3(-900.0f, 495.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(UI, "Frame").lock()->SetScale(Vector3(120.0f, 80.0f, 0.0f));
+
+	// カメラ
+	objectmanager.AddObject<Camera>(CAMERA, "Camera");    // 名前要変更
+	objectmanager.GetGameObjectPtr<Camera>(CAMERA, "Camera").lock()->Init(L"Game/Asset/UI/BlackImage.png");
+	objectmanager.GetGameObjectPtr<Camera>(CAMERA, "Camera").lock()->SetPosition(Vector3(0.0f, 0.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<Camera>(CAMERA, "Camera").lock()->SetScale(Vector3(1920.0f, 1080.0f, 0.0f));
 
 	std::cout << "GameSceneInit" << std::endl;
 	//// UI1(ボタン)
@@ -303,8 +316,11 @@ void Stage1Scene::Update(void)
 				// 吸い込み処理が終わったら
 				if (playerShared.second->Suction(HitOnomatopoeia.second))
 				{
-					// 吸い込み処理が終わった時に擬音のタグをUIに変更、射撃するときにタグを擬音に変更する処理がまだ
+					// 吸い込み処理が終わった時に擬音のタグをUIに変更して
 					objectmanager.ChangeTag(HitOnomatopoeia.first.first, HitOnomatopoeia.first.second, UI);
+					
+					//// マガジン番号を次へ移行
+					//playerShared.second->SetMagNumber(playerShared.second->GetMagNumber() + 1);
 				}
 			}
 			// 擬音が0(吸い込み中に扇型範囲から擬音がいなくなった場合)
@@ -324,8 +340,9 @@ void Stage1Scene::Update(void)
 	//連：メモ
 	//擬音を回収したときに、オブジェクトをただ移動させるだけじゃなくて、回収したオブジェクトの情報によって表示させるUIを変える
 
-
-	// ここでマガジンがUIになっていなければ当たり判定を取りたい
+	/////////////////////////////////////////////////////
+	// ここでマガジンがUIになっていなければ当たり判定を取る
+	/////////////////////////////////////////////////////
 	if (m_MagCount >= 1)
 	{
 		// １つのシーンに落ちてるマガジン数は一個なので、シーンの持つマガジンカウントが１ならまだ当たっていない
@@ -347,6 +364,63 @@ void Stage1Scene::Update(void)
 			m_MagCount = 0;
 		}
 
+	}
+
+	/////////////////////////////////
+	// カーソル移動して擬音の選択
+	/////////////////////////////////
+	
+	// R1でマガジンカーソル右移動
+	if (Input::GetInstance().GetKeyTrigger(VK_P) || Input::GetInstance().GetButtonTrigger(XINPUT_GAMEPAD_RIGHT_SHOULDER))
+	{
+		// カーソルの座標取得
+		Vector3 p_frame = objectmanager.GetGameObjectPtr<GameObject>(UI, "Frame").lock()->GetPosition();
+
+		// ドォン用マガジンを除く一番最後のマガジンを選択していなければ
+		if (playerShared.second->GetMagNumber() != playerShared.second->GetMagCount() - 1)
+		{
+			// マガジン選択番号を１増やして
+			playerShared.second->SetMagNumber(playerShared.second->GetMagNumber() + 1);
+			// カーソルを右に移動
+			p_frame.x += 120.0f;
+		}
+		// 一番最後のマガジンを選択している場合
+		else
+		{
+			// マガジン選択番号を１(ドォン用マガジンを除く一番最初)に戻して
+			playerShared.second->SetMagNumber(1);
+			// カーソルを初期位置に移動
+			p_frame.x = -900.0f;
+		}
+		// 座標を設定
+		objectmanager.GetGameObjectPtr<GameObject>(UI, "Frame").lock()->SetPosition(p_frame);
+	}
+	// L1でマガジンカーソル左移動
+	if (Input::GetInstance().GetKeyTrigger(VK_O) || Input::GetInstance().GetButtonTrigger(XINPUT_GAMEPAD_LEFT_SHOULDER))
+	{
+		// カーソルの座標取得
+		Vector3 p_frame = objectmanager.GetGameObjectPtr<GameObject>(UI, "Frame").lock()->GetPosition();
+
+		// ドォン用マガジンを除く一番最初のマガジンを選択していなければ
+		if (playerShared.second->GetMagNumber() != 1)
+		{
+			// マガジン選択番号を１減らして
+			playerShared.second->SetMagNumber(playerShared.second->GetMagNumber() - 1);
+			// カーソルを左に移動
+			p_frame.x -= 120.0f;
+		}
+		// 一番最初のマガジンを選択している場合
+		else
+		{
+			// マガジン選択用カーソルを取得
+			auto magcursor = objectmanager.GetGameObjectPtr<GameObject>(UI, "Frame").lock();
+			// マガジン選択番号を(ドォン用マガジンを除く)一番後ろにして
+			playerShared.second->SetMagNumber(playerShared.second->GetMagCount() - 1);
+			// カーソルを一番後ろの位置に移動
+			p_frame.x = -900.0f + magcursor->GetScale().x * (playerShared.second->GetMagCount() - 2);	// 初期位置 + カーソルの大きさ * マガジン数(ドォン入れないので-2)
+		}
+		// 座標を設定
+		objectmanager.GetGameObjectPtr<GameObject>(UI, "Frame").lock()->SetPosition(p_frame);
 	}
 
 	// マガジンとの当たり判定を毎フレーム取る→マガジンを取得したらその判定チェックはしなくておｋ

@@ -47,6 +47,7 @@ public:
 		m_Soundgun = nullptr;
 		m_Magazines.clear();
 		UseMagNumber = 1;		// 0番目のマガジンはドォン専用なので1番目からスタート
+		BombCount = 0;
 	};
 
 	/**
@@ -84,11 +85,17 @@ public:
 	// 銃に装填されているマガジンを返す関数
 	std::shared_ptr<Magazine> GetUsingMag(void);
 
+	int GetMagNumber(void);
+	void SetMagNumber(int _num);
+
+	// マガジン数を返す
+	size_t GetMagCount(void);
 
 private:
 	bool IsSuction;		// 吸い込み中か？
 	bool IsShot;		// 発射中か？
 	int UseMagNumber;	// マガジンの何番目を使う(装填する)か
+	int BombCount;		// ドォンのカウント
 	// 擬音銃(吸い込む竜巻画像を持たせるために使う→シェーダーリソースビューとかを配列にすれば画像は複数読み込めたかも)
 	std::shared_ptr<SoundGun> m_Soundgun;		// 擬音銃
 	std::vector<std::shared_ptr<Magazine>> m_Magazines;	// マガジン（可変長）,0番目はドォン専用にして、その後はカウントを増やしてドォンを管理する？
