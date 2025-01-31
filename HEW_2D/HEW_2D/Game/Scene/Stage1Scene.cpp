@@ -119,7 +119,8 @@ void Stage1Scene::Init(void) {
 
 void Stage1Scene::Update(void)
 {
-	
+	//sound.Play(SOUND_LABEL_BGM000);
+
 	// 入力情報の更新
 	Input::GetInstance().Update();
 	// スティック入力値を取得

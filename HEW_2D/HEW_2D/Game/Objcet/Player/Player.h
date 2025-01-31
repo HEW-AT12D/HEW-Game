@@ -41,7 +41,7 @@ public:
 	Player(D3D11& _D3d11) :Character(_D3d11) {
 		m_Velocity = { 0.0f };
 		m_MoveSpeed = 5.0f;
-		m_JumpPower = 7.5f;
+		m_JumpPower = 10.5f; //7.5
 		IsShot = false;
 		IsSuction = false;
 		m_Soundgun = nullptr;
