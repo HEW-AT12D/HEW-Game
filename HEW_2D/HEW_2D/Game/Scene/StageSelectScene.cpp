@@ -57,7 +57,7 @@ void StageSelectScene::Update(void) {
 		if (Cursor_pos.y == -10.0f)
 		{
 			// 遷移先シーンをステージに設定
-			m_RequestNext = STAGE1;
+			m_RequestNext = STAGE2;
 		}
 		
 		// カーソル位置が下の場合
@@ -101,9 +101,9 @@ void StageSelectScene::Update(void) {
 	if (Input::GetInstance().GetButtonTrigger(XINPUT_GAMEPAD_DPAD_UP) || Input::GetInstance().GetKeyPress(VK_UP))
 	{
 		Cursor_pos.y += 300.0f;
-		if (Cursor_pos.y > 0.0f)
+		if (Cursor_pos.y > -10.0f)
 		{
-			Cursor_pos.y = 0.0f;
+			Cursor_pos.y = -10.0f;
 		}
 		objectmanager.GetGameObjectPtr<GameObject>(UI, "Cursol").lock()->SetPosition(Cursor_pos);
 		// SE再生
@@ -124,7 +124,6 @@ void StageSelectScene::Update(void) {
 		// ステージ1ボタンの画像を変化
 		Stage1Button_UV.x = 0;	// ステージ1を通常時に
 		Stage2Button_UV.x = 1;	// ステージ2を選択中に
-		m_RequestNext = STAGE2;	// 次シーンをステージ2へ
 	}
 	objectmanager.GetGameObjectPtr<GameObject>(UI, "STAGE1").lock()->SetUV(Stage1Button_UV);
 	objectmanager.GetGameObjectPtr<GameObject>(UI, "STAGE2").lock()->SetUV(Stage2Button_UV);

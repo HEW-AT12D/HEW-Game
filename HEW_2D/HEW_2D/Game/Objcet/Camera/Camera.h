@@ -34,7 +34,7 @@ public:
 	~Camera() {};
 	
 	void Update(void) override;		//! カメラスピードとオブジェクトの位置
-	
+	void SetIsMoving(bool _flg) { IsMoving = _flg; }
 
 private:
 	bool OnFade;	// フェード中

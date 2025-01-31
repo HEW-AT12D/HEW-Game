@@ -18,7 +18,9 @@
 */
 
 void Stage2Scene::Init(void) {
-	//sound.Init();
+	// BGM再生
+	Sound::GetInstance().Play(BGM_INGAME);
+
 
 	// オブジェクトマネージャ初期化
 	objectmanager.Init();
@@ -32,7 +34,7 @@ void Stage2Scene::Init(void) {
 
 	// 背景
 	objectmanager.AddObject<GameObject>(BACKGROUND, "Background");
-	objectmanager.GetGameObjectPtr<GameObject>(BACKGROUND, "Background").lock()->Init(L"Game/Asset/BackGround/ResultBack.png");
+	objectmanager.GetGameObjectPtr<GameObject>(BACKGROUND, "Background").lock()->Init(L"Game/Asset/BackGround/TitleBack.png");
 	objectmanager.GetGameObjectPtr<GameObject>(BACKGROUND, "Background").lock()->SetPosition(Vector3(0.0f, 0.0f, 0.0f));
 	objectmanager.GetGameObjectPtr<GameObject>(BACKGROUND, "Background").lock()->SetScale(Vector3(1920.0f, 1080.0f, 0.0f));
 
@@ -460,6 +462,8 @@ void Stage2Scene::Update(void)
 			{
 				throw std::runtime_error("擬音をキャストできませんでした");
 			}
+			// SE再生
+			Sound::GetInstance().Play(SE_SHOT);
 		}
 	}
 	//playerShared.lock()->Shot(gionShared);
@@ -636,9 +640,68 @@ void Stage2Scene::Update(void)
 
 	}
 
-	//BoxCollider()
 
+	/////////////////////////////////
+	// カーソル移動して擬音の選択
+	/////////////////////////////////
 
+	// R1でマガジンカーソル右移動
+	if (Input::GetInstance().GetKeyTrigger(VK_P) || Input::GetInstance().GetButtonTrigger(XINPUT_GAMEPAD_RIGHT_SHOULDER))
+	{
+		// カーソルの座標取得
+		Vector3 p_frame = objectmanager.GetGameObjectPtr<GameObject>(UI, "Frame").lock()->GetPosition();
+
+		// ドォン用マガジンを除く一番最後のマガジンを選択していなければ
+		if (playerShared.second->GetMagNumber() != playerShared.second->GetMagCount() - 1)
+		{
+			// マガジン選択番号を１増やして
+			playerShared.second->SetMagNumber(playerShared.second->GetMagNumber() + 1);
+			// カーソルを右に移動
+			p_frame.x += 120.0f;
+		}
+		// 一番最後のマガジンを選択している場合
+		else
+		{
+			// マガジン選択番号を１(ドォン用マガジンを除く一番最初)に戻して
+			playerShared.second->SetMagNumber(1);
+			// カーソルを初期位置に移動
+			p_frame.x = -900.0f;
+		}
+		// 座標を設定
+		objectmanager.GetGameObjectPtr<GameObject>(UI, "Frame").lock()->SetPosition(p_frame);
+		// SE再生
+		Sound::GetInstance().Play(SE_CLICK);
+	}
+	// L1でマガジンカーソル左移動
+	if (Input::GetInstance().GetKeyTrigger(VK_O) || Input::GetInstance().GetButtonTrigger(XINPUT_GAMEPAD_LEFT_SHOULDER))
+	{
+		// カーソルの座標取得
+		Vector3 p_frame = objectmanager.GetGameObjectPtr<GameObject>(UI, "Frame").lock()->GetPosition();
+
+		// ドォン用マガジンを除く一番最初のマガジンを選択していなければ
+		if (playerShared.second->GetMagNumber() != 1)
+		{
+			Sound::GetInstance().Play(SE_CLICK);
+			// マガジン選択番号を１減らして
+			playerShared.second->SetMagNumber(playerShared.second->GetMagNumber() - 1);
+			// カーソルを左に移動
+			p_frame.x -= 120.0f;
+		}
+		// 一番最初のマガジンを選択している場合
+		else
+		{
+			// マガジン選択用カーソルを取得
+			auto magcursor = objectmanager.GetGameObjectPtr<GameObject>(UI, "Frame").lock();
+			// マガジン選択番号を(ドォン用マガジンを除く)一番後ろにして
+			playerShared.second->SetMagNumber(playerShared.second->GetMagCount() - 1);
+			// カーソルを一番後ろの位置に移動
+			p_frame.x = -900.0f + magcursor->GetScale().x * (playerShared.second->GetMagCount() - 2);	// 初期位置 + カーソルの大きさ * マガジン数(ドォン入れないので-2)
+		}
+		// 座標を設定
+		objectmanager.GetGameObjectPtr<GameObject>(UI, "Frame").lock()->SetPosition(p_frame);
+		// SE再生
+		Sound::GetInstance().Play(SE_CLICK);
+	}
 	// マガジンとの当たり判定を毎フレーム取る→マガジンを取得したらその判定チェックはしなくておｋ
 	//objectmanager.Collider_Player_to_Object();		// ここで当たったらマガジン数を１つ減らす
 
