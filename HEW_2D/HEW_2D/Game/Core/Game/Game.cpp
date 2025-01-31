@@ -8,7 +8,7 @@
 void Game::Init(void)
 {
 	// シーンマネージャ、サウンドの初期化
-	sound.Init();
+	Sound::GetInstance().Init();
 	scenemanager.Init();
 }
 
@@ -44,5 +44,5 @@ void Game::Draw(void)
 void Game::Uninit(void)
 {
 	scenemanager.Uninit();
-	sound.Uninit();
+	//Sound::GetInstance().Uninit();
 }

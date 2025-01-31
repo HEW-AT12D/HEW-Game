@@ -3,6 +3,7 @@
 #include "../../Game/Objcet/BaseObject/GameObject.h"
 #include "../Objcet/Player/Player.h"
 #include "../Objcet/SoundGun/SoundGun.h"
+#include "../Objcet/Camera/Camera.h"
 
 //TODO: いちいちダウンキャストするのめんどくさいから関数にしちゃって、指定した型にダウンキャストしたポインタを返す関数作ったほうがいい
 
@@ -279,6 +280,12 @@ public:
 	}
 
 
+	// 全オブジェクトを取得する
+	std::vector<std::pair<std::pair<Tag, std::string>, std::shared_ptr<GameObject>>> GetAllObjects(void);
+
+	// カメラがあればそのポインタを返す関数
+	std::shared_ptr<Camera> HasCamera(void);
+
 	/**
 	 * @brief タグ変更関数
 	 * @param _tag 
@@ -308,7 +315,8 @@ private:
 
 	// unordered_mapにpairを使う場合、pairの紐づけないといけないためPairHashをmapの引数に入れる
 	std::unordered_map<std::pair<Tag, std::string>, std::shared_ptr<GameObject>, PairHash> Objects;
-	std::vector<std::shared_ptr<GameObject>> m_DrawObjects;		// 描画するオブジェクトを保存するコンテナ(毎フレームこの中のオブジェクトだけを描画する)
+	//std::vector<std::shared_ptr<GameObject>> m_DrawObjects;		// 描画するオブジェクトを保存するコンテナ(毎フレームこの中のオブジェクトだけを描画する)
 	D3D11& D3d11;
 };
 
+// シーン側で全オブジェクトを取得→オブジェクトのタグを確認→カメラの範囲以内にいないものは描画しない

@@ -24,15 +24,21 @@ public:
 		transform.SetScale(scele);
 		transform.SetPosition(Vector3(0.0f, 0.0f, 0.0f));
 		//cameraSpeed = StageSize / 100;	//!ステージの移動スピード
+
+		// 最初はフェードインから始めたいのでフェードのフラグのみを設定しておく
+		OnFade = true;
+		FadeIn = true;
+		IsMoving = false;
 	}
 
 	~Camera() {};
 	
 	void Update(void) override;		//! カメラスピードとオブジェクトの位置
+	
 
 private:
 	bool OnFade;	// フェード中
 	bool FadeIn;	// フェードイン/アウト判定
-	bool IsMoveing;	// 移動中か判定
+	bool IsMoving;	// 移動中か判定
 };
 

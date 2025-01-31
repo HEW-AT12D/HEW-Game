@@ -1,5 +1,6 @@
 #pragma once
 #include "../../Game/ObjectManager/ObjectManager.h"
+#include "../Sound/sound.h"
 
 //! -----------設計メモ：ISceneを作った後の話-----------------
 //! シーンクラスはテンプレートにして、基底クラスとしてISceneを持たせとくべきじゃない？？
