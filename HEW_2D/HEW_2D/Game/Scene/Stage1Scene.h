@@ -18,6 +18,8 @@ public:
 		// オブジェクトの追加はシーンの初期化で行う
 		// サウンドとかこのシーンのみ存在するものがあればその初期化を行う
 		ChangeScene = false;
+		CurrentFrame = FRAME1;	// 現在フレームをフレーム1に
+		OldFrame = FRAME_MAX;	// 一フレーム前はなし
 	};
 	~Stage1Scene() {};
 	void Init(void)override;
@@ -25,8 +27,18 @@ public:
 	void Draw(void)override;
 	void Uninit(void)override;
 
+	void Frame2Init(void);
+	void Frame3Init(void);
+	void Frame4Init(void);
+
+
 private:
+	FRAME CurrentFrame;		// 現在のフレーム
+	FRAME OldFrame;			// 一フレーム前のフレーム
 
 };
 
 
+
+// 289～317 スライム挙動
+// 539～612 擬音挙動
