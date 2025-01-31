@@ -512,8 +512,9 @@ void Stage2Scene::Update(void)
 				{
 					// 吸い込み処理が終わった時に擬音のタグをUIに変更、射撃するときにタグを擬音に変更する処理がまだ
 					objectmanager.ChangeTag(HitOnomatopoeia.first.first, HitOnomatopoeia.first.second, UI);
-					enemygion.lock()->SetColor(Color(1.0f, 1.0f, 1.0f, 1.0f));
+					/*enemygion.lock()->SetColor(Color(1.0f, 1.0f, 1.0f, 1.0f));
 					gionShared.lock()->SetColor(Color(1.0f, 1.0f, 1.0f, 1.0f));
+f					DoonShared.lock()->SetColor(Color(1.0f, 1.0f, 1.0f, 1.0f));*/
 				}
 			}
 			// 擬音が0(吸い込み中に扇型範囲から擬音がいなくなった場合)
