@@ -129,7 +129,8 @@ void Stage2Scene::Init(void) {
 	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "bane").lock()->SetScale(Vector3(330.0f, 330.0f, 0.0f));
 
 	//サンダーエフェクト
-	objectmanager.GetGameObjectPtr<BiriBiri>(UI, "Thunder_Effect").lock()->Init(L"Game/Asset/Efect/Thunder_Efect.png", 8, 1);
+	objectmanager.AddObject<BiriBiri>(UI, "Thunder_Effect");
+	objectmanager.GetGameObjectPtr<BiriBiri>(UI, "Thunder_Effect").lock()->Init(L"Game/Asset/Effect/Thunder_Effect.png", 8, 1);
 	objectmanager.GetGameObjectPtr<BiriBiri>(UI, "Thunder_Effect").lock()->SetPosition(Vector3(500.0f, 20.0f, 0.0f));
 	objectmanager.GetGameObjectPtr<BiriBiri>(UI, "Thunder_Effect").lock()->SetScale(Vector3(600.0f, 1200.0f, 0.0f));
 	objectmanager.GetGameObjectPtr<BiriBiri>(UI, "Thunder_Effect").lock()->SetColor(Color(1.0f, 1.0f, 1.0f, 1.0f));
@@ -175,7 +176,7 @@ void Stage2Scene::Update(void)
 	auto gionShared      = objectmanager.GetGameObjectPtr<BiriBiri>  (ONOMATOPOEIA, "Gion");
 	auto crosshairShared = objectmanager.GetGameObjectPtr<CrossHair> (UI, "CrossHair");
 	auto enemygion       = objectmanager.GetGameObjectPtr<Poyon>     (ONOMATOPOEIA, "_Gion2");
-	auto effectShared     = objectmanager.GetGameObjectPtr<GameObject>(UI, "Thunder_Effect");
+	auto effectShared     = objectmanager.GetGameObjectPtr<BiriBiri>(UI, "Thunder_Effect");
 	auto baneShared      = objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "bane");
 
 

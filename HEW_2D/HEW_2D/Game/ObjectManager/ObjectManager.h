@@ -308,6 +308,7 @@ private:
 
 	// unordered_mapにpairを使う場合、pairの紐づけないといけないためPairHashをmapの引数に入れる
 	std::unordered_map<std::pair<Tag, std::string>, std::shared_ptr<GameObject>, PairHash> Objects;
+	std::vector<std::shared_ptr<GameObject>> m_DrawObjects;		// 描画するオブジェクトを保存するコンテナ(毎フレームこの中のオブジェクトだけを描画する)
 	D3D11& D3d11;
 };
 

@@ -38,6 +38,7 @@ enum Tag {
 	ONOMATOPOEIA,
 	PLAYER,
 	ENEMY,
+	CAMERA
 };
 
 // オブジェクトの状態（ここに全部書き出しておく）

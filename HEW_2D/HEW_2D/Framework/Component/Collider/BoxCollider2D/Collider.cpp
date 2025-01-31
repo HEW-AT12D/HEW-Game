@@ -188,6 +188,8 @@ std::pair<std::pair<Tag, std::string>, std::shared_ptr<IOnomatopoeia>> ColliderF
 	float fanAngle = PI / 6;
 	//扇型の情報取得
 	float fanCenterX = fan.lock()->GetPosition().x + 200.0f;	//扇型の中心X座標
+	//float fanCenterX = fan.lock()->GetPosition().x + 200.0f;	//扇型の中心X座標
+
 	float fanCenterY = fan.lock()->GetPosition().y;   //扇型の中心Y座標
 	float fanRadius = fan.lock()->GetScale().x / 2;   //扇型の半径（スケールのX方向を使用）
 

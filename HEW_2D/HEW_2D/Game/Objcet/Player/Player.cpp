@@ -523,3 +523,20 @@ void Player::SetIsSuction(bool _flg)
 {
 	IsSuction = _flg;
 }
+
+// 選択されているマガジン番号のセッターゲッター
+void Player::SetMagNumber(int _num)
+{
+	this->UseMagNumber = _num;
+}
+
+int Player::GetMagNumber(void)
+{
+	return this->UseMagNumber;
+}
+
+// マガジン数のゲッター
+size_t Player::GetMagCount(void)
+{
+	return m_Magazines.size();
+}
