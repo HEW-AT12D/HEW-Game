@@ -1,4 +1,4 @@
-#include "Stage2Scene.h"
+#include"frame2.h"
 #include "../../Game/Objcet/Player/Player.h"
 #include "../../Game/Objcet/Enemy/Enemy.h"
 #include "../../Framework/Input/Input.h"
@@ -124,7 +124,7 @@ void Stage2Scene::Init(void) {
 
 	// バネ
 	objectmanager.AddObject<GameObject>(OBJECT, "bane");
-	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "bane").lock()->Init(L"Game/Asset/GameObject/Bane.png",3,1);
+	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "bane").lock()->Init(L"Game/Asset/GameObject/Bane.png", 3, 1);
 	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "bane").lock()->SetPosition(Vector3(0.0f, -360.0f, 0.0f));
 	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "bane").lock()->SetScale(Vector3(330.0f, 330.0f, 0.0f));
 
@@ -169,15 +169,15 @@ void Stage2Scene::Update(void)
 	// 入力情報の更新
 	// シーン更新に必要な情報を取得
 	auto grounds = objectmanager.GetObjects<GameObject>(GROUND);						// 地面(配列)
-	auto playerShared    = objectmanager.GetGameObject<Player>    (PLAYER, "Player");
-	auto groundShared    = objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground");
-	auto groundShared2   = objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground2");
-	auto enemyShared     = objectmanager.GetGameObjectPtr<Enemy>     (ENEMY, "Slime");
-	auto gionShared      = objectmanager.GetGameObjectPtr<BiriBiri>  (ONOMATOPOEIA, "Gion");
-	auto crosshairShared = objectmanager.GetGameObjectPtr<CrossHair> (UI, "CrossHair");
-	auto enemygion       = objectmanager.GetGameObjectPtr<Poyon>     (ONOMATOPOEIA, "_Gion2");
-	auto effectShared     = objectmanager.GetGameObjectPtr<BiriBiri>(UI, "Thunder_Effect");
-	auto baneShared      = objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "bane");
+	auto playerShared = objectmanager.GetGameObject<Player>(PLAYER, "Player");
+	auto groundShared = objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground");
+	auto groundShared2 = objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground2");
+	auto enemyShared = objectmanager.GetGameObjectPtr<Enemy>(ENEMY, "Slime");
+	auto gionShared = objectmanager.GetGameObjectPtr<BiriBiri>(ONOMATOPOEIA, "Gion");
+	auto crosshairShared = objectmanager.GetGameObjectPtr<CrossHair>(UI, "CrossHair");
+	auto enemygion = objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "_Gion2");
+	auto effectShared = objectmanager.GetGameObjectPtr<BiriBiri>(UI, "Thunder_Effect");
+	auto baneShared = objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "bane");
 
 
 
@@ -251,9 +251,9 @@ void Stage2Scene::Update(void)
 
 	ColliderPlayer_Ground(playerShared.second, grounds);
 
-	
-	
-	
+
+
+
 	if (enemygion.lock() != nullptr)
 	{
 		Vector4 poyon_color = enemygion.lock()->GetColor(); //エラー：吸収する瞬間にenemygion自体が削除されるのでエラーが出る
@@ -261,14 +261,14 @@ void Stage2Scene::Update(void)
 		p_poyon.x = p_poyon.x + 50;
 		p_poyon.y = p_poyon.y + 150;
 	}
-	
+
 	//EnemyとGroundが衝突していたら
 	/*ここでエネミーのY座標の値によって画像のα値を変動させる
 	例：高くなる程α値が増える*/
 	/*if (!Collider_toGround(enemyShared, groundShared))
 	{
 		poyon_color.w += 0.05f;
-		
+
 		enemygion.lock()->SetColor(poyon_color);
 
 	}
@@ -305,7 +305,7 @@ void Stage2Scene::Update(void)
 	{
 		crosshairShared.lock()->SetMoveUp(true);
 	}
-	else 
+	else
 	{
 		crosshairShared.lock()->SetMoveUp(false);
 	}
