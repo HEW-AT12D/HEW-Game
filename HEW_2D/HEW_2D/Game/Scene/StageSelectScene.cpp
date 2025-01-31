@@ -57,7 +57,7 @@ void StageSelectScene::Update(void) {
 		if (Cursor_pos.y == -10.0f)
 		{
 			// 遷移先シーンをステージに設定
-			m_RequestNext = TEST;
+			m_RequestNext = STAGE1;
 		}
 		
 		// カーソル位置が下の場合

@@ -1,3 +1,2 @@
-﻿  Stage1Scene.cpp
-C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\Stage1Scene.cpp(432,76): warning C4267: '引数': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
+﻿  SceneManager.cpp
   HEW_2D.vcxproj -> C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\x64\Debug\HEW_2D.exe

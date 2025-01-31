@@ -263,8 +263,8 @@
     <ClCompile Include="Game\Scene\Stage1Scene.cpp">
       <Filter>ゲーム\シーン\ステージ1</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Scene\frame3.cpp">
-      <Filter>ゲーム\シーン\テストシーン</Filter>
+    <ClCompile Include="Framework\Component\Transform\TransformComponent.cpp">
+      <Filter>フレームワーク\コンポーネント\Transform</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -384,9 +384,6 @@
     </ClInclude>
     <ClInclude Include="Game\Scene\Stage1Scene.h">
       <Filter>ゲーム\シーン\ステージ1</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Scene\frame3.h">
-      <Filter>ゲーム\シーン\テストシーン</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
