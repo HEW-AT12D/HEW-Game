@@ -15,6 +15,7 @@ public:
 		// オブジェクトの追加はシーンの初期化で行う
 		// サウンドとかこのシーンのみ存在するものがあればその初期化を行う
 		ChangeScene = false;
+		m_Frame = FRAME1;
 	};
 	~Stage2Scene() {};
 	void Init(void)override;

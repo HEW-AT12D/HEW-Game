@@ -37,10 +37,12 @@ enum SceneName {
  * 
  * シーン内のオブジェクトマネージャがオブジェクト生成時にd3dの参照を渡す
  */
+
+
 class IScene
 {
 public:
-	IScene(D3D11& _D3d11) :objectmanager(_D3d11) {
+	IScene(D3D11& _D3d11) :objectmanager(_D3d11),frame2(_D3d11) {
 		m_Frame = FRAME1;
 		m_MagCount = 1;
 	};
@@ -59,6 +61,7 @@ public:
 
 protected:
 	ObjectManager objectmanager;	// オブジェクトマネージャ
+	ObjectManager frame2;           //frame2のオブジェクト
 	SceneName m_RequestNext;		// 次に遷移したいシーン
 	FRAME m_Frame;					// 現在フレーム
 	bool ChangeScene = false;		// シーン切り替えフラグ

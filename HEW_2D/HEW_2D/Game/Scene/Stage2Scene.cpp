@@ -32,6 +32,7 @@ void Stage2Scene::Init(void) {
 	//-----------------------
 	// TODO:1218ここまで オブジェクトの管理をenumから変更→tagと名前にしたい
 
+
 	// 背景
 	objectmanager.AddObject<GameObject>(BACKGROUND, "Background");
 	objectmanager.GetGameObjectPtr<GameObject>(BACKGROUND, "Background").lock()->Init(L"Game/Asset/BackGround/TitleBack.png");
@@ -50,7 +51,6 @@ void Stage2Scene::Init(void) {
 	objectmanager.GetGameObjectPtr<SoundGun>(UI, "SoundGun").lock()->SetPosition(Vector3(0.0f, 600.0f, 0.0f));
 	objectmanager.GetGameObjectPtr<SoundGun>(UI, "SoundGun").lock()->SetScale(Vector3(130.0f, 130.0f, 0.0f));
 	objectmanager.GetGameObject<Player>(PLAYER, "Player").second->SetChild(objectmanager.GetGameObject<SoundGun>(UI, "SoundGun").second);
-
 
 	//擬音（ドーン）
 	objectmanager.AddObject<Poyon>(ONOMATOPOEIA, "Gion2");	// 名前要変更
@@ -151,6 +151,13 @@ void Stage2Scene::Init(void) {
 	objectmanager.GetGameObjectPtr<GameObject>(UI, "Frame").lock()->Init(L"Game/Asset/UI/Frame.png");
 	objectmanager.GetGameObjectPtr<GameObject>(UI, "Frame").lock()->SetPosition(Vector3(-900.0f, 495.0f, 0.0f));
 	objectmanager.GetGameObjectPtr<GameObject>(UI, "Frame").lock()->SetScale(Vector3(120.0f, 80.0f, 0.0f));
+	
+	// プレイヤー
+	frame2.AddObject<Player>(PLAYER, "Player");
+	frame2.GetGameObjectPtr<Player>(PLAYER, "Player").lock()->Init(L"Game/Asset/Character/Player_Sprite.png", 2, 3);
+	frame2.GetGameObjectPtr<Player>(PLAYER, "Player").lock()->SetPosition(Vector3(0.0f, 0.0f, 0.0f));
+	frame2.GetGameObjectPtr<Player>(PLAYER, "Player").lock()->SetScale(Vector3(130.0f, 130.0f, 0.0f));
+
 
 	std::cout << "TitleSceneInit" << std::endl;
 
@@ -193,6 +200,27 @@ void Stage2Scene::Update(void)
 	auto baneShared = objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "bane");
 	auto poyonShared = objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "Gion2");
 	auto groundShared3 = objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground3");
+
+	switch (m_Frame)
+	{
+	case FRAME1:
+
+		break;
+	case FRAME2:
+		grounds2.reset();
+		grounds.clear();
+		enemyShared.reset();
+		break;
+	case FRAME3:
+		break;
+	case FRAME4:
+		break;
+	case FRAME_MAX:
+		break;
+	default:
+		break;
+	}
+
 
 
 	effectShared.lock()->Animation(EFECT, effectShared);
@@ -245,8 +273,8 @@ void Stage2Scene::Update(void)
 	// シーン遷移（デバック用
 	if (Input::GetInstance().GetKeyTrigger(VK_RETURN))
 	{
-		this->ChangeScene = true;
-		SetChangeScene(this->ChangeScene);
+		//this->ChangeScene = true;
+		//SetChangeScene(this->ChangeScene);
 	}
 
 
@@ -261,8 +289,9 @@ void Stage2Scene::Update(void)
 		{
 			if (pos.y <= 0.0f)
 			{
-				SetChangeScene(true);
-				m_RequestNext = TITLE;
+				//SetChangeScene(true);
+				//m_RequestNext = TITLE;
+				m_Frame = FRAME2;
 			}
 		}
 	}
@@ -785,12 +814,7 @@ void Stage2Scene::Update(void)
 		// SE再生
 		Sound::GetInstance().Play(SE_CLICK);
 	}
-
-
-
-
 	objectmanager.Update();
-
 }
 
 void Stage2Scene::Draw(void) {
