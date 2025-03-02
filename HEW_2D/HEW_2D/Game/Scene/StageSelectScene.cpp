@@ -141,3 +141,6 @@ void StageSelectScene::Uninit(void) {
 	objectmanager.Uninit();
 }
 
+void StageSelectScene::ChangeFRAME(void) {
+	std::cout << "ChangeFRAMEŠÖ”" << std::endl;
+}

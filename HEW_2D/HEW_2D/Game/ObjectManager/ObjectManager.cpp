@@ -6,7 +6,7 @@
  * @brief オブジェクト削除関数
  * @param object 
 */
-void ObjectManager::DeleteObject(Tag _ObjName) {
+void ObjectManager::DeleteObject(Tag _ObjName,std::string) {
 	//! オブジェクト配列が空でなければ
 	if (!this->Objects.empty()) {
 		//! 指定した要素を削除

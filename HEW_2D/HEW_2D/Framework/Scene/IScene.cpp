@@ -22,3 +22,8 @@ SceneName IScene::GetRequestScene(void)
 {
 	return m_RequestNext;
 }
+
+void IScene::ChangeFRAME(void)
+{
+	std::cout << "ChangeFRAMEŠÖ”" << std::endl;
+}

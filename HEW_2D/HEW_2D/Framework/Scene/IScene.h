@@ -53,6 +53,7 @@ public:
 	virtual void Update(void) = 0;
 	virtual void Draw(void) = 0;
 	virtual void Uninit(void) = 0;
+	virtual void ChangeFRAME(void);
 
 	virtual void SetChangeScene(bool _Flg);
 	virtual bool GetChangeScene(void);

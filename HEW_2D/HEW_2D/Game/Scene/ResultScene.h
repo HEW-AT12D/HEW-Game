@@ -12,7 +12,7 @@ public:
 	void Update(void) override;		//! XV
 	void Draw(void) override;		//! •`‰æ
 	void Uninit(void) override;		//! I—¹
-
+	void ChangeFRAME(void) override;
 private:
 	
 };

@@ -42,3 +42,7 @@ void ResultScene::Draw(void) {
 void ResultScene::Uninit(void) {
 
 }
+
+void ResultScene::ChangeFRAME(void) {
+	std::cout << "ChangeFRAMEŠÖ”" << std::endl;
+}

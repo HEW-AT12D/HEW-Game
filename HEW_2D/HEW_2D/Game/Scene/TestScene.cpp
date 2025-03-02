@@ -944,3 +944,7 @@ void TestScene::Uninit(void) {
 	//sound.Uninit();
 
 }
+
+void TestScene::ChangeFRAME(void) {
+	std::cout << "ChangeFRAMEŠÖ”" << std::endl;
+}

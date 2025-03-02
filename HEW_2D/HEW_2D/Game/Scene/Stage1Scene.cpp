@@ -1677,3 +1677,7 @@ void Stage1Scene::Frame4Init(void)
 	objectmanager.GetGameObjectPtr<GameObject>(UI, "Frame").lock()->SetPosition(Vector3(-900.0f, 495.0f, 0.0f));
 	objectmanager.GetGameObjectPtr<GameObject>(UI, "Frame").lock()->SetScale(Vector3(120.0f, 80.0f, 0.0f));
 }
+
+void Stage1Scene::ChangeFRAME(void) {
+	std::cout << "ChangeFRAMEŠÖ”" << std::endl;
+}

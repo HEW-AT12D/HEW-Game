@@ -22,8 +22,14 @@ public:
 	void Update(void)override;
 	void Draw(void)override;
 	void Uninit(void)override;
-
+	void ChangeFRAME(void)override;
+	void Frame1(void);
+	void Frame2(void);
+	void Frame3(void);
+	void Frame4(void);
+	void (Stage2Scene::*Array[5])() = {&Stage2Scene::Frame1,&Stage2Scene::Frame2,&Stage2Scene::Frame3,&Stage2Scene::Frame4 };
 
 	Sound sound;
+	FRAME nowFRAME;
 private:
 };

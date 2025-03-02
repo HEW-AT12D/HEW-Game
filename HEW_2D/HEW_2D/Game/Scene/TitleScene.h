@@ -21,6 +21,7 @@ public:
 	void Update(void)override;
 	void Draw(void)override;
 	void Uninit(void)override;
+	void ChangeFRAME(void)override;
 
 	void Title_Onomatope_Move(std::weak_ptr<GameObject>,float); //TitleScene‚Ì‘•ü—p‚Ì‹[‰¹‚Ì“®‚«
 

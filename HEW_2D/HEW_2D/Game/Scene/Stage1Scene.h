@@ -26,6 +26,7 @@ public:
 	void Update(void)override;
 	void Draw(void)override;
 	void Uninit(void)override;
+	void ChangeFRAME(void)override;
 
 	void Frame2Init(void);
 	void Frame3Init(void);

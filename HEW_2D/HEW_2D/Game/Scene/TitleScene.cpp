@@ -123,3 +123,7 @@ void TitleScene::Title_Onomatope_Move(std::weak_ptr<GameObject>_onomatope,float 
 {
 	
 }
+
+void TitleScene::ChangeFRAME(void) {
+	std::cout << "ChangeFRAMEŠÖ”" << std::endl;
+}

@@ -22,6 +22,7 @@ public:
 	void Update(void)override;
 	void Draw(void)override;
 	void Uninit(void)override;
+	void ChangeFRAME(void)override;
 
 private:
 	FRAME frame;
