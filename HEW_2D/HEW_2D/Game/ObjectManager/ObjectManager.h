@@ -245,7 +245,7 @@ public:
 	 * @brief オブジェクト削除関数
 	 * @param object 削除対象オブジェクト
 	*/
-	void DeleteObject(Tag _ObjTag,std::string);
+	void DeleteObject(Tag _ObjTag,const std::string&objString);
 
 	// オブジェクト取得関数
 	//GameObject* GetGameObject(const Tag& _Tag, const std::string _Name);

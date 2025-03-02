@@ -6,11 +6,13 @@
  * @brief オブジェクト削除関数
  * @param object 
 */
-void ObjectManager::DeleteObject(Tag _ObjName,std::string) {
+void ObjectManager::DeleteObject(Tag _ObjName,const std::string&objString) {
 	//! オブジェクト配列が空でなければ
 	if (!this->Objects.empty()) {
 		//! 指定した要素を削除
-		//Objects.(_ObjName);
+		/*Objects.(_ObjName);*/
+		auto key = std::make_pair(_ObjName, objString); // 削除対象のキーを作成
+		Objects.erase(key); // キーを指定して削除	
 	}
 }
 
