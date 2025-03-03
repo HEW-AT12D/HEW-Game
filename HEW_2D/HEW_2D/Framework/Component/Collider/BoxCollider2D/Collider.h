@@ -59,7 +59,7 @@ bool Collider_toGround(std::weak_ptr<T> _obj1, std::weak_ptr<GameObject> _obj2)
 		return true;
 	}
 	else {
-		obj1->SetOnGround(false);
+		//obj1->SetOnGround(false);
 		return false;
 	}
 }

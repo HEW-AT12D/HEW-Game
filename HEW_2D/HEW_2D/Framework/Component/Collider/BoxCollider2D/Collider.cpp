@@ -100,6 +100,7 @@ bool Collider_to_Object(std::weak_ptr<Player> _player, std::weak_ptr<GameObject>
 		_player.lock()->SetOnGround(true);
 		return true;
 	}
+	//_player.lock()->SetOnGround(false);
 	return false;
 	
 	
