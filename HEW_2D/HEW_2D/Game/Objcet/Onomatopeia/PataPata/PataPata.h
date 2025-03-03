@@ -35,4 +35,5 @@ public:
 private:
 	bool Collider_check;
 	float Max_altitude;		//ŒÀŠE‚“x
+	bool Max = false;
 };

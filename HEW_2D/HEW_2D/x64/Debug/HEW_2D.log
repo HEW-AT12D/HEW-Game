@@ -1,4 +1,4 @@
 ﻿  Stage2Scene.cpp
-C:\Users\mhiro\OneDrive\デスクトップ\test\.git\HEW-Game\HEW_2D\HEW_2D\Game\Scene\Stage2Scene.cpp(791,77): warning C4267: '引数': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
-C:\Users\mhiro\OneDrive\デスクトップ\test\.git\HEW-Game\HEW_2D\HEW_2D\Game\Scene\Stage2Scene.cpp(853,77): warning C4267: '引数': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
+C:\Users\mhiro\OneDrive\デスクトップ\test\.git\HEW-Game\HEW_2D\HEW_2D\Game\Scene\Stage2Scene.cpp(806,77): warning C4267: '引数': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
+C:\Users\mhiro\OneDrive\デスクトップ\test\.git\HEW-Game\HEW_2D\HEW_2D\Game\Scene\Stage2Scene.cpp(868,77): warning C4267: '引数': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
   HEW_2D.vcxproj -> C:\Users\mhiro\OneDrive\デスクトップ\test\.git\HEW-Game\HEW_2D\x64\Debug\HEW_2D.exe

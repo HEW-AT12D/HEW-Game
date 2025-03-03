@@ -292,3 +292,8 @@ Vector3 GameObject::GetDirection(void)
 {
 	return m_Direction;
 }
+
+bool GameObject::GetOnGround(void)
+{
+	return OnGround;
+}

@@ -89,42 +89,18 @@ bool Collider_to_Object(std::weak_ptr<Player> _player, std::weak_ptr<GameObject>
 	Ground_Top_Collider = _object.lock()->GetPosition().y + _object.lock()->GetScale().y / 2;    //グラウンドの上の当たり判定変数
 	Ground_Bottom_Collider = _object.lock()->GetPosition().y - _object.lock()->GetScale().y / 2;//グラウンドの下の当たり判定変数
 
-	
-	//// **オブジェクトの上側（Top）で当たった判定**
-	//if (Player_Bottom_Collider <= Ground_Top_Collider &&  // プレイヤーの下端がオブジェクトの上端以下
-	//	Player_Top_Collider > Ground_Top_Collider &&      // プレイヤーの上端がオブジェクトの上端より上
-	//	Player_Right_Collider > Ground_Left_Collider &&   // 横方向でも重なっている
-	//	Player_Left_Collider < Ground_Right_Collider &&
-	//	_player.lock()->GetVelocity().y <= 0) {                   // 下方向に移動中のみ適用
-	//	_player.lock()->SetOnGround(true);  // 地面の上にいる
-	//	//_player.lock()->SetVelocityY(0);    // 落下を止める
-	//	std::cout << "オブジェクトの上側で当たっています" << std::endl;
-	//	return  true;
-	//}
-
-
 
 	//Playerとオブジェクトが衝突したとき左に進めない
+	// 四角と四角の当たり判定
 	if (Player_Right_Collider > Ground_Left_Collider &&
-		Player_Bottom_Collider <= Ground_Top_Collider &&
-		Player_Left_Collider < Ground_Left_Collider)
+		Ground_Right_Collider > Player_Left_Collider &&
+		Player_Bottom_Collider < Ground_Top_Collider &&
+		Player_Top_Collider > Ground_Bottom_Collider)
 	{
-		_player.lock()->SetMoveRight(false);
-		_player.lock()->SetOnGround(true);  // 地面の上にいる
-
-		std::cout << "右側当たっています" << std::endl;
+		_player.lock()->SetOnGround(true);
 		return true;
 	}
-	else if (Player_Left_Collider < Ground_Right_Collider &&
-		Player_Bottom_Collider <= Ground_Top_Collider &&
-		Player_Right_Collider > Ground_Right_Collider)
-	{
-		_player.lock()->SetMoveLeft(false);
-		_player.lock()->SetOnGround(true);  // 地面の上にいる
-
-		std::cout << "左側当たっています" << std::endl;
-		return true;
-	}
+	return false;
 	
 	
 

@@ -187,4 +187,5 @@ public:
 	virtual Int2 GetUV(void);				// UV座標を取得
 	virtual Vector3 GetVelocity(void);		// 速度を取得
 	virtual Vector3 GetDirection(void);		// 方向ベクトルを取得
+	virtual bool GetOnGround(void);         //デバック用
 };

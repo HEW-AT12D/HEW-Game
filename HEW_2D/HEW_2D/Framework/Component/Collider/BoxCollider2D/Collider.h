@@ -33,12 +33,7 @@ bool BoxCollider(std::shared_ptr<T> _obj1, std::shared_ptr<U> _obj2)
 	{
 		return true;
 	}
-	else
-	{
-		return false;
-	}
-
-	
+	return false;
 }
 
 
