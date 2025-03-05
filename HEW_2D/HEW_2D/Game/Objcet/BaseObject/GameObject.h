@@ -131,9 +131,6 @@ protected:
 	// 親オブジェクトのポインタ(子は親の所有権は持たないのでweak_ptrでおｋ)
 	std::weak_ptr<GameObject> m_pParent;
 
-	// 子オブジェクトのポインタ(親は子の所有権を持つのでshared_ptrにする)
-	std::vector<std::shared_ptr<GameObject>> m_pChildren;		// 子は複数存在する可能性があるのでvector
-
 	
 
 	// 加速度(それぞれの軸の方向の加速度(重力とか)を設定→毎フレーム一定の値(現実だと時間)を乗算した値を速度に代入する、というように使う)
@@ -154,6 +151,9 @@ public:
 	// 速度(これは毎フレーム変化する値)
 	Vector3 m_Velocity;
 	Vector3 m_Direction;
+	// 子オブジェクトのポインタ(親は子の所有権を持つのでshared_ptrにする)
+	std::vector<std::shared_ptr<GameObject>> m_pChildren;		// 子は複数存在する可能性があるのでvector
+
 
 	ConstBuffer cb;
 	//Tag tag;

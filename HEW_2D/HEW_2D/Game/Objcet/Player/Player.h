@@ -90,6 +90,7 @@ public:
 
 	// マガジン数を返す
 	size_t GetMagCount(void);
+	std::vector<std::shared_ptr<Magazine>> m_Magazines;	// マガジン（可変長）,0番目はドォン専用にして、その後はカウントを増やしてドォンを管理する？
 
 private:
 	bool IsSuction;		// 吸い込み中か？
@@ -98,7 +99,6 @@ private:
 	int BombCount;		// ドォンのカウント
 	// 擬音銃(吸い込む竜巻画像を持たせるために使う→シェーダーリソースビューとかを配列にすれば画像は複数読み込めたかも)
 	std::shared_ptr<SoundGun> m_Soundgun;		// 擬音銃
-	std::vector<std::shared_ptr<Magazine>> m_Magazines;	// マガジン（可変長）,0番目はドォン専用にして、その後はカウントを増やしてドォンを管理する？
 	std::shared_ptr<CrossHair> m_CrossHair;		// クロスヘア
 };
 

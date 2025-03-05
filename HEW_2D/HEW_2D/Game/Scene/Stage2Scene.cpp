@@ -326,7 +326,6 @@ void Stage2Scene::Update(void)
 	auto poyonShared = objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "Gion2");
 	auto crosshairShared = objectmanager.GetGameObjectPtr<CrossHair>(UI, "CrossHair");
 	auto BoxShared = objectmanager.GetGameObjectPtr<PataPata>(GROUND, "FRAME2Box");
-	auto Ground1FRAME2 = objectmanager.GetGameObjectPtr<GameObject>(GROUND, "FRAME2Ground1");
 	auto Ground2FRAME2 = objectmanager.GetGameObjectPtr<GameObject>(GROUND, "FRAME2Ground2");
 	auto Ground3FRAME2 = objectmanager.GetGameObjectPtr<GameObject>(GROUND, "FRAME2Ground3");
 	auto playerShared2 = objectmanager.GetGameObjectPtr<Player>(PLAYER, "Player");
@@ -343,6 +342,7 @@ void Stage2Scene::Update(void)
 	auto treasureBox = objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "FRAME2treasure");
 	auto groundShared2 = objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground2");
 	auto GOOL = objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "door");
+	auto Ground1FRAME2 = objectmanager.GetGameObjectPtr<GameObject>(GROUND, "FRAME2Ground1");
 
 	Vector3 pos = playerShared.second->GetPosition();
 	Vector3 p_enemy = enemyShared.lock()->GetPosition();
@@ -525,15 +525,16 @@ void Stage2Scene::Update(void)
 		{
 			if (Collider_to_Object(playerShared2.lock(), GOOL.lock()))
 			{
-				m_Frame = FRAME2;
+				m_Frame = FRAME3;
 				playerShared.second->SetOnGround(false);
-				Frame2();
+				Frame3();
 				objectmanager.DeleteObject(ONOMATOPOEIA, "Gion");
 				objectmanager.DeleteObject(UI, "Thunder_Effect");
 				objectmanager.DeleteObject(GROUND, "Ground3");
 				objectmanager.DeleteObject(GROUND, "Ground2");
 				//objectmanager.DeleteObject(ONOMATOPOEIA, "Gion2");
 				objectmanager.DeleteObject(ONOMATOPOEIA, "Poyon"); //FRAME1のポヨン
+				objectmanager.DeleteObject(GROUND, "FRAME2Ground1");
 			}
 		}
 		break;
@@ -867,6 +868,7 @@ void Stage2Scene::Update(void)
 
 	if (m_Frame == FRAME1)
 	{
+		std::cout << playerShared2.lock()->m_Magazines.size() << std::endl; //マガジン数のデバック
 		// シーン更新に必要な情報を取得
 		auto grounds2 = objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground2");
 		auto effectShared = objectmanager.GetGameObjectPtr<GameObject>(UI, "Thunder_Effect");
@@ -1076,6 +1078,9 @@ void Stage2Scene::Update(void)
 					playerShared.second->SetRotation(r_player);
 				}
 			}
+		}
+		else {
+			playerShared2.lock()->SetRotation(Vector3(0.0f, 0.0f, 0.0f));
 		}
 
 
