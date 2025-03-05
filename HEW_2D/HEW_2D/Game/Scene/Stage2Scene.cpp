@@ -86,7 +86,7 @@ void Stage2Scene::Frame1() {
 	// 地面2
 	objectmanager.AddObject<GameObject>(GROUND, "Ground2");
 	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground2").lock()->Init(L"Game/Asset/GameObject/Ground.png");
-	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground2").lock()->SetPosition(Vector3(600.0f, -50.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground2").lock()->SetPosition(Vector3(600.0f, -40.0f, 0.0f));
 	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground2").lock()->SetScale(Vector3(900.0f, 130.0f, 0.0f));
 
 	// 地面3
@@ -142,6 +142,13 @@ void Stage2Scene::Frame1() {
 	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "door").lock()->Init(L"Game/Asset/GameObject/door.png");
 	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "door").lock()->SetPosition(Vector3(850.0f, -370.0f, 0.0f));
 	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "door").lock()->SetScale(Vector3(100.0f, 150.0f, 0.0f));
+
+	std::vector<std::shared_ptr<GameObject>> objects = {
+	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground").lock(),//地面１
+	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground2").lock(),//地面２
+	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground3").lock() //地面３
+	};
+
 }
 
 void Stage2Scene::Frame2() {
@@ -334,6 +341,8 @@ void Stage2Scene::Update(void)
 	auto FRAME3Box2 = objectmanager.GetGameObjectPtr<GameObject>(GROUND, "FRAME3Box2");
 	auto gionShared = objectmanager.GetGameObjectPtr<BiriBiri>(ONOMATOPOEIA, "Gion");
 	auto treasureBox = objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "FRAME2treasure");
+	auto groundShared2 = objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground2");
+	auto GOOL = objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "door");
 
 	Vector3 pos = playerShared.second->GetPosition();
 	Vector3 p_enemy = enemyShared.lock()->GetPosition();
@@ -343,6 +352,7 @@ void Stage2Scene::Update(void)
 	switch (m_Frame)
 	{
 	case FRAME1:
+		
 		break;
 	case FRAME2:
 		objectmanager.Update(); //Playerの物理挙動
@@ -352,17 +362,17 @@ void Stage2Scene::Update(void)
 			std::cout << "OnGroundの状態：" << playerShared.second->GetOnGround() << std::endl;
 		}*/
 
-		Collider_toGround(playerShared2, BoxShared.lock());
-		Collider_toGround(playerShared2, Ground1FRAME2.lock());
-		Collider_toGround(playerShared2, Ground2FRAME2.lock());
-		Collider_toGround(playerShared2, Ground3FRAME2.lock());
+		BoxCollider2(playerShared2.lock(), BoxShared.lock(), playerShared2.lock());
+		BoxCollider2(playerShared2.lock(), Ground1FRAME2.lock(), playerShared2.lock());
+		BoxCollider2(playerShared2.lock(), Ground2FRAME2.lock(), playerShared2.lock());
+		BoxCollider2(playerShared2.lock(), Ground3FRAME2.lock(), playerShared2.lock());
 
 		BoxShared.lock()->Action(BoxShared.lock(),playerShared.second);
 		
 		//std::cout << "OnGroundの状態：" << playerShared.second->GetOnGround() << std::endl;
 
 		//スライムジャンプ
-		if (Collider_toGround(enemyShared, groundShared))
+		if (Collider_toEnemy(enemyShared, groundShared))
 		{
 			//スライムジャンプフラグ
 			if (enemygion2.lock())
@@ -510,35 +520,30 @@ void Stage2Scene::Update(void)
 		}
 
 
-		if (Input::GetInstance().GetButtonPress(XINPUT_GAMEPAD_B) || Input::GetInstance().GetKeyTrigger(VK_RETURN))
+		// フレーム遷移処理
+		if (Input::GetInstance().GetButtonTrigger(XINPUT_GAMEPAD_B) || Input::GetInstance().GetKeyTrigger(VK_RETURN))
 		{
-			Vector3 pos = playerShared.second->GetPosition();
-			if (pos.x >= 850.0f)
+			if (Collider_to_Object(playerShared2.lock(), GOOL.lock()))
 			{
-				if (pos.y <= 0.0f)
-				{
-					m_Frame = FRAME3;
-					playerShared.second->SetOnGround(false);
-					Frame3();
-					objectmanager.DeleteObject(OBJECT, "bane");
-					//objectmanager.DeleteObject(ENEMY, "Slime");
-					objectmanager.DeleteObject(GROUND, "FRAME2Ground1");
-					//objectmanager.DeleteObject(GROUND, "FRAME2Ground2");
-					//objectmanager.DeleteObject(GROUND, "FRAME2Ground3");
-					objectmanager.DeleteObject(OBJECT, "FRAME2treasure");
-					objectmanager.DeleteObject(ONOMATOPOEIA, "FRAME2Gion2");
-				
-				}
+				m_Frame = FRAME2;
+				playerShared.second->SetOnGround(false);
+				Frame2();
+				objectmanager.DeleteObject(ONOMATOPOEIA, "Gion");
+				objectmanager.DeleteObject(UI, "Thunder_Effect");
+				objectmanager.DeleteObject(GROUND, "Ground3");
+				objectmanager.DeleteObject(GROUND, "Ground2");
+				//objectmanager.DeleteObject(ONOMATOPOEIA, "Gion2");
+				objectmanager.DeleteObject(ONOMATOPOEIA, "Poyon"); //FRAME1のポヨン
 			}
 		}
 		break;
 	case FRAME3:
 		objectmanager.Update();
 		ColliderPlayer_Ground(playerShared.second, grounds);
-		Collider_toGround(playerShared2, BoxShared.lock());
-		Collider_toGround(playerShared2, Ground3FRAME2.lock());
-		Collider_toGround(playerShared2, Ground2FRAME2.lock());
-		Collider_toGround(playerShared2, Ground1FRAME3.lock());
+		BoxCollider2(playerShared2.lock(), BoxShared.lock(),playerShared2.lock());
+		BoxCollider2(playerShared2.lock(), Ground3FRAME2.lock(), playerShared2.lock());
+		BoxCollider2(playerShared2.lock(), Ground2FRAME2.lock(), playerShared2.lock());
+		BoxCollider2(playerShared2.lock(), Ground1FRAME3.lock(), playerShared2.lock());
 
 		if (PataPataFRAME3.lock())
 		{
@@ -719,6 +724,23 @@ void Stage2Scene::Update(void)
 			std::cout << "enemygionがemptyです" << std::endl;
 		}*/
 
+		// フレーム遷移処理
+		if (Input::GetInstance().GetButtonTrigger(XINPUT_GAMEPAD_B) || Input::GetInstance().GetKeyTrigger(VK_RETURN))
+		{
+			if (Collider_to_Object(playerShared2.lock(), GOOL.lock()))
+			{
+				m_Frame = FRAME2;
+				playerShared.second->SetOnGround(false);
+				Frame4();
+				objectmanager.DeleteObject(ONOMATOPOEIA, "Gion");
+				objectmanager.DeleteObject(UI, "Thunder_Effect");
+				objectmanager.DeleteObject(GROUND, "Ground3");
+				objectmanager.DeleteObject(GROUND, "Ground2");
+				//objectmanager.DeleteObject(ONOMATOPOEIA, "Gion2");
+				objectmanager.DeleteObject(ONOMATOPOEIA, "Poyon"); //FRAME1のポヨン
+			}
+		}
+
 		break;
 	case FRAME4:
 		Frame4();
@@ -728,6 +750,9 @@ void Stage2Scene::Update(void)
 	default:
 		break;
 	}
+
+
+
 
 	// ----------------吸い込み処理→ここはプレイヤーの処理に移す-------------------------
 		// プレイヤー発の扇型と当たってる擬音を探す→(一番近くの)当たってる擬音を吸い込む
@@ -795,10 +820,9 @@ void Stage2Scene::Update(void)
 		//std::cout << "Playerの座標移動ができています" << std::endl;
 	}
 	// ジャンプ
-	if (Input::GetInstance().GetKeyTrigger(VK_SPACE) || Input::GetInstance().GetButtonPress(XINPUT_GAMEPAD_A))
+	if (Input::GetInstance().GetKeyTrigger(VK_SPACE) || Input::GetInstance().GetButtonTrigger(XINPUT_GAMEPAD_A))
 	{
 		objectmanager.GetGameObjectPtr<Player>(PLAYER, "Player").lock()->SetJump(true);
-
 		//デバック用
 		//std::cout << "Playerの座標移動ができています" << std::endl;
 	}
@@ -845,10 +869,11 @@ void Stage2Scene::Update(void)
 	{
 		// シーン更新に必要な情報を取得
 		auto grounds2 = objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground2");
-		auto groundShared2 = objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground2");
 		auto effectShared = objectmanager.GetGameObjectPtr<GameObject>(UI, "Thunder_Effect");
 		auto groundShared3 = objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground3");
+		ColliderPlayer_Ground(playerShared.second, grounds);
 
+		 BoxCollider2(playerShared2.lock(), groundShared2.lock(),playerShared2.lock());
 		
 		effectShared.lock()->Animation(EFECT, effectShared);
 
@@ -876,21 +901,13 @@ void Stage2Scene::Update(void)
 		}*/
 
 
-		if (ColliderPlayer_Ground(playerShared.second, grounds))
-		{
-			Collider_to_Object(playerShared.second, baneShared.lock());
-
-		}
-		else {
-			Collider_toGround(playerShared2, grounds2.lock());
-
-		}
+		
 		//ColliderPlayer_Ground(playerShared.second, grounds2);
 
 
 
 		//スライムジャンプ
-		if (Collider_toGround(enemyShared, groundShared))
+		if (Collider_toEnemy(enemyShared, groundShared))
 		{
 			//スライムジャンプフラグ
 			if (enemygion.lock())
@@ -1213,27 +1230,24 @@ void Stage2Scene::Update(void)
 
 
 		// フレーム遷移処理
-		if (Input::GetInstance().GetButtonPress(XINPUT_GAMEPAD_B) || Input::GetInstance().GetKeyTrigger(VK_RETURN))
+		if (Input::GetInstance().GetButtonTrigger(XINPUT_GAMEPAD_B) || Input::GetInstance().GetKeyTrigger(VK_RETURN))
 		{
-			Vector3 pos = playerShared.second->GetPosition();
-			if (pos.x >= 850.0f)
+			if (Collider_to_Object(playerShared2.lock(), GOOL.lock()))
 			{
-				if (pos.y <= 0.0f)
-				{
-					m_Frame = FRAME2;
-					playerShared.second->SetOnGround(false);
-					Frame2();
-					objectmanager.DeleteObject(ONOMATOPOEIA, "Gion");
-					objectmanager.DeleteObject(UI, "Thunder_Effect");
-					objectmanager.DeleteObject(GROUND, "Ground3");
-					objectmanager.DeleteObject(GROUND, "Ground2");
-					//objectmanager.DeleteObject(ONOMATOPOEIA, "Gion2");
-					objectmanager.DeleteObject(ONOMATOPOEIA, "Poyon"); //FRAME1のポヨン
-				}
+				m_Frame = FRAME2;
+				playerShared.second->SetOnGround(false);
+				Frame2();
+				objectmanager.DeleteObject(ONOMATOPOEIA, "Gion");
+				objectmanager.DeleteObject(UI, "Thunder_Effect");
+				objectmanager.DeleteObject(GROUND, "Ground3");
+				objectmanager.DeleteObject(GROUND, "Ground2");
+				//objectmanager.DeleteObject(ONOMATOPOEIA, "Gion2");
+				objectmanager.DeleteObject(ONOMATOPOEIA, "Poyon"); //FRAME1のポヨン
 			}
 		}
 		objectmanager.Update();
 	}
+	
 }
 
 void Stage2Scene::Draw(void) {

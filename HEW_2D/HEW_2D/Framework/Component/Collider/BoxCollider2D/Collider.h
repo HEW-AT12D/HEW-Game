@@ -1,6 +1,7 @@
 #pragma once
 #include"../../../../Game/Objcet/BaseObject/Object.h"
-
+#include <memory>
+#include <algorithm> // std::min を使うため
 
 /**
  * @brief 四角と四角の当たり判定
@@ -8,6 +9,67 @@
  * @param  
  * @return 結果
 */
+template <class T, class U>
+bool BoxCollider2(std::shared_ptr<T> _obj1, std::shared_ptr<U> _obj2,std::shared_ptr<Player>_player)
+{
+	// オブジェクト1の各辺
+	float Object1_Right_Collider = _obj1->GetPosition().x + _obj1->GetScale().x / 2;
+	float Object1_Left_Collider = _obj1->GetPosition().x - _obj1->GetScale().x / 2;
+	float Object1_Top_Collider = _obj1->GetPosition().y + _obj1->GetScale().y / 2;
+	float Object1_Bottom_Collider = _obj1->GetPosition().y - _obj1->GetScale().y / 2;
+
+	// オブジェクト2の各辺
+	float Object2_Right_Collider = _obj2->GetPosition().x + _obj2->GetScale().x / 2;
+	float Object2_Left_Collider = _obj2->GetPosition().x - _obj2->GetScale().x / 2;
+	float Object2_Top_Collider = _obj2->GetPosition().y + _obj2->GetScale().y / 2;
+	float Object2_Bottom_Collider = _obj2->GetPosition().y - _obj2->GetScale().y / 2;
+
+	// 衝突判定
+	if (Object1_Right_Collider > Object2_Left_Collider &&
+		Object2_Right_Collider > Object1_Left_Collider &&
+		Object1_Bottom_Collider < Object2_Top_Collider &&
+		Object1_Top_Collider > Object2_Bottom_Collider)
+	{
+		// オーバーラップ量の計算
+		float overlapRight = Object1_Right_Collider - Object2_Left_Collider;
+		float overlapLeft = Object2_Right_Collider - Object1_Left_Collider;
+		float overlapBottom = Object2_Top_Collider - Object1_Bottom_Collider;
+		float overlapTop = Object1_Top_Collider - Object2_Bottom_Collider;
+
+		// `std::min` を使わずに最小値を求める
+		float minOverlap = overlapRight;
+		if (overlapLeft < minOverlap) minOverlap = overlapLeft;
+		if (overlapBottom < minOverlap) minOverlap = overlapBottom;
+		if (overlapTop < minOverlap) minOverlap = overlapTop;
+
+		if (minOverlap == overlapRight) {
+			std::cout << "右から衝突" << std::endl;
+			_player->SetMoveRight(false);
+
+			return true;  // 右から衝突
+		}
+		else if (minOverlap == overlapLeft) {
+			std::cout << "左から衝突" << std::endl;
+			_player->SetMoveLeft(false);
+
+			return true;  // 左から衝突
+		}
+		else if (minOverlap == overlapBottom) {
+			std::cout << "下から衝突" << std::endl;
+			_player->SetOnGround(true);
+			_player->SetDirection(Vector3({ 0.0f }));
+			_player->AddForce(Vector3({ 0.0f }));
+			return true;  // 下から衝突
+		}
+		else {
+			std::cout << "上から衝突" << std::endl;
+			return true;  // 上から衝突
+		}
+	}
+
+	return false; // 衝突なし
+}
+
 template <class T, class U>
 bool BoxCollider(std::shared_ptr<T> _obj1, std::shared_ptr<U> _obj2)
 {
@@ -60,6 +122,26 @@ bool Collider_toGround(std::weak_ptr<T> _obj1, std::weak_ptr<GameObject> _obj2)
 	}
 	else {
 		//obj1->SetOnGround(false);
+		return false;
+	}
+}
+
+template <class T>
+bool Collider_toEnemy(std::weak_ptr<T> _obj1, std::weak_ptr<GameObject> _obj2)
+{
+	auto obj1 = _obj1.lock();
+	auto obj2 = _obj2.lock();
+
+	if (BoxCollider(obj1, obj2))
+	{
+		// 地面に当たったオブジェクトの速度、方向ベクトルをリセットする
+		obj1->SetDirection(Vector3({ 0.0f }));
+		obj1->AddForce(Vector3({ 0.0f }));
+		obj1->SetOnGround(true);
+		return true;
+	}
+	else {
+		obj1->SetOnGround(false);
 		return false;
 	}
 }

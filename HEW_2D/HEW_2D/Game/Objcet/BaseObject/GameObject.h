@@ -134,14 +134,12 @@ protected:
 	// 子オブジェクトのポインタ(親は子の所有権を持つのでshared_ptrにする)
 	std::vector<std::shared_ptr<GameObject>> m_pChildren;		// 子は複数存在する可能性があるのでvector
 
-	// 速度(これは毎フレーム変化する値)
-	Vector3 m_Velocity;
+	
 
 	// 加速度(それぞれの軸の方向の加速度(重力とか)を設定→毎フレーム一定の値(現実だと時間)を乗算した値を速度に代入する、というように使う)
 	//Vector3 m_Acceleration;→速度から算出できるのでいらない
 
 	// 移動用方向ベクトル(Transform.Rotaionは回転を扱うものなので別物)
-	Vector3 m_Direction;
 
 	// 付与されている擬音
 	std::shared_ptr<IOnomatopoeia> m_AttachedOnomatopoeia;
@@ -153,6 +151,10 @@ protected:
 	//Tag m_Tag;
 
 public:
+	// 速度(これは毎フレーム変化する値)
+	Vector3 m_Velocity;
+	Vector3 m_Direction;
+
 	ConstBuffer cb;
 	//Tag tag;
 

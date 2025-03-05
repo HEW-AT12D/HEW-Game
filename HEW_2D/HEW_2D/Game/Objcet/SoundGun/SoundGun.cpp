@@ -116,6 +116,7 @@ bool SoundGun::Suction(std::weak_ptr<GameObject> _gion)
 			onomatopoeia->SetPosition(player->GetUsingMag()->GetPosition());	// 座標を設定
 			onomatopoeia->SetRotation(player->GetUsingMag()->GetRotation());	// 角度を設定
 			onomatopoeia->SetScale(player->GetUsingMag()->GetScale());			// 大きさを設定
+			onomatopoeia->SetColor(Color(1.0f, 1.0f, 1.0f, 1.0f));				//色の初期化
 			player->GetUsingMag()->SetOnomatopoeia(onomatopoeia);				// マガジンに装填
 			
 			// プレイヤーと擬音銃の吸い込み状態を解除

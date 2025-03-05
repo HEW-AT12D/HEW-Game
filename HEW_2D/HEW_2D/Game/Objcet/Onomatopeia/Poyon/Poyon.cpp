@@ -13,8 +13,8 @@ void Poyon::Action(std::weak_ptr<Player> _player)
 			//dynamic_pointer_castを使用して派生クラスにキャスト
 			auto derivedPlayer = std::dynamic_pointer_cast<Player>(sharedPlayer);
 			if (derivedPlayer) {//キャストに成功していたら
-				derivedPlayer->SetJump(true);
-
+				//derivedPlayer->SetJump(true);
+				derivedPlayer->m_Velocity.y = 25.0f; //ポヨン付与したときのジャンプ力
 			}
 			else {
 				std::cout << "キャストに失敗しました" << std::endl;

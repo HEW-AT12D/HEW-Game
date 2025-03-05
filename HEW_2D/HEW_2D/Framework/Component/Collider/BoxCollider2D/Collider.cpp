@@ -10,6 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 
+
 //Player‚ÆGround‚Ì“–‚½‚è”»’è(”z—ñ)
 //template <class T, class U>
 bool ColliderPlayer_Ground(std::shared_ptr<Player> _player, std::vector<std::shared_ptr<GameObject>> _objects)
@@ -97,7 +98,7 @@ bool Collider_to_Object(std::weak_ptr<Player> _player, std::weak_ptr<GameObject>
 		Player_Bottom_Collider < Ground_Top_Collider &&
 		Player_Top_Collider > Ground_Bottom_Collider)
 	{
-		_player.lock()->SetOnGround(true);
+		//_player.lock()->SetOnGround(true);
 		return true;
 	}
 	//_player.lock()->SetOnGround(false);
