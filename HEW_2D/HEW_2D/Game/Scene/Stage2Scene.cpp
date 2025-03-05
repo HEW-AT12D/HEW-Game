@@ -31,10 +31,10 @@ void Stage2Scene::Frame1() {
 	objectmanager.GetGameObjectPtr<GameObject>(BACKGROUND, "board1").lock()->SetScale(Vector3(500.0f, 500.0f, 0.0f));
 
 	// プレイヤー(看板用)
-	objectmanager.AddObject<GameObject>(PLAYER, "Playerboard");
-	objectmanager.GetGameObjectPtr<GameObject>(PLAYER, "Playerboard").lock()->Init(L"Game/Asset/Character/Player_Sprite.png", 2, 3);
-	objectmanager.GetGameObjectPtr<GameObject>(PLAYER, "Playerboard").lock()->SetPosition(Vector3(-500.0f, -150.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<GameObject>(PLAYER, "Playerboard").lock()->SetScale(Vector3(100.0f, 100.0f, 0.0f));
+	objectmanager.AddObject<GameObject>(BACKGROUND, "Playerboard");
+	objectmanager.GetGameObjectPtr<GameObject>(BACKGROUND, "Playerboard").lock()->Init(L"Game/Asset/Character/Player_Sprite.png", 2, 3);
+	objectmanager.GetGameObjectPtr<GameObject>(BACKGROUND, "Playerboard").lock()->SetPosition(Vector3(-500.0f, -150.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(BACKGROUND, "Playerboard").lock()->SetScale(Vector3(100.0f, 100.0f, 0.0f));
 
 	// スライム(看板用)
 	objectmanager.AddObject<GameObject>(ENEMY, "Slimeboard");
@@ -57,7 +57,7 @@ void Stage2Scene::Frame1() {
 	// プレイヤー
 	objectmanager.AddObject<Player>(PLAYER, "Player");
 	objectmanager.GetGameObjectPtr<Player>(PLAYER, "Player").lock()->Init(L"Game/Asset/Character/Player_Sprite.png", 2, 3);
-	objectmanager.GetGameObjectPtr<Player>(PLAYER, "Player").lock()->SetPosition(Vector3(-500.0f, 600.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<Player>(PLAYER, "Player").lock()->SetPosition(Vector3(-500.0f, -200.0f, 0.0f));
 	objectmanager.GetGameObjectPtr<Player>(PLAYER, "Player").lock()->SetScale(Vector3(130.0f, 130.0f, 0.0f));
 
 	// 擬音銃(設計的には銃を別画像で用意してプレイヤーに持たせる方が良かったが、)
@@ -173,8 +173,6 @@ void Stage2Scene::Frame1() {
 
 	std::vector<std::shared_ptr<GameObject>> objects = {
 	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground").lock(),//地面１
-	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground2").lock(),//地面２
-	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground3").lock() //地面３
 	};
 
 	//擬音（ドーン）
@@ -351,6 +349,7 @@ void Stage2Scene::Update(void)
 	// 入力情報の更新
 	auto playerShared = objectmanager.GetGameObject<Player>(PLAYER, "Player");
 	auto grounds = objectmanager.GetObjects<GameObject>(GROUND);	// 地面(配列)
+	auto under_ground = objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground");
 	auto enemyShared = objectmanager.GetGameObjectPtr<Enemy>(ENEMY, "Slime");
 	auto enemygion = objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "Poyon");
 	auto groundShared = objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground");
@@ -394,8 +393,6 @@ void Stage2Scene::Update(void)
 
 		break;
 	case FRAME2:
-		objectmanager.Update(); //Playerの物理挙動
-		ColliderPlayer_Ground(playerShared.second, grounds);
 		/*if (ColliderPlayer_Ground(playerShared2.lock(), Ground1FRAME2)) {
 			playerShared2.lock()->SetOnGround(true);
 			std::cout << "OnGroundの状態：" << playerShared.second->GetOnGround() << std::endl;
@@ -530,10 +527,11 @@ void Stage2Scene::Update(void)
 				objectmanager.DeleteObject(GROUND, "FRAME2Ground1");
 			}
 		}
+		objectmanager.Update(); //Playerの物理挙動
+
 		break;
 	case FRAME3:
 		objectmanager.Update();
-		ColliderPlayer_Ground(playerShared.second, grounds);
 		BoxCollider2(playerShared2.lock(), BoxShared.lock(),playerShared2.lock());
 		BoxCollider2(playerShared2.lock(), Ground3FRAME2.lock(), playerShared2.lock());
 		BoxCollider2(playerShared2.lock(), Ground2FRAME2.lock(), playerShared2.lock());
@@ -705,6 +703,11 @@ void Stage2Scene::Update(void)
 		break;
 	}
 
+	//FRAME1～FRAME3までの地面の当たり判定
+	if (!BoxCollider2(playerShared2.lock(), under_ground.lock(), playerShared2.lock()))
+	{
+		playerShared.second->SetOnGround(false);
+	}
 
 	// マガジンに擬音が入っていればエイムの位置に発射
 	if (Input::GetInstance().GetKeyPress(VK_W) || Input::GetInstance().GetRightTrigger())
@@ -1045,6 +1048,7 @@ void Stage2Scene::Update(void)
 
 	if (m_Frame == FRAME1)
 	{
+
 		Vector3 poyon_rotation = objectmanager.GetGameObjectPtr<GameObject>(ONOMATOPOEIA, "Poyonboard").lock()->GetRotation();
 		Vector3 poyon_posiiton = objectmanager.GetGameObjectPtr<GameObject>(ONOMATOPOEIA, "Poyonboard").lock()->GetPosition();
 
@@ -1064,7 +1068,6 @@ void Stage2Scene::Update(void)
 		auto grounds2 = objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground2");
 		auto effectShared = objectmanager.GetGameObjectPtr<GameObject>(UI, "Thunder_Effect");
 		auto groundShared3 = objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground3");
-		ColliderPlayer_Ground(playerShared.second, grounds);
 
 		 BoxCollider2(playerShared2.lock(), groundShared2.lock(),playerShared2.lock());
 		
@@ -1274,10 +1277,6 @@ void Stage2Scene::Update(void)
 				m_Frame = FRAME2;
 				//playerShared.second->SetOnGround(false);
 				Frame2();
-				if (gionShared.lock())
-				{
-
-				}
 				objectmanager.DeleteObject(ONOMATOPOEIA, "Gion");
 
 				objectmanager.DeleteObject(UI, "Thunder_Effect");
@@ -1286,8 +1285,10 @@ void Stage2Scene::Update(void)
 				//objectmanager.DeleteObject(ONOMATOPOEIA, "Gion2");
 				objectmanager.DeleteObject(ONOMATOPOEIA, "Poyon"); //FRAME1のポヨン
 				objectmanager.DeleteObject(BACKGROUND, "board1");
-				objectmanager.DeleteObject(PLAYER, "Playerboard");
+				objectmanager.DeleteObject(BACKGROUND, "Playerboard");
 				objectmanager.DeleteObject(ONOMATOPOEIA, "Poyonboard");
+				objectmanager.DeleteObject(ENEMY, "Slimeboard");
+				objectmanager.DeleteObject(UI, "SoundGunboard");
 			}
 		}
 		objectmanager.Update();

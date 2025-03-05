@@ -66,7 +66,7 @@ bool BoxCollider2(std::shared_ptr<T> _obj1, std::shared_ptr<U> _obj2,std::shared
 			return true;  // ã‚©‚çÕ“Ë
 		}
 	}
-
+	//_player->SetOnGround(false);
 	return false; // Õ“Ë‚È‚µ
 }
 
