@@ -190,14 +190,17 @@ void GameObject::SetChild(const std::shared_ptr<GameObject> _Child)
 
 	std::cout << m_pChildren.size() << std::endl;
 
-	//擬音のポジションSet
-	if (m_pChildren.size()==2|| m_pChildren[0] == _Child)
+	if (m_pChildren.size() == 2 || m_pChildren[0] == _Child)//擬音のポジションSet
 	{
 		_Child->SetPosition(Vector3(-900.0f, 500.0f, 0.0f));
-	}else if (m_pChildren.size() == 3 || m_pChildren[1] == _Child)
+	}
+	else if (m_pChildren.size() == 3 || m_pChildren[1] == _Child)
 	{
 		_Child->SetPosition(Vector3(-800.0f, 500.0f, 0.0f));
 	}
+
+	
+	
 }
 
 void GameObject::AddForce(Vector3 _Vel)

@@ -374,7 +374,7 @@ void Player::SetChild(std::shared_ptr<GameObject> _child)
  * @param _gion_pos
  * @param _p_pos
 */
-bool Player::Suction(std::weak_ptr<GameObject> _gion)
+bool Player::Suction(std::weak_ptr<IOnomatopoeia> _gion)
 {
 	// フラグを立てて擬音銃の吸い込み処理を実行
 	m_Soundgun->SetIsSuction(true);
@@ -476,8 +476,11 @@ void Player::Shot(void)
 		// 使うマガジンの情報を受け取って擬音銃で発射
 		m_Soundgun->Shot(m_Magazines[UseMagNumber]);
 
+		
+
 		// 発射フラグをリセット
 		IsShot = false;
+		//m_Magazines[UseMagNumber].reset();
 	}
 }
 

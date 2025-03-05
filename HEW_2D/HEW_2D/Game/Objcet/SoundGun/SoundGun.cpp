@@ -106,6 +106,11 @@ bool SoundGun::Suction(std::weak_ptr<GameObject> _gion)
 		// プレイヤーの座標に当たったら(限りなく近づいたら)
 		if (gion_pos.x - m_pParent.lock()->GetPosition().x <= 100.0f)
 		{
+			
+			if (m_pParent.lock()->m_Tag == Tag(Doon))
+			{
+				return false;
+			}
 			// 親オブジェクトのマガジンに格納
 			auto player = std::dynamic_pointer_cast<Player>(m_pParent.lock());
 			// ここの関数にはGameObject型で持ってきてるのでIOnomatopoeia型にキャスト
@@ -142,6 +147,10 @@ bool SoundGun::Suction(std::weak_ptr<GameObject> _gion)
 			//		onomatopoeia->SetPosition(Vector3(-500.0f, 250.0f, 0.0f));
 			//	}
 			//}
+			/*if (_gion.lock()->m_Tag== Tag(Doon))
+			{
+				_gion.lock()->SetPosition(Vector3(900.0f, 500.0f, 0.0f));
+			}*/
 			// プレイヤーと擬音銃の吸い込み状態を解除
 			this->IsSuction = false;
 			player->SetIsSuction(false);

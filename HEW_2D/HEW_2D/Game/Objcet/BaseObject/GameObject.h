@@ -144,8 +144,7 @@ protected:
 	//// 名前(一意のもの)
 	//std::string m_Name;
 
-	//// タグ(オブジェクトの分類)
-	//Tag m_Tag;
+	
 
 public:
 	// 速度(これは毎フレーム変化する値)
@@ -156,6 +155,8 @@ public:
 	// 子オブジェクトのポインタ(親は子の所有権を持つのでshared_ptrにする)
 	std::vector<std::shared_ptr<GameObject>> m_pChildren;		// 子は複数存在する可能性があるのでvector
 
+	//// タグ(オブジェクトの分類)
+	Tag m_Tag;
 
 	ConstBuffer cb;
 	//Tag tag;

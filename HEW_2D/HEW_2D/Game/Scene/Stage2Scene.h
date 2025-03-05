@@ -28,7 +28,7 @@ public:
 	void Frame3(void);
 	void Frame4(void);
 	void (Stage2Scene::*Array[5])() = {&Stage2Scene::Frame1,&Stage2Scene::Frame2,&Stage2Scene::Frame3,&Stage2Scene::Frame4 };
-
+	
 	Sound sound;
 	FRAME nowFRAME;
 private:

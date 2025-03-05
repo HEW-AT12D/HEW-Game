@@ -71,7 +71,7 @@ public:
 	// TODO:2025/01/27 擬音銃クラスで吸い込み関数作成→プレイヤーの吸い込みではそれを実行し、その関数の戻り値で吸い込んだ擬音を返し、マガジンにセットすれば行けるはず
 	
 	// TODO:2025/01/28 移動しながら吸い込んだらうまく吸い込まれないバグを直す。吐きだし処理を完成させる
-	bool Suction(std::weak_ptr<GameObject>);	// 吸い込み関数(戻り値で吸い込み処理が終了したかを判定)
+	bool Suction(std::weak_ptr<IOnomatopoeia>);	// 吸い込み関数(戻り値で吸い込み処理が終了したかを判定)
 	void Shot(void);		// 擬音の発射関数
 
 	void SetIsShot(bool _flg);
@@ -91,11 +91,11 @@ public:
 	// マガジン数を返す
 	size_t GetMagCount(void);
 	std::vector<std::shared_ptr<Magazine>> m_Magazines;	// マガジン（可変長）,0番目はドォン専用にして、その後はカウントを増やしてドォンを管理する？
+	int UseMagNumber;	// マガジンの何番目を使う(装填する)か
 
 private:
 	bool IsSuction;		// 吸い込み中か？
 	bool IsShot;		// 発射中か？
-	int UseMagNumber;	// マガジンの何番目を使う(装填する)か
 	int BombCount;		// ドォンのカウント
 	// 擬音銃(吸い込む竜巻画像を持たせるために使う→シェーダーリソースビューとかを配列にすれば画像は複数読み込めたかも)
 	std::shared_ptr<SoundGun> m_Soundgun;		// 擬音銃

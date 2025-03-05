@@ -9,7 +9,7 @@ typedef enum
 	BGM_GAMECLEAR,		// ゲームクリアシーンBGM
 	BGM_INGAME,			// インゲームBGM
 	BGM_GAMEOVER,		// ゲームオーバーBGM
-	BGM_TITLE,			// タイトルシーBGM
+	BGM_TITLE,			// タイトルシーンBGM
 	SE_BIRIBIRI,		// ビリビリSE
 	SE_CLICK,			// クリックSE
 	SE_DOON,			// ドォンSE
