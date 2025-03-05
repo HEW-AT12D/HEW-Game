@@ -38,10 +38,10 @@ void Stage2Scene::Frame1() {
 	objectmanager.GetGameObject<Player>(PLAYER, "Player").second->SetChild(objectmanager.GetGameObject<SoundGun>(UI, "SoundGun").second);
 
 	//擬音（ドーン）
-	objectmanager.AddObject<Poyon>(ONOMATOPOEIA, "Gion2");	// 名前要変更
-	objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "Gion2").lock()->Init(L"Game/Asset/Onomatopoeia/Doon.png");
-	objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "Gion2").lock()->SetPosition(Vector3(800.0f, 50.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "Gion2").lock()->SetScale(Vector3(240.0f, 120.0f, 0.0f));
+	objectmanager.AddObject<Poyon>(Doon, "Gion2");	// 名前要変更
+	objectmanager.GetGameObjectPtr<Poyon>(Doon, "Gion2").lock()->Init(L"Game/Asset/Onomatopoeia/Doon.png");
+	objectmanager.GetGameObjectPtr<Poyon>(Doon, "Gion2").lock()->SetPosition(Vector3(800.0f, 50.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<Poyon>(Doon, "Gion2").lock()->SetScale(Vector3(240.0f, 120.0f, 0.0f));
 
 	// マガジン(二個持った状態でスタート、落ちてるのは一個だけ)
 	// 一個目
@@ -191,10 +191,10 @@ void Stage2Scene::Frame2() {
 	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "FRAME2Ground3").lock()->SetScale(Vector3(450.0f, 50.0f, 0.0f));
 
 	//擬音（ドーン）
-	objectmanager.AddObject<Poyon>(ONOMATOPOEIA, "FRAME2Gion2");	// 名前要変更
-	objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "FRAME2Gion2").lock()->Init(L"Game/Asset/Onomatopoeia/Doon.png");
-	objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "FRAME2Gion2").lock()->SetPosition(Vector3(-750.0f, 250.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "FRAME2Gion2").lock()->SetScale(Vector3(150.0f, 100.0f, 0.0f));
+	objectmanager.AddObject<GameObject>(ONOMATOPOEIA, "FRAME2Gion2");	// 名前要変更
+	objectmanager.GetGameObjectPtr<GameObject>(ONOMATOPOEIA, "FRAME2Gion2").lock()->Init(L"Game/Asset/Onomatopoeia/Doon.png");
+	objectmanager.GetGameObjectPtr<GameObject>(ONOMATOPOEIA, "FRAME2Gion2").lock()->SetPosition(Vector3(-750.0f, 250.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(ONOMATOPOEIA, "FRAME2Gion2").lock()->SetScale(Vector3(150.0f, 100.0f, 0.0f));
 
 	//宝箱
 	objectmanager.AddObject<GameObject>(OBJECT, "FRAME2treasure");	// 名前要変更
@@ -323,7 +323,7 @@ void Stage2Scene::Update(void)
 	auto groundShared = objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground");
 	auto enemygion2 = objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "FRAME2Poyon");
 	auto baneShared = objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "bane");
-	auto poyonShared = objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "Gion2");
+	auto poyonShared = objectmanager.GetGameObjectPtr<GameObject>(Doon, "Gion2");
 	auto crosshairShared = objectmanager.GetGameObjectPtr<CrossHair>(UI, "CrossHair");
 	auto BoxShared = objectmanager.GetGameObjectPtr<PataPata>(GROUND, "FRAME2Box");
 	auto Ground2FRAME2 = objectmanager.GetGameObjectPtr<GameObject>(GROUND, "FRAME2Ground2");
@@ -763,6 +763,7 @@ void Stage2Scene::Update(void)
 		// そのフレーム内のタグが擬音のもの全て取得→それとプレイヤーから出る扇型の当たり判定を取得
 		//auto onomatopoeias = objectmanager.GetObjects<IOnomatopoeia>(ONOMATOPOEIA);
 		auto onomatopoeias = objectmanager.GetGameObjectPair<IOnomatopoeia>(ONOMATOPOEIA);
+		auto Doononomatopeia = objectmanager.GetGameObjectPair2<IOnomatopoeia>(Doon, "Gion2");
 
 		// 擬音が0ではなければ
 		if (!onomatopoeias.empty())
@@ -781,6 +782,44 @@ void Stage2Scene::Update(void)
 				{
 					// 吸い込み処理が終わった時に擬音のタグをUIに変更、射撃するときにタグを擬音に変更する処理がまだ
 					objectmanager.ChangeTag(HitOnomatopoeia.first.first, HitOnomatopoeia.first.second, UI);
+					/*enemygion.lock()->SetColor(Color(1.0f, 1.0f, 1.0f, 1.0f));
+					gionShared.lock()->SetColor(Color(1.0f, 1.0f, 1.0f, 1.0f));*/
+				}
+			}
+			// 擬音が0(吸い込み中に扇型範囲から擬音がいなくなった場合)
+			else
+			{
+				// プレイヤーの状態を変更
+				playerShared.second->SetIsSuction(false);		// 「非」吸い込み中に設定
+
+			}
+		}
+		// 擬音が0(フレーム内の擬音がない場合)
+		else
+		{
+			// プレイヤーの状態を変更
+			playerShared.second->SetIsSuction(false);		// 「非」吸い込み中に設定
+		}
+
+
+		// Doon専用
+		if (!Doononomatopeia.empty())
+		{
+			// 扇形との当たり判定を取得
+			auto HitDoon = ColliderFan_Gion(playerShared.second, Doononomatopeia);
+
+			// ポインタに値が入っていれば(扇形範囲内に当たった擬音があれば)
+			if (HitDoon.second)
+			{
+				// 擬音の吸い込み実行
+				playerShared.second->SetIsSuction(true);			// プレイヤーの状態を吸い込み中に設定
+
+				// 吸い込み処理が終わったら
+				if (playerShared.second->Suction(HitDoon.second))
+				{
+					playerShared.second->m_Magazines; //親のベクターにどーーんを入れようとした（できてない）
+					// 吸い込み処理が終わった時に擬音のタグをUIに変更、射撃するときにタグを擬音に変更する処理がまだ
+					objectmanager.ChangeTag(HitDoon.first.first, HitDoon.first.second, UI);
 					/*enemygion.lock()->SetColor(Color(1.0f, 1.0f, 1.0f, 1.0f));
 					gionShared.lock()->SetColor(Color(1.0f, 1.0f, 1.0f, 1.0f));*/
 				}
@@ -999,6 +1038,8 @@ void Stage2Scene::Update(void)
 				}
 				// SE再生
 				Sound::GetInstance().Play(SE_SHOT);
+				playerShared2.lock()->SetMagNumber(1); //0番目の配列
+
 			}
 		}
 

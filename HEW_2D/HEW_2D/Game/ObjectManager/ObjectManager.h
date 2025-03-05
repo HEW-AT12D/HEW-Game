@@ -210,6 +210,32 @@ public:
 		return returnobjects;
 	}
 
+	//タグと名前
+	template <class T>
+	std::vector<std::pair<std::pair<Tag, std::string>, std::shared_ptr<T>>> GetGameObjectPair2(const Tag& _tag,std::string _name)
+	{
+		std::vector<std::pair<std::pair<Tag, std::string>, std::shared_ptr<T>>> returnobjects;
+		// map内を探索
+		for (auto& obj : Objects)
+		{
+			// タグが同じで
+			if (obj.first.first == _tag)
+			{
+				// キャストできるならキャストして配列に格納
+				if (auto casted = std::dynamic_pointer_cast<T>(obj.second))
+				{
+					returnobjects.emplace_back(obj.first, casted);
+				}
+				// 基底クラスならそのまま格納
+				else
+				{
+					returnobjects.emplace_back(obj.first, std::static_pointer_cast<T>(obj.second));
+				}
+			}
+		}
+		return returnobjects;
+	}
+
 
 	/**
 	 * @brief オブジェクト取得関数(タグ、型指定してオブジェクトそのもののweak_ptrを返す)

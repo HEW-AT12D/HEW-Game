@@ -113,31 +113,35 @@ bool SoundGun::Suction(std::weak_ptr<GameObject> _gion)
 
 			// 擬音の座標を現在選択しているマガジンの座標に変更
 			// →今選択してるマガジンに既に擬音がある場合、次のマガジンに装填、を繰り返し、全部装填されている場合、座標は寄せるが回転、吸い込み処理は行わない
-			onomatopoeia->SetPosition(player->GetUsingMag()->GetPosition());	// 座標を設定
+			//onomatopoeia->SetPosition(player->GetUsingMag()->GetPosition());	// 座標を設定
 			onomatopoeia->SetRotation(player->GetUsingMag()->GetRotation());	// 角度を設定
 			onomatopoeia->SetScale(player->GetUsingMag()->GetScale());			// 大きさを設定
 			onomatopoeia->SetColor(Color(1.0f, 1.0f, 1.0f, 1.0f));				//色の初期化
 			player->GetUsingMag()->SetOnomatopoeia(onomatopoeia);				// マガジンに装填
-			// 0番目の要素が存在するかチェック
-			if (!player->m_Magazines.empty())
-			{
-				// 1番目に追加するときの処理
-				if (player->m_Magazines.size() == 1)
-				{
-					// 1番目に追加する際に特定の位置に設定
-					onomatopoeia->SetPosition(Vector3(-600.0f, 500.0f, 0.0f));
-				}
-				//else if (player->m_Magazines.size() == 2)
-				//{
-				//	// 2番目に追加する際にさらに別の位置に設定
-				//	onomatopoeia->SetPosition(Vector3(-300.0f, 250.0f, 0.0f));
-				//}
-				//else if (player->m_Magazines.size() == 3)
-				//{
-				//	// 2番目に追加する際にさらに別の位置に設定
-				//	onomatopoeia->SetPosition(Vector3(-500.0f, 250.0f, 0.0f));
-				//}
-			}
+			//// 0番目の要素が存在するかチェック
+			//if (!player->m_Magazines.empty())
+			//{
+			//	if (player->m_pChildren[0] == 0)
+			//	{
+			//		// 1番目に追加する際に特定の位置に設定
+			//		onomatopoeia->SetPosition(player->GetUsingMag()->GetPosition());	// 座標を設定
+			//	}
+			//	else if (player->m_pChildren.size()>1&&player->m_pChildren[1])
+			//	{
+			//		// 1番目に追加する際に特定の位置に設定(出口は珍毛）
+			//		onomatopoeia->SetPosition(Vector3(-500.0f, 250.0f, 0.0f));
+			//	}
+			//	else if (player->m_Magazines.size() == 2)
+			//	{
+			//		// 2番目に追加する際にさらに別の位置に設定
+			//		onomatopoeia->SetPosition(player->GetUsingMag()->GetPosition());	// 座標を設定
+			//	}
+			//	else if (player->m_Magazines.size() == 3)
+			//	{
+			//		// 2番目に追加する際にさらに別の位置に設定
+			//		onomatopoeia->SetPosition(Vector3(-500.0f, 250.0f, 0.0f));
+			//	}
+			//}
 			// プレイヤーと擬音銃の吸い込み状態を解除
 			this->IsSuction = false;
 			player->SetIsSuction(false);
@@ -163,7 +167,7 @@ void SoundGun::Shot(std::shared_ptr<Magazine> _mag)
 
 	auto gion = _mag->ReleaseBullet();
 
-	Vector3 gion_Rot = gion->GetRotation();		// 擬音の回転情報
+	Vector3 gion_Rot = gion->GetRotation();		// 擬音の回転情報(出口はシーシャ)
 	Vector3 gion_Scale = gion->GetScale();		// 擬音のサイズ情報
 	Vector3 gion_Pos = transform.GetPosition();	// 擬音の座標(これは擬音銃の少し右に出現させるので銃基準でいじる)
 	Vector3 gion_dir = m_Direction;				// 発射する向き(銃の向いている方向に発射する)

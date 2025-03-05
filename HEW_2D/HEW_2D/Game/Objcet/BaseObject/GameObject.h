@@ -38,7 +38,8 @@ enum Tag {
 	ONOMATOPOEIA,
 	PLAYER,
 	ENEMY,
-	CAMERA
+	CAMERA,
+	Doon
 };
 
 // オブジェクトの状態（ここに全部書き出しておく）
@@ -128,8 +129,7 @@ protected:
 	// 削除予定フラグ(毎フレームこのフラグを確認し、立っているオブジェクトは削除する)
 	bool IsDelete = false;
 
-	// 親オブジェクトのポインタ(子は親の所有権は持たないのでweak_ptrでおｋ)
-	std::weak_ptr<GameObject> m_pParent;
+	
 
 	
 
@@ -151,6 +151,8 @@ public:
 	// 速度(これは毎フレーム変化する値)
 	Vector3 m_Velocity;
 	Vector3 m_Direction;
+	// 親オブジェクトのポインタ(子は親の所有権は持たないのでweak_ptrでおｋ)
+	std::weak_ptr<GameObject> m_pParent;
 	// 子オブジェクトのポインタ(親は子の所有権を持つのでshared_ptrにする)
 	std::vector<std::shared_ptr<GameObject>> m_pChildren;		// 子は複数存在する可能性があるのでvector
 

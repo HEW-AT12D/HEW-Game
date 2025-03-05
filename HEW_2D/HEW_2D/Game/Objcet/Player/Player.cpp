@@ -471,6 +471,7 @@ void Player::Shot(void)
 		//m_Magazines[UseMagNumber]->GetBulletPointer()->SetPosition(p_gion);
 
 
+
 		// ‹[‰¹‚Ì”­ËŠÖ”‚É‚ÍŒ¸‘¬—Í‚Æ‚©‚Í‹C‚É‚µ‚È‚­‚Ä‚¢‚¢¨0‚Éİ’è‚·‚é¨‚Ü‚Á‚·‚®”ò‚ñ‚Å‚¢‚­
 		// g‚¤ƒ}ƒKƒWƒ“‚Ìî•ñ‚ğó‚¯æ‚Á‚Ä‹[‰¹e‚Å”­Ë
 		m_Soundgun->Shot(m_Magazines[UseMagNumber]);
