@@ -1,14 +1,4 @@
-﻿  Collider.cpp
-C:\Users\mhiro\OneDrive\デスクトップ\test\.git\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.cpp(200,23): warning C4305: '初期化中': 'double' から 'float' へ切り詰めます。
-  PataPata.cpp
-  ObjectManager.cpp
-  Stage1Scene.cpp
-C:\Users\mhiro\OneDrive\デスクトップ\test\.git\HEW-Game\HEW_2D\HEW_2D\Game\Scene\Stage1Scene.cpp(1208,76): warning C4267: '引数': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
-  Stage2Scene.cpp
-C:\Users\mhiro\OneDrive\デスクトップ\test\.git\HEW-Game\HEW_2D\HEW_2D\Game\Scene\Stage2Scene.cpp(874,76): warning C4267: '引数': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
-C:\Users\mhiro\OneDrive\デスクトップ\test\.git\HEW-Game\HEW_2D\HEW_2D\Game\Scene\Stage2Scene.cpp(896,37): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\mhiro\OneDrive\デスクトップ\test\.git\HEW-Game\HEW_2D\HEW_2D\Game\Scene\Stage2Scene.cpp(981,37): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-  コードを生成中...
-C:\Users\mhiro\OneDrive\デスクトップ\test\.git\HEW-Game\HEW_2D\HEW_2D\Game\ObjectManager\ObjectManager.cpp(280): warning C4715: 'ObjectManager::HasCamera': 値を返さないコントロール パスがあります。
-C:\Users\mhiro\OneDrive\デスクトップ\test\.git\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.cpp(36): warning C4715: 'ColliderPlayer_Ground': 値を返さないコントロール パスがあります。
+﻿  ResultScene.cpp
+C:\Users\mhiro\OneDrive\デスクトップ\test\.git\HEW-Game\HEW_2D\HEW_2D\Game\Scene\ResultScene.cpp(100,37): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\mhiro\OneDrive\デスクトップ\test\.git\HEW-Game\HEW_2D\HEW_2D\Game\Scene\ResultScene.cpp(140,37): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
   HEW_2D.vcxproj -> C:\Users\mhiro\OneDrive\デスクトップ\test\.git\HEW-Game\HEW_2D\x64\Debug\HEW_2D.exe

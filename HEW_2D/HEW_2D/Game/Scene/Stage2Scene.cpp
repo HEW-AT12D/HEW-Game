@@ -48,6 +48,13 @@ void Stage2Scene::Frame1() {
 	objectmanager.GetGameObjectPtr<GameObject>(UI, "SoundGunboard").lock()->SetPosition(Vector3(-430.0f, -150.0f, 0.0f));
 	objectmanager.GetGameObjectPtr<GameObject>(UI, "SoundGunboard").lock()->SetScale(Vector3(70.0f, 60.0f, 0.0f));
 
+	// ポヨンを付与するためのオブジェクト
+	objectmanager.AddObject<GameObject>(OBJECT, "baneboard");
+	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "baneboard").lock()->Init(L"Game/Asset/GameObject/Ground.png");
+	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "baneboard").lock()->SetPosition(Vector3(-350.0f, -200.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "baneboard").lock()->SetScale(Vector3(50.0f, 20.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "baneboard").lock()->SetColor(Color(1.0f, 1.0f, 1.0f, 0.0f));
+
 	//ポヨン(看板用)
 	objectmanager.AddObject<GameObject>(ONOMATOPOEIA, "Poyonboard");	// 名前要変更
 	objectmanager.GetGameObjectPtr<GameObject>(ONOMATOPOEIA, "Poyonboard").lock()->Init(L"Game/Asset/Onomatopoeia/Poyon.png");
@@ -516,7 +523,7 @@ void Stage2Scene::Update(void)
 			if (Collider_to_Object(playerShared2.lock(), GOOL.lock()))
 			{
 				m_Frame = FRAME3;
-				playerShared.second->SetOnGround(false);
+				//playerShared.second->SetOnGround(false);
 				Frame3();
 				objectmanager.DeleteObject(ONOMATOPOEIA, "Gion");
 				objectmanager.DeleteObject(UI, "Thunder_Effect");
@@ -531,7 +538,7 @@ void Stage2Scene::Update(void)
 
 		break;
 	case FRAME3:
-		objectmanager.Update();
+		
 		BoxCollider2(playerShared2.lock(), BoxShared.lock(),playerShared2.lock());
 		BoxCollider2(playerShared2.lock(), Ground3FRAME2.lock(), playerShared2.lock());
 		BoxCollider2(playerShared2.lock(), Ground2FRAME2.lock(), playerShared2.lock());
@@ -689,11 +696,11 @@ void Stage2Scene::Update(void)
 				objectmanager.DeleteObject(ONOMATOPOEIA, "Poyon"); //FRAME1のポヨン
 				Sound::GetInstance().Stop(BGM_INGAME);
 				//ここでTITLEに戻る
-				m_RequestNext = TITLE;
+				m_RequestNext = RESULT;
 				SetChangeScene(true);
 			}
 		}
-
+		objectmanager.Update(); 
 		break;
 	case FRAME4:
 		break;
@@ -923,7 +930,11 @@ void Stage2Scene::Update(void)
 			{
 				// プレイヤーの状態を変更
 				playerShared.second->SetIsSuction(false);		// 「非」吸い込み中に設定
-				count = 1; //チュートリアルの画像切り替えカウント
+				if (m_Frame == FRAME1)
+				{
+					count = 1; //チュートリアルの画像切り替えカウント
+					objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "baneboard").lock()->SetColor(Color(1.0f, 1.0f, 1.0f, 1.0f));
+				}
 			}
 		}
 		// 擬音が0(フレーム内の擬音がない場合)
@@ -1289,6 +1300,7 @@ void Stage2Scene::Update(void)
 				objectmanager.DeleteObject(ONOMATOPOEIA, "Poyonboard");
 				objectmanager.DeleteObject(ENEMY, "Slimeboard");
 				objectmanager.DeleteObject(UI, "SoundGunboard");
+				objectmanager.DeleteObject(OBJECT, "baneboard");
 			}
 		}
 		objectmanager.Update();
