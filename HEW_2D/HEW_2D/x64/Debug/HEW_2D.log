@@ -1,4 +1,68 @@
-﻿  ResultScene.cpp
-C:\Users\mhiro\OneDrive\デスクトップ\test\.git\HEW-Game\HEW_2D\HEW_2D\Game\Scene\ResultScene.cpp(100,37): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\mhiro\OneDrive\デスクトップ\test\.git\HEW-Game\HEW_2D\HEW_2D\Game\Scene\ResultScene.cpp(140,37): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
-  HEW_2D.vcxproj -> C:\Users\mhiro\OneDrive\デスクトップ\test\.git\HEW-Game\HEW_2D\x64\Debug\HEW_2D.exe
+﻿  compilation object save succeeded; see C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\x64\Debug\PixelShader.cso
+  compilation object save succeeded; see C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\x64\Debug\VertexShader.cso
+  Collider.cpp
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.cpp(200,11): warning C4305: '初期化中': 'double' から 'float' へ切り詰めます。
+  IComponent.cpp
+  Gravity.cpp
+  RigitBody2D.cpp
+  Transform.cpp
+  D3D11.cpp
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\D3D11\D3D11.cpp(261,10): warning C4267: '初期化中': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
+  Input.cpp
+  IScene.cpp
+  sound.cpp
+  WICTextureLoader.cpp
+  Window.cpp
+  Application.cpp
+  Game.cpp
+  main.cpp
+  GameObject.cpp
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Objcet\BaseObject\GameObject.cpp(244,19): warning C4305: '+=': 'double' から 'float' へ切り詰めます。
+  Object.cpp
+  Camera.cpp
+  Character.cpp
+  Enemy.cpp
+  BiriBiri.cpp
+  C/C++ のコード分析を実行しています...
+  コードを生成中...
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Component\Collider\BoxCollider2D\Collider.cpp(36,1): warning C4715: 'ColliderPlayer_Ground': 値を返さないコントロール パスがあります。
+  コンパイル中...
+  IOnomatopoeia.cpp
+  PataPata.cpp
+  Poyon.cpp
+  Player.cpp
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Objcet\Player\Player.cpp(414,9): warning C4101: 'M_PI': ローカル変数は 1 度も使われていません。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Objcet\Player\Player.cpp(413,9): warning C4101: 'Degrees': ローカル変数は 1 度も使われていません。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Objcet\Player\Player.cpp(412,9): warning C4101: 'Radians': ローカル変数は 1 度も使われていません。
+  CrossHair.cpp
+  Magazine.cpp
+  SoundGun.cpp
+  ObjectManager.cpp
+  SceneManager.cpp
+  GameScene.cpp
+  TitleScene.cpp
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\TitleScene.cpp(26,104): warning C4244: '引数': 'double' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\TitleScene.cpp(32,101): warning C4244: '引数': 'double' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\TitleScene.cpp(38,110): warning C4244: '引数': 'double' から 'int' への変換です。データが失われる可能性があります。
+  Stage2Scene.cpp
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\Stage2Scene.cpp(881,73): warning C4267: '引数': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\Stage2Scene.cpp(903,37): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\Stage2Scene.cpp(992,37): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+  ResultScene.cpp
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\ResultScene.cpp(100,37): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\ResultScene.cpp(140,37): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+  StageSelectScene.cpp
+  Stage1Scene.cpp
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Scene\Stage1Scene.cpp(1208,73): warning C4267: '引数': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
+  C/C++ のコード分析を実行しています...
+  コードを生成中...
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\ObjectManager\ObjectManager.cpp(280,1): warning C4715: 'ObjectManager::HasCamera': 値を返さないコントロール パスがあります。
+  HEW_2D.vcxproj -> C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\x64\Debug\HEW_2D.exe
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Scene\IScene.h(45): warning C26495: 変数 'IScene::m_RequestNext' が初期化されていません。メンバー変数は必ず初期化してください (type.6)。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Sound\sound.h(116): warning C26495: 変数 'Sound::m_DataBuffer' が初期化されていません。メンバー変数は必ず初期化してください (type.6)。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Sound\sound.h(116): warning C26495: 変数 'Sound::m_buffer' が初期化されていません。メンバー変数は必ず初期化してください (type.6)。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Sound\sound.h(116): warning C26495: 変数 'Sound::m_wfx' が初期化されていません。メンバー変数は必ず初期化してください (type.6)。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\Sound\sound.h(116): warning C26495: 変数 'Sound::m_pSourceVoice' が初期化されていません。メンバー変数は必ず初期化してください (type.6)。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Framework\WICTextureLoader\WICTextureLoader.cpp(920): warning C6385: Reading invalid data from 'pstrName':  the readable size is '260' bytes, but '4294967295' bytes may be read.
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Objcet\BaseObject\GameObject.cpp(7): warning C26495: 変数 'GameObject::cb' が初期化されていません。メンバー変数は必ず初期化してください (type.6)。
+C:\Users\caram\Documents\GitHub\HEW-Game\HEW_2D\HEW_2D\Game\Objcet\BaseObject\GameObject.cpp(7): warning C26495: 変数 'GameObject::m_Tag' が初期化されていません。メンバー変数は必ず初期化してください (type.6)。
