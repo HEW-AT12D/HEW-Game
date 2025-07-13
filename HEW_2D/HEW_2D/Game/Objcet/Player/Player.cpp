@@ -21,7 +21,12 @@ void Player::Update(void)
 		m_Velocity.y += m_JumpPower;	// 速度のY成分にジャンプ力を代入
 		m_Direction.y += 1.0f;			// 上向きの方向ベクトルを加算
 		Jump = false;
-		Animation(JUMP);
+		if (isFacingLeft) {
+			Animation(LEFTJUMP);
+		}
+		else {
+			Animation(JUMP);
+		}
 	}
 	// 下降している場合(ジャンプ中でベクトルのY成分が負(-)の時)
 	if (Jumping && m_Velocity.y < 0.0f)
