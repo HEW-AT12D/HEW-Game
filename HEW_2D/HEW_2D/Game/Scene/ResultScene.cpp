@@ -23,7 +23,7 @@ void ResultScene::Init(void) {
 	objectmanager.GetGameObjectPtr<Poyon>(OBJECT, "STAGE1").lock()->Init(L"Game/Asset/UI/BacktoTitleButton.png", 2, 1);
 	objectmanager.GetGameObjectPtr<Poyon>(OBJECT, "STAGE1").lock()->SetPosition(Vector3(0.0f, -200.0f, 0.0f));
 	objectmanager.GetGameObjectPtr<Poyon>(OBJECT, "STAGE1").lock()->SetScale(Vector3(500.0f, 400.0f, 0.0f));
-	Int2 Button2 = objectmanager.GetGameObjectPtr<Poyon>(OBJECT, "STAGE1").lock()->GetUV();
+	XMINT2 Button2 = objectmanager.GetGameObjectPtr<Poyon>(OBJECT, "STAGE1").lock()->GetUV();
 	Button2.x = 1;
 	objectmanager.GetGameObjectPtr<Poyon>(OBJECT, "STAGE1").lock()->SetUV(Button2);
 
@@ -70,10 +70,10 @@ void ResultScene::Update(void) {
 		Vector3 cursol_pos = objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "Cursol").lock()->GetPosition();
 		cursol_pos.y = -400.0f;
 		objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "Cursol").lock()->SetPosition(cursol_pos);
-		Int2 Button1 = objectmanager.GetGameObjectPtr<Poyon>(OBJECT, "STAGE2").lock()->GetUV();
+		XMINT2 Button1 = objectmanager.GetGameObjectPtr<Poyon>(OBJECT, "STAGE2").lock()->GetUV();
 		Button1.x = 1;
 		objectmanager.GetGameObjectPtr<Poyon>(OBJECT, "STAGE2").lock()->SetUV(Button1);
-		Int2 Button2 = objectmanager.GetGameObjectPtr<Poyon>(OBJECT, "STAGE1").lock()->GetUV();
+		XMINT2 Button2 = objectmanager.GetGameObjectPtr<Poyon>(OBJECT, "STAGE1").lock()->GetUV();
 		Button2.x = 0;
 		objectmanager.GetGameObjectPtr<Poyon>(OBJECT, "STAGE1").lock()->SetUV(Button2);
 	}
@@ -82,10 +82,10 @@ void ResultScene::Update(void) {
 		Vector3 cursol_pos = objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "Cursol").lock()->GetPosition();
 		cursol_pos.y = -200.0f;
 		objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "Cursol").lock()->SetPosition(cursol_pos);
-		Int2 Button1 = objectmanager.GetGameObjectPtr<Poyon>(OBJECT, "STAGE2").lock()->GetUV();
+		XMINT2 Button1 = objectmanager.GetGameObjectPtr<Poyon>(OBJECT, "STAGE2").lock()->GetUV();
 		Button1.x = 0;
 		objectmanager.GetGameObjectPtr<Poyon>(OBJECT, "STAGE2").lock()->SetUV(Button1);
-		Int2 Button2 = objectmanager.GetGameObjectPtr<Poyon>(OBJECT, "STAGE1").lock()->GetUV();
+		XMINT2 Button2 = objectmanager.GetGameObjectPtr<Poyon>(OBJECT, "STAGE1").lock()->GetUV();
 		Button2.x = 1;
 		objectmanager.GetGameObjectPtr<Poyon>(OBJECT, "STAGE1").lock()->SetUV(Button2);
 	}

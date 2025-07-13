@@ -50,28 +50,6 @@ enum STATE
 	EFECT,      // エフェクト
 };
 
-/**
- * @brief アニメーション番号管理用構造体
-*/
-struct Int2 {
-	int x;
-	int y;
-
-	// コンストラクタ
-	Int2(int _x = 0, int _y = 0) : x(_x), y(_y) {};
-
-	// 演算子オーバーロード
-	// 加算
-	Int2 operator + (const Int2& other) const {
-		return Int2(x + other.x, y + other.y);
-	}
-
-	// 減算
-	Int2 operator - (const Int2& other) const {
-		return Int2(x - other.x, y - other.y);
-	}
-};
-
 class IOnomatopoeia;
 
 /**
@@ -109,10 +87,10 @@ protected:
 	ID3D11ShaderResourceView* m_pTextureView = nullptr;
 
 	//テクスチャが縦横に何分割されているか
-	Int2 m_Split = { 1,1 };
-
+	XMINT2 m_Split = { 1,1 };
+	
 	//左上から何段目を切り抜いて表示するか
-	Int2 m_Number = { 0,0 };
+	XMINT2 m_Number = { 0,0 };
 
 	// アニメーション用状態管理変数
 	STATE m_State = {};
@@ -125,9 +103,6 @@ protected:
 
 	// 削除予定フラグ(毎フレームこのフラグを確認し、立っているオブジェクトは削除する)
 	bool IsDelete = false;
-
-	
-
 	
 
 	// 加速度(それぞれの軸の方向の加速度(重力とか)を設定→毎フレーム一定の値(現実だと時間)を乗算した値を速度に代入する、というように使う)
@@ -140,7 +115,6 @@ protected:
 
 	//// 名前(一意のもの)
 	//std::string m_Name;
-
 	
 
 public:
@@ -170,7 +144,7 @@ public:
 	virtual void SetScale(Vector3 _Size);			// 大きさをセット
 	virtual void SetRotation(Vector3 _Rot);			// 角度をセット
 	virtual void SetColor(const Color _Color);	// 色をセット
-	virtual void SetUV(const Int2 _UV);			// UV座標をセット
+	virtual void SetUV(const XMINT2 _UV);			// UV座標をセット
 	virtual void Animation(STATE,std::weak_ptr<GameObject>);		// アニメーション
 	// TODO:2025/01/24 赤根:プレイヤーに親子関係を持たせる際の関数の引数にタグと名前を入れるように変更する→プレイヤー側でオーバーライドして、タグがマガジンであればタグを変更、にしようと思ったが、それだとオブジェクトマネージャの管理外での処理が発生するかも→オブジェクトにはオブジェクトのポインタだけを持たせたほうが良いかも
 	virtual void SetParent(const std::weak_ptr<GameObject> _Parent);	// 親オブジェクトをセット
@@ -186,7 +160,7 @@ public:
 	virtual Vector3 GetScale(void);			// 大きさを取得
 	virtual Vector3 GetRotation(void);		// 角度を取得
 	virtual Color GetColor(void);			// 色を取得
-	virtual Int2 GetUV(void);				// UV座標を取得
+	virtual XMINT2 GetUV(void);				// UV座標を取得
 	virtual Vector3 GetVelocity(void);		// 速度を取得
 	virtual Vector3 GetDirection(void);		// 方向ベクトルを取得
 	virtual bool GetOnGround(void);         //デバック用

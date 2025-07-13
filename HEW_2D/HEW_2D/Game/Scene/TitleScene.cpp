@@ -25,20 +25,20 @@ void TitleScene::Init(void) {
 
 	//startÉçÉS
 	objectmanager.AddObject<GameObject>(UI, "start");
-	objectmanager.GetGameObjectPtr<GameObject>(UI, "start").lock()->Init(L"Game/Asset/UI/StartButton.png",2.1);
+	objectmanager.GetGameObjectPtr<GameObject>(UI, "start").lock()->Init(L"Game/Asset/UI/StartButton.png",2,1);
 	objectmanager.GetGameObjectPtr<GameObject>(UI, "start").lock()->SetPosition(Vector3(500.0f, -150.0f, 0.0f));
 	objectmanager.GetGameObjectPtr<GameObject>(UI, "start").lock()->SetScale(Vector3(500.0f, 400.0f, 0.0f));
 
 	//endÉçÉS
 	objectmanager.AddObject<GameObject>(UI, "end");
-	objectmanager.GetGameObjectPtr<GameObject>(UI, "end").lock()->Init(L"Game/Asset/UI/EndButton.png", 2.1);
+	objectmanager.GetGameObjectPtr<GameObject>(UI, "end").lock()->Init(L"Game/Asset/UI/EndButton.png", 2,1);
 	objectmanager.GetGameObjectPtr<GameObject>(UI, "end").lock()->SetPosition(Vector3(500.0f, -350.0f, 0.0f));
 	objectmanager.GetGameObjectPtr<GameObject>(UI, "end").lock()->SetScale(Vector3(500.0f, 400.0f, 0.0f));
 
 	// ÉJÅ[É\Éã
 	objectmanager.AddObject<GameObject>(UI, "Cursol");
-	objectmanager.GetGameObjectPtr<GameObject>(UI, "Cursol").lock()->Init(L"Game/Asset/UI/CharacterCursor.png", 3.1);
-	objectmanager.GetGameObjectPtr<GameObject>(UI, "Cursol").lock()->SetUV(Int2(2, 0));
+	objectmanager.GetGameObjectPtr<GameObject>(UI, "Cursol").lock()->Init(L"Game/Asset/UI/CharacterCursor.png", 3,1);
+	objectmanager.GetGameObjectPtr<GameObject>(UI, "Cursol").lock()->SetUV(XMINT2(2, 0));
 	objectmanager.GetGameObjectPtr<GameObject>(UI, "Cursol").lock()->SetPosition(Vector3(300.0f, -170.0f, 0.0f));
 	objectmanager.GetGameObjectPtr<GameObject>(UI, "Cursol").lock()->SetScale(Vector3(300.0f, 450.0f, 0.0f));
 

@@ -171,7 +171,7 @@ void GameObject::SetColor(Color _Color)
 	m_Color.w = _Color.w;
 }
 
-void GameObject::SetUV(Int2 _UV)
+void GameObject::SetUV(XMINT2 _UV)
 {
 	m_Number.x = _UV.x;
 	m_Number.y = _UV.y;
@@ -244,7 +244,7 @@ void GameObject::Animation(STATE m_State,std::weak_ptr<GameObject> _efect)
  			if (elapsedTime >= uvUpdateInterval) {
 				elapsedTime = 0.0f; // タイマーをリセット
 
-				Int2 efect_UV = _efect.lock()->GetUV();
+				XMINT2 efect_UV = _efect.lock()->GetUV();
 
 				if (efect_UV.x < 8) {
 					efect_UV.x++;
@@ -288,7 +288,7 @@ Color GameObject::GetColor(void)
 	return m_Color;
 }
 
-Int2 GameObject::GetUV(void)
+XMINT2 GameObject::GetUV(void)
 {
 	//UV座標をゲット
 	return m_Number;

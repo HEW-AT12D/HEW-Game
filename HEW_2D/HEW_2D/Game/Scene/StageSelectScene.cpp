@@ -22,7 +22,7 @@ void StageSelectScene::Init(void) {
 	objectmanager.GetGameObjectPtr<GameObject>(UI, "STAGE1").lock()->Init(L"Game/Asset/UI/Stage1Button.png", 2, 1);
 	objectmanager.GetGameObjectPtr<GameObject>(UI, "STAGE1").lock()->SetPosition(Vector3(0.0f, 0.0f, 0.0f));
 	objectmanager.GetGameObjectPtr<GameObject>(UI, "STAGE1").lock()->SetScale(Vector3(500.0f, 400.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<GameObject>(UI, "STAGE1").lock()->SetUV(Int2(1, 0));		// 最初はステージ1を選択中
+	objectmanager.GetGameObjectPtr<GameObject>(UI, "STAGE1").lock()->SetUV(XMINT2(1, 0));		// 最初はステージ1を選択中
 
 	// 通常時ピンク選択中黄色
 	// ステージ2ボタン
@@ -36,7 +36,7 @@ void StageSelectScene::Init(void) {
 	objectmanager.GetGameObjectPtr<GameObject>(UI, "Cursol").lock()->Init(L"Game/Asset/UI/TitleCursol.png", 3, 1);
 	objectmanager.GetGameObjectPtr<GameObject>(UI, "Cursol").lock()->SetPosition(Vector3(-250.0f, -10.0f, 0.0f));
 	objectmanager.GetGameObjectPtr<GameObject>(UI, "Cursol").lock()->SetScale(Vector3(300.0f, 450.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<GameObject>(UI, "Cursol").lock()->SetUV(Int2(2, 0));
+	objectmanager.GetGameObjectPtr<GameObject>(UI, "Cursol").lock()->SetUV(XMINT2(2, 0));
 
 
 	std::cout << "STAGE1_SCENEInit" << std::endl;
@@ -49,8 +49,8 @@ void StageSelectScene::Update(void) {
 	// シーン遷移（デバック用
 
 	Vector3 Cursor_pos = objectmanager.GetGameObjectPtr<GameObject>(UI, "Cursol").lock()->GetPosition();
-	Int2 Stage1Button_UV = objectmanager.GetGameObjectPtr<GameObject>(UI, "STAGE1").lock()->GetUV();
-	Int2 Stage2Button_UV = objectmanager.GetGameObjectPtr<GameObject>(UI, "STAGE2").lock()->GetUV();
+	XMINT2 Stage1Button_UV = objectmanager.GetGameObjectPtr<GameObject>(UI, "STAGE1").lock()->GetUV();
+	XMINT2 Stage2Button_UV = objectmanager.GetGameObjectPtr<GameObject>(UI, "STAGE2").lock()->GetUV();
 
 
 	// スタートボタン入力取得
