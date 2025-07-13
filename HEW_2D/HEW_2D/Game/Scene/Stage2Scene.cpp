@@ -407,7 +407,7 @@ void Stage2Scene::Update(void)
 
 		break;
 	case FRAME2:
-
+		objectmanager.DeleteObject(Doon, "Gion2");
 		/*if (ColliderPlayer_Ground(playerShared2.lock(), Ground1FRAME2)) {
 			playerShared2.lock()->SetOnGround(true);
 			std::cout << "OnGround‚Ìó‘ÔF" << playerShared.second->GetOnGround() << std::endl;
