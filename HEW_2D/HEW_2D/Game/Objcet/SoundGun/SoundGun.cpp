@@ -137,7 +137,7 @@ bool SoundGun::Suction(std::weak_ptr<GameObject> _gion)
 			onomatopoeia->SetColor(Color(1.0f, 1.0f, 1.0f, 1.0f));				// 色の初期化
 			player->GetUsingMag()->SetOnomatopoeia(onomatopoeia);				// マガジンに装填
 			//// 0番目の要素が存在するかチェック
-			//if (!player->m_Magazines.empty())
+			// if (!player->m_Magazines.empty())
 			//{
 			//	if (player->m_pChildren[0] == 0)
 			//	{

@@ -101,9 +101,9 @@ void StageSelectScene::Update(void) {
 	if (Input::GetInstance().GetButtonTrigger(XINPUT_GAMEPAD_DPAD_UP) || Input::GetInstance().GetKeyPress(VK_UP))
 	{
 		Cursor_pos.y += 300.0f;
-		if (Cursor_pos.y > -10.0f)
+		if (Cursor_pos.y > 0.0f)
 		{
-			Cursor_pos.y = -10.0f;
+			Cursor_pos.y = 0.0f;
 		}
 		objectmanager.GetGameObjectPtr<GameObject>(UI, "Cursol").lock()->SetPosition(Cursor_pos);
 		// SEçƒê∂
