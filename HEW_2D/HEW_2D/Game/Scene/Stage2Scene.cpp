@@ -107,9 +107,9 @@ void Stage2Scene::Frame1() {
 
 	// バネ
 	objectmanager.AddObject<GameObject>(OBJECT, "bane");
-	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "bane").lock()->Init(L"Game/Asset/GameObject/Ground.png");
-	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "bane").lock()->SetPosition(Vector3(0.0f, -430.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "bane").lock()->SetScale(Vector3(100.0f, 70.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "bane").lock()->Init(L"Game/Asset/GameObject/Bane.png");
+	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "bane").lock()->SetPosition(Vector3(0.0f, -415.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "bane").lock()->SetScale(Vector3(50.0f, 50.0f, 0.0f));
 
 	// 地面
 	objectmanager.AddObject<GameObject>(GROUND, "Ground");
@@ -221,7 +221,7 @@ void Stage2Scene::Frame2() {
 	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "FRAME2Ground1").lock()->SetPosition(Vector3(500.0f, -100.0f, 0.0f));
 	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "FRAME2Ground1").lock()->SetScale(Vector3(350.0f, 50.0f, 0.0f));
 
-	//Groundの左から2番目
+	//Groundの真ん中
 	objectmanager.AddObject<GameObject>(GROUND, "FRAME2Ground2"); // 名前要変更
 	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "FRAME2Ground2").lock()->Init(L"Game/Asset/GameObject/ground.png");
 	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "FRAME2Ground2").lock()->SetPosition(Vector3(-180.0f, 100.0f, 0.0f));
@@ -251,10 +251,10 @@ void Stage2Scene::Frame3() {
 
 	auto playerShared2 = objectmanager.GetGameObjectPtr<Player>(PLAYER, "Player");
 	Vector3 pos = playerShared2.lock()->GetPosition();
-	pos.x = -700.0f; pos.y = -400.0f; pos.z = 0.0f;
+	pos.x = -900.0f; pos.y = -400.0f; pos.z = 0.0f;
 	playerShared2.lock()->SetPosition(pos);
 
-	objectmanager.GetGameObject<Player>(PLAYER, "Player").second->SetPosition(Vector3(-500.0f, 0.0f, 0.0f));
+	objectmanager.GetGameObject<Player>(PLAYER, "Player").second->SetPosition(Vector3(-700.0f, -400.0f, 0.0f));
 	objectmanager.GetGameObjectPtr<PataPata>(GROUND, "FRAME2Box").lock()->SetPosition(Vector3(-500.0f, 0.0f, 0.0f));
 	objectmanager.GetGameObjectPtr<PataPata>(GROUND, "FRAME2Box").lock()->SetScale(Vector3(300.0f, 30.0f, 0.0f));
 	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "FRAME2Ground2").lock()->SetPosition(Vector3(-180.0f, 0.0f, 0.0f));
@@ -400,8 +400,6 @@ void Stage2Scene::Update(void)
 	Vector3 p_enemy = enemyShared.lock()->GetPosition();
 
 
-	
-
 	switch (m_Frame)
 	{
 	case FRAME1:
@@ -409,6 +407,7 @@ void Stage2Scene::Update(void)
 
 		break;
 	case FRAME2:
+
 		/*if (ColliderPlayer_Ground(playerShared2.lock(), Ground1FRAME2)) {
 			playerShared2.lock()->SetOnGround(true);
 			std::cout << "OnGroundの状態：" << playerShared.second->GetOnGround() << std::endl;
@@ -543,7 +542,8 @@ void Stage2Scene::Update(void)
 
 		break;
 	case FRAME3:
-		
+		objectmanager.DeleteObject(OBJECT, "bane");
+
 		BoxCollider2(playerShared2.lock(), BoxShared.lock(),playerShared2.lock());
 		BoxCollider2(playerShared2.lock(), Ground3FRAME2.lock(), playerShared2.lock());
 		BoxCollider2(playerShared2.lock(), Ground2FRAME2.lock(), playerShared2.lock());
@@ -560,11 +560,7 @@ void Stage2Scene::Update(void)
 				PataPataFRAME3.lock()->SetPosition(PaPata_Position);
 			}
 			BoxShared.lock()->Action(BoxShared.lock(), playerShared.second);
-
 		}
-
-
-	
 
 		//ビリビリ
 		if (BriBriFRAME3.lock())
