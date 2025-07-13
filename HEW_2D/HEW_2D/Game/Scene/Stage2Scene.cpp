@@ -1004,7 +1004,7 @@ void Stage2Scene::Update(void)
 		//std::cout << "Player‚ÌÀ•WˆÚ“®‚ª‚Å‚«‚Ä‚¢‚Ü‚·" << std::endl;
 	}
 	// ¶ˆÚ“®
-	if (Input::GetInstance().GetKeyPress(VK_A) || LeftStickInput.x < -0.1f)
+	else if (Input::GetInstance().GetKeyPress(VK_A) || LeftStickInput.x < -0.1f)
 	{
 		objectmanager.GetGameObjectPtr<Player>(PLAYER, "Player").lock()->SetMoveLeft(true);
 
