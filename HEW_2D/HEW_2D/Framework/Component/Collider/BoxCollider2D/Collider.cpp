@@ -25,6 +25,9 @@ bool ColliderPlayer_Ground(std::shared_ptr<Player> _player, std::vector<std::sha
 			std::cout << "’n–Ê‚ÆG‚ê‚Ä‚Ü‚·" << std::endl;
 
 			_player->SetOnGround(true);
+			Vector3 _pos = _player->GetPosition();
+			_pos.y = _player->GetPosition().y + 1.0f;
+			_player->SetPosition(_pos);
 			return true;
 		}
 		else
@@ -99,6 +102,9 @@ bool Collider_to_Object(std::weak_ptr<Player> _player, std::weak_ptr<GameObject>
 		Player_Top_Collider > Ground_Bottom_Collider)
 	{
 		//_player.lock()->SetOnGround(true);
+		Vector3 _pos = _player.lock()->GetPosition();
+		_pos.y = _player.lock()->GetPosition().y + 1.0f;
+		_player.lock()->SetPosition(_pos);
 		return true;
 	}
 	//_player.lock()->SetOnGround(false);

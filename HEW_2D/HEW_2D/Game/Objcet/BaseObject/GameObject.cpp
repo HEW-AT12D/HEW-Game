@@ -198,9 +198,6 @@ void GameObject::SetChild(const std::shared_ptr<GameObject> _Child)
 	{
 		_Child->SetPosition(Vector3(-800.0f, 500.0f, 0.0f));
 	}
-
-	
-	
 }
 
 void GameObject::AddForce(Vector3 _Vel)

@@ -64,7 +64,7 @@ void Magazine::Draw(void)
 
 
 /**
- * @brief ‘•“U‚³‚ê‚Ä‚¢‚é‹[‰¹‚ğ•Ô‚·ŠÖ”
+ * @brief  ‘•“U‚³‚ê‚Ä‚¢‚é‹[‰¹‚ğ•Ô‚·ŠÖ”
  * @return ‹[‰¹‚Ì¶ƒ|ƒCƒ“ƒ^(Š—LŒ ‚ÌˆÚ“®‚Í‚È‚¢‚Ì‚Å¶ƒ|‚ğ“n‚µ‚ÄŠÇ—‚·‚é)
 */
 IOnomatopoeia* Magazine::GetBulletPointer(void)

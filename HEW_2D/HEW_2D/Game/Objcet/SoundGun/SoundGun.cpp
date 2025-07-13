@@ -114,14 +114,27 @@ bool SoundGun::Suction(std::weak_ptr<GameObject> _gion)
 			// 親オブジェクトのマガジンに格納
 			auto player = std::dynamic_pointer_cast<Player>(m_pParent.lock());
 			// ここの関数にはGameObject型で持ってきてるのでIOnomatopoeia型にキャスト
-			auto onomatopoeia = std::dynamic_pointer_cast<IOnomatopoeia>(_gion.lock());
+			//auto onomatopoeia = std::dynamic_pointer_cast<IOnomatopoeia>(_gion.lock());
 
-			// 擬音の座標を現在選択しているマガジンの座標に変更
-			// →今選択してるマガジンに既に擬音がある場合、次のマガジンに装填、を繰り返し、全部装填されている場合、座標は寄せるが回転、吸い込み処理は行わない
-			//onomatopoeia->SetPosition(player->GetUsingMag()->GetPosition());	// 座標を設定
-			onomatopoeia->SetRotation(player->GetUsingMag()->GetRotation());	// 角度を設定
+			//// 擬音の座標を現在選択しているマガジンの座標に変更
+			//// →今選択してるマガジンに既に擬音がある場合、次のマガジンに装填、を繰り返し、全部装填されている場合、座標は寄せるが回転、吸い込み処理は行わない
+			////onomatopoeia->SetPosition(player->GetUsingMag()->GetPosition());	// 座標を設定
+			//onomatopoeia->SetRotation(player->GetUsingMag()->GetRotation());	// 角度を設定
+			auto gionShared = _gion.lock();
+			if (!gionShared) return false;  // weak_ptr が無効
+
+			auto onomatopoeia = std::dynamic_pointer_cast<IOnomatopoeia>(gionShared);
+			if (!onomatopoeia) return false; // キャスト失敗
+
+			// 安全に呼び出せる
+			onomatopoeia->SetRotation(player->GetUsingMag()->GetRotation());
+			onomatopoeia->SetScale(player->GetUsingMag()->GetScale());
+			onomatopoeia->SetColor(Color(1.0f, 1.0f, 1.0f, 1.0f));
+			player->GetUsingMag()->SetOnomatopoeia(onomatopoeia);
+
+
 			onomatopoeia->SetScale(player->GetUsingMag()->GetScale());			// 大きさを設定
-			onomatopoeia->SetColor(Color(1.0f, 1.0f, 1.0f, 1.0f));				//色の初期化
+			onomatopoeia->SetColor(Color(1.0f, 1.0f, 1.0f, 1.0f));				// 色の初期化
 			player->GetUsingMag()->SetOnomatopoeia(onomatopoeia);				// マガジンに装填
 			//// 0番目の要素が存在するかチェック
 			//if (!player->m_Magazines.empty())
@@ -133,7 +146,7 @@ bool SoundGun::Suction(std::weak_ptr<GameObject> _gion)
 			//	}
 			//	else if (player->m_pChildren.size()>1&&player->m_pChildren[1])
 			//	{
-			//		// 1番目に追加する際に特定の位置に設定(出口は珍毛）
+			//		// 1番目に追加する際に特定の位置に設定
 			//		onomatopoeia->SetPosition(Vector3(-500.0f, 250.0f, 0.0f));
 			//	}
 			//	else if (player->m_Magazines.size() == 2)

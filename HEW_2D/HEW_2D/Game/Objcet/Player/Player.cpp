@@ -26,7 +26,10 @@ void Player::Update(void)
 	// 下降している場合(ジャンプ中でベクトルのY成分が負(-)の時)
 	if (Jumping && m_Velocity.y < 0.0f)
 	{
-		Animation(JUMP);
+		if (isFacingLeft) { Animation(LEFTJUMP); }
+		else {
+			Animation(JUMP);
+		}
 		// 地面に足がついた場合は方向ベクトルをリセット
 		if (OnGround)
 		{
@@ -41,25 +44,25 @@ void Player::Update(void)
 			m_Direction.y -= 1.0f;	// 下向きの方向ベクトルを加算
 		}
 	}
-	// 左移動しようとしている場合
+
 	if (MoveLeft)
 	{
-		m_Direction.x -= 1.0f;	// 左向きの方向ベクトルを加算
-		// ジャンプ中はジャンプモーション優先
+		isFacingLeft = true; // ← 左向きフラグをON
+		m_Direction.x -= 1.0f;
 		if (Jumping)
 		{
-			Animation(JUMP);
+			Animation(LEFTJUMP);
 		}
 		else {
-			Animation(RUN);
+			Animation(LEFTRUN);
 		}
 		MoveLeft = false;
 	}
-	// 右移動しようとしている場合
+
 	if (MoveRight)
 	{
-		m_Direction.x += 1.0f;	// 右向きの方向ベクトルを加算
-		// ジャンプ中はジャンプモーション優先
+		isFacingLeft = false; // ← 右向きフラグをOFF
+		m_Direction.x += 1.0f;
 		if (Jumping)
 		{
 			Animation(JUMP);
@@ -69,6 +72,7 @@ void Player::Update(void)
 		}
 		MoveRight = false;
 	}
+
 
 	// 正規化(長さを１に揃える)
 	if (m_Direction.Length() > 0.0f)
@@ -94,7 +98,13 @@ void Player::Update(void)
 		// 接地していればジャンプ中ではない
 		Jumping = false;
 		// 通常時アニメーションへ変更(立ち止まってる時にアニメーションはしたくないので、一番自然な状態の画像に設定)
-		m_Number.y = 0;			// 2025/01/23 赤根: なぜか二枚目のほうに設定されるけど違和感はマシになったので一旦これで置いとく
+		if (isFacingLeft)
+		{
+			m_Number.y = 3; // 左向き立ち絵
+		}
+		else {
+			m_Number.y = 0;			// 2025/01/23 赤根: なぜか二枚目のほうに設定されるけど違和感はマシになったので一旦これで置いとく
+		}
 	}
 
 	// 移動処理
@@ -139,14 +149,24 @@ void Player::Draw(void)
 	// 擬音銃を持っていれば
 	if (m_Soundgun)
 	{
-		// 描画(この中で吸い込み中かを判定してる)
+		// スケール反転（X軸のみ反転）
+		Vector3 gunScale = m_Soundgun->GetScale();
+		gunScale.x = isFacingLeft ? -abs(gunScale.x) : abs(gunScale.x);
+		m_Soundgun->SetScale(gunScale);
+
+		// プレイヤーの左右に銃を移動
+		Vector3 gunPos = transform.GetPosition();
+		float offset = transform.GetScale().x / 2 + m_Soundgun->GetScale().x / 2;
+		gunPos.x += isFacingLeft ? -offset : offset;
+		m_Soundgun->SetPosition(gunPos);
+
 		m_Soundgun->Draw();
 	}
 }
 
 /**
- * @brief 解放処理
-*/
+ ** @brief 解放処理
+**/
 void Player::Uninit(void)
 {
 	for (auto& mag : m_Magazines) {
@@ -230,6 +250,42 @@ void Player::Animation(STATE _Anim_Name)
 			framecount = 0;
 		}
 		break;
+	case LEFTRUN:
+		this->m_Number.y = 3;	// 3番上の段を使う
+
+		// フレーム数加算
+		framecount++;
+		if (framecount == 3)
+		{
+			// 加算中は
+			if (CountUp)
+			{
+				// アニメーション番号加算(アニメーションごとに分割数が違う場合はswitchで条件分けしてここに分割数を入れればおｋ)
+				m_Number.x += 1;
+				// アニメーション番号余りなし→アニメーション最終フレームなので減算開始
+				if (m_Number.x % m_Split.x == 0)
+				{
+					CountDown = true;
+					CountUp = false;
+				}
+			}
+			// 減算中は
+			if (CountDown)
+			{
+				// アニメーション番号加算
+				m_Number.x -= 1;
+				// アニメーション番号が0より小さい→アニメーションの開始フレームなので番号を0に戻して加算開始
+				if (m_Number.x < 0)
+				{
+					m_Number.x = 0;
+					CountUp = true;
+					CountDown = false;
+				}
+			}
+			framecount = 0;
+		}
+		break;
+
 	case JUMP:
 		// ここがややこしい
 		// ・ジャンプしたとき→ジャンプ中ではなくジャンプフラグが立った時
@@ -264,6 +320,32 @@ void Player::Animation(STATE _Anim_Name)
 			this->m_Number.x = 1;	// 右を使う
 		}
 
+		break;
+	case LEFTJUMP:
+		if (!Jumping && Jump)
+		{
+			this->m_Number.y = 4;	// 二番目の段の
+			this->m_Number.x = 0;	// 左を使う
+		}
+		// ・上昇中のとき→ジャンプ中でベクトルのY成分が正(+)の時
+		if (Jumping && m_Velocity.y > 0.0f)
+		{
+			// 別画像がないので同じものを使う
+			this->m_Number.y = 4;	// 二番目の段の
+			this->m_Number.x = 0;	// 左を使う
+		}
+		// ・下降中のとき→ジャンプ中でベクトルのY成分が負(-)の時
+		if (Jumping && m_Velocity.y < 0.0f)
+		{
+			this->m_Number.y = 4;	// 二番目の段の
+			this->m_Number.x = 1;	// 右を使う
+		}
+		// ・着地したとき→ジャンプ中で下向きのベクトルが0になった時(プレイヤーが地面に接触したとき)
+		if (Jumping && m_Velocity.y == 0)
+		{
+			this->m_Number.y = 4;	// 二番目の段の
+			this->m_Number.x = 1;	// 右を使う
+		}
 		break;
 		// ↓は画像内ので今のところ実装予定なし
 	case DAMAGED:

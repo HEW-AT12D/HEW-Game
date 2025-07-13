@@ -843,7 +843,7 @@ void Stage1Scene::Update(void)
 	//Collider_Objects_Objects(onopatopoeias,grounds);		// 擬音と地面
 	//ColliderPlayer_Ground(playerShared, groundShared2);
 
-	if (ColliderPlayer_Ground(playerShared.second, grounds))
+	/*if (ColliderPlayer_Ground(playerShared.second, grounds))
 	{
 		Collider_to_Object(playerShared.second, baneShared.lock());
 
@@ -851,7 +851,7 @@ void Stage1Scene::Update(void)
 	else {
 		Collider_toGround(playerShared2, grounds2.lock());
 
-	}
+	}*/
 
 
 	// クロスヘアの入力取得(本来はプレイヤーのフラグを立てて、プレイヤーの更新の中でクロスヘアを動かすべき)

@@ -47,10 +47,12 @@ enum STATE
 {
 	NORMAL,		// 通常時
 	RUN,		// 移動時
+	LEFTRUN,	// 左移動
 	JUMP,		// ジャンプ時
+	LEFTJUMP,	// 左ジャンプ
 	DAMAGED,	// 被ダメ時
 	ATTACKED,	// 攻撃時
-	EFECT,      //エフェクト
+	EFECT,      // エフェクト
 };
 
 /**

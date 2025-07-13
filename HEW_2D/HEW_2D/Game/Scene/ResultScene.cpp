@@ -6,10 +6,11 @@
 
 void ResultScene::Init(void) {
 	// オブジェクト追加
-	objectmanager.AddObject<Player>(ENEMY, "player");
-	objectmanager.GetGameObjectPtr<Player>(ENEMY, "player").lock()->Init(L"Game/Asset/BackGround/TitleBack.png");
-	objectmanager.GetGameObjectPtr<Player>(ENEMY, "player").lock()->SetPosition(Vector3(0.0f, 0.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<Player>(ENEMY, "player").lock()->SetScale(Vector3(1960.0f, 1080.0f, 0.0f));
+	//背景
+	objectmanager.AddObject<GameObject>(BACKGROUND, "background");
+	objectmanager.GetGameObjectPtr<GameObject>(BACKGROUND, "background").lock()->Init(L"Game/Asset/BackGround/TitleBack.png");
+	objectmanager.GetGameObjectPtr<GameObject>(BACKGROUND, "background").lock()->SetPosition(Vector3(0.0f, 0.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(BACKGROUND, "background").lock()->SetScale(Vector3(1960.0f, 1080.0f, 0.0f));
 
 	objectmanager.AddObject<Poyon>(OBJECT, "STAGE1");
 	objectmanager.GetGameObjectPtr<Poyon>(OBJECT, "STAGE1").lock()->Init(L"Game/Asset/UI/BacktoTitleButton.png", 2, 1);

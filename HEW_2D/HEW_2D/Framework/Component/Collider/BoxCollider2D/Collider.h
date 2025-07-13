@@ -57,12 +57,21 @@ bool BoxCollider2(std::shared_ptr<T> _obj1, std::shared_ptr<U> _obj2,std::shared
 		else if (minOverlap == overlapBottom) {
 			std::cout << "下から衝突" << std::endl;
 			_player->SetOnGround(true);
-			_player->SetDirection(Vector3({ 0.0f }));
-			_player->AddForce(Vector3({ 0.0f }));
+			_player->SetDirection(Vector3(0.0f, 0.0f, 0.0f));
+			_player->AddForce(Vector3(0.0f, 0.0f, 0.0f));
+
+		/*修正07/13　Playerのめり込み解消*/
+			// オーバーラップ分補正
+			Vector3 pos = _player->GetPosition();
+			pos.y += overlapBottom;  // プレイヤーを上にずらす
+			_player->SetPosition(pos);
+
 			return true;  // 下から衝突
 		}
+
 		else {
 			std::cout << "上から衝突" << std::endl;
+			
 			return true;  // 上から衝突
 		}
 	}

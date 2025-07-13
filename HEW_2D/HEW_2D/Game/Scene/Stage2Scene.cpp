@@ -63,8 +63,8 @@ void Stage2Scene::Frame1() {
 
 	// プレイヤー
 	objectmanager.AddObject<Player>(PLAYER, "Player");
-	objectmanager.GetGameObjectPtr<Player>(PLAYER, "Player").lock()->Init(L"Game/Asset/Character/Player_Sprite.png", 2, 3);
-	objectmanager.GetGameObjectPtr<Player>(PLAYER, "Player").lock()->SetPosition(Vector3(-500.0f, -200.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<Player>(PLAYER, "Player").lock()->Init(L"Game/Asset/Character/Completion_Player_Sprite.png", 2, 6);
+	objectmanager.GetGameObjectPtr<Player>(PLAYER, "Player").lock()->SetPosition(Vector3(-700.0f, -400.0f, 0.0f));
 	objectmanager.GetGameObjectPtr<Player>(PLAYER, "Player").lock()->SetScale(Vector3(130.0f, 130.0f, 0.0f));
 
 	// 擬音銃(設計的には銃を別画像で用意してプレイヤーに持たせる方が良かったが、)
@@ -193,7 +193,11 @@ void Stage2Scene::Frame1() {
 void Stage2Scene::Frame2() {
 	objectmanager.GetGameObject<Player>(PLAYER, "Player").second->SetPosition(Vector3(-500.0f, 0.0f, 0.0f));
 	objectmanager.GetGameObject<Enemy>(ENEMY, "Slime").second->SetPosition(Vector3(0.0f, -200.0f, 0.0f));
-
+	auto playerShared2 = objectmanager.GetGameObjectPtr<Player>(PLAYER, "Player");
+	Vector3 pos = playerShared2.lock()->GetPosition();
+	pos.x = -700.0f; pos.y = -400.0f; pos.z = 0.0f;
+	playerShared2.lock()->SetPosition(pos);
+	
 	/*objectmanager.AddObject<GameObject>(OBJECT, "FRAME2bane");
     objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "FRAME2bane").lock()->Init(L"Game/Asset/GameObject/Bane.png", 3, 1);
 	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "FRAME2bane").lock()->SetPosition(Vector3(0.0f, 0.0f, 0.0f));
@@ -244,6 +248,11 @@ void Stage2Scene::Frame2() {
 
 void Stage2Scene::Frame3() {
 	objectmanager.GetGameObject<Enemy>(ENEMY, "Slime").second->SetPosition(Vector3(-700.0f, 200.0f, 0.0f));
+
+	auto playerShared2 = objectmanager.GetGameObjectPtr<Player>(PLAYER, "Player");
+	Vector3 pos = playerShared2.lock()->GetPosition();
+	pos.x = -700.0f; pos.y = -400.0f; pos.z = 0.0f;
+	playerShared2.lock()->SetPosition(pos);
 
 	objectmanager.GetGameObject<Player>(PLAYER, "Player").second->SetPosition(Vector3(-500.0f, 0.0f, 0.0f));
 	objectmanager.GetGameObjectPtr<PataPata>(GROUND, "FRAME2Box").lock()->SetPosition(Vector3(-500.0f, 0.0f, 0.0f));
@@ -341,7 +350,7 @@ void Stage2Scene::Init(void) {
 	//objectmanager.AddObject<Player>(PLAYER);
 }
 
-int count = 0; //お情けグローバル変数
+int count = 0; // お情けグローバル変数
 
 void Stage2Scene::Update(void)
 {
@@ -404,6 +413,7 @@ void Stage2Scene::Update(void)
 			playerShared2.lock()->SetOnGround(true);
 			std::cout << "OnGroundの状態：" << playerShared.second->GetOnGround() << std::endl;
 		}*/
+		
 
 		BoxCollider2(playerShared2.lock(), BoxShared.lock(), playerShared2.lock());
 		BoxCollider2(playerShared2.lock(), Ground1FRAME2.lock(), playerShared2.lock());
@@ -511,11 +521,6 @@ void Stage2Scene::Update(void)
 		else {
 			std::cout << "enemygion2がemptyです" << std::endl;
 		}
-
-
-		
-			
-
 
 		// フレーム遷移処理
 		if (Input::GetInstance().GetButtonTrigger(XINPUT_GAMEPAD_B) || Input::GetInstance().GetKeyTrigger(VK_RETURN))
@@ -821,7 +826,6 @@ void Stage2Scene::Update(void)
 			default:
 				break;
 			}
-
 			
 			// SE再生
 			Sound::GetInstance().Play(SE_SHOT);
@@ -1059,7 +1063,6 @@ void Stage2Scene::Update(void)
 
 	if (m_Frame == FRAME1)
 	{
-
 		Vector3 poyon_rotation = objectmanager.GetGameObjectPtr<GameObject>(ONOMATOPOEIA, "Poyonboard").lock()->GetRotation();
 		Vector3 poyon_posiiton = objectmanager.GetGameObjectPtr<GameObject>(ONOMATOPOEIA, "Poyonboard").lock()->GetPosition();
 
@@ -1156,11 +1159,6 @@ void Stage2Scene::Update(void)
 			enemyShared.lock()->cb.matrixWorld = DirectX::XMMatrixScaling(-1.0f, 1.0f, 1.0f);
 		}
 		//std::cout << p_enemy.x << std::endl;
-
-
-		
-
-		
 
 		Vector3 _p_biribiri = effectShared.lock()->GetPosition(); //ポヨンの座標
 		Vector3 _r_biribiri = effectShared.lock()->GetRotation();  //ポヨンの回転
@@ -1269,8 +1267,6 @@ void Stage2Scene::Update(void)
 			}
 
 		}
-
-
 		/////////////////////////////////
 		// カーソル移動して擬音の選択
 		/////////////////////////////////
@@ -1305,7 +1301,6 @@ void Stage2Scene::Update(void)
 		}
 		objectmanager.Update();
 	}
-	
 }
 
 void Stage2Scene::Draw(void) {
@@ -1330,14 +1325,9 @@ void Stage2Scene::Draw(void) {
 void Stage2Scene::Uninit(void) {
 	objectmanager.Uninit();
 	//sound.Uninit();
-
 }
 
 void Stage2Scene::ChangeFRAME(void) {
 	auto playerSharde = objectmanager.GetGameObject<Player>(PLAYER, "Player");
 	Vector3 pos = playerSharde.second->GetPosition();
-	
 }
-
-
-

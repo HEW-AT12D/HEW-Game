@@ -96,6 +96,7 @@ public:
 private:
 	bool IsSuction;		// 吸い込み中か？
 	bool IsShot;		// 発射中か？
+	bool isFacingLeft;	// 左向きか？
 	int BombCount;		// ドォンのカウント
 	// 擬音銃(吸い込む竜巻画像を持たせるために使う→シェーダーリソースビューとかを配列にすれば画像は複数読み込めたかも)
 	std::shared_ptr<SoundGun> m_Soundgun;		// 擬音銃
