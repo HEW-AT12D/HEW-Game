@@ -118,8 +118,8 @@ void Sound::Uninit(void)
 
 	if (m_pXAudio2) m_pXAudio2->Release();
 
-	// COM‚Ì”jŠü
-	CoUninitialize();
+	//// COM‚Ì”jŠü
+	//CoUninitialize();
 }
 
 //=============================================================================

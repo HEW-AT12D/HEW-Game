@@ -5,8 +5,6 @@
 //////////////////////////////////////////////////
 //				DirectXフレームワーク				//
 //////////////////////////////////////////////////
-// TODO:ゲームクラスはD3D11クラスを継承するべき？メンバ変数にとどめておくべき？
-// TODO:2024/10/4 D3D11のInit関数内をさらに関数分けする、エラー吐いてる部分が重要なのでそこの流れを理解する
 
 class D3D11
 {
@@ -62,8 +60,6 @@ private:
 	ID3D11Buffer* m_pConstantBuffer;
 	// ブレンドステート用変数（アルファブレンディング）
 	ID3D11BlendState* m_pBlendState;
-
-	//ID3D11ConstantBuffer* m_pConstantBuffer;
 };
 
 
@@ -74,10 +70,8 @@ struct Vertex
 {
 	// 頂点の位置座標
 	float x, y, z;
-
 	//色
 	float r, g, b, a;
-
 	// テクスチャ座標（UV座標）
 	float u, v;
 };

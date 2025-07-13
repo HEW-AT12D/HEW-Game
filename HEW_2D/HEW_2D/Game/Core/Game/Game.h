@@ -4,10 +4,6 @@
 #include"../../../Game/Scene/Stage1Scene.h"
 #include "../../../Framework/Sound/sound.h"
 
-
-
-//class D3D11;
-
 /**
  * @brief ゲームクラス
  * アプリケーションクラスが保持するゲームクラス
@@ -26,5 +22,4 @@ public:
 
 private:
 	SceneManager scenemanager;	// シーン管理クラス
-
 };

@@ -36,7 +36,6 @@ typedef struct
 
 /**
  * @brief サウンドマネージャのような状態
- * 
  * 今回は時間がないのでシングルトンで全部のデータを入れて管理する
 */
 class Sound {
@@ -74,8 +73,6 @@ private:
 
 	int Distance = 0;	//プレイヤーとオブジェクトの距離をもらう変数
 
-
-
 public:
 	// ゲームループ開始前に呼び出すサウンドの初期化処理
 	HRESULT Init(void);
@@ -90,7 +87,7 @@ public:
 	void Stop(SOUND_LABEL label);
 
 	//! 引数で指定したサウンドの音量を変更する	//後から追加（出口）
-	void ChangeVolume(SOUND_LABEL label,int );
+	void ChangeVolume(SOUND_LABEL label, int);
 
 	// 引数で指定したサウンドの再生を再開する
 	void Resume(SOUND_LABEL label);
@@ -99,18 +96,5 @@ public:
 	int SetDistance(int);
 	int GetDistance(void);
 
-
 	static Sound& GetInstance(void);
-
-
-
-	/*===サウンドフレームワーク設計===*/
-
-	/*
-	音の停止
-	音の再生
-	音のループ
-	シーンごとでの音楽の切り替え(少し違うかも)
-	音の強弱（ゲームシステム上画面外なら小さくなど）これが一番問題？
-	*/
 };

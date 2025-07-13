@@ -2,11 +2,15 @@
 #include "../../Framework/Input/Input.h"
 #include "../../Game/SceneManager/SceneManager.h"
 
+constexpr float BUTTON_STAGE1 = 0.0f;
+constexpr float BUTTON_STAGE2 = -250.0f;
 
 
 void StageSelectScene::Init(void) {
-	Sound::GetInstance().Play(BGM_STAGESELECT);
-
+	// サウンド初期化
+	sound.Init();
+	// BGM再生
+	sound.Play(BGM_STAGESELECT);
 	// 背景
 	objectmanager.AddObject<GameObject>(BACKGROUND, "Background");
 	objectmanager.GetGameObjectPtr<GameObject>(BACKGROUND, "Background").lock()->Init(L"Game/Asset/BackGround/StageSelectBack.png");
@@ -54,14 +58,14 @@ void StageSelectScene::Update(void) {
 	if (Input::GetInstance().GetButtonTrigger(XINPUT_GAMEPAD_START) || Input::GetInstance().GetKeyTrigger(VK_RETURN))
 	{
 		// カーソル位置が上の場合
-		if (Cursor_pos.y == -10.0f)
+		if (Cursor_pos.y == BUTTON_STAGE1)
 		{
 			// 遷移先シーンをステージに設定
 			m_RequestNext = STAGE2;
 		}
 		
 		// カーソル位置が下の場合
-		if (Cursor_pos.y == -300.0f)
+		if (Cursor_pos.y == BUTTON_STAGE2)
 		{
 			// 遷移先をステージ2に設定
 			m_RequestNext = STAGE2;
@@ -69,21 +73,18 @@ void StageSelectScene::Update(void) {
 		// シーン遷移フラグを立てる
 		SetChangeScene(true);
 		// BGM停止
-		Sound::GetInstance().Stop(BGM_STAGESELECT);
+		sound.Stop(BGM_STAGESELECT);
 	}
 	else
 	{
 		// シーン遷移フラグを立てる
 		SetChangeScene(false);
-	}
-
-
-	
+	}	
 	
 	//////////////////////////////////
 	//			カーソル移動
 	//////////////////////////////////
-	
+
 	// 下ボタン入力確認
 	if (Input::GetInstance().GetButtonTrigger(XINPUT_GAMEPAD_DPAD_DOWN) || Input::GetInstance().GetKeyPress(VK_DOWN))
 	{
@@ -94,7 +95,7 @@ void StageSelectScene::Update(void) {
 		}
 		objectmanager.GetGameObjectPtr<GameObject>(UI, "Cursol").lock()->SetPosition(Cursor_pos);
 		// SE再生
-		Sound::GetInstance().Play(SE_CLICK);
+		sound.Play(SE_CLICK);
 	}
 
 	// 上ボタン入力確認
@@ -107,7 +108,7 @@ void StageSelectScene::Update(void) {
 		}
 		objectmanager.GetGameObjectPtr<GameObject>(UI, "Cursol").lock()->SetPosition(Cursor_pos);
 		// SE再生
-		Sound::GetInstance().Play(SE_CLICK);
+		sound.Play(SE_CLICK);
 	}
 	
 	// カーソル座標によってボタンの色を変化
@@ -137,7 +138,8 @@ void StageSelectScene::Draw(void) {
 
 void StageSelectScene::Uninit(void) {
 	// BGM停止
-	Sound::GetInstance().Stop(BGM_STAGESELECT);
+	sound.Stop(BGM_STAGESELECT);
+	sound.Uninit();
 	objectmanager.Uninit();
 }
 

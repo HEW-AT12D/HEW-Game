@@ -1,8 +1,6 @@
 #pragma once
 #include "../../BaseObject/GameObject.h"
 
-
-
 /**
  * @brief 擬音クラス（基底クラス）
  *

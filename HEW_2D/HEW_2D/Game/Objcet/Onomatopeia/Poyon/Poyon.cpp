@@ -1,7 +1,5 @@
 #include "Poyon.h"
 
-
-
 void Poyon::Action(std::weak_ptr<Player> _player)
 {
 	//フラグがTRUEなら（擬音が当たっているか）

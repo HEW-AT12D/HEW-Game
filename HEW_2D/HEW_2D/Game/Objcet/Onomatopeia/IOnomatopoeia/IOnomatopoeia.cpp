@@ -1,8 +1,6 @@
 #include "../IOnomatopoeia/IOnomatopoeia.h"
 #include "../../BaseObject/GameObject.h"
 
-
-
 /**
  * @brief フェードイン/フェードアウト（時間経過で取るか検討中）
  * 現状は擬音出現中はフェードイン/アウトを繰り返す→擬音が鳴った時に実行するようにしたい

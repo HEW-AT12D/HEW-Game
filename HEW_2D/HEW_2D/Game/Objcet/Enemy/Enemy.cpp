@@ -7,7 +7,7 @@ void Enemy::Update()
 
 	// 方向ベクトルを合成
 	// ジャンプした場合
-	
+
 		// ジャンプ中でなければ
 		// ジャンプ処理
 	if (Jump && !Jumping)
@@ -19,8 +19,8 @@ void Enemy::Update()
 		Jump = false;                   //ジャンプフラグはfalse
 
 	}
-		
-	
+
+
 
 	// 下降している場合(ジャンプ中でベクトルのY成分が負(-)の時)
 	if (Jumping && m_Velocity.y < 0.0f)
@@ -40,7 +40,7 @@ void Enemy::Update()
 			m_Direction.y -= 1.0f;	// 下向きの方向ベクトルを加算
 		}
 	}
-	
+
 
 	// 左移動しようとしている場合
 	m_Direction.x -= 1.0f;	// 左向きの方向ベクトルを加算

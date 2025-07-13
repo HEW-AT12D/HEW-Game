@@ -2,9 +2,11 @@
 #include "../../Framework/Input/Input.h"
 
 
-
 void TitleScene::Init(void) {
-	Sound::GetInstance().Play(BGM_TITLE);
+	// サウンド初期化
+	sound.Init();
+	// BGM再生
+	sound.Play(BGM_TITLE);
 
 	// 背景
 	objectmanager.AddObject<Player>(ENEMY, "player");
@@ -83,7 +85,7 @@ void TitleScene::Update(void) {
 		// シーン遷移フラグを立てる
 		SetChangeScene(true);
 		// BGM停止
-		Sound::GetInstance().Stop(BGM_TITLE);
+		sound.Stop(BGM_TITLE);
 	}
 	else
 	{
@@ -96,7 +98,7 @@ void TitleScene::Update(void) {
 		Cursol_pos.y = -370.0f;
 		objectmanager.GetGameObjectPtr<GameObject>(UI, "Cursol").lock()->SetPosition(Cursol_pos);
 		// SE再生
-		Sound::GetInstance().Play(SE_CLICK);
+		sound.Play(SE_CLICK);
 	}
 
 	// 上ボタン入力確認
@@ -105,7 +107,7 @@ void TitleScene::Update(void) {
 		Cursol_pos.y = -170.0f;
 		objectmanager.GetGameObjectPtr<GameObject>(UI, "Cursol").lock()->SetPosition(Cursol_pos);
 		// SE再生
-		Sound::GetInstance().Play(SE_CLICK);
+		sound.Play(SE_CLICK);
 	}
 }
 
@@ -114,7 +116,7 @@ void TitleScene::Draw(void) {
 }
 
 void TitleScene::Uninit(void) {
-	
+	sound.Uninit();
 	objectmanager.Uninit();
 }
 

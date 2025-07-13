@@ -7,11 +7,9 @@
 */
 void Game::Init(void)
 {
-	// シーンマネージャ、サウンドの初期化
-	Sound::GetInstance().Init();
+	// シーンマネージャ初期化
 	scenemanager.Init();
 }
-
 
 /**
  * @brief ゲームのループ処理
@@ -31,7 +29,6 @@ void Game::Update(void)
 		// 「終了しますか？」を表示して
 		PostMessage(Window::GetInstance().GetHandleWindow(), WM_CLOSE, 0, 0);
 		// ゲーム終了フラグをリセット
-		// TODO:2025/01/30 赤根 ウィンドウメッセージを出力させてからのコントローラの入力を取得できていない
 		scenemanager.SetIsQuit(false);
 	}
 }
@@ -44,5 +41,4 @@ void Game::Draw(void)
 void Game::Uninit(void)
 {
 	scenemanager.Uninit();
-	//Sound::GetInstance().Uninit();
 }

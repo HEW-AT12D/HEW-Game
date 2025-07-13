@@ -1,7 +1,6 @@
 #pragma once
 #include "../BaseObject/GameObject.h"
 
-
 class Magazine;
 
 /**

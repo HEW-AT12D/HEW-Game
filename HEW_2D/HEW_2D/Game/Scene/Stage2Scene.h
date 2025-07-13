@@ -17,7 +17,9 @@ public:
 		ChangeScene = false;
 		m_Frame = FRAME1;
 	};
-	~Stage2Scene() {};
+	~Stage2Scene() {
+		Uninit();
+	};
 	void Init(void)override;
 	void Update(void)override;
 	void Draw(void)override;
@@ -29,7 +31,6 @@ public:
 	void Frame4(void);
 	void (Stage2Scene::*Array[5])() = {&Stage2Scene::Frame1,&Stage2Scene::Frame2,&Stage2Scene::Frame3,&Stage2Scene::Frame4 };
 	
-	Sound sound;
 	FRAME nowFRAME;
 private:
 };

@@ -1,6 +1,5 @@
 #include "Window.h"
 
-
 HINSTANCE Window::m_hInst = nullptr;	// インスタンスハンドル(アプリケーションを識別する情報→これはどんな設計でも単一(static)であるべき)
 HWND Window::m_hWnd = nullptr;			// ウィンドウハンドル(ウィンドウの情報を持つポインタみたいなもの→今回はウィンドウは一つなので単一(static)とする)
 uint32_t Window::m_Width = 0;			// ウィンドウの横幅
@@ -34,9 +33,7 @@ Window& Window::GetInstance(void) {
 
 /**
  * @brief ウィンドウの初期化
- *
  * ウィンドウの登録と作成"だけ"を行う
- *
  * @param ウィンドウの幅、高さ
 */
 bool Window::Init(uint32_t _Screen_width, uint32_t _Screen_height) {
@@ -140,7 +137,6 @@ bool Window::MessageLoop(void) {
 	return true;
 }
 
-
 //-----------------------------------------------------------------------------
 // ウィンドウの終了処理
 //-----------------------------------------------------------------------------
@@ -154,7 +150,6 @@ void Window::Uninit(void) {
 	m_hInst = nullptr;
 	m_hWnd = nullptr;
 }
-
 
 //--------------------------------------------------------------------------------------
 //ウィンドウプロシージャ（プロシージャ = 手続き）

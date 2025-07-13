@@ -245,9 +245,6 @@
     <ClCompile Include="Game\Scene\GameScene.cpp">
       <Filter>ゲーム\シーン\未使用</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Scene\TitleScene.cpp">
-      <Filter>ゲーム\シーン\タイトル</Filter>
-    </ClCompile>
     <ClCompile Include="Game\Scene\ResultScene.cpp">
       <Filter>ゲーム\シーン\リザルト</Filter>
     </ClCompile>
@@ -265,6 +262,9 @@
     </ClCompile>
     <ClCompile Include="Framework\Component\Transform\TransformComponent.cpp">
       <Filter>フレームワーク\コンポーネント\Transform</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Scene\TitleScene.cpp">
+      <Filter>ゲーム\シーン\タイトル</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -367,9 +367,6 @@
     <ClInclude Include="Game\Scene\GameScene.h">
       <Filter>ゲーム\シーン\未使用</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Scene\TitleScene.h">
-      <Filter>ゲーム\シーン\タイトル</Filter>
-    </ClInclude>
     <ClInclude Include="Game\Scene\ResultScene.h">
       <Filter>ゲーム\シーン\リザルト</Filter>
     </ClInclude>
@@ -384,6 +381,9 @@
     </ClInclude>
     <ClInclude Include="Game\Scene\Stage1Scene.h">
       <Filter>ゲーム\シーン\ステージ1</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Scene\TitleScene.h">
+      <Filter>ゲーム\シーン\タイトル</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

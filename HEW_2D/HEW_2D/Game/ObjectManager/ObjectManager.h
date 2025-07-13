@@ -5,9 +5,6 @@
 #include "../Objcet/SoundGun/SoundGun.h"
 #include "../Objcet/Camera/Camera.h"
 
-//TODO: いちいちダウンキャストするのめんどくさいから関数にしちゃって、指定した型にダウンキャストしたポインタを返す関数作ったほうがいい
-
-
 /**
  * @brief オブジェクトのmapを管理するために使うstd::pairの二つmapに紐づける関数
 */
@@ -48,18 +45,6 @@ public:
 			return; // 無効な名前の場合は追加しない
 		}
 
-		//TODO:改善案
-		// 追加しようとしているオブジェクトを探す→そのオブジェクトの数+1したものを名前の後ろに付け加える
-		// っていう処理で全てのオブジェクトに対応できる
-		// となるとどうするべきか→同じ型、タグのオブジェクトが存在している場合、そのオブジェクトの数+1した名前をつかる
-
-		//// 同一タグ、型を持つオブジェクトの配列を取得
-		//auto SameObjects = this->GetObjects<T>(_Tag);
-		//// 名前に付与する番号
-		//int count = SameObjects.size();
-		//// 名前を変更(後ろに番号を付与)
-		//std::string newName = _Name + std::to_string(count + 1);
-
 		// 名前があればとりあえずキーとして作成
 		std::pair key = std::make_pair(_Tag, _Name);
 		// キーと同じオブジェクトがendじゃない→見つかった場合、エラー出力
@@ -72,50 +57,6 @@ public:
 		// 正常であればキーとオブジェクトをセットで追加
 		Objects.emplace(std::move(key), std::make_shared<T>(D3d11));
 	}
-
-	/**
-	 * @brief すでに完成したオブジェクトをタグと合わせて追加する関数
-	 * @tparam T オブジェクトの型
-	 * @param  オブジェクトタグ
-	 * @param  オブジェクトのユニークポインタ
-	*/
-	//template <typename T>
-	//void AddObject(const Tag& _Tag, std::shared_ptr<T>&& _Object) {
-	//	// 今回は弾幕シューティングなので、オブジェクトタグが弾の場合、それぞれ名前の後ろに新しく番号を振ってオブジェクト追加する
-	//	// 弾か敵が追加されようとしている場合
-	//	if (_Tag == PLAYER_BULLET || _Tag == ENEMY_BULLET || _Tag == ENEMY)
-	//	{
-	//		// 名前を設定
-	//		std::string name;
-	//		switch (_Tag)
-	//		{
-	//		case PLAYER_BULLET:
-	//			//TODO:弾オブジェクトごとに番号をふって、特定のタグのオブジェクト同士の当たり判定だけを確認する→負荷が少しはマシになる
-	//			BulletCount_P += 1;		// プレイヤー弾カウントを加算
-
-	//			// 名前に番号を付けて更新
-	//			name += "PlayerBullet_" + std::to_string(BulletCount_P);
-	//			break;
-	//		case ENEMY_BULLET:
-	//			BulletCount_E += 1;		// 敵弾カウント加算
-
-	//			// 名前に番号を付けて更新
-	//			name += "EnemyBullet_" + std::to_string(BulletCount_E);
-	//			break;
-	//		case ENEMY:
-	//			EnemyCount += 1;
-	//			name += "Enemy_" + std::to_string(EnemyCount);
-	//			break;
-	//		default:
-	//			break;
-	//		}
-
-	//		// 名前とタグをpairのキーにする
-	//		std::pair key = std::make_pair(_Tag, name);
-	//		// mapにオブジェクトの所有権を渡す
-	//		Objects.emplace(std::move(key), std::move(_Object));
-	//	}
-	//}
 
 	/**
 	 * @brief 指定したタグのオブジェクトをvectorで渡して追加する関数
@@ -212,7 +153,7 @@ public:
 
 	//タグと名前
 	template <class T>
-	std::vector<std::pair<std::pair<Tag, std::string>, std::shared_ptr<T>>> GetGameObjectPair2(const Tag& _tag,std::string _name)
+	std::vector<std::pair<std::pair<Tag, std::string>, std::shared_ptr<T>>> GetGameObjectPair2(const Tag& _tag, std::string _name)
 	{
 		std::vector<std::pair<std::pair<Tag, std::string>, std::shared_ptr<T>>> returnobjects;
 		// map内を探索
@@ -242,7 +183,7 @@ public:
 	 * @tparam T オブジェクトの型
 	 * @param _tag オブジェクトタグ
 	 * @return 指定した型・タグと同一の情報を持つオブジェクトの配列
-	 * 
+	 *
 	 * 2025/01/22 赤根：名前振るように作ったけどその仕組みまだ作れてないから使わないかも！！
 	*/
 	template <class T>
@@ -271,7 +212,7 @@ public:
 	 * @brief オブジェクト削除関数
 	 * @param object 削除対象オブジェクト
 	*/
-	void DeleteObject(Tag _ObjTag,const std::string&objString);
+	void DeleteObject(Tag _ObjTag, const std::string& objString);
 
 	// オブジェクト取得関数
 	//GameObject* GetGameObject(const Tag& _Tag, const std::string _Name);
@@ -314,10 +255,10 @@ public:
 
 	/**
 	 * @brief タグ変更関数
-	 * @param _tag 
-	 * @param _name 
-	 * @param _newTag 
-	 * @return 
+	 * @param _tag
+	 * @param _name
+	 * @param _newTag
+	 * @return
 	*/
 	bool ChangeTag(Tag _tag, const std::string _name, Tag _newTag);
 
@@ -329,20 +270,10 @@ public:
 	void Draw(void);
 	void Uninit(void);
 
-	// 当たり判定も追加予定
-
 private:
-	//TODO:1216ここまで！オブジェクト管理にmapを使う&オブジェクト生成関数で一度で複数のオブジェクトを呼び出せるように変更する！！
-	//! オブジェクトのユニークポインタをmapで持つ→オブジェクトマネージャーがオブジェクトを管理する
-	//! 
-	//! (もしかしたら左にあるオブジェクトから順に配列に保持してもいいかも？→その場合もう一度設計が必要)
-	//! 
 	//! オブジェクトの管理はタグ（大まかな分類）と名前（一意のもの）を使う
 
 	// unordered_mapにpairを使う場合、pairの紐づけないといけないためPairHashをmapの引数に入れる
 	std::unordered_map<std::pair<Tag, std::string>, std::shared_ptr<GameObject>, PairHash> Objects;
-	//std::vector<std::shared_ptr<GameObject>> m_DrawObjects;		// 描画するオブジェクトを保存するコンテナ(毎フレームこの中のオブジェクトだけを描画する)
 	D3D11& D3d11;
 };
-
-// シーン側で全オブジェクトを取得→オブジェクトのタグを確認→カメラの範囲以内にいないものは描画しない

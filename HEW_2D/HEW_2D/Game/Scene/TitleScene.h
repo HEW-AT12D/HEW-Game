@@ -16,7 +16,9 @@ public:
 		// オブジェクトの追加はシーンの初期化で行う
 		// サウンドとかこのシーンのみ存在するものがあればその初期化を行う
 	};
-	~TitleScene() {};
+	~TitleScene() {
+		Uninit();
+	};
 	void Init(void)override;
 	void Update(void)override;
 	void Draw(void)override;

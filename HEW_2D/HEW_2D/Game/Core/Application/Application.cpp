@@ -6,18 +6,13 @@ using namespace SimpleMath;
 
 /**
  * @brief アプリ全体としての初期化処理
- * 
+ *
  * ウィンドウ初期化→DirectX初期化→ゲーム初期化
  * の流れで進める
 */
 void Application::Init(void)
 {
-	//HWND hWnd;						// ウィンドウハンドル代入用変数
-	//Window::GetInstance().Init();	// ウィンドウ初期化
-	//hWnd = Window::GetInstance().GetHandleWindow();		// ウィンドウハンドル取得
-	//d3d11.Init(hWnd);				// ウィンドウ情報を使ってDirectXを初期化
 	m_Game.Init();					// ゲーム初期化
-	
 }
 
 /**
@@ -75,19 +70,11 @@ void Application::Run(void)
 	Uninit();
 }
 
-//void Application::Draw(void)
-//{
-//	d3d11.StartRender();	// 描画開始
-//	background.Draw();		// 背景を描画
-//	player.Draw();			// プレイヤーを描画
-//	d3d11.FinishRender();	// 描画終了
-//}
 
 void Application::Uninit(void)
 {
-	//player.Uninit();		// プレイヤーを終了
-	//background.Uninit();	// プレイヤーを終了
 	Window::GetInstance().Uninit();	// ウィンドウを終了
 	m_Game.Uninit();		// ゲームを終了
 	m_D3d11.Release();		// DirectXを終了
+	CoUninitialize();		// 実行中にゲームを落とすとサウンドの解放がされずにメモリリークを起こすのでここでCOMライブラリを終了
 }

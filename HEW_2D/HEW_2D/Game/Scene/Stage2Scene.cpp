@@ -10,10 +10,7 @@
 
 /**
  * @brief タイトルシーンの初期化
- *
  * シーンごとに初期化は最初の一度のみ
- * →
- *
  * ステージは、縦２０マス＊横４０マス
 */
 
@@ -320,36 +317,21 @@ void Stage2Scene::Frame4() {
 }
 
 void Stage2Scene::Init(void) {
+	// サウンド初期化
+	sound.Init();
 	// BGM再生
-	Sound::GetInstance().Play(BGM_INGAME);
-
-
+	sound.Play(BGM_INGAME);
 	// オブジェクトマネージャ初期化
 	objectmanager.Init();
-	Frame1();
-	//sound.Init();
-
 
 	//-----------------------
 	//-----オブジェクト追加-----
 	//-----------------------
-	// TODO:1218ここまで オブジェクトの管理をenumから変更→tagと名前にしたい
-
-
-	
+	Frame1();
 
 	std::cout << "TitleSceneInit" << std::endl;
-
 	std::cout << "GameSceneInit" << std::endl;
-
-	//// UI1(ボタン)
-	//objectmanager.AddObject<GameObject>(UI, "StartButton");
-	//// UI2(ボタン)
-	//objectmanager.AddObject<GameObject>(UI, "ExitButton");
-	//// プレイヤー
-	//objectmanager.AddObject<Player>(PLAYER);
 }
-
 int count = 0; // お情けグローバル変数
 
 void Stage2Scene::Update(void)
@@ -358,8 +340,6 @@ void Stage2Scene::Update(void)
 	// スティック入力値を取得
 	Vector2 RightStickInput = Input::GetInstance().GetRightAnalogStick();	// 右スティック入力
 	Vector2 LeftStickInput = Input::GetInstance().GetLeftAnalogStick();		// 左スティック入力
-
-	//sound.Play(SOUND_LABEL_BGM000);
 
 
 	// 入力情報の更新
@@ -695,7 +675,7 @@ void Stage2Scene::Update(void)
 				objectmanager.DeleteObject(GROUND, "Ground2");
 				//objectmanager.DeleteObject(ONOMATOPOEIA, "Gion2");
 				objectmanager.DeleteObject(ONOMATOPOEIA, "Poyon"); //FRAME1のポヨン
-				Sound::GetInstance().Stop(BGM_INGAME);
+				sound.Stop(BGM_INGAME);
 				//ここでTITLEに戻る
 				m_RequestNext = RESULT;
 				SetChangeScene(true);
@@ -824,9 +804,8 @@ void Stage2Scene::Update(void)
 			}
 			
 			// SE再生
-			Sound::GetInstance().Play(SE_SHOT);
+			sound.Play(SE_SHOT);
 			playerShared2.lock()->SetMagNumber(1); //0番目の配列
-
 		}
 	}
 
@@ -855,7 +834,7 @@ void Stage2Scene::Update(void)
 		// 座標を設定
 		objectmanager.GetGameObjectPtr<GameObject>(UI, "Frame").lock()->SetPosition(p_frame);
 		// SE再生
-		Sound::GetInstance().Play(SE_CLICK);
+		sound.Play(SE_CLICK);
 	}
 	// L1でマガジンカーソル左移動
 	if (Input::GetInstance().GetKeyTrigger(VK_O) || Input::GetInstance().GetButtonTrigger(XINPUT_GAMEPAD_LEFT_SHOULDER))
@@ -866,7 +845,7 @@ void Stage2Scene::Update(void)
 		// ドォン用マガジンを除く一番最初のマガジンを選択していなければ
 		if (playerShared.second->GetMagNumber() != 1)
 		{
-			Sound::GetInstance().Play(SE_CLICK);
+			sound.Play(SE_CLICK);
 			// マガジン選択番号を１減らして
 			playerShared.second->SetMagNumber(playerShared.second->GetMagNumber() - 1);
 			// カーソルを左に移動
@@ -885,7 +864,7 @@ void Stage2Scene::Update(void)
 		// 座標を設定
 		objectmanager.GetGameObjectPtr<GameObject>(UI, "Frame").lock()->SetPosition(p_frame);
 		// SE再生
-		Sound::GetInstance().Play(SE_CLICK);
+		sound.Play(SE_CLICK);
 	}
 
 
@@ -1190,7 +1169,7 @@ void Stage2Scene::Update(void)
 				if (BoxCollider(playerShared.second, baneShared.lock()))
 				{
 					enemygion.lock()->Action(playerShared.second); //当たっていればAction関数実行
-					Sound::GetInstance().Play(SE_POYON);
+					sound.Play(SE_POYON);
 				}
 			}
 		}
@@ -1226,7 +1205,7 @@ void Stage2Scene::Update(void)
 				{
 					playerShared.second->SetOnGround(true);
 					gionShared.lock()->Action(playerShared.second); //当たっていればAction関数実行
-					Sound::GetInstance().Play(SE_BIRIBIRI);
+					sound.Play(SE_BIRIBIRI);
 				}
 				else {
 					Vector3 r_player = playerShared.second->GetRotation();
@@ -1319,8 +1298,9 @@ void Stage2Scene::Draw(void) {
 }
 
 void Stage2Scene::Uninit(void) {
+	sound.Stop(BGM_INGAME);
+	sound.Uninit();
 	objectmanager.Uninit();
-	//sound.Uninit();
 }
 
 void Stage2Scene::ChangeFRAME(void) {

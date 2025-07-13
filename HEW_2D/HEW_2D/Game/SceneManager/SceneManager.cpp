@@ -4,13 +4,13 @@
 #include "../../Game/Scene/Stage2Scene.h"
 #include "../../Game/Scene/ResultScene.h"
 #include "../../Game/Scene/GameScene.h"
-#include "../../Game/Scene/TitleScene2.h"
+#include "../../Game/Scene/TitleScene.h"
 #include "../../Game/Scene/TestScene.h"
 
 /**
  * @brief シーン配列初期化
 */
-void SceneManager::Init(void) 
+void SceneManager::Init(void)
 {
 	//! タイトルシーンを生成してコンテナに追加
 	Scenes.emplace(TITLE, std::make_unique<TitleScene>(D3d11));
@@ -50,18 +50,11 @@ void SceneManager::Update(void)
 			// ゲーム終了フラグを立てる
 			this->Quit = true;
 		}
-		
 	}
-	
 }
 
-
 void SceneManager::Draw(void) {
-	//! 現在シーンによってそのシーンを描画
-	//! →これだとシーンの解放を考えられてなくない？添え字を指定しちゃってるからvectorな意味ないかも
-	//! 　→map使う？？？
-	
-	// 現在シーンの描画
+	//! 現在シーンによってそのシーンを描画	
 	Scenes[CurrentScene]->Draw();
 }
 
@@ -78,13 +71,7 @@ void SceneManager::Uninit(void) {
 
 /**
  * @brief シーン切り替え関数
- * タイトル、終了画面（？）、ステージ選択シーンはシーンとして保持し続けておきたい（頻繁に使うため、毎回生成→解放しなくても良くない？）
  * @param  次のシーンタグ
- * 
- * フェードインとかもさせたいので、その場合、
- * ・シーン切り替え→切り替えフラグを立てる
- *　 →切り替え中に次シーン生成とフェードアウト
- * 　　→フェードアウトしたら（もしくは生成完了したら）前シーン解放し、フェードイン（ここで前シーン解放）
 */
 void SceneManager::ChangeScene(SceneName _Nextscene) {
 	// 切り替え前のシーンステージ選択画面ではない（保持しておきたいシーンではない）場合、
@@ -106,9 +93,9 @@ void SceneManager::ChangeScene(SceneName _Nextscene) {
 		case STAGESELECT:
 			CreateScene<StageSelectScene>(STAGESELECT);
 			break;
-		/*case TEST:
-			CreateScene<TestScene>(TEST);
-			break;*/
+			/*case TEST:
+				CreateScene<TestScene>(TEST);
+				break;*/
 		case STAGE1:
 			CreateScene<Stage1Scene>(STAGE1);
 			break;
@@ -118,7 +105,7 @@ void SceneManager::ChangeScene(SceneName _Nextscene) {
 		case RESULT:
 			CreateScene<ResultScene>(RESULT);
 			break;
-		// ゲーム終了が選択された場合はシーン遷移処理はしないので何も書かない
+			// ゲーム終了が選択された場合はシーン遷移処理はしないので何も書かない
 		case QUIT:
 			break;
 		default:

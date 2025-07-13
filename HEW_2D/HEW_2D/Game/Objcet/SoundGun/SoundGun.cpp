@@ -1,7 +1,6 @@
 #include "SoundGun.h"
 #include "Magazine.h"
 
-
 /**
  * @brief 更新
 */
@@ -39,7 +38,6 @@ void SoundGun::Update(void)
 	transform.SetPosition(newpos);
 }
 
-
 /**
  * @brief 描画
  * 吸い込み中のみ描画を行う 
@@ -52,7 +50,6 @@ void SoundGun::Draw(void)
 		this->GameObject::Draw();
 	}
 }
-
 
 // 吸い込み状態のゲッターセッター
 void SoundGun::SetIsSuction(bool _flg)

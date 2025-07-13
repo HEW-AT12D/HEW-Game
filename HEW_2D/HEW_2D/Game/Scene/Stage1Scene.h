@@ -32,14 +32,7 @@ public:
 	void Frame3Init(void);
 	void Frame4Init(void);
 
-
 private:
 	FRAME CurrentFrame;		// 現在のフレーム
 	FRAME OldFrame;			// 一フレーム前のフレーム
-
 };
-
-
-
-// 289～317 スライム挙動
-// 539～612 擬音挙動

@@ -4,8 +4,6 @@
 #include "../SoundGun/Magazine.h"
 #include "../SoundGun/CrossHair.h"
 
-
-
 /**
  * @brief プレイヤークラス
  * 
@@ -13,7 +11,6 @@
  * ・移動速度
  * ・ジャンプ力
  * ・当たり判定
- * 
  * 
  * ↓の二つはプレイヤーのメンバとして持たせるのではなく、シーン内でオブジェクトマネージャからAddObjectを行い、そこから親オブジェクトとしてプレイヤーをセットする
  * ・擬音銃
@@ -32,7 +29,6 @@
  * →画像(シェーダーリソースビューとか？)を配列にするべきか？
  * 
 */
-
 class Magazine;
 
 class Player :public Character
@@ -65,12 +61,6 @@ public:
 
 	void SetChild(const std::shared_ptr<GameObject> _child) override;
 
-	// マガジンを取得したときに、UIとして表示する座標を設定したい→既に取得してUIとして表示されているマガジンの座標横に配置する→マガジンの座標が欲しい
-	//void SetMagazine(std::shared_ptr<Magazine> _mag);
-
-	// TODO:2025/01/27 擬音銃クラスで吸い込み関数作成→プレイヤーの吸い込みではそれを実行し、その関数の戻り値で吸い込んだ擬音を返し、マガジンにセットすれば行けるはず
-	
-	// TODO:2025/01/28 移動しながら吸い込んだらうまく吸い込まれないバグを直す。吐きだし処理を完成させる
 	bool Suction(std::weak_ptr<IOnomatopoeia>);	// 吸い込み関数(戻り値で吸い込み処理が終了したかを判定)
 	void Shot(void);		// 擬音の発射関数
 

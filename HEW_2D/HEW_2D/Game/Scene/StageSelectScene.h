@@ -14,8 +14,9 @@ public:
 	StageSelectScene(D3D11& _D3d11) :IScene(_D3d11) {
 		ChangeScene = false;
 	}
-	~StageSelectScene() {};
-
+	~StageSelectScene() {
+		Uninit();
+	};
 	void Init(void) override;
 	void Update(void)override;
 	void Draw(void)override;

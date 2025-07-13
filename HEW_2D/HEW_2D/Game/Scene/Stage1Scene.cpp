@@ -18,131 +18,19 @@
  * ステージは、縦２０マス＊横４０マス
 */
 void Stage1Scene::Init(void) {
+	// サウンド初期化
+	sound.Init();
+	// BGM再生
+	sound.Play(BGM_INGAME);
 	// オブジェクトマネージャ初期化
 	objectmanager.Init();
 
-	// BGM再生
-	Sound::GetInstance().Play(BGM_INGAME);
-	
 
 	//-----------------------
 	//-----オブジェクト追加-----
 	//-----------------------
-	// TODO:1218ここまで オブジェクトの管理をenumから変更→tagと名前にしたい
-	
-	//// 背景
-	//objectmanager.AddObject<GameObject>(BACKGROUND, "Background");
-	//objectmanager.GetGameObjectPtr<GameObject>(BACKGROUND, "Background").lock()->Init(L"Game/Asset/BackGround/TitleBack.png");
-	//objectmanager.GetGameObjectPtr<GameObject>(BACKGROUND, "Background").lock()->SetPosition(Vector3(0.0f, 0.0f, 0.0f));
-	//objectmanager.GetGameObjectPtr<GameObject>(BACKGROUND, "Background").lock()->SetScale(Vector3(1920.0f, 1080.0f, 0.0f));
-	//
-	//// プレイヤー
-	//objectmanager.AddObject<Player>(PLAYER, "Player");
-	//objectmanager.GetGameObjectPtr<Player>(PLAYER, "Player").lock()->Init(L"Game/Asset/Character/Player_Sprite.png", 2, 3);
-	//objectmanager.GetGameObjectPtr<Player>(PLAYER, "Player").lock()->SetPosition(Vector3(0.0f, 600.0f, 0.0f));
-	//objectmanager.GetGameObjectPtr<Player>(PLAYER, "Player").lock()->SetScale(Vector3(130.0f, 130.0f, 0.0f));
-
-	//// 擬音銃(設計的には銃を別画像で用意してプレイヤーに持たせる方が良かったが、)
-	//objectmanager.AddObject<SoundGun>(UI, "SoundGun");
-	//objectmanager.GetGameObjectPtr<SoundGun>(UI, "SoundGun").lock()->Init(L"Game/Asset/Character/CyclonImage.png", 1, 4);
-	//objectmanager.GetGameObjectPtr<SoundGun>(UI, "SoundGun").lock()->SetPosition(Vector3(0.0f, 0.0f, 0.0f));
-	//objectmanager.GetGameObjectPtr<SoundGun>(UI, "SoundGun").lock()->SetScale(Vector3(260.0f, 130.0f, 0.0f));
-	//objectmanager.GetGameObject<Player>(PLAYER, "Player").second->SetChild(objectmanager.GetGameObject<SoundGun>(UI, "SoundGun").second);
-
-	////擬音（ポヨン）
-	//objectmanager.AddObject<Poyon>(ONOMATOPOEIA, "Poyon");	// 名前要変更
-	//objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "Poyon").lock()->Init(L"Game/Asset/Onomatopoeia/Wiin.png");
-	//objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "Poyon").lock()->SetPosition(Vector3(500.0f, -350.0f, 0.0f));
-	//objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "Poyon").lock()->SetScale(Vector3(240.0f, 120.0f, 0.0f));
-	//
-	//// マガジン(二個持った状態でスタート、落ちてるのは一個だけ)
-	//// 1個目(ドォン専用)
-	//objectmanager.AddObject<Magazine>(UI, "SpecialMagazine");
-	//objectmanager.GetGameObjectPtr<Magazine>(UI, "SpecialMagazine").lock()->Init(L"Game/Asset/GameObject/Magazine.png");
-	//objectmanager.GetGameObjectPtr<Magazine>(UI, "SpecialMagazine").lock()->SetPosition(Vector3(0.0f, 0.0f, 0.0f));
-	//objectmanager.GetGameObjectPtr<Magazine>(UI, "SpecialMagazine").lock()->SetScale(Vector3(90.0f, 90.0f, 0.0f));
-	//// 2個目
-	//objectmanager.AddObject<Magazine>(UI, "Magazine1");
-	//objectmanager.GetGameObjectPtr<Magazine>(UI, "Magazine1").lock()->Init(L"Game/Asset/GameObject/Magazine.png");
-	//objectmanager.GetGameObjectPtr<Magazine>(UI, "Magazine1").lock()->SetPosition(Vector3(0.0f, 0.0f, 0.0f));
-	//objectmanager.GetGameObjectPtr<Magazine>(UI, "Magazine1").lock()->SetScale(Vector3(90.0f, 90.0f, 0.0f));
-	//// 3個目
-	//objectmanager.AddObject<Magazine>(UI, "Magazine2");
-	//objectmanager.GetGameObjectPtr<Magazine>(UI, "Magazine2").lock()->Init(L"Game/Asset/GameObject/Magazine.png");
-	//objectmanager.GetGameObjectPtr<Magazine>(UI, "Magazine2").lock()->SetPosition(Vector3(0.0f, 0.0f, 0.0f));
-	//objectmanager.GetGameObjectPtr<Magazine>(UI, "Magazine2").lock()->SetScale(Vector3(90.0f, 90.0f, 0.0f));
-
-	//// 3つは子オブジェクトに設定してUIに変更しておく
-	//objectmanager.GetGameObject<Player>(PLAYER, "Player").second->SetChild(objectmanager.GetGameObject<Magazine>(UI, "SpecialMagazine").second);
-	//objectmanager.GetGameObject<Player>(PLAYER, "Player").second->SetChild(objectmanager.GetGameObject<Magazine>(UI, "Magazine1").second);
-	//objectmanager.GetGameObject<Player>(PLAYER, "Player").second->SetChild(objectmanager.GetGameObject<Magazine>(UI, "Magazine2").second);
-
-	//// 3個目(フィールドに落ちてるマガジン)
-	//objectmanager.AddObject<Magazine>(OBJECT, "Magazine3");
-	//objectmanager.GetGameObjectPtr<Magazine>(OBJECT, "Magazine3").lock()->Init(L"Game/Asset/GameObject/Magazine.png");
-	//objectmanager.GetGameObjectPtr<Magazine>(OBJECT, "Magazine3").lock()->SetPosition(Vector3(400.0f, -400.0f, 0.0f));
-	//objectmanager.GetGameObjectPtr<Magazine>(OBJECT, "Magazine3").lock()->SetScale(Vector3(90.0f, 90.0f, 0.0f));
-
-	//// 地面
-	//objectmanager.AddObject<GameObject>(GROUND, "Ground");
-	//objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground").lock()->Init(L"Game/Asset/GameObject/Ground.png");
-	//objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground").lock()->SetPosition(Vector3(0.0f, -500.0f, 0.0f));
-	//objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground").lock()->SetScale(Vector3(1920.0f, 120.0f, 0.0f));
-
-	//// 地面2
-	//objectmanager.AddObject<GameObject>(GROUND, "Ground2");
-	//objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground2").lock()->Init(L"Game/Asset/GameObject/Ground.png");
-	//objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground2").lock()->SetPosition(Vector3(700.0f, -350.0f, 0.0f));
-	//objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground2").lock()->SetScale(Vector3(120.0f, 120.0f, 0.0f));
-
-	//// スライム
-	//objectmanager.AddObject<Enemy>(ENEMY, "Slime");
-	//objectmanager.GetGameObjectPtr<Enemy>(ENEMY, "Slime").lock()->Init(L"Game/Asset/GameObject/Slime.png");
-	//objectmanager.GetGameObjectPtr<Enemy>(ENEMY, "Slime").lock()->SetPosition(Vector3(200.0f, -300.0f, 0.0f));
-	//objectmanager.GetGameObjectPtr<Enemy>(ENEMY, "Slime").lock()->SetScale(Vector3(120.0f, 120.0f, 0.0f));
-
-	//// クロスヘア
-	//objectmanager.AddObject<CrossHair>(UI, "CrossHair");
-	//objectmanager.GetGameObjectPtr<CrossHair>(UI, "CrossHair").lock()->Init(L"Game/Asset/UI/CrossHair.png");
-	//objectmanager.GetGameObjectPtr<CrossHair>(UI, "CrossHair").lock()->SetPosition(Vector3(200.0f, 0.0f, 0.0f));
-	//objectmanager.GetGameObjectPtr<CrossHair>(UI, "CrossHair").lock()->SetScale(Vector3(30.0f, 30.0f, 0.0f));
-	//// クロスヘアをプレイヤーの子オブジェクトとして設定
-	//objectmanager.GetGameObject<Player>(PLAYER, "Player").second->SetChild(objectmanager.GetGameObject<CrossHair>(UI, "CrossHair").second);
-
-	////マガジンの外枠(初期位置は一番左上のマガジン)
-	//objectmanager.AddObject<GameObject>(UI, "Frame");    // 名前要変更
-	//objectmanager.GetGameObjectPtr<GameObject>(UI, "Frame").lock()->Init(L"Game/Asset/UI/Frame.png");
-	//objectmanager.GetGameObjectPtr<GameObject>(UI, "Frame").lock()->SetPosition(Vector3(-900.0f, 495.0f, 0.0f));
-	//objectmanager.GetGameObjectPtr<GameObject>(UI, "Frame").lock()->SetScale(Vector3(120.0f, 80.0f, 0.0f));
-
-	//// カメラ
-	//objectmanager.AddObject<Camera>(CAMERA, "Camera");    // 名前要変更
-	//objectmanager.GetGameObjectPtr<Camera>(CAMERA, "Camera").lock()->Init(L"Game/Asset/UI/BlackImage.png");
-	//objectmanager.GetGameObjectPtr<Camera>(CAMERA, "Camera").lock()->SetPosition(Vector3(0.0f, 0.0f, 0.0f));
-	//objectmanager.GetGameObjectPtr<Camera>(CAMERA, "Camera").lock()->SetScale(Vector3(1920.0f, 1080.0f, 0.0f));
 
 	std::cout << "GameSceneInit" << std::endl;
-	//// UI1(ボタン)
-	//objectmanager.AddObject<GameObject>(UI, "StartButton");
-	//// UI2(ボタン)
-	//objectmanager.AddObject<GameObject>(UI, "ExitButton");
-	//// プレイヤー
-	//objectmanager.AddObject<Player>(PLAYER);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 	switch (CurrentFrame)
 	{
@@ -946,7 +834,7 @@ void Stage1Scene::Update(void)
 				throw std::runtime_error("擬音をキャストできませんでした");
 			}
 			// SE再生
-			Sound::GetInstance().Play(SE_SHOT);
+			sound.Play(SE_SHOT);
 		}
 	}
 
@@ -960,7 +848,7 @@ void Stage1Scene::Update(void)
 	{
 		// 吸い込める擬音がなくても演出だけ行う
 		// SE再生
-		Sound::GetInstance().Play(SE_SUCTION);
+		sound.Play(SE_SUCTION);
 		// 
 
 		// 吸い込める擬音を探す
@@ -1148,7 +1036,7 @@ void Stage1Scene::Update(void)
 			m_MagCount = 0;
 
 			// サウンド再生
-			Sound::GetInstance().Play(SE_GETMAGAZINE);
+			sound.Play(SE_GETMAGAZINE);
 		}
 
 	}
@@ -1182,7 +1070,7 @@ void Stage1Scene::Update(void)
 		// 座標を設定
 		objectmanager.GetGameObjectPtr<GameObject>(UI, "Frame").lock()->SetPosition(p_frame);
 		// SE再生
-		Sound::GetInstance().Play(SE_CLICK);
+		sound.Play(SE_CLICK);
 	}
 	// L1でマガジンカーソル左移動
 	if (Input::GetInstance().GetKeyTrigger(VK_O) || Input::GetInstance().GetButtonTrigger(XINPUT_GAMEPAD_LEFT_SHOULDER))
@@ -1193,7 +1081,7 @@ void Stage1Scene::Update(void)
 		// ドォン用マガジンを除く一番最初のマガジンを選択していなければ
 		if (playerShared.second->GetMagNumber() != 1)
 		{
-			Sound::GetInstance().Play(SE_CLICK);
+			sound.Play(SE_CLICK);
 			// マガジン選択番号を１減らして
 			playerShared.second->SetMagNumber(playerShared.second->GetMagNumber() - 1);
 			// カーソルを左に移動
@@ -1212,12 +1100,10 @@ void Stage1Scene::Update(void)
 		// 座標を設定
 		objectmanager.GetGameObjectPtr<GameObject>(UI, "Frame").lock()->SetPosition(p_frame);
 		// SE再生
-		Sound::GetInstance().Play(SE_CLICK);
+		sound.Play(SE_CLICK);
 	}
 
-	// マガジンとの当たり判定を毎フレーム取る→マガジンを取得したらその判定チェックはしなくておｋ
-	//objectmanager.Collider_Player_to_Object();		// ここで当たったらマガジン数を１つ減らす
-
+	// オブジェクトの更新
 	objectmanager.Update();
 	
 
@@ -1231,10 +1117,10 @@ void Stage1Scene::Draw(void) {
 
 void Stage1Scene::Uninit(void) {
 	// BGM停止
-	Sound::GetInstance().Stop(BGM_INGAME);
+	sound.Stop(BGM_INGAME);
+	sound.Uninit();
 	objectmanager.Uninit();
 }
-
 
 
 // フェードアウト→一フレーム前のオブジェクト開放→フェードイン
