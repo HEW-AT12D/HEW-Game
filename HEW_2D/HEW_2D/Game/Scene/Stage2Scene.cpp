@@ -35,7 +35,7 @@ void Stage2Scene::Frame1() {
 
 	// スライム(看板用)
 	objectmanager.AddObject<GameObject>(ENEMY, "Slimeboard");
-	objectmanager.GetGameObjectPtr<GameObject>(ENEMY, "Slimeboard")->Init(L"Game/Asset/GameObject/Slime.png");
+	objectmanager.GetGameObjectPtr<GameObject>(ENEMY, "Slimeboard")->Init(L"Game/Asset/GameObject/Slime.png", 2, 1);
 	objectmanager.GetGameObjectPtr<GameObject>(ENEMY, "Slimeboard")->SetPosition(Vector3(-350.0f, -180.0f, 0.0f));
 	objectmanager.GetGameObjectPtr<GameObject>(ENEMY, "Slimeboard")->SetScale(Vector3(60.0f, 30.0f, 0.0f));
 
@@ -132,7 +132,7 @@ void Stage2Scene::Frame1() {
 
 	// スライム
 	objectmanager.AddObject<Enemy>(ENEMY, "Slime");
-	objectmanager.GetGameObjectPtr<Enemy>(ENEMY, "Slime")->Init(L"Game/Asset/GameObject/Slime.png");
+	objectmanager.GetGameObjectPtr<Enemy>(ENEMY, "Slime")->Init(L"Game/Asset/GameObject/Slime.png", 2, 1);
 	objectmanager.GetGameObjectPtr<Enemy>(ENEMY, "Slime")->SetPosition(Vector3(200.0f, -300.0f, 0.0f));
 	objectmanager.GetGameObjectPtr<Enemy>(ENEMY, "Slime")->SetScale(Vector3(80.0f, 40.0f, 0.0f));
 

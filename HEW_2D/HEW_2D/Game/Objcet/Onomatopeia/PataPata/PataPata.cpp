@@ -36,7 +36,7 @@ void PataPata::Action(GameObject* obj, Player* player,float move_hight)
 	{
 		if (Max == false)
 		{
-			if (patapata_pos.y <= Max_altitude)
+			if (patapata_pos.y <= move_hight)
 			{
 				if (Collider_toGround(obj, player))
 				{
