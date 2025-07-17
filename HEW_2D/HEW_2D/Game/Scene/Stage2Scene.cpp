@@ -38,7 +38,7 @@ void Stage2Scene::Frame1() {
 
 	// スライム(看板用)
 	objectmanager.AddObject<GameObject>(ENEMY, "Slimeboard");
-	objectmanager.GetGameObjectPtr<GameObject>(ENEMY, "Slimeboard").lock()->Init(L"Game/Asset/GameObject/Slime.png");
+	objectmanager.GetGameObjectPtr<GameObject>(ENEMY, "Slimeboard").lock()->Init(L"Game/Asset/GameObject/Slime.png",2,1);
 	objectmanager.GetGameObjectPtr<GameObject>(ENEMY, "Slimeboard").lock()->SetPosition(Vector3(-350.0f, -180.0f, 0.0f));
 	objectmanager.GetGameObjectPtr<GameObject>(ENEMY, "Slimeboard").lock()->SetScale(Vector3(60.0f, 30.0f, 0.0f));
 
@@ -140,7 +140,7 @@ void Stage2Scene::Frame1() {
 
 	// スライム
 	objectmanager.AddObject<Enemy>(ENEMY, "Slime");
-	objectmanager.GetGameObjectPtr<Enemy>(ENEMY, "Slime").lock()->Init(L"Game/Asset/GameObject/Slime.png");
+	objectmanager.GetGameObjectPtr<Enemy>(ENEMY, "Slime").lock()->Init(L"Game/Asset/GameObject/Slime.png", 2, 1);
 	objectmanager.GetGameObjectPtr<Enemy>(ENEMY, "Slime").lock()->SetPosition(Vector3(200.0f, -300.0f, 0.0f));
 	objectmanager.GetGameObjectPtr<Enemy>(ENEMY, "Slime").lock()->SetScale(Vector3(80.0f, 40.0f, 0.0f));
 
@@ -317,6 +317,17 @@ void Stage2Scene::Frame3() {
 
 void Stage2Scene::Frame4() {
 
+	// 左側の地面
+	objectmanager.AddObject<GameObject>(GROUND, "ground1");
+	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "ground1").lock()->Init(L"Game/Asset/GameObject/ground.png");
+	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "ground1").lock()->SetPosition(Vector3(-750.0f, 50.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "ground1").lock()->SetScale(Vector3(450.0f, 50.0f, 0.0f));
+
+	// 右側の壁
+	objectmanager.AddObject<GameObject>(GROUND, "ground2");
+	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "ground2").lock()->Init(L"Game/Asset/GameObject/ground.png");
+	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "ground2").lock()->SetPosition(Vector3(600.0f, -100.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "ground2").lock()->SetScale(Vector3(50.0f, 300.0f, 0.0f));
 }
 
 void Stage2Scene::Init(void) {
@@ -533,16 +544,17 @@ void Stage2Scene::Update(void)
 				objectmanager.DeleteObject(UI, "Thunder_Effect");
 				objectmanager.DeleteObject(GROUND, "Ground3");
 				objectmanager.DeleteObject(GROUND, "Ground2");
-				//objectmanager.DeleteObject(ONOMATOPOEIA, "Gion2");
 				objectmanager.DeleteObject(ONOMATOPOEIA, "Poyon"); //FRAME1のポヨン
 				objectmanager.DeleteObject(GROUND, "FRAME2Ground1");
+				objectmanager.DeleteObject(OBJECT, "bane");
+				objectmanager.DeleteObject(OBJECT, "FRAME2treasure");
+				objectmanager.DeleteObject(ONOMATOPOEIA, "FRAME2Gion2");
 			}
 		}
 		objectmanager.Update(); //Playerの物理挙動
 
 		break;
 	case FRAME3:
-		objectmanager.DeleteObject(OBJECT, "bane");
 
 		BoxCollider2(playerShared2.lock(), BoxShared.lock(),playerShared2.lock());
 		BoxCollider2(playerShared2.lock(), Ground3FRAME2.lock(), playerShared2.lock());
@@ -688,22 +700,27 @@ void Stage2Scene::Update(void)
 			{
 				//m_Frame = FRAME_MAX;
 				playerShared.second->SetOnGround(false);
-				//Frame4();
-				objectmanager.DeleteObject(ONOMATOPOEIA, "Gion");
-				objectmanager.DeleteObject(UI, "Thunder_Effect");
-				objectmanager.DeleteObject(GROUND, "Ground3");
-				objectmanager.DeleteObject(GROUND, "Ground2");
-				//objectmanager.DeleteObject(ONOMATOPOEIA, "Gion2");
-				objectmanager.DeleteObject(ONOMATOPOEIA, "Poyon"); //FRAME1のポヨン
+				Frame4();
+				objectmanager.DeleteObject(ONOMATOPOEIA, "FRAME3patapata");
+				objectmanager.DeleteObject(UI, "FRAME3biribiriefect");
+				objectmanager.DeleteObject(ONOMATOPOEIA, "FRAME3biribiri");
+				objectmanager.DeleteObject(GROUND, "FRAME3Box1");
+				objectmanager.DeleteObject(GROUND, "FRAME3Box2");
+				objectmanager.DeleteObject(GROUND, "FRAME3Ground1");
+				objectmanager.DeleteObject(GROUND, "FRAME3Ground2");
+				objectmanager.DeleteObject(OBJECT, "baneFRAME3");
+				objectmanager.DeleteObject(GROUND, "FRAME2Ground2");
+				objectmanager.DeleteObject(GROUND, "FRAME2Ground3");
+				objectmanager.DeleteObject(GROUND, "FRAME2Box");
 				Sound::GetInstance().Stop(BGM_INGAME);
 				//ここでTITLEに戻る
-				m_RequestNext = RESULT;
-				SetChangeScene(true);
+				m_Frame = FRAME4;
 			}
 		}
 		objectmanager.Update(); 
 		break;
 	case FRAME4:
+		objectmanager.Update();
 		break;
 	case FRAME_MAX:
 		break;
@@ -1110,6 +1127,17 @@ void Stage2Scene::Update(void)
 		
 		//ColliderPlayer_Ground(playerShared.second, grounds2);
 
+
+		/* EnemyUV変化 */
+		if (enemyShared.lock()->m_FacingLeft)
+		{
+			enemyShared.lock()->uv = 0;
+			enemyShared.lock()->SetUV(enemyShared.lock()->uv);
+		}
+		else {
+			enemyShared.lock()->uv = 1;
+			enemyShared.lock()->SetUV(enemyShared.lock()->uv);
+		}
 
 
 		//スライムジャンプ

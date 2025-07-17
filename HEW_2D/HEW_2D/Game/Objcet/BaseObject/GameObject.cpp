@@ -308,3 +308,5 @@ bool GameObject::GetOnGround(void)
 {
 	return OnGround;
 }
+
+
