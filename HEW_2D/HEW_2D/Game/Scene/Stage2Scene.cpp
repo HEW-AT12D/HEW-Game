@@ -317,17 +317,62 @@ void Stage2Scene::Frame3() {
 
 void Stage2Scene::Frame4() {
 
+	/* Playerポジション */
+	auto playerShared2 = objectmanager.GetGameObjectPtr<Player>(PLAYER, "Player");
+	Vector3 pos = playerShared2.lock()->GetPosition();
+	pos.x = -900.0f; pos.y = 0.0f; pos.z = 0.0f;
+	playerShared2.lock()->SetPosition(pos);
+
+	/* ゴールポジション */
+	auto goalShared = objectmanager.GetGameObjectPtr<GameObject >(OBJECT, "door");
+	Vector3 goal_pos = goalShared.lock()->GetPosition();
+	goal_pos.y = -370.0f;
+	goalShared.lock()->SetPosition(goal_pos);
+
 	// 左側の地面
 	objectmanager.AddObject<GameObject>(GROUND, "ground1");
 	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "ground1").lock()->Init(L"Game/Asset/GameObject/ground.png");
-	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "ground1").lock()->SetPosition(Vector3(-750.0f, 50.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "ground1").lock()->SetScale(Vector3(450.0f, 50.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "ground1").lock()->SetPosition(Vector3(-750.0f, -100.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "ground1").lock()->SetScale(Vector3(650.0f, 50.0f, 0.0f));
 
 	// 右側の壁
 	objectmanager.AddObject<GameObject>(GROUND, "ground2");
-	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "ground2").lock()->Init(L"Game/Asset/GameObject/ground.png");
-	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "ground2").lock()->SetPosition(Vector3(600.0f, -100.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "ground2").lock()->Init(L"Game/Asset/GameObject/hako.png");
+	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "ground2").lock()->SetPosition(Vector3(600.0f, -300.0f, 0.0f));
 	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "ground2").lock()->SetScale(Vector3(50.0f, 300.0f, 0.0f));
+
+	// 下のブロック
+	objectmanager.AddObject<GameObject>(GROUND, "ground3");
+	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "ground3").lock()->Init(L"Game/Asset/GameObject/hako.png");
+	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "ground3").lock()->SetPosition(Vector3(-450.0f, -200.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "ground3").lock()->SetScale(Vector3(50.0f, 200.0f, 0.0f));
+
+	// パタパタ箱
+	objectmanager.AddObject<PataPata>(GROUND, "ground4");
+	objectmanager.GetGameObjectPtr<PataPata>(GROUND, "ground4").lock()->Init(L"Game/Asset/GameObject/hako.png");
+	objectmanager.GetGameObjectPtr<PataPata>(GROUND, "ground4").lock()->SetPosition(Vector3(-450.0f, -350.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<PataPata>(GROUND, "ground4").lock()->SetScale(Vector3(50.0f, 50.0f, 0.0f));
+
+	// バネ入れてる箱
+	objectmanager.AddObject<PataPata>(OBJECT, "obj1");
+	objectmanager.GetGameObjectPtr<PataPata>(OBJECT, "obj1").lock()->Init(L"Game/Asset/GameObject/hako.png");
+	objectmanager.GetGameObjectPtr<PataPata>(OBJECT, "obj1").lock()->SetPosition(Vector3(350.0f, -400.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<PataPata>(OBJECT, "obj1").lock()->SetScale(Vector3(100.0f, 100.0f, 0.0f));
+
+	// スライム
+	objectmanager.AddObject<Enemy>(ENEMY, "enemy1");
+	objectmanager.GetGameObjectPtr<Enemy>(ENEMY, "enemy1").lock()->Init(L"Game/Asset/GameObject/Slime.png", 2, 1);
+	objectmanager.GetGameObjectPtr<Enemy>(ENEMY, "enemy1").lock()->SetPosition(Vector3(-500.0f, -200.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<Enemy>(ENEMY, "enemy1").lock()->SetScale(Vector3(80.0f, 40.0f, 0.0f));
+
+	// ドォン
+	objectmanager.AddObject<GameObject>(ONOMATOPOEIA, "Doon");
+	objectmanager.GetGameObjectPtr<GameObject>(ONOMATOPOEIA, "Doon").lock()->Init(L"Game/Asset/Onomatopoeia/Doon.png");
+	objectmanager.GetGameObjectPtr<GameObject>(ONOMATOPOEIA, "Doon").lock()->SetPosition(Vector3(-830.0f, -400.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(ONOMATOPOEIA, "Doon").lock()->SetScale(Vector3(200.0f, 150.0f, 0.0f));
+	// ビリビリ
+	// ビリビリエフェクト
+	// ビリビリ床
 }
 
 void Stage2Scene::Init(void) {
@@ -406,6 +451,12 @@ void Stage2Scene::Update(void)
 	auto Magazine1 = objectmanager.GetGameObjectPtr<Magazine>(UI, "Magazine1"); //ドーン
 	auto Magazine2 = objectmanager.GetGameObjectPtr<Magazine>(UI, "Magazine2"); //もともとあるやつ
 	auto Magazine3 = objectmanager.GetGameObjectPtr<Magazine>(UI, "Magazine3"); //落ちてるやつ
+	auto FRAME4Ground1 = objectmanager.GetGameObjectPtr<GameObject>(GROUND, "ground1");
+	auto FRAME4Ground2 = objectmanager.GetGameObjectPtr<GameObject>(GROUND, "ground2");
+	auto FRAME4Ground3 = objectmanager.GetGameObjectPtr<GameObject>(GROUND, "ground3");
+	auto FRAME4Ground4 = objectmanager.GetGameObjectPtr<PataPata>(GROUND, "ground4");
+	auto FRAME4Obj1 = objectmanager.GetGameObjectPtr<PataPata>(OBJECT, "obj1");
+	auto FRAME4Enemy1 = objectmanager.GetGameObjectPtr<Enemy>(ENEMY, "enemy1");
 
 	Vector3 pos = playerShared.second->GetPosition();
 	Vector3 p_enemy = enemyShared.lock()->GetPosition();
@@ -430,7 +481,7 @@ void Stage2Scene::Update(void)
 		BoxCollider2(playerShared2.lock(), Ground2FRAME2.lock(), playerShared2.lock());
 		BoxCollider2(playerShared2.lock(), Ground3FRAME2.lock(), playerShared2.lock());
 
-		BoxShared.lock()->Action(BoxShared.lock(),playerShared.second);
+		BoxShared.lock()->Action(BoxShared.lock(),playerShared.second,300.0f);
 		
 		//std::cout << "OnGroundの状態：" << playerShared.second->GetOnGround() << std::endl;
 
@@ -442,7 +493,6 @@ void Stage2Scene::Update(void)
 			{
 				if (enemygion2.lock()->Get_gion() == false)
 				{
-
 					Vector3 Slim_Position = enemygion2.lock()->GetPosition();
 					Slim_Position = p_enemy;
 					Slim_Position.y = Slim_Position.y + 100;
@@ -532,13 +582,23 @@ void Stage2Scene::Update(void)
 			std::cout << "enemygion2がemptyです" << std::endl;
 		}
 
+		/* EnemyUV変化 */
+		if (enemyShared.lock()->m_FacingLeft)
+		{
+			enemyShared.lock()->uv = 0;
+			enemyShared.lock()->SetUV(enemyShared.lock()->uv);
+		}
+		else {
+			enemyShared.lock()->uv = 1;
+			enemyShared.lock()->SetUV(enemyShared.lock()->uv);
+		}
+
 		// フレーム遷移処理
 		if (Input::GetInstance().GetButtonTrigger(XINPUT_GAMEPAD_B) || Input::GetInstance().GetKeyTrigger(VK_RETURN))
 		{
 			if (Collider_to_Object(playerShared2.lock(), GOOL.lock()))
 			{
 				m_Frame = FRAME3;
-				//playerShared.second->SetOnGround(false);
 				Frame3();
 				objectmanager.DeleteObject(ONOMATOPOEIA, "Gion");
 				objectmanager.DeleteObject(UI, "Thunder_Effect");
@@ -571,7 +631,7 @@ void Stage2Scene::Update(void)
 				PaPata_Position.y = PaPata_Position.y + 100;
 				PataPataFRAME3.lock()->SetPosition(PaPata_Position);
 			}
-			BoxShared.lock()->Action(BoxShared.lock(), playerShared.second);
+			BoxShared.lock()->Action(BoxShared.lock(), playerShared.second,300.0f);
 		}
 
 		//ビリビリ
@@ -712,6 +772,7 @@ void Stage2Scene::Update(void)
 				objectmanager.DeleteObject(GROUND, "FRAME2Ground2");
 				objectmanager.DeleteObject(GROUND, "FRAME2Ground3");
 				objectmanager.DeleteObject(GROUND, "FRAME2Box");
+				objectmanager.DeleteObject(ONOMATOPOEIA, "FRAME2Poyon");
 				Sound::GetInstance().Stop(BGM_INGAME);
 				//ここでTITLEに戻る
 				m_Frame = FRAME4;
@@ -720,6 +781,54 @@ void Stage2Scene::Update(void)
 		objectmanager.Update(); 
 		break;
 	case FRAME4:
+
+		/* Playerと地面や壁の当たり判定 */
+		BoxCollider2(playerShared2.lock(), FRAME4Ground1.lock(), playerShared2.lock());
+		BoxCollider2(playerShared2.lock(), FRAME4Ground2.lock(), playerShared2.lock());
+		BoxCollider2(playerShared2.lock(), FRAME4Ground3.lock(), playerShared2.lock());
+		BoxCollider2(playerShared2.lock(), FRAME4Ground4.lock(), playerShared2.lock());
+
+		/* Playerと箱の当たり判定 */
+		BoxCollider2(playerShared2.lock(), FRAME4Obj1.lock(), playerShared2.lock());	
+
+		/* 動く箱の処理 */
+		if (FRAME4Ground4.lock())
+		{
+			FRAME4Ground4.lock()->Action(FRAME4Ground4.lock(),playerShared2.lock(),-300.0f);
+		}
+
+		//スライムジャンプ
+		if (Collider_toEnemy(FRAME4Enemy1, groundShared))
+		{
+			//スライムジャンプフラグ
+			if (enemygion2.lock())
+			{
+				if (enemygion2.lock()->Get_gion() == false)
+				{
+					Vector3 Slim_Position = enemygion2.lock()->GetPosition();
+					Slim_Position = p_enemy;
+					Slim_Position.y = Slim_Position.y + 100;
+					enemygion2.lock()->SetPosition(Slim_Position);
+				}
+			}
+			FRAME4Enemy1.lock()->SetJump(true);
+		}
+		else if (enemygion2.lock()) {
+			FRAME4Enemy1.lock()->SetOnGround(false);
+			enemygion2.lock()->Fade_in_out();
+		}
+
+		/* EnemyUV変化 */
+		if (FRAME4Enemy1.lock()->m_FacingLeft)
+		{
+			FRAME4Enemy1.lock()->uv = 0;
+			FRAME4Enemy1.lock()->SetUV(FRAME4Enemy1.lock()->uv);
+		}
+		else {
+			FRAME4Enemy1.lock()->uv = 1;
+			FRAME4Enemy1.lock()->SetUV(FRAME4Enemy1.lock()->uv);
+		}
+
 		objectmanager.Update();
 		break;
 	case FRAME_MAX:

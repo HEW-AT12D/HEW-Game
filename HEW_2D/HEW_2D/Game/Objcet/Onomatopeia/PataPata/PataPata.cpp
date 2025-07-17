@@ -24,7 +24,7 @@ void PataPata::Action(void)
 }
 
 
-void PataPata::Action(std::weak_ptr<GameObject> obj, std::weak_ptr<Player> player)
+void PataPata::Action(std::weak_ptr<GameObject> obj, std::weak_ptr<Player> player,float move_hight)
 {
 	Vector3 patapata_pos = obj.lock()->GetPosition();
 	Vector3 player_pos = player.lock()->GetPosition();
@@ -36,7 +36,7 @@ void PataPata::Action(std::weak_ptr<GameObject> obj, std::weak_ptr<Player> playe
 	{
 		if (Max == false)
 		{
-			if (patapata_pos.y <= Max_altitude)
+			if (patapata_pos.y <= move_hight)
 			{
 				if (Collider_toGround(obj, player))
 				{

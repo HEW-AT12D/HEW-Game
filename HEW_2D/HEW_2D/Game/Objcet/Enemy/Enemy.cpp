@@ -1,5 +1,6 @@
 #include"Enemy.h"
 
+
 void Enemy::Update()
 {
     m_Direction = { 0.0f };
