@@ -308,7 +308,62 @@ void Stage2Scene::Frame3() {
 }
 
 void Stage2Scene::Frame4() {
+	/* Playerポジション */
+	auto playerShared2 = objectmanager.GetGameObjectPtr<Player>(PLAYER, "Player");
+	Vector3 pos = playerShared2->GetPosition();
+	pos.x = -900.0f; pos.y = 0.0f; pos.z = 0.0f;
+	playerShared2->SetPosition(pos);
 
+	/* ゴールポジション */
+	auto goalShared = objectmanager.GetGameObjectPtr<GameObject >(OBJECT, "door");
+	Vector3 goal_pos = goalShared->GetPosition();
+	goal_pos.y = -370.0f;
+	goalShared->SetPosition(goal_pos);
+
+	// 左側の地面
+	objectmanager.AddObject<GameObject>(GROUND, "ground1");
+	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "ground1")->Init(L"Game/Asset/GameObject/ground.png");
+	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "ground1")->SetPosition(Vector3(-750.0f, -100.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "ground1")->SetScale(Vector3(650.0f, 50.0f, 0.0f));
+
+	// 右側の壁
+	objectmanager.AddObject<GameObject>(GROUND, "ground2");
+	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "ground2")->Init(L"Game/Asset/GameObject/hako.png");
+	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "ground2")->SetPosition(Vector3(600.0f, -300.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "ground2")->SetScale(Vector3(50.0f, 300.0f, 0.0f));
+
+	// 下のブロック
+	objectmanager.AddObject<GameObject>(GROUND, "ground3");
+	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "ground3")->Init(L"Game/Asset/GameObject/hako.png");
+	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "ground3")->SetPosition(Vector3(-450.0f, -200.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "ground3")->SetScale(Vector3(50.0f, 200.0f, 0.0f));
+
+	// パタパタ箱
+	objectmanager.AddObject<PataPata>(GROUND, "ground4");
+	objectmanager.GetGameObjectPtr<PataPata>(GROUND, "ground4")->Init(L"Game/Asset/GameObject/hako.png");
+	objectmanager.GetGameObjectPtr<PataPata>(GROUND, "ground4")->SetPosition(Vector3(-450.0f, -350.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<PataPata>(GROUND, "ground4")->SetScale(Vector3(50.0f, 50.0f, 0.0f));
+
+	// バネ入れてる箱
+	objectmanager.AddObject<PataPata>(OBJECT, "obj1");
+	objectmanager.GetGameObjectPtr<PataPata>(OBJECT, "obj1")->Init(L"Game/Asset/GameObject/hako.png");
+	objectmanager.GetGameObjectPtr<PataPata>(OBJECT, "obj1")->SetPosition(Vector3(350.0f, -400.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<PataPata>(OBJECT, "obj1")->SetScale(Vector3(100.0f, 100.0f, 0.0f));
+
+	// スライム
+	objectmanager.AddObject<Enemy>(ENEMY, "enemy1");
+	objectmanager.GetGameObjectPtr<Enemy>(ENEMY, "enemy1")->Init(L"Game/Asset/GameObject/Slime.png", 2, 1);
+	objectmanager.GetGameObjectPtr<Enemy>(ENEMY, "enemy1")->SetPosition(Vector3(-500.0f, -200.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<Enemy>(ENEMY, "enemy1")->SetScale(Vector3(80.0f, 40.0f, 0.0f));
+
+	// ドォン
+	objectmanager.AddObject<GameObject>(ONOMATOPOEIA, "Doon");
+	objectmanager.GetGameObjectPtr<GameObject>(ONOMATOPOEIA, "Doon")->Init(L"Game/Asset/Onomatopoeia/Doon.png");
+	objectmanager.GetGameObjectPtr<GameObject>(ONOMATOPOEIA, "Doon")->SetPosition(Vector3(-830.0f, -400.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(ONOMATOPOEIA, "Doon")->SetScale(Vector3(200.0f, 150.0f, 0.0f));
+	// ビリビリ
+	// ビリビリエフェクト
+	// ビリビリ床
 }
 
 void Stage2Scene::Init(void) {
@@ -696,6 +751,54 @@ void Stage2Scene::Update(void)
 		objectmanager.Update(); 
 		break;
 	case FRAME4:
+
+		/* Playerと地面や壁の当たり判定 */
+		BoxCollider2(playerShared2, FRAME4Ground1, playerShared2);
+		BoxCollider2(playerShared2, FRAME4Ground2, playerShared2);
+		BoxCollider2(playerShared2, FRAME4Ground3, playerShared2);
+		BoxCollider2(playerShared2, FRAME4Ground4, playerShared2);
+
+		/* Playerと箱の当たり判定 */
+		BoxCollider2(playerShared2, FRAME4Obj1, playerShared2);
+
+		/* 動く箱の処理 */
+		if (FRAME4Ground4)
+		{
+			FRAME4Ground4->Action(FRAME4Ground4, playerShared2, -300.0f);
+		}
+
+		//スライムジャン
+		if (Collider_toEnemy(FRAME4Enemy1, groundShared))
+		{
+			//スライムジャンプフラグ
+			if (enemygion2)
+			{
+				if (enemygion2->Get_gion() == false)
+				{
+					Vector3 Slim_Position = enemygion2->GetPosition();
+					Slim_Position = p_enemy;
+					Slim_Position.y = Slim_Position.y + 100;
+					enemygion2->SetPosition(Slim_Position);
+				}
+			}
+			FRAME4Enemy1->SetJump(true);
+		}
+		else if (enemygion2) {
+			FRAME4Enemy1->SetOnGround(false);
+			enemygion2->Fade_in_out();
+		}
+
+		/* EnemyUV変化 */
+		if (FRAME4Enemy1->m_FacingLeft)
+		{
+			FRAME4Enemy1->uv = 0;
+			FRAME4Enemy1->SetUV(FRAME4Enemy1->uv);
+		}
+		else {
+			FRAME4Enemy1->uv = 1;
+			FRAME4Enemy1->SetUV(FRAME4Enemy1->uv);
+		}
+
 		objectmanager.Update();
 		break;
 	case FRAME_MAX:
