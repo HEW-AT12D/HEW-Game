@@ -12,4 +12,5 @@ public:
 	~Enemy();//デストラクタ
 	void Update();//エネミーの動作
 
+
 };

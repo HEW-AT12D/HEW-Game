@@ -425,6 +425,12 @@ void Stage2Scene::Update(void)
 	auto Magazine1 = objectmanager.GetGameObjectPtr<Magazine>(UI, "Magazine1"); //ƒh[ƒ“
 	auto Magazine2 = objectmanager.GetGameObjectPtr<Magazine>(UI, "Magazine2"); //‚à‚Æ‚à‚Æ‚ ‚é‚â‚Â
 	auto Magazine3 = objectmanager.GetGameObjectPtr<Magazine>(UI, "Magazine3"); //—‚¿‚Ä‚é‚â‚Â
+	auto FRAME4Ground1 = objectmanager.GetGameObjectPtr<GameObject>(GROUND, "ground1");
+	auto FRAME4Ground2 = objectmanager.GetGameObjectPtr<GameObject>(GROUND, "ground2");
+	auto FRAME4Ground3 = objectmanager.GetGameObjectPtr<GameObject>(GROUND, "ground3");
+	auto FRAME4Ground4 = objectmanager.GetGameObjectPtr<PataPata>(GROUND, "ground4");
+	auto FRAME4Obj1 = objectmanager.GetGameObjectPtr<PataPata>(OBJECT, "obj1");
+	auto FRAME4Enemy1 = objectmanager.GetGameObjectPtr<Enemy>(ENEMY, "enemy1");
 
 	Vector3 pos = playerShared.second->GetPosition();
 	Vector3 p_enemy = enemyShared->GetPosition();
