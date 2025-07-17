@@ -511,6 +511,9 @@ void Stage2Scene::Update(void)
 				//objectmanager.DeleteObject(ONOMATOPOEIA, "Gion2");
 				objectmanager.DeleteObject(ONOMATOPOEIA, "Poyon"); //FRAME1ÇÃÉ|ÉàÉì
 				objectmanager.DeleteObject(GROUND, "FRAME2Ground1");
+				objectmanager.DeleteObject(ONOMATOPOEIA, "FRAME2Gion2");
+				objectmanager.DeleteObject(OBJECT, "FRAME2treasure");
+				objectmanager.DeleteObject(ONOMATOPOEIA, "Poyon");
 			}
 		}
 		objectmanager.Update(); //PlayerÇÃï®óùãììÆ
@@ -668,8 +671,23 @@ void Stage2Scene::Update(void)
 				objectmanager.DeleteObject(UI, "Thunder_Effect");
 				objectmanager.DeleteObject(GROUND, "Ground3");
 				objectmanager.DeleteObject(GROUND, "Ground2");
-				//objectmanager.DeleteObject(ONOMATOPOEIA, "Gion2");
 				objectmanager.DeleteObject(ONOMATOPOEIA, "Poyon"); //FRAME1ÇÃÉ|ÉàÉì
+				objectmanager.DeleteObject(ONOMATOPOEIA, "FRAME3patapata");
+				objectmanager.DeleteObject(UI, "FRAME3biribiriefect");
+				objectmanager.DeleteObject(ONOMATOPOEIA, "FRAME3biribiri");
+				objectmanager.DeleteObject(GROUND, "FRAME3Box1");
+				objectmanager.DeleteObject(GROUND, "FRAME3Box2");
+				objectmanager.DeleteObject(GROUND, "FRAME3Ground1");
+				objectmanager.DeleteObject(GROUND, "FRAME3Ground2");
+				objectmanager.DeleteObject(OBJECT, "baneFRAME3");
+				objectmanager.DeleteObject(ONOMATOPOEIA, "FRAME2Poyon");
+				objectmanager.DeleteObject(GROUND, "FRAME2Box");
+				objectmanager.DeleteObject(GROUND, "FRAME2Ground1");
+				objectmanager.DeleteObject(GROUND, "FRAME2Ground2");
+				objectmanager.DeleteObject(GROUND, "FRAME2Ground3");
+				
+
+
 				sound.Stop(BGM_INGAME);
 				//Ç±Ç±Ç≈TITLEÇ…ñﬂÇÈ
 				m_Frame = FRAME4;
@@ -1253,7 +1271,6 @@ void Stage2Scene::Update(void)
 				objectmanager.DeleteObject(UI, "Thunder_Effect");
 				objectmanager.DeleteObject(GROUND, "Ground3");
 				objectmanager.DeleteObject(GROUND, "Ground2");
-				//objectmanager.DeleteObject(ONOMATOPOEIA, "Gion2");
 				objectmanager.DeleteObject(ONOMATOPOEIA, "Poyon"); //FRAME1ÇÃÉ|ÉàÉì
 				objectmanager.DeleteObject(BACKGROUND, "board1");
 				objectmanager.DeleteObject(BACKGROUND, "Playerboard");
@@ -1261,6 +1278,7 @@ void Stage2Scene::Update(void)
 				objectmanager.DeleteObject(ENEMY, "Slimeboard");
 				objectmanager.DeleteObject(UI, "SoundGunboard");
 				objectmanager.DeleteObject(OBJECT, "baneboard");
+				objectmanager.DeleteObject(Doon, "Gion2");
 			}
 		}
 		objectmanager.Update();
