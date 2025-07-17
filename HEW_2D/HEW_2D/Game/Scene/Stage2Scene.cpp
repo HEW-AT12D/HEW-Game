@@ -455,7 +455,7 @@ void Stage2Scene::Update(void)
 		BoxCollider2(playerShared2, Ground2FRAME2, playerShared2);
 		BoxCollider2(playerShared2, Ground3FRAME2, playerShared2);
 
-		BoxShared->Action(BoxShared, playerShared.second);
+		BoxShared->Action(BoxShared, playerShared.second,400.0f);
 		
 		//std::cout << "OnGroundの状態：" << playerShared.second->GetOnGround() << std::endl;
 
@@ -583,7 +583,7 @@ void Stage2Scene::Update(void)
 	case FRAME3:
 		objectmanager.DeleteObject(OBJECT, "bane");
 
-		BoxCollider2(playerShared2, BoxShared, playerShared.second);
+		BoxCollider2(playerShared2, BoxShared, playerShared2);
 		BoxCollider2(playerShared2, Ground3FRAME2, playerShared2);
 		BoxCollider2(playerShared2, Ground2FRAME2, playerShared2);
 		BoxCollider2(playerShared2, Ground1FRAME3, playerShared2);
@@ -598,7 +598,7 @@ void Stage2Scene::Update(void)
 				PaPata_Position.y = PaPata_Position.y + 100;
 				PataPataFRAME3->SetPosition(PaPata_Position);
 			}
-			BoxShared->Action(BoxShared, playerShared.second);
+			BoxShared->Action(BoxShared, playerShared.second,400.0f);
 		}
 
 		//ビリビリ
@@ -727,7 +727,7 @@ void Stage2Scene::Update(void)
 			{
 				//m_Frame = FRAME_MAX;
 				playerShared.second->SetOnGround(false);
-				//Frame4();
+				Frame4();
 				objectmanager.DeleteObject(ONOMATOPOEIA, "Gion");
 				objectmanager.DeleteObject(UI, "Thunder_Effect");
 				objectmanager.DeleteObject(GROUND, "Ground3");
@@ -773,7 +773,7 @@ void Stage2Scene::Update(void)
 			FRAME4Ground4->Action(FRAME4Ground4, playerShared2, -300.0f);
 		}
 
-		//スライムジャン
+		//スライムジャンプ
 		if (Collider_toEnemy(FRAME4Enemy1, groundShared))
 		{
 			//スライムジャンプフラグ
@@ -797,11 +797,11 @@ void Stage2Scene::Update(void)
 		/* EnemyUV変化 */
 		if (FRAME4Enemy1->m_FacingLeft)
 		{
-			FRAME4Enemy1->uv = 0;
+			FRAME4Enemy1->uv.x = 0;
 			FRAME4Enemy1->SetUV(FRAME4Enemy1->uv);
 		}
 		else {
-			FRAME4Enemy1->uv = 1;
+			FRAME4Enemy1->uv.x = 1;
 			FRAME4Enemy1->SetUV(FRAME4Enemy1->uv);
 		}
 

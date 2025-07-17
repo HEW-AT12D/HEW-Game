@@ -11,6 +11,10 @@ public:
 	}
 	~Enemy();//デストラクタ
 	void Update();//エネミーの動作
-
+	float m_Timer = 0.0f;
+	float m_ChangeDirInterval = 5.0f; // 2秒ごとに反転
+	bool m_FacingLeft = true;
+	DirectX::XMINT2 uv;
+	Enemy* enemy;
 
 };

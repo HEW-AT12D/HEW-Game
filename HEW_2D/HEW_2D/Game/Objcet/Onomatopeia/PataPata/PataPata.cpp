@@ -24,7 +24,7 @@ void PataPata::Action(void)
 }
 
 
-void PataPata::Action(GameObject* obj, Player* player)
+void PataPata::Action(GameObject* obj, Player* player,float move_hight)
 {
 	Vector3 patapata_pos = obj->GetPosition();
 	Vector3 player_pos = player->GetPosition();
