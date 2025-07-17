@@ -672,13 +672,13 @@ void Stage2Scene::Update(void)
 				objectmanager.DeleteObject(ONOMATOPOEIA, "Poyon"); //FRAME1‚Ìƒ|ƒˆƒ“
 				sound.Stop(BGM_INGAME);
 				//‚±‚±‚ÅTITLE‚É–ß‚é
-				m_RequestNext = RESULT;
-				SetChangeScene(true);
+				m_Frame = FRAME4;
 			}
 		}
 		objectmanager.Update(); 
 		break;
 	case FRAME4:
+		objectmanager.Update();
 		break;
 	case FRAME_MAX:
 		break;
