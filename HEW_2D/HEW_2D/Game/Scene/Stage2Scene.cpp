@@ -17,71 +17,71 @@
 void Stage2Scene::Frame1() {
 	// 背景
 	objectmanager.AddObject<GameObject>(BACKGROUND, "Background");
-	objectmanager.GetGameObjectPtr<GameObject>(BACKGROUND, "Background").lock()->Init(L"Game/Asset/BackGround/TitleBack.png");
-	objectmanager.GetGameObjectPtr<GameObject>(BACKGROUND, "Background").lock()->SetPosition(Vector3(0.0f, 0.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<GameObject>(BACKGROUND, "Background").lock()->SetScale(Vector3(1920.0f, 1080.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(BACKGROUND, "Background")->Init(L"Game/Asset/BackGround/TitleBack.png");
+	objectmanager.GetGameObjectPtr<GameObject>(BACKGROUND, "Background")->SetPosition(Vector3(0.0f, 0.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(BACKGROUND, "Background")->SetScale(Vector3(1920.0f, 1080.0f, 0.0f));
 
 	//チュートリアル看板(吸引編)
 	objectmanager.AddObject<GameObject>(BACKGROUND, "board1");
-	objectmanager.GetGameObjectPtr<GameObject>(BACKGROUND, "board1").lock()->Init(L"Game/Asset/GameObject/board.png");
-	objectmanager.GetGameObjectPtr<GameObject>(BACKGROUND, "board1").lock()->SetPosition(Vector3(-400.0f, -150.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<GameObject>(BACKGROUND, "board1").lock()->SetScale(Vector3(500.0f, 500.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(BACKGROUND, "board1")->Init(L"Game/Asset/GameObject/board.png");
+	objectmanager.GetGameObjectPtr<GameObject>(BACKGROUND, "board1")->SetPosition(Vector3(-400.0f, -150.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(BACKGROUND, "board1")->SetScale(Vector3(500.0f, 500.0f, 0.0f));
 
 	// プレイヤー(看板用)
 	objectmanager.AddObject<GameObject>(BACKGROUND, "Playerboard");
-	objectmanager.GetGameObjectPtr<GameObject>(BACKGROUND, "Playerboard").lock()->Init(L"Game/Asset/Character/Player_Sprite.png", 2, 3);
-	objectmanager.GetGameObjectPtr<GameObject>(BACKGROUND, "Playerboard").lock()->SetPosition(Vector3(-500.0f, -150.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<GameObject>(BACKGROUND, "Playerboard").lock()->SetScale(Vector3(100.0f, 100.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(BACKGROUND, "Playerboard")->Init(L"Game/Asset/Character/Player_Sprite.png", 2, 3);
+	objectmanager.GetGameObjectPtr<GameObject>(BACKGROUND, "Playerboard")->SetPosition(Vector3(-500.0f, -150.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(BACKGROUND, "Playerboard")->SetScale(Vector3(100.0f, 100.0f, 0.0f));
 
 	// スライム(看板用)
 	objectmanager.AddObject<GameObject>(ENEMY, "Slimeboard");
-	objectmanager.GetGameObjectPtr<GameObject>(ENEMY, "Slimeboard").lock()->Init(L"Game/Asset/GameObject/Slime.png");
-	objectmanager.GetGameObjectPtr<GameObject>(ENEMY, "Slimeboard").lock()->SetPosition(Vector3(-350.0f, -180.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<GameObject>(ENEMY, "Slimeboard").lock()->SetScale(Vector3(60.0f, 30.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(ENEMY, "Slimeboard")->Init(L"Game/Asset/GameObject/Slime.png");
+	objectmanager.GetGameObjectPtr<GameObject>(ENEMY, "Slimeboard")->SetPosition(Vector3(-350.0f, -180.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(ENEMY, "Slimeboard")->SetScale(Vector3(60.0f, 30.0f, 0.0f));
 
 	//銃のエフェクト(看板用)
 	objectmanager.AddObject<GameObject>(UI, "SoundGunboard");
-	objectmanager.GetGameObjectPtr<GameObject>(UI, "SoundGunboard").lock()->Init(L"Game/Asset/Character/CyclonImage.png", 1, 4);
-	objectmanager.GetGameObjectPtr<GameObject>(UI, "SoundGunboard").lock()->SetPosition(Vector3(-430.0f, -150.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<GameObject>(UI, "SoundGunboard").lock()->SetScale(Vector3(70.0f, 60.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(UI, "SoundGunboard")->Init(L"Game/Asset/Character/CyclonImage.png", 1, 4);
+	objectmanager.GetGameObjectPtr<GameObject>(UI, "SoundGunboard")->SetPosition(Vector3(-430.0f, -150.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(UI, "SoundGunboard")->SetScale(Vector3(70.0f, 60.0f, 0.0f));
 
 	// ポヨンを付与するためのオブジェクト
 	objectmanager.AddObject<GameObject>(OBJECT, "baneboard");
-	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "baneboard").lock()->Init(L"Game/Asset/GameObject/Ground.png");
-	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "baneboard").lock()->SetPosition(Vector3(-350.0f, -200.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "baneboard").lock()->SetScale(Vector3(50.0f, 20.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "baneboard").lock()->SetColor(Color(1.0f, 1.0f, 1.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "baneboard")->Init(L"Game/Asset/GameObject/Ground.png");
+	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "baneboard")->SetPosition(Vector3(-350.0f, -200.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "baneboard")->SetScale(Vector3(50.0f, 20.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "baneboard")->SetColor(Color(1.0f, 1.0f, 1.0f, 0.0f));
 
 	//ポヨン(看板用)
 	objectmanager.AddObject<GameObject>(ONOMATOPOEIA, "Poyonboard");	// 名前要変更
-	objectmanager.GetGameObjectPtr<GameObject>(ONOMATOPOEIA, "Poyonboard").lock()->Init(L"Game/Asset/Onomatopoeia/Poyon.png");
-	objectmanager.GetGameObjectPtr<GameObject>(ONOMATOPOEIA, "Poyonboard").lock()->SetPosition(Vector3(-400.0f, -150.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<GameObject>(ONOMATOPOEIA, "Poyonboard").lock()->SetScale(Vector3(150.0f, 75.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(ONOMATOPOEIA, "Poyonboard")->Init(L"Game/Asset/Onomatopoeia/Poyon.png");
+	objectmanager.GetGameObjectPtr<GameObject>(ONOMATOPOEIA, "Poyonboard")->SetPosition(Vector3(-400.0f, -150.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(ONOMATOPOEIA, "Poyonboard")->SetScale(Vector3(150.0f, 75.0f, 0.0f));
 
 	// プレイヤー
 	objectmanager.AddObject<Player>(PLAYER, "Player");
-	objectmanager.GetGameObjectPtr<Player>(PLAYER, "Player").lock()->Init(L"Game/Asset/Character/Completion_Player_Sprite.png", 2, 6);
-	objectmanager.GetGameObjectPtr<Player>(PLAYER, "Player").lock()->SetPosition(Vector3(-700.0f, -400.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<Player>(PLAYER, "Player").lock()->SetScale(Vector3(130.0f, 130.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<Player>(PLAYER, "Player")->Init(L"Game/Asset/Character/Completion_Player_Sprite.png", 2, 6);
+	objectmanager.GetGameObjectPtr<Player>(PLAYER, "Player")->SetPosition(Vector3(-700.0f, -400.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<Player>(PLAYER, "Player")->SetScale(Vector3(130.0f, 130.0f, 0.0f));
 
 	// 擬音銃(設計的には銃を別画像で用意してプレイヤーに持たせる方が良かったが、)
 	objectmanager.AddObject<SoundGun>(UI, "SoundGun");
-	objectmanager.GetGameObjectPtr<SoundGun>(UI, "SoundGun").lock()->Init(L"Game/Asset/Character/CyclonImage.png", 1, 4);
-	objectmanager.GetGameObjectPtr<SoundGun>(UI, "SoundGun").lock()->SetPosition(Vector3(0.0f, 600.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<SoundGun>(UI, "SoundGun").lock()->SetScale(Vector3(130.0f, 130.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<SoundGun>(UI, "SoundGun")->Init(L"Game/Asset/Character/CyclonImage.png", 1, 4);
+	objectmanager.GetGameObjectPtr<SoundGun>(UI, "SoundGun")->SetPosition(Vector3(0.0f, 600.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<SoundGun>(UI, "SoundGun")->SetScale(Vector3(130.0f, 130.0f, 0.0f));
 	objectmanager.GetGameObject<Player>(PLAYER, "Player").second->SetChild(objectmanager.GetGameObject<SoundGun>(UI, "SoundGun").second);
 
 	// マガジン(二個持った状態でスタート、落ちてるのは一個だけ)
 	// 一個目
 	objectmanager.AddObject<Magazine>(UI, "Magazine1");
-	objectmanager.GetGameObjectPtr<Magazine>(UI, "Magazine1").lock()->Init(L"Game/Asset/GameObject/Magazine.png");
-	objectmanager.GetGameObjectPtr<Magazine>(UI, "Magazine1").lock()->SetPosition(Vector3(0.0f, 0.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<Magazine>(UI, "Magazine1").lock()->SetScale(Vector3(90.0f, 90.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<Magazine>(UI, "Magazine1")->Init(L"Game/Asset/GameObject/Magazine.png");
+	objectmanager.GetGameObjectPtr<Magazine>(UI, "Magazine1")->SetPosition(Vector3(0.0f, 0.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<Magazine>(UI, "Magazine1")->SetScale(Vector3(90.0f, 90.0f, 0.0f));
 	// 二個目
 	objectmanager.AddObject<Magazine>(UI, "Magazine2");
-	objectmanager.GetGameObjectPtr<Magazine>(UI, "Magazine2").lock()->Init(L"Game/Asset/GameObject/Magazine.png");
-	objectmanager.GetGameObjectPtr<Magazine>(UI, "Magazine2").lock()->SetPosition(Vector3(0.0f, 0.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<Magazine>(UI, "Magazine2").lock()->SetScale(Vector3(90.0f, 90.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<Magazine>(UI, "Magazine2")->Init(L"Game/Asset/GameObject/Magazine.png");
+	objectmanager.GetGameObjectPtr<Magazine>(UI, "Magazine2")->SetPosition(Vector3(0.0f, 0.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<Magazine>(UI, "Magazine2")->SetScale(Vector3(90.0f, 90.0f, 0.0f));
 
 	// 二つは子オブジェクトに設定してUIに変更しておく
 	objectmanager.GetGameObject<Player>(PLAYER, "Player").second->SetChild(objectmanager.GetGameObject<Magazine>(UI, "Magazine1").second); //ドーン
@@ -91,99 +91,94 @@ void Stage2Scene::Frame1() {
 	//objectmanager.GetGameObject<Player>(PLAYER, "Player").second->Set
 	objectmanager.GetGameObject<Player>(PLAYER, "Player").second->SetChild(objectmanager.GetGameObject<Magazine>(UI, "Magazine2").second);
 
-	
-
-
 	// 三個目
 	objectmanager.AddObject<Magazine>(OBJECT, "Magazine3");
-	objectmanager.GetGameObjectPtr<Magazine>(OBJECT, "Magazine3").lock()->Init(L"Game/Asset/GameObject/Magazine.png");
-	objectmanager.GetGameObjectPtr<Magazine>(OBJECT, "Magazine3").lock()->SetPosition(Vector3(400.0f, -400.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<Magazine>(OBJECT, "Magazine3").lock()->SetScale(Vector3(90.0f, 90.0f, 0.0f));
-
-	
+	objectmanager.GetGameObjectPtr<Magazine>(OBJECT, "Magazine3")->Init(L"Game/Asset/GameObject/Magazine.png");
+	objectmanager.GetGameObjectPtr<Magazine>(OBJECT, "Magazine3")->SetPosition(Vector3(400.0f, -400.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<Magazine>(OBJECT, "Magazine3")->SetScale(Vector3(90.0f, 90.0f, 0.0f));
 
 	// バネ
 	objectmanager.AddObject<GameObject>(OBJECT, "bane");
-	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "bane").lock()->Init(L"Game/Asset/GameObject/Bane.png");
-	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "bane").lock()->SetPosition(Vector3(0.0f, -415.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "bane").lock()->SetScale(Vector3(50.0f, 50.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "bane")->Init(L"Game/Asset/GameObject/Bane.png");
+	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "bane")->SetPosition(Vector3(0.0f, -415.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "bane")->SetScale(Vector3(50.0f, 50.0f, 0.0f));
 
 	// 地面
 	objectmanager.AddObject<GameObject>(GROUND, "Ground");
-	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground").lock()->Init(L"Game/Asset/GameObject/Ground.png");
-	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground").lock()->SetPosition(Vector3(0.0f, -500.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground").lock()->SetScale(Vector3(1920.0f, 120.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground")->Init(L"Game/Asset/GameObject/Ground.png");
+	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground")->SetPosition(Vector3(0.0f, -500.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground")->SetScale(Vector3(1920.0f, 120.0f, 0.0f));
 
 
 	// 地面2
 	objectmanager.AddObject<GameObject>(GROUND, "Ground2");
-	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground2").lock()->Init(L"Game/Asset/GameObject/Ground.png");
-	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground2").lock()->SetPosition(Vector3(600.0f, -40.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground2").lock()->SetScale(Vector3(900.0f, 130.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground2")->Init(L"Game/Asset/GameObject/Ground.png");
+	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground2")->SetPosition(Vector3(600.0f, -40.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground2")->SetScale(Vector3(900.0f, 130.0f, 0.0f));
 
 	// 地面3
 	objectmanager.AddObject<GameObject>(GROUND, "Ground3");
-	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground3").lock()->Init(L"Game/Asset/GameObject/Ground.png");
-	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground3").lock()->SetPosition(Vector3(400.0f, 40.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground3").lock()->SetScale(Vector3(300.0f, 50.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground3")->Init(L"Game/Asset/GameObject/Ground.png");
+	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground3")->SetPosition(Vector3(400.0f, 40.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground3")->SetScale(Vector3(300.0f, 50.0f, 0.0f));
 
 
 
 	//擬音（ビリビリ）
 	objectmanager.AddObject<BiriBiri>(ONOMATOPOEIA, "Gion");	// 名前要変更
-	objectmanager.GetGameObjectPtr<BiriBiri>(ONOMATOPOEIA, "Gion").lock()->Init(L"Game/Asset/Onomatopoeia/BiriBiri.png");
-	objectmanager.GetGameObjectPtr<BiriBiri>(ONOMATOPOEIA, "Gion").lock()->SetPosition(Vector3(450.0f, 60.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<BiriBiri>(ONOMATOPOEIA, "Gion").lock()->SetScale(Vector3(240.0f, 120.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<BiriBiri>(ONOMATOPOEIA, "Gion")->Init(L"Game/Asset/Onomatopoeia/BiriBiri.png");
+	objectmanager.GetGameObjectPtr<BiriBiri>(ONOMATOPOEIA, "Gion")->SetPosition(Vector3(450.0f, 60.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<BiriBiri>(ONOMATOPOEIA, "Gion")->SetScale(Vector3(240.0f, 120.0f, 0.0f));
 
 	// スライム
 	objectmanager.AddObject<Enemy>(ENEMY, "Slime");
-	objectmanager.GetGameObjectPtr<Enemy>(ENEMY, "Slime").lock()->Init(L"Game/Asset/GameObject/Slime.png");
-	objectmanager.GetGameObjectPtr<Enemy>(ENEMY, "Slime").lock()->SetPosition(Vector3(200.0f, -300.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<Enemy>(ENEMY, "Slime").lock()->SetScale(Vector3(80.0f, 40.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<Enemy>(ENEMY, "Slime")->Init(L"Game/Asset/GameObject/Slime.png");
+	objectmanager.GetGameObjectPtr<Enemy>(ENEMY, "Slime")->SetPosition(Vector3(200.0f, -300.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<Enemy>(ENEMY, "Slime")->SetScale(Vector3(80.0f, 40.0f, 0.0f));
 
 	// クロスヘア
 	objectmanager.AddObject<CrossHair>(UI, "CrossHair");
-	objectmanager.GetGameObjectPtr<CrossHair>(UI, "CrossHair").lock()->Init(L"Game/Asset/UI/CrossHair.png");
-	objectmanager.GetGameObjectPtr<CrossHair>(UI, "CrossHair").lock()->SetPosition(Vector3(200.0f, 0.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<CrossHair>(UI, "CrossHair").lock()->SetScale(Vector3(100.0f, 100.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<CrossHair>(UI, "CrossHair")->Init(L"Game/Asset/UI/CrossHair.png");
+	objectmanager.GetGameObjectPtr<CrossHair>(UI, "CrossHair")->SetPosition(Vector3(200.0f, 0.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<CrossHair>(UI, "CrossHair")->SetScale(Vector3(100.0f, 100.0f, 0.0f));
 	// クロスヘアをプレイヤーの子オブジェクトとして設定
 	objectmanager.GetGameObject<Player>(PLAYER, "Player").second->SetChild(objectmanager.GetGameObject<CrossHair>(UI, "CrossHair").second);
 
 	//enemy擬音
 	objectmanager.AddObject<Poyon>(ONOMATOPOEIA, "Poyon");	// 名前要変更
-	objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "Poyon").lock()->Init(L"Game/Asset/Onomatopoeia/Poyon.png");
-	objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "Poyon").lock()->SetPosition(Vector3(500.0f, -350.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "Poyon").lock()->SetScale(Vector3(240.0f, 120.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "Poyon")->Init(L"Game/Asset/Onomatopoeia/Poyon.png");
+	objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "Poyon")->SetPosition(Vector3(500.0f, -350.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "Poyon")->SetScale(Vector3(240.0f, 120.0f, 0.0f));
 
 
 	//サンダーエフェクト
 	objectmanager.AddObject<BiriBiri>(UI, "Thunder_Effect");
-	objectmanager.GetGameObjectPtr<BiriBiri>(UI, "Thunder_Effect").lock()->Init(L"Game/Asset/Effect/Thunder_Effect.png", 8, 1);
-	objectmanager.GetGameObjectPtr<BiriBiri>(UI, "Thunder_Effect").lock()->SetPosition(Vector3(500.0f, 20.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<BiriBiri>(UI, "Thunder_Effect").lock()->SetScale(Vector3(600.0f, 1200.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<BiriBiri>(UI, "Thunder_Effect").lock()->SetColor(Color(1.0f, 1.0f, 1.0f, 1.0f));
+	objectmanager.GetGameObjectPtr<BiriBiri>(UI, "Thunder_Effect")->Init(L"Game/Asset/Effect/Thunder_Effect.png", 8, 1);
+	objectmanager.GetGameObjectPtr<BiriBiri>(UI, "Thunder_Effect")->SetPosition(Vector3(500.0f, 20.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<BiriBiri>(UI, "Thunder_Effect")->SetScale(Vector3(600.0f, 1200.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<BiriBiri>(UI, "Thunder_Effect")->SetColor(Color(1.0f, 1.0f, 1.0f, 1.0f));
 
 	//マガジンの外枠
 	objectmanager.AddObject<GameObject>(UI, "Frame");	// 名前要変更
-	objectmanager.GetGameObjectPtr<GameObject>(UI, "Frame").lock()->Init(L"Game/Asset/UI/Frame.png");
-	objectmanager.GetGameObjectPtr<GameObject>(UI, "Frame").lock()->SetPosition(Vector3(-900.0f, 495.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<GameObject>(UI, "Frame").lock()->SetScale(Vector3(120.0f, 80.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(UI, "Frame")->Init(L"Game/Asset/UI/Frame.png");
+	objectmanager.GetGameObjectPtr<GameObject>(UI, "Frame")->SetPosition(Vector3(-900.0f, 495.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(UI, "Frame")->SetScale(Vector3(120.0f, 80.0f, 0.0f));
 
 	//ゴール
 	objectmanager.AddObject<GameObject>(OBJECT, "door");
-	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "door").lock()->Init(L"Game/Asset/GameObject/door.png");
-	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "door").lock()->SetPosition(Vector3(850.0f, -370.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "door").lock()->SetScale(Vector3(100.0f, 150.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "door")->Init(L"Game/Asset/GameObject/door.png");
+	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "door")->SetPosition(Vector3(850.0f, -370.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "door")->SetScale(Vector3(100.0f, 150.0f, 0.0f));
 
-	std::vector<std::shared_ptr<GameObject>> objects = {
-	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground").lock(),//地面１
+	std::vector<GameObject*> objects = {
+		objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground"),//地面１
 	};
 
 	//擬音（ドーン）
 	objectmanager.AddObject<Poyon>(Doon, "Gion2");	// 名前要変更
-	objectmanager.GetGameObjectPtr<Poyon>(Doon, "Gion2").lock()->Init(L"Game/Asset/Onomatopoeia/Doon.png");
-	objectmanager.GetGameObjectPtr<Poyon>(Doon, "Gion2").lock()->SetPosition(Vector3(800.0f, 50.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<Poyon>(Doon, "Gion2").lock()->SetScale(Vector3(240.0f, 120.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<Poyon>(Doon, "Gion2")->Init(L"Game/Asset/Onomatopoeia/Doon.png");
+	objectmanager.GetGameObjectPtr<Poyon>(Doon, "Gion2")->SetPosition(Vector3(800.0f, 50.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<Poyon>(Doon, "Gion2")->SetScale(Vector3(240.0f, 120.0f, 0.0f));
 
 }
 
@@ -191,125 +186,125 @@ void Stage2Scene::Frame2() {
 	objectmanager.GetGameObject<Player>(PLAYER, "Player").second->SetPosition(Vector3(-500.0f, 0.0f, 0.0f));
 	objectmanager.GetGameObject<Enemy>(ENEMY, "Slime").second->SetPosition(Vector3(0.0f, -200.0f, 0.0f));
 	auto playerShared2 = objectmanager.GetGameObjectPtr<Player>(PLAYER, "Player");
-	Vector3 pos = playerShared2.lock()->GetPosition();
+	Vector3 pos = playerShared2->GetPosition();
 	pos.x = -700.0f; pos.y = -400.0f; pos.z = 0.0f;
-	playerShared2.lock()->SetPosition(pos);
+	playerShared2->SetPosition(pos);
 	
 	/*objectmanager.AddObject<GameObject>(OBJECT, "FRAME2bane");
-    objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "FRAME2bane").lock()->Init(L"Game/Asset/GameObject/Bane.png", 3, 1);
-	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "FRAME2bane").lock()->SetPosition(Vector3(0.0f, 0.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "FRAME2bane").lock()->SetScale(Vector3(200.0f, 250.0f, 0.0f));*/
+    objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "FRAME2bane")()->Init(L"Game/Asset/GameObject/Bane.png", 3, 1);
+	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "FRAME2bane")()->SetPosition(Vector3(0.0f, 0.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "FRAME2bane")()->SetScale(Vector3(200.0f, 250.0f, 0.0f));*/
 
 	//enemy擬音
 	objectmanager.AddObject<Poyon>(ONOMATOPOEIA, "FRAME2Poyon");	// 名前要変更
-	objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "FRAME2Poyon").lock()->Init(L"Game/Asset/Onomatopoeia/Poyon.png");
-	objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "FRAME2Poyon").lock()->SetPosition(Vector3(500.0f, -350.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "FRAME2Poyon").lock()->SetScale(Vector3(240.0f, 120.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "FRAME2Poyon")->Init(L"Game/Asset/Onomatopoeia/Poyon.png");
+	objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "FRAME2Poyon")->SetPosition(Vector3(500.0f, -350.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<Poyon>(ONOMATOPOEIA, "FRAME2Poyon")->SetScale(Vector3(240.0f, 120.0f, 0.0f));
 
 	//パタパタの箱
 	objectmanager.AddObject<PataPata>(GROUND, "FRAME2Box");	// 名前要変更
-	objectmanager.GetGameObjectPtr<PataPata>(GROUND, "FRAME2Box").lock()->Init(L"Game/Asset/GameObject/hako.png");
-	objectmanager.GetGameObjectPtr<PataPata>(GROUND, "FRAME2Box").lock()->SetPosition(Vector3(200.0f,-400.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<PataPata>(GROUND, "FRAME2Box").lock()->SetScale(Vector3(50.0f, 50.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<PataPata>(GROUND, "FRAME2Box")->Init(L"Game/Asset/GameObject/hako.png");
+	objectmanager.GetGameObjectPtr<PataPata>(GROUND, "FRAME2Box")->SetPosition(Vector3(200.0f,-400.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<PataPata>(GROUND, "FRAME2Box")->SetScale(Vector3(50.0f, 50.0f, 0.0f));
 
 	//Groundの一番右
 	objectmanager.AddObject<GameObject>(GROUND, "FRAME2Ground1");	// 名前要変更
-	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "FRAME2Ground1").lock()->Init(L"Game/Asset/GameObject/ground.png");
-	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "FRAME2Ground1").lock()->SetPosition(Vector3(500.0f, -100.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "FRAME2Ground1").lock()->SetScale(Vector3(350.0f, 50.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "FRAME2Ground1")->Init(L"Game/Asset/GameObject/ground.png");
+	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "FRAME2Ground1")->SetPosition(Vector3(500.0f, -100.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "FRAME2Ground1")->SetScale(Vector3(350.0f, 50.0f, 0.0f));
 
 	//Groundの真ん中
 	objectmanager.AddObject<GameObject>(GROUND, "FRAME2Ground2"); // 名前要変更
-	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "FRAME2Ground2").lock()->Init(L"Game/Asset/GameObject/ground.png");
-	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "FRAME2Ground2").lock()->SetPosition(Vector3(-180.0f, 100.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "FRAME2Ground2").lock()->SetScale(Vector3(350.0f, 50.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "FRAME2Ground2")->Init(L"Game/Asset/GameObject/ground.png");
+	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "FRAME2Ground2")->SetPosition(Vector3(-180.0f, 100.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "FRAME2Ground2")->SetScale(Vector3(350.0f, 50.0f, 0.0f));
 
 	//Groundの一番左
 	objectmanager.AddObject<GameObject>(GROUND, "FRAME2Ground3");	// 名前要変更
-	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "FRAME2Ground3").lock()->Init(L"Game/Asset/GameObject/ground.png");
-	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "FRAME2Ground3").lock()->SetPosition(Vector3(-750.0f, 200.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "FRAME2Ground3").lock()->SetScale(Vector3(450.0f, 50.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "FRAME2Ground3")->Init(L"Game/Asset/GameObject/ground.png");
+	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "FRAME2Ground3")->SetPosition(Vector3(-750.0f, 200.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "FRAME2Ground3")->SetScale(Vector3(450.0f, 50.0f, 0.0f));
 
 	//擬音（ドーン）
 	objectmanager.AddObject<GameObject>(ONOMATOPOEIA, "FRAME2Gion2");	// 名前要変更
-	objectmanager.GetGameObjectPtr<GameObject>(ONOMATOPOEIA, "FRAME2Gion2").lock()->Init(L"Game/Asset/Onomatopoeia/Doon.png");
-	objectmanager.GetGameObjectPtr<GameObject>(ONOMATOPOEIA, "FRAME2Gion2").lock()->SetPosition(Vector3(-750.0f, 250.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<GameObject>(ONOMATOPOEIA, "FRAME2Gion2").lock()->SetScale(Vector3(150.0f, 100.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(ONOMATOPOEIA, "FRAME2Gion2")->Init(L"Game/Asset/Onomatopoeia/Doon.png");
+	objectmanager.GetGameObjectPtr<GameObject>(ONOMATOPOEIA, "FRAME2Gion2")->SetPosition(Vector3(-750.0f, 250.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(ONOMATOPOEIA, "FRAME2Gion2")->SetScale(Vector3(150.0f, 100.0f, 0.0f));
 
 	//宝箱
 	objectmanager.AddObject<GameObject>(OBJECT, "FRAME2treasure");	// 名前要変更
-	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "FRAME2treasure").lock()->Init(L"Game/Asset/GameObject/takarabako.png");
-	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "FRAME2treasure").lock()->SetPosition(Vector3(-750.0f, 250.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "FRAME2treasure").lock()->SetScale(Vector3(150.0f, 100.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "FRAME2treasure")->Init(L"Game/Asset/GameObject/takarabako.png");
+	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "FRAME2treasure")->SetPosition(Vector3(-750.0f, 250.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "FRAME2treasure")->SetScale(Vector3(150.0f, 100.0f, 0.0f));
 }
 
 void Stage2Scene::Frame3() {
 	objectmanager.GetGameObject<Enemy>(ENEMY, "Slime").second->SetPosition(Vector3(-700.0f, 200.0f, 0.0f));
 
 	auto playerShared2 = objectmanager.GetGameObjectPtr<Player>(PLAYER, "Player");
-	Vector3 pos = playerShared2.lock()->GetPosition();
+	Vector3 pos = playerShared2->GetPosition();
 	pos.x = -900.0f; pos.y = -400.0f; pos.z = 0.0f;
-	playerShared2.lock()->SetPosition(pos);
+	playerShared2->SetPosition(pos);
 
 	objectmanager.GetGameObject<Player>(PLAYER, "Player").second->SetPosition(Vector3(-700.0f, -400.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<PataPata>(GROUND, "FRAME2Box").lock()->SetPosition(Vector3(-500.0f, 0.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<PataPata>(GROUND, "FRAME2Box").lock()->SetScale(Vector3(300.0f, 30.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "FRAME2Ground2").lock()->SetPosition(Vector3(-180.0f, 0.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "door").lock()->SetPosition(Vector3(850.0f, 150.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<PataPata>(GROUND, "FRAME2Box")->SetPosition(Vector3(-500.0f, 0.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<PataPata>(GROUND, "FRAME2Box")->SetScale(Vector3(300.0f, 30.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "FRAME2Ground2")->SetPosition(Vector3(-180.0f, 0.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "door")->SetPosition(Vector3(850.0f, 150.0f, 0.0f));
 
 	//パタパタ擬音
 	objectmanager.AddObject<PataPata>(ONOMATOPOEIA, "FRAME3patapata");	// 名前要変更
-	objectmanager.GetGameObjectPtr<PataPata>(ONOMATOPOEIA, "FRAME3patapata").lock()->Init(L"Game/Asset/Onomatopoeia/pata.png");
-	objectmanager.GetGameObjectPtr<PataPata>(ONOMATOPOEIA, "FRAME3patapata").lock()->SetPosition(Vector3(-500.0f, -350.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<PataPata>(ONOMATOPOEIA, "FRAME3patapata").lock()->SetScale(Vector3(180.0f, 70.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<PataPata>(ONOMATOPOEIA, "FRAME3patapata")->Init(L"Game/Asset/Onomatopoeia/pata.png");
+	objectmanager.GetGameObjectPtr<PataPata>(ONOMATOPOEIA, "FRAME3patapata")->SetPosition(Vector3(-500.0f, -350.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<PataPata>(ONOMATOPOEIA, "FRAME3patapata")->SetScale(Vector3(180.0f, 70.0f, 0.0f));
 
 	//ビリビリエフェクト
 	objectmanager.AddObject<BiriBiri>(UI, "FRAME3biribiriefect");	// 名前要変更
-	objectmanager.GetGameObjectPtr<BiriBiri>(UI, "FRAME3biribiriefect").lock()->Init(L"Game/Asset/Effect/Thunder_Effect.png", 8, 1);
-	objectmanager.GetGameObjectPtr<BiriBiri>(UI, "FRAME3biribiriefect").lock()->SetPosition(Vector3(550.0f, -460.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<BiriBiri>(UI, "FRAME3biribiriefect").lock()->SetScale(Vector3(400.0f, 800.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<BiriBiri>(UI, "FRAME3biribiriefect")->Init(L"Game/Asset/Effect/Thunder_Effect.png", 8, 1);
+	objectmanager.GetGameObjectPtr<BiriBiri>(UI, "FRAME3biribiriefect")->SetPosition(Vector3(550.0f, -460.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<BiriBiri>(UI, "FRAME3biribiriefect")->SetScale(Vector3(400.0f, 800.0f, 0.0f));
 
 	//ビリビリ擬音
 	objectmanager.AddObject<BiriBiri>(ONOMATOPOEIA, "FRAME3biribiri");	// 名前要変更
-	objectmanager.GetGameObjectPtr<BiriBiri>(ONOMATOPOEIA, "FRAME3biribiri").lock()->Init(L"Game/Asset/Onomatopoeia/BiriBiri.png");
-	objectmanager.GetGameObjectPtr<BiriBiri>(ONOMATOPOEIA, "FRAME3biribiri").lock()->SetPosition(Vector3(500.0f, -350.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<BiriBiri>(ONOMATOPOEIA, "FRAME3biribiri").lock()->SetScale(Vector3(180.0f, 70.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<BiriBiri>(ONOMATOPOEIA, "FRAME3biribiri")->Init(L"Game/Asset/Onomatopoeia/BiriBiri.png");
+	objectmanager.GetGameObjectPtr<BiriBiri>(ONOMATOPOEIA, "FRAME3biribiri")->SetPosition(Vector3(500.0f, -350.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<BiriBiri>(ONOMATOPOEIA, "FRAME3biribiri")->SetScale(Vector3(180.0f, 70.0f, 0.0f));
 
 	//パタパタBOX
 	objectmanager.AddObject<PataPata>(GROUND, "FRAME3Box1");	// 名前要変更
-	objectmanager.GetGameObjectPtr<PataPata>(GROUND, "FRAME3Box1").lock()->Init(L"Game/Asset/GameObject/hako.png");
-	objectmanager.GetGameObjectPtr<PataPata>(GROUND, "FRAME3Box1").lock()->SetPosition(Vector3(-330.0f, 50.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<PataPata>(GROUND, "FRAME3Box1").lock()->SetScale(Vector3(50.0f, 50.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<PataPata>(GROUND, "FRAME3Box1")->Init(L"Game/Asset/GameObject/hako.png");
+	objectmanager.GetGameObjectPtr<PataPata>(GROUND, "FRAME3Box1")->SetPosition(Vector3(-330.0f, 50.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<PataPata>(GROUND, "FRAME3Box1")->SetScale(Vector3(50.0f, 50.0f, 0.0f));
 
 	//パタパタBOX
 	objectmanager.AddObject<PataPata>(GROUND, "FRAME3Box2");	// 名前要変更
-	objectmanager.GetGameObjectPtr<PataPata>(GROUND, "FRAME3Box2").lock()->Init(L"Game/Asset/GameObject/hako.png");
-	objectmanager.GetGameObjectPtr<PataPata>(GROUND, "FRAME3Box2").lock()->SetPosition(Vector3(50.0f, -410.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<PataPata>(GROUND, "FRAME3Box2").lock()->SetScale(Vector3(50.0f, 50.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<PataPata>(GROUND, "FRAME3Box2")->Init(L"Game/Asset/GameObject/hako.png");
+	objectmanager.GetGameObjectPtr<PataPata>(GROUND, "FRAME3Box2")->SetPosition(Vector3(50.0f, -410.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<PataPata>(GROUND, "FRAME3Box2")->SetScale(Vector3(50.0f, 50.0f, 0.0f));
 
 	//Groundの一番右
 	objectmanager.AddObject<GameObject>(GROUND, "FRAME3Ground1");	// 名前要変更
-	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "FRAME3Ground1").lock()->Init(L"Game/Asset/GameObject/ground.png");
-	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "FRAME3Ground1").lock()->SetPosition(Vector3(750.0f, 50.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "FRAME3Ground1").lock()->SetScale(Vector3(450.0f, 50.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "FRAME3Ground1")->Init(L"Game/Asset/GameObject/ground.png");
+	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "FRAME3Ground1")->SetPosition(Vector3(750.0f, 50.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "FRAME3Ground1")->SetScale(Vector3(450.0f, 50.0f, 0.0f));
 
 	//ビリビリの床
 	objectmanager.AddObject<GameObject>(GROUND, "FRAME3Ground2");	// 名前要変更
-	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "FRAME3Ground2").lock()->Init(L"Game/Asset/GameObject/ground.png");
-	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "FRAME3Ground2").lock()->SetPosition(Vector3(550.0f, -450.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "FRAME3Ground2").lock()->SetScale(Vector3(200.0f, 50.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "FRAME3Ground2")->Init(L"Game/Asset/GameObject/ground.png");
+	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "FRAME3Ground2")->SetPosition(Vector3(550.0f, -450.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(GROUND, "FRAME3Ground2")->SetScale(Vector3(200.0f, 50.0f, 0.0f));
 
 	// バネ
 	objectmanager.AddObject<GameObject>(OBJECT, "baneFRAME3");
-	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "baneFRAME3").lock()->Init(L"Game/Asset/GameObject/bane.png");
-	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "baneFRAME3").lock()->SetPosition(Vector3(300.0f, -420.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "baneFRAME3").lock()->SetScale(Vector3(50.0f, 50.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "baneFRAME3")->Init(L"Game/Asset/GameObject/bane.png");
+	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "baneFRAME3")->SetPosition(Vector3(300.0f, -420.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "baneFRAME3")->SetScale(Vector3(50.0f, 50.0f, 0.0f));
 
 	// スライム
 	objectmanager.AddObject<Enemy>(ENEMY, "Slime");
-	objectmanager.GetGameObjectPtr<Enemy>(ENEMY, "Slime").lock()->Init(L"Game/Asset/GameObject/SlimeRight.png");
-	objectmanager.GetGameObjectPtr<Enemy>(ENEMY, "Slime").lock()->SetPosition(Vector3(-750.0f, 200.0f, 0.0f));
-	objectmanager.GetGameObjectPtr<Enemy>(ENEMY, "Slime").lock()->SetScale(Vector3(80.0f, 40.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<Enemy>(ENEMY, "Slime")->Init(L"Game/Asset/GameObject/SlimeRight.png");
+	objectmanager.GetGameObjectPtr<Enemy>(ENEMY, "Slime")->SetPosition(Vector3(-750.0f, 200.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<Enemy>(ENEMY, "Slime")->SetScale(Vector3(80.0f, 40.0f, 0.0f));
 }
 
 void Stage2Scene::Frame4() {
@@ -377,7 +372,7 @@ void Stage2Scene::Update(void)
 	auto Magazine3 = objectmanager.GetGameObjectPtr<Magazine>(UI, "Magazine3"); //落ちてるやつ
 
 	Vector3 pos = playerShared.second->GetPosition();
-	Vector3 p_enemy = enemyShared.lock()->GetPosition();
+	Vector3 p_enemy = enemyShared->GetPosition();
 
 
 	switch (m_Frame)
@@ -388,18 +383,18 @@ void Stage2Scene::Update(void)
 		break;
 	case FRAME2:
 
-		/*if (ColliderPlayer_Ground(playerShared2.lock(), Ground1FRAME2)) {
-			playerShared2.lock()->SetOnGround(true);
+		/*if (ColliderPlayer_Ground(playerShared2(), Ground1FRAME2)) {
+			playerShared2()->SetOnGround(true);
 			std::cout << "OnGroundの状態：" << playerShared.second->GetOnGround() << std::endl;
 		}*/
 		
 
-		BoxCollider2(playerShared2.lock(), BoxShared.lock(), playerShared2.lock());
-		BoxCollider2(playerShared2.lock(), Ground1FRAME2.lock(), playerShared2.lock());
-		BoxCollider2(playerShared2.lock(), Ground2FRAME2.lock(), playerShared2.lock());
-		BoxCollider2(playerShared2.lock(), Ground3FRAME2.lock(), playerShared2.lock());
+		BoxCollider2(playerShared2, BoxShared, playerShared2);
+		BoxCollider2(playerShared2, Ground1FRAME2, playerShared2);
+		BoxCollider2(playerShared2, Ground2FRAME2, playerShared2);
+		BoxCollider2(playerShared2, Ground3FRAME2, playerShared2);
 
-		BoxShared.lock()->Action(BoxShared.lock(),playerShared.second);
+		BoxShared->Action(BoxShared, playerShared.second);
 		
 		//std::cout << "OnGroundの状態：" << playerShared.second->GetOnGround() << std::endl;
 
@@ -407,39 +402,39 @@ void Stage2Scene::Update(void)
 		if (Collider_toEnemy(enemyShared, groundShared))
 		{
 			//スライムジャンプフラグ
-			if (enemygion2.lock())
+			if (enemygion2)
 			{
-				if (enemygion2.lock()->Get_gion() == false)
+				if (enemygion2->Get_gion() == false)
 				{
 
-					Vector3 Slim_Position = enemygion2.lock()->GetPosition();
+					Vector3 Slim_Position = enemygion2->GetPosition();
 					Slim_Position = p_enemy;
 					Slim_Position.y = Slim_Position.y + 100;
-					enemygion2.lock()->SetPosition(Slim_Position);
+					enemygion2->SetPosition(Slim_Position);
 				}
 			}
-			enemyShared.lock()->SetJump(true);
+			enemyShared->SetJump(true);
 		}
-		else if (enemygion2.lock()) {
-			enemyShared.lock()->SetOnGround(false);
-			enemygion2.lock()->Fade_in_out();
+		else if (enemygion2) {
+			enemyShared->SetOnGround(false);
+			enemygion2->Fade_in_out();
 		}
 
 		//enemygion2がemptyでないかチェック
-		if (enemygion2.lock())
+		if (enemygion2)
 		{
 			//ポヨンの画像とバネの画像が当たっているか
-			if (BoxCollider(enemygion2.lock(), baneShared.lock()))
+			if (BoxCollider(enemygion2, baneShared))
 			{
-				enemygion2.lock()->Set_gion(true);
-				Vector3 _p_poyon = baneShared.lock()->GetPosition(); //ポヨンの座標
-				Vector3 _r_poyon = baneShared.lock()->GetRotation();  //ポヨンの回転
-				enemygion2.lock()->Set_Onomatope(true); //当たってたらフラグをtrue
+				enemygion2->Set_gion(true);
+				Vector3 _p_poyon = baneShared->GetPosition(); //ポヨンの座標
+				Vector3 _r_poyon = baneShared->GetRotation();  //ポヨンの回転
+				enemygion2->Set_Onomatope(true); //当たってたらフラグをtrue
 				_p_poyon.x = _p_poyon.x + 30;
 				_p_poyon.y = _p_poyon.y + 20;
 				_r_poyon.z = _r_poyon.z - 15;
-				enemygion2.lock()->SetPosition(_p_poyon); //ポヨンの画像の座標をバネにくっつける
-				enemygion2.lock()->SetRotation(_r_poyon); //ポヨンの画像の回転を更新
+				enemygion2->SetPosition(_p_poyon); //ポヨンの画像の座標をバネにくっつける
+				enemygion2->SetRotation(_r_poyon); //ポヨンの画像の回転を更新
 				std::cout << "当りました" << std::endl;
 			}
 			else
@@ -448,13 +443,13 @@ void Stage2Scene::Update(void)
 			}
 
 			//二回目の回収をするまではずっとtrue
-			if (enemygion2.lock()->Get_Onomatope())
+			if (enemygion2->Get_Onomatope())
 			{
-				enemygion2.lock()->Fade_in_out();
+				enemygion2->Fade_in_out();
 				//Playerと付与したオブジェクトが当たっているか
-				if (BoxCollider(playerShared.second, baneShared.lock()))
+				if (BoxCollider(playerShared.second, baneShared))
 				{
-					enemygion2.lock()->Action(playerShared.second); //当たっていればAction関数実行
+					enemygion2->Action(playerShared.second); //当たっていればAction関数実行
 				}
 			}
 		}
@@ -464,20 +459,20 @@ void Stage2Scene::Update(void)
 
 
 		//enemygion2がemptyでないかチェック
-		if (gionShared.lock())
+		if (gionShared)
 		{
 			//ポヨンの画像とバネの画像が当たっているか
-			if (BoxCollider(gionShared.lock(), treasureBox.lock()))
+			if (BoxCollider(gionShared, treasureBox))
 			{
-				gionShared.lock()->Set_gion(true);
-				Vector3 _p_poyon = treasureBox.lock()->GetPosition(); //ポヨンの座標
-				Vector3 _r_poyon = treasureBox.lock()->GetRotation();  //ポヨンの回転
-				gionShared.lock()->Set_Onomatope(true); //当たってたらフラグをtrue
+				gionShared->Set_gion(true);
+				Vector3 _p_poyon = treasureBox->GetPosition(); //ポヨンの座標
+				Vector3 _r_poyon = treasureBox->GetRotation();  //ポヨンの回転
+				gionShared->Set_Onomatope(true); //当たってたらフラグをtrue
 				_p_poyon.x = _p_poyon.x + 30;
 				_p_poyon.y = _p_poyon.y + 20;
 				_r_poyon.z = _r_poyon.z - 15;
-				gionShared.lock()->SetPosition(_p_poyon); //ポヨンの画像の座標をバネにくっつける
-				gionShared.lock()->SetRotation(_r_poyon); //ポヨンの画像の回転を更新
+				gionShared->SetPosition(_p_poyon); //ポヨンの画像の座標をバネにくっつける
+				gionShared->SetRotation(_r_poyon); //ポヨンの画像の回転を更新
 				std::cout << "当りました" << std::endl;
 			}
 			else
@@ -486,14 +481,14 @@ void Stage2Scene::Update(void)
 			}
 
 			//二回目の回収をするまではずっとtrue
-			if (gionShared.lock()->Get_Onomatope())
+			if (gionShared->Get_Onomatope())
 			{
-				gionShared.lock()->Fade_in_out();
+				gionShared->Fade_in_out();
 				//Playerと付与したオブジェクトが当たっているか
-				if (BoxCollider(gionShared.lock(), treasureBox.lock()))
+				if (BoxCollider(gionShared, treasureBox))
 				{
-					//gionShared.lock()->Action(playerShared.second); //当たっていればAction関数実行
-					treasureBox.lock()->SetColor(Color(1.0f, 1.0f, 1.0f, 0.0f));
+					//gionShared()->Action(playerShared.second); //当たっていればAction関数実行
+					treasureBox->SetColor(Color(1.0f, 1.0f, 1.0f, 0.0f));
 				}
 			}
 		}
@@ -504,7 +499,7 @@ void Stage2Scene::Update(void)
 		// フレーム遷移処理
 		if (Input::GetInstance().GetButtonTrigger(XINPUT_GAMEPAD_B) || Input::GetInstance().GetKeyTrigger(VK_RETURN))
 		{
-			if (Collider_to_Object(playerShared2.lock(), GOOL.lock()))
+			if (Collider_to_Object(playerShared2, GOOL))
 			{
 				m_Frame = FRAME3;
 				//playerShared.second->SetOnGround(false);
@@ -524,52 +519,52 @@ void Stage2Scene::Update(void)
 	case FRAME3:
 		objectmanager.DeleteObject(OBJECT, "bane");
 
-		BoxCollider2(playerShared2.lock(), BoxShared.lock(),playerShared2.lock());
-		BoxCollider2(playerShared2.lock(), Ground3FRAME2.lock(), playerShared2.lock());
-		BoxCollider2(playerShared2.lock(), Ground2FRAME2.lock(), playerShared2.lock());
-		BoxCollider2(playerShared2.lock(), Ground1FRAME3.lock(), playerShared2.lock());
+		BoxCollider2(playerShared2, BoxShared, playerShared.second);
+		BoxCollider2(playerShared2, Ground3FRAME2, playerShared2);
+		BoxCollider2(playerShared2, Ground2FRAME2, playerShared2);
+		BoxCollider2(playerShared2, Ground1FRAME3, playerShared2);
 
-		if (PataPataFRAME3.lock())
+		if (PataPataFRAME3)
 		{
-			if (BoxCollider(PataPataFRAME3.lock(), BoxShared.lock()))
+			if (BoxCollider(PataPataFRAME3, BoxShared))
 			{
-				Vector3 PaPata_Position = PataPataFRAME3.lock()->GetPosition();
-				Vector3 Box_pos = BoxShared.lock()->GetPosition();
+				Vector3 PaPata_Position = PataPataFRAME3->GetPosition();
+				Vector3 Box_pos = BoxShared->GetPosition();
 				PaPata_Position = Box_pos;
 				PaPata_Position.y = PaPata_Position.y + 100;
-				PataPataFRAME3.lock()->SetPosition(PaPata_Position);
+				PataPataFRAME3->SetPosition(PaPata_Position);
 			}
-			BoxShared.lock()->Action(BoxShared.lock(), playerShared.second);
+			BoxShared->Action(BoxShared, playerShared.second);
 		}
 
 		//ビリビリ
-		if (BriBriFRAME3.lock())
+		if (BriBriFRAME3)
 		{
-			if (BoxCollider(BriBriFRAME3.lock(), efectThunder.lock()))
+			if (BoxCollider(BriBriFRAME3, efectThunder))
 			{
-				efectThunder.lock()->SetColor(Color(1.0f, 1.0f, 1.0f, 1.0f));
+				efectThunder->SetColor(Color(1.0f, 1.0f, 1.0f, 1.0f));
 				//_p_biribiri.x = _p_biribiri.x - 250;
 				//_p_biribiri.y = _p_biribiri.y + 80;
 				//_r_biribiri.z = _r_biribiri.z - 15;
-				BriBriFRAME3.lock()->Set_Onomatope(true); //当たってたらフラグをtrue
+				BriBriFRAME3->Set_Onomatope(true); //当たってたらフラグをtrue
 				//
-				//gionShared.lock()->SetPosition(_p_biribiri); //ポヨンの画像の座標をバネにくっつける
-				//gionShared.lock()->SetRotation(_r_biribiri); //ポヨンの画像の回転を更新
+				//gionShared()->SetPosition(_p_biribiri); //ポヨンの画像の座標をバネにくっつける
+				//gionShared()->SetRotation(_r_biribiri); //ポヨンの画像の回転を更新
 				std::cout << "当りました" << std::endl;
 			}
 			else {
-				efectThunder.lock()->SetColor(Color(1.0f, 1.0f, 1.0f, 0.0f)); //ビリビリのエフェクトを色で消えた感じにしてる
+				efectThunder->SetColor(Color(1.0f, 1.0f, 1.0f, 0.0f)); //ビリビリのエフェクトを色で消えた感じにしてる
 			}
 
-			//BriBriFRAME3.lock()->Fade_in_out();
+			//BriBriFRAME3()->Fade_in_out();
 			//二回目の回収をするまではずっとtrue
-			if (BriBriFRAME3.lock()->Get_Onomatope())
+			if (BriBriFRAME3->Get_Onomatope())
 			{
 				//Playerと付与したオブジェクトが当たっているか
-				if (BoxCollider(playerShared.second, Ground2FRAME3.lock()))
+				if (BoxCollider(playerShared.second, Ground2FRAME3))
 				{
 					playerShared.second->SetOnGround(true);
-					BriBriFRAME3.lock()->Action(playerShared.second); //当たっていればAction関数実行
+					BriBriFRAME3->Action(playerShared.second); //当たっていればAction関数実行
 				}
 				else {
 					Vector3 r_player = playerShared.second->GetRotation();
@@ -581,26 +576,26 @@ void Stage2Scene::Update(void)
 		else {
 			std::cout << "enemygionがemptyです" << std::endl;
 		}
-		if (BriBriFRAME3.lock())
+		if (BriBriFRAME3)
 		{
-			efectThunder.lock()->Animation(EFECT, efectThunder);
+			efectThunder->Animation(EFECT, efectThunder);
 		}
 
 		//enemygion2がemptyでないかチェック
-		if (enemygion2.lock())
+		if (enemygion2)
 		{
 			//ポヨンの画像とバネの画像が当たっているか
-			if (BoxCollider(enemygion2.lock(), baneFRAME3.lock()))
+			if (BoxCollider(enemygion2, baneFRAME3))
 			{
-				enemygion2.lock()->Set_gion(true);
-				Vector3 _p_poyon = baneFRAME3.lock()->GetPosition(); //ポヨンの座標
-				Vector3 _r_poyon = baneFRAME3.lock()->GetRotation();  //ポヨンの回転
-				enemygion2.lock()->Set_Onomatope(true); //当たってたらフラグをtrue
+				enemygion2->Set_gion(true);
+				Vector3 _p_poyon = baneFRAME3->GetPosition(); //ポヨンの座標
+				Vector3 _r_poyon = baneFRAME3->GetRotation();  //ポヨンの回転
+				enemygion2->Set_Onomatope(true); //当たってたらフラグをtrue
 				_p_poyon.x = _p_poyon.x + 30;
 				_p_poyon.y = _p_poyon.y + 20;
 				_r_poyon.z = _r_poyon.z - 15;
-				enemygion2.lock()->SetPosition(_p_poyon); //ポヨンの画像の座標をバネにくっつける
-				enemygion2.lock()->SetRotation(_r_poyon); //ポヨンの画像の回転を更新
+				enemygion2->SetPosition(_p_poyon); //ポヨンの画像の座標をバネにくっつける
+				enemygion2->SetRotation(_r_poyon); //ポヨンの画像の回転を更新
 				std::cout << "当りました" << std::endl;
 			}
 			else
@@ -609,13 +604,13 @@ void Stage2Scene::Update(void)
 			}
 
 			//二回目の回収をするまではずっとtrue
-			if (enemygion2.lock()->Get_Onomatope())
+			if (enemygion2->Get_Onomatope())
 			{
-				enemygion2.lock()->Fade_in_out();
+				enemygion2->Fade_in_out();
 				//Playerと付与したオブジェクトが当たっているか
-				if (BoxCollider(playerShared.second, baneFRAME3.lock()))
+				if (BoxCollider(playerShared.second, baneFRAME3))
 				{
-					enemygion2.lock()->Action(playerShared.second); //当たっていればAction関数実行
+					enemygion2->Action(playerShared.second); //当たっていればAction関数実行
 				}
 			}
 		}
@@ -624,21 +619,21 @@ void Stage2Scene::Update(void)
 		}
 
 		////enemygionがemptyでないかチェック
-		//if (PataPataFRAME3.lock())
+		//if (PataPataFRAME3())
 		//{
 		//	//パタパタの画像とバネの画像が当たっているか
-		//	if (BoxCollider(PataPataFRAME3.lock(), FRAME3Box2.lock()))
+		//	if (BoxCollider(PataPataFRAME3(), FRAME3Box2()))
 		//	{
 
-		//		PataPataFRAME3.lock()->Set_gion(true);
-		//		Vector3 _p_poyon = FRAME3Box2.lock()->GetPosition(); //ポヨンの座標
-		//		Vector3 _r_poyon = FRAME3Box2.lock()->GetRotation();  //ポヨンの回転
-		//		PataPataFRAME3.lock()->Set_Onomatope(true); //当たってたらフラグをtrue
+		//		PataPataFRAME3()->Set_gion(true);
+		//		Vector3 _p_poyon = FRAME3Box2()->GetPosition(); //ポヨンの座標
+		//		Vector3 _r_poyon = FRAME3Box2()->GetRotation();  //ポヨンの回転
+		//		PataPataFRAME3()->Set_Onomatope(true); //当たってたらフラグをtrue
 		//		_p_poyon.x = _p_poyon.x + 30;
 		//		_p_poyon.y = _p_poyon.y + 20;
 		//		_r_poyon.z = _r_poyon.z - 15;
-		//		PataPataFRAME3.lock()->SetPosition(_p_poyon); //ポヨンの画像の座標をバネにくっつける
-		//		PataPataFRAME3.lock()->SetRotation(_r_poyon); //ポヨンの画像の回転を更新
+		//		PataPataFRAME3()->SetPosition(_p_poyon); //ポヨンの画像の座標をバネにくっつける
+		//		PataPataFRAME3()->SetRotation(_r_poyon); //ポヨンの画像の回転を更新
 		//		std::cout << "当りました" << std::endl;
 		//	}
 		//	else
@@ -647,13 +642,13 @@ void Stage2Scene::Update(void)
 		//	}
 
 		//	//二回目の回収をするまではずっとtrue
-		//	if (PataPataFRAME3.lock()->Get_Onomatope())
+		//	if (PataPataFRAME3()->Get_Onomatope())
 		//	{
-		//		PataPataFRAME3.lock()->Fade_in_out();
+		//		PataPataFRAME3()->Fade_in_out();
 		//		//Playerと付与したオブジェクトが当たっているか
-		//		if (BoxCollider(playerShared.second, FRAME3Box2.lock()))
+		//		if (BoxCollider(playerShared.second, FRAME3Box2()))
 		//		{
-		//			PataPataFRAME3.lock()->Action(PataPataFRAME3.lock(),playerShared.second); //当たっていればAction関数実行
+		//			PataPataFRAME3()->Action(PataPataFRAME3(),playerShared.second); //当たっていればAction関数実行
 		//		}
 		//	}
 		/*}
@@ -664,7 +659,7 @@ void Stage2Scene::Update(void)
 		// フレーム遷移処理
 		if (Input::GetInstance().GetButtonTrigger(XINPUT_GAMEPAD_B) || Input::GetInstance().GetKeyTrigger(VK_RETURN))
 		{
-			if (Collider_to_Object(playerShared2.lock(), GOOL.lock()))
+			if (Collider_to_Object(playerShared2, GOOL))
 			{
 				//m_Frame = FRAME_MAX;
 				playerShared.second->SetOnGround(false);
@@ -692,7 +687,7 @@ void Stage2Scene::Update(void)
 	}
 
 	//FRAME1～FRAME3までの地面の当たり判定
-	if (!BoxCollider2(playerShared2.lock(), under_ground.lock(), playerShared2.lock()))
+	if (!BoxCollider2(playerShared2, under_ground, playerShared2))
 	{
 		playerShared.second->SetOnGround(false);
 	}
@@ -700,15 +695,15 @@ void Stage2Scene::Update(void)
 	// マガジンに擬音が入っていればエイムの位置に発射
 	if (Input::GetInstance().GetKeyPress(VK_W) || Input::GetInstance().GetRightTrigger())
 	{
-		//poyonShared.lock()->Set_Onomatope(true); //擬音が発射中かのフラグ
+		//poyonShared()->Set_Onomatope(true); //擬音が発射中かのフラグ
 		// マガジンに擬音が装填されているかチェック
 		if (playerShared.second->GetLoadedBullet())
 		{
-			//if (BoxCollider(Frame_Red.lock(), Magazine1.lock())) //ドーン専用
+			//if (BoxCollider(Frame_Red(), Magazine1())) //ドーン専用
 			//{
 			//	playerShared.second->UseMagNumber = 0;
 			//}
-			//else if (BoxCollider(Frame_Red.lock(), Magazine2.lock()))
+			//else if (BoxCollider(Frame_Red(), Magazine2()))
 			//{
 			//	playerShared.second->UseMagNumber = 1;
 			//}
@@ -805,7 +800,7 @@ void Stage2Scene::Update(void)
 			
 			// SE再生
 			sound.Play(SE_SHOT);
-			playerShared2.lock()->SetMagNumber(1); //0番目の配列
+			playerShared2->SetMagNumber(1); //0番目の配列
 		}
 	}
 
@@ -813,7 +808,7 @@ void Stage2Scene::Update(void)
 	if (Input::GetInstance().GetKeyTrigger(VK_P) || Input::GetInstance().GetButtonTrigger(XINPUT_GAMEPAD_RIGHT_SHOULDER))
 	{
 		// カーソルの座標取得
-		Vector3 p_frame = objectmanager.GetGameObjectPtr<GameObject>(UI, "Frame").lock()->GetPosition();
+		Vector3 p_frame = objectmanager.GetGameObjectPtr<GameObject>(UI, "Frame")->GetPosition();
 
 		// ドォン用マガジンを除く一番最後のマガジンを選択していなければ
 		if (playerShared.second->GetMagNumber() != playerShared.second->GetMagCount() - 1)
@@ -832,7 +827,7 @@ void Stage2Scene::Update(void)
 			p_frame.x = -900.0f;
 		}
 		// 座標を設定
-		objectmanager.GetGameObjectPtr<GameObject>(UI, "Frame").lock()->SetPosition(p_frame);
+		objectmanager.GetGameObjectPtr<GameObject>(UI, "Frame")->SetPosition(p_frame);
 		// SE再生
 		sound.Play(SE_CLICK);
 	}
@@ -840,7 +835,7 @@ void Stage2Scene::Update(void)
 	if (Input::GetInstance().GetKeyTrigger(VK_O) || Input::GetInstance().GetButtonTrigger(XINPUT_GAMEPAD_LEFT_SHOULDER))
 	{
 		// カーソルの座標取得
-		Vector3 p_frame = objectmanager.GetGameObjectPtr<GameObject>(UI, "Frame").lock()->GetPosition();
+		Vector3 p_frame = objectmanager.GetGameObjectPtr<GameObject>(UI, "Frame")->GetPosition();
 
 		// ドォン用マガジンを除く一番最初のマガジンを選択していなければ
 		if (playerShared.second->GetMagNumber() != 1)
@@ -855,14 +850,14 @@ void Stage2Scene::Update(void)
 		else
 		{
 			// マガジン選択用カーソルを取得
-			auto magcursor = objectmanager.GetGameObjectPtr<GameObject>(UI, "Frame").lock();
+			auto magcursor = objectmanager.GetGameObjectPtr<GameObject>(UI, "Frame");
 			// マガジン選択番号を(ドォン用マガジンを除く)一番後ろにして
 			playerShared.second->SetMagNumber(playerShared.second->GetMagCount() - 1);
 			// カーソルを一番後ろの位置に移動
 			p_frame.x = -900.0f + magcursor->GetScale().x * (playerShared.second->GetMagCount() - 2);	// 初期位置 + カーソルの大きさ * マガジン数(ドォン入れないので-2)
 		}
 		// 座標を設定
-		objectmanager.GetGameObjectPtr<GameObject>(UI, "Frame").lock()->SetPosition(p_frame);
+		objectmanager.GetGameObjectPtr<GameObject>(UI, "Frame")->SetPosition(p_frame);
 		// SE再生
 		sound.Play(SE_CLICK);
 	}
@@ -900,8 +895,8 @@ void Stage2Scene::Update(void)
 					
 					// 吸い込み処理が終わった時に擬音のタグをUIに変更、射撃するときにタグを擬音に変更する処理がまだ
 					objectmanager.ChangeTag(HitOnomatopoeia.first.first, HitOnomatopoeia.first.second, UI);
-					/*enemygion.lock()->SetColor(Color(1.0f, 1.0f, 1.0f, 1.0f));
-					gionShared.lock()->SetColor(Color(1.0f, 1.0f, 1.0f, 1.0f));*/
+					/*enemygion()->SetColor(Color(1.0f, 1.0f, 1.0f, 1.0f));
+					gionShared()->SetColor(Color(1.0f, 1.0f, 1.0f, 1.0f));*/
 				}
 			}
 			// 擬音が0(吸い込み中に扇型範囲から擬音がいなくなった場合)
@@ -912,7 +907,7 @@ void Stage2Scene::Update(void)
 				if (m_Frame == FRAME1)
 				{
 					count = 1; //チュートリアルの画像切り替えカウント
-					objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "baneboard").lock()->SetColor(Color(1.0f, 1.0f, 1.0f, 1.0f));
+					objectmanager.GetGameObjectPtr<GameObject>(OBJECT, "baneboard")->SetColor(Color(1.0f, 1.0f, 1.0f, 1.0f));
 				}
 			}
 		}
@@ -940,16 +935,16 @@ void Stage2Scene::Update(void)
 				if (playerShared.second->Suction(HitDoon.second))
 				{
 					playerShared.second->m_Magazines.resize(2); //最低限１コ確保
-					if (HitDoon.second == poyonShared.lock())
+					if (HitDoon.second == poyonShared)
 					{
-						poyonShared.lock()->SetPosition(Vector3(800.0f, 450.0f, 0.0f));
-						poyonShared.lock()->SetScale(Vector3(300.0f, 150.0f, 0.0f));
+						poyonShared->SetPosition(Vector3(800.0f, 450.0f, 0.0f));
+						poyonShared->SetScale(Vector3(300.0f, 150.0f, 0.0f));
 					}
-					playerShared.second->m_Magazines[0] = std::static_pointer_cast<Magazine>(poyonShared.lock()); //キャストして配列の０番目に格納
+					playerShared.second->m_Magazines[0] = dynamic_cast<Magazine*>(poyonShared); //キャストして配列の０番目に格納
 					// 吸い込み処理が終わった時に擬音のタグをUIに変更、射撃するときにタグを擬音に変更する処理がまだ
 					objectmanager.ChangeTag(HitDoon.first.first, HitDoon.first.second, UI);
-					/*enemygion.lock()->SetColor(Color(1.0f, 1.0f, 1.0f, 1.0f));
-					gionShared.lock()->SetColor(Color(1.0f, 1.0f, 1.0f, 1.0f));*/
+					/*enemygion()->SetColor(Color(1.0f, 1.0f, 1.0f, 1.0f));
+					gionShared()->SetColor(Color(1.0f, 1.0f, 1.0f, 1.0f));*/
 				}
 			}
 			// 擬音が0(吸い込み中に扇型範囲から擬音がいなくなった場合)
@@ -977,7 +972,7 @@ void Stage2Scene::Update(void)
 		// 右移動
 	if (Input::GetInstance().GetKeyPress(VK_D) || LeftStickInput.x > 0.1f)
 	{
-		objectmanager.GetGameObjectPtr<Player>(PLAYER, "Player").lock()->SetMoveRight(true);
+		objectmanager.GetGameObjectPtr<Player>(PLAYER, "Player")->SetMoveRight(true);
 		//sound.Play(SOUND_LABEL_BGM000);
 		//デバック用
 		//std::cout << "Playerの座標移動ができています" << std::endl;
@@ -985,7 +980,7 @@ void Stage2Scene::Update(void)
 	// 左移動
 	if (Input::GetInstance().GetKeyPress(VK_A) || LeftStickInput.x < -0.1f)
 	{
-		objectmanager.GetGameObjectPtr<Player>(PLAYER, "Player").lock()->SetMoveLeft(true);
+		objectmanager.GetGameObjectPtr<Player>(PLAYER, "Player")->SetMoveLeft(true);
 
 		//デバック用
 		//std::cout << "Playerの座標移動ができています" << std::endl;
@@ -993,7 +988,7 @@ void Stage2Scene::Update(void)
 	// ジャンプ
 	if (Input::GetInstance().GetKeyTrigger(VK_SPACE) || Input::GetInstance().GetButtonTrigger(XINPUT_GAMEPAD_A))
 	{
-		objectmanager.GetGameObjectPtr<Player>(PLAYER, "Player").lock()->SetJump(true);
+		objectmanager.GetGameObjectPtr<Player>(PLAYER, "Player")->SetJump(true);
 		//デバック用
 		//std::cout << "Playerの座標移動ができています" << std::endl;
 	}
@@ -1001,45 +996,45 @@ void Stage2Scene::Update(void)
 	// クロスヘアの入力取得(本来はプレイヤーのフラグを立てて、プレイヤーの更新の中でクロスヘアを動かすべき)XINPUT_GAMEPAD_RIGHT_THUMB
 	if (Input::GetInstance().GetKeyPress(VK_UP) || RightStickInput.y > 0.1f)
 	{
-		crosshairShared.lock()->SetMoveUp(true);
+		crosshairShared->SetMoveUp(true);
 	}
 	else
 	{
-		crosshairShared.lock()->SetMoveUp(false);
+		crosshairShared->SetMoveUp(false);
 	}
 
 	if (Input::GetInstance().GetKeyPress(VK_DOWN) || RightStickInput.y < -0.1f)
 	{
-		crosshairShared.lock()->SetMoveDown(true);
+		crosshairShared->SetMoveDown(true);
 	}
 	else
 	{
-		crosshairShared.lock()->SetMoveDown(false);
+		crosshairShared->SetMoveDown(false);
 	}
 
 	if (Input::GetInstance().GetKeyPress(VK_RIGHT) || RightStickInput.x > 0.1f)
 	{
-		crosshairShared.lock()->SetMoveRight(true);
+		crosshairShared->SetMoveRight(true);
 	}
 	else
 	{
-		crosshairShared.lock()->SetMoveRight(false);
+		crosshairShared->SetMoveRight(false);
 	}
 
 	if (Input::GetInstance().GetKeyPress(VK_LEFT) || RightStickInput.x < -0.1f)
 	{
-		crosshairShared.lock()->SetMoveLeft(true);
+		crosshairShared->SetMoveLeft(true);
 	}
 	else
 	{
-		crosshairShared.lock()->SetMoveLeft(false);
+		crosshairShared->SetMoveLeft(false);
 	}
 
 
 	if (m_Frame == FRAME1)
 	{
-		Vector3 poyon_rotation = objectmanager.GetGameObjectPtr<GameObject>(ONOMATOPOEIA, "Poyonboard").lock()->GetRotation();
-		Vector3 poyon_posiiton = objectmanager.GetGameObjectPtr<GameObject>(ONOMATOPOEIA, "Poyonboard").lock()->GetPosition();
+		Vector3 poyon_rotation = objectmanager.GetGameObjectPtr<GameObject>(ONOMATOPOEIA, "Poyonboard")->GetRotation();
+		Vector3 poyon_posiiton = objectmanager.GetGameObjectPtr<GameObject>(ONOMATOPOEIA, "Poyonboard")->GetPosition();
 
 		if (count == 0)
 		{
@@ -1050,30 +1045,30 @@ void Stage2Scene::Update(void)
 			objectmanager.DeleteObject(ENEMY, "Slimeboard");
 			objectmanager.DeleteObject(UI, "SoundGunboard");
 		}
-		objectmanager.GetGameObjectPtr<GameObject>(ONOMATOPOEIA, "Poyonboard").lock()->SetRotation(poyon_rotation);
+		objectmanager.GetGameObjectPtr<GameObject>(ONOMATOPOEIA, "Poyonboard")->SetRotation(poyon_rotation);
 
-		std::cout << playerShared2.lock()->m_Magazines.size() << std::endl; //マガジン数のデバック
+		std::cout << playerShared2->m_Magazines.size() << std::endl; //マガジン数のデバック
 		// シーン更新に必要な情報を取得
 		auto grounds2 = objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground2");
 		auto effectShared = objectmanager.GetGameObjectPtr<GameObject>(UI, "Thunder_Effect");
 		auto groundShared3 = objectmanager.GetGameObjectPtr<GameObject>(GROUND, "Ground3");
 
-		 BoxCollider2(playerShared2.lock(), groundShared2.lock(),playerShared2.lock());
+		 BoxCollider2(playerShared2, groundShared2, playerShared2);
 		
-		effectShared.lock()->Animation(EFECT, effectShared);
+		effectShared->Animation(EFECT, effectShared);
 
 		////擬音の選択
 		//if (Input::GetInstance().GetKeyTrigger(VK_P))
 		//{
-		//	Vector3 p_frame = objectmanager.GetGameObjectPtr<GameObject>(UI, "Frame").lock()->GetPosition();
+		//	Vector3 p_frame = objectmanager.GetGameObjectPtr<GameObject>(UI, "Frame")()->GetPosition();
 		//	p_frame.x = p_frame.x + 120;
-		//	objectmanager.GetGameObjectPtr<GameObject>(UI, "Frame").lock()->SetPosition(p_frame);
+		//	objectmanager.GetGameObjectPtr<GameObject>(UI, "Frame")()->SetPosition(p_frame);
 		//}
 		//if (Input::GetInstance().GetKeyTrigger(VK_O))
 		//{
-		//	Vector3 p_frame = objectmanager.GetGameObjectPtr<GameObject>(UI, "Frame").lock()->GetPosition();
+		//	Vector3 p_frame = objectmanager.GetGameObjectPtr<GameObject>(UI, "Frame")()->GetPosition();
 		//	p_frame.x = p_frame.x - 120;
-		//	objectmanager.GetGameObjectPtr<GameObject>(UI, "Frame").lock()->SetPosition(p_frame);
+		//	objectmanager.GetGameObjectPtr<GameObject>(UI, "Frame")()->SetPosition(p_frame);
 		//}
 
 
@@ -1085,75 +1080,69 @@ void Stage2Scene::Update(void)
 			SetChangeScene(this->ChangeScene);
 		}*/
 
-
-		
-		//ColliderPlayer_Ground(playerShared.second, grounds2);
-
-
-
 		//スライムジャンプ
 		if (Collider_toEnemy(enemyShared, groundShared))
 		{
 			//スライムジャンプフラグ
-			if (enemygion.lock())
+			if (enemygion)
 			{
-				if (enemygion.lock()->Get_gion() == false)
+				if (enemygion->Get_gion() == false)
 				{
 
-					Vector3 Slim_Position = enemygion.lock()->GetPosition();
+					Vector3 Slim_Position = enemygion->GetPosition();
 					Slim_Position = p_enemy;
 					Slim_Position.y = Slim_Position.y + 100;
-					enemygion.lock()->SetPosition(Slim_Position);
+					enemygion->SetPosition(Slim_Position);
 				}
 				else {
-					Vector3 pos_bane = baneShared.lock()->GetPosition();
-					baneShared.lock()->SetPosition(pos_bane);
+					Vector3 pos_bane = baneShared->GetPosition();
+					baneShared->SetPosition(pos_bane);
 				}
 
 			}
-			enemyShared.lock()->SetJump(true);
+			enemyShared->SetJump(true);
 		}
-		else if (enemygion.lock()) {
-			enemyShared.lock()->SetOnGround(false);
-			enemygion.lock()->Fade_in_out();
+		else if (enemygion) {
+			enemyShared->SetOnGround(false);
+			enemygion->Fade_in_out();
 		}
 
-		if (enemygion.lock() != nullptr)
+		if (enemygion != nullptr)
 		{
-			Vector4 poyon_color = enemygion.lock()->GetColor(); //エラー：吸収する瞬間にenemygion自体が削除されるのでエラーが出る
+			Vector4 poyon_color = enemygion->GetColor(); //エラー：吸収する瞬間にenemygion自体が削除されるのでエラーが出る
 			Vector3 p_poyon = p_enemy;
 			p_poyon.x = p_poyon.x + 50;
 			p_poyon.y = p_poyon.y + 150;
 		}
 
-		Vector3 enemy_Rotation = enemyShared.lock()->GetRotation();
+		Vector3 enemy_Rotation = enemyShared->GetRotation();
 
 
 		if (p_enemy.x <= -300)
 		{
-			enemyShared.lock()->cb.matrixWorld = DirectX::XMMatrixScaling(-1.0f, 1.0f, 1.0f);
+			enemyShared->cb.matrixWorld = DirectX::XMMatrixScaling(-1.0f, 1.0f, 1.0f);
 		}
 		//std::cout << p_enemy.x << std::endl;
 
-		Vector3 _p_biribiri = effectShared.lock()->GetPosition(); //ポヨンの座標
-		Vector3 _r_biribiri = effectShared.lock()->GetRotation();  //ポヨンの回転
+		Vector3 _p_biribiri = effectShared->GetPosition(); //ポヨンの座標
+		Vector3 _r_biribiri = effectShared->GetRotation();  //ポヨンの回転
 
 		//enemygionがemptyでないかチェック
-		if (enemygion.lock())
+		if (enemygion)
 		{
 			//ポヨンの画像とバネの画像が当たっているか
-			if (BoxCollider(enemygion.lock(), baneShared.lock()))
+			if (BoxCollider(enemygion, baneShared))
 			{
 
-				enemygion.lock()->Set_gion(true);
-				Vector3 _p_poyon = baneShared.lock()->GetPosition(); //ポヨンの座標
-				Vector3 _r_poyon = baneShared.lock()->GetRotation();  //ポヨンの回転
-				enemygion.lock()->Set_Onomatope(true); //当たってたらフラグをtrue
+				enemygion->Set_gion(true);
+				Vector3 _p_poyon = baneShared->GetPosition(); //ポヨンの座標
+				Vector3 _r_poyon = baneShared->GetRotation();  //ポヨンの回転
+				enemygion->Set_Onomatope(true); //当たってたらフラグをtrue
 				_p_poyon.x = _p_poyon.x + 30;
 				_p_poyon.y = _p_poyon.y + 20;
 				_r_poyon.z = _r_poyon.z - 15;
-				enemygion.lock()->SetPosition(_p_poyon); //ポヨンの画像の座標をバネにくっつける
-				enemygion.lock()->SetRotation(_r_poyon); //ポヨンの画像の回転を更新
+				enemygion->SetPosition(_p_poyon); //ポヨンの画像の座標をバネにくっつける
+				enemygion->SetRotation(_r_poyon); //ポヨンの画像の回転を更新
 				std::cout << "当りました" << std::endl;
 			}
 			else
@@ -1162,13 +1151,13 @@ void Stage2Scene::Update(void)
 			}
 
 			//二回目の回収をするまではずっとtrue
-			if (enemygion.lock()->Get_Onomatope())
+			if (enemygion->Get_Onomatope())
 			{
-				enemygion.lock()->Fade_in_out();
+				enemygion->Fade_in_out();
 				//Playerと付与したオブジェクトが当たっているか
-				if (BoxCollider(playerShared.second, baneShared.lock()))
+				if (BoxCollider(playerShared.second, baneShared))
 				{
-					enemygion.lock()->Action(playerShared.second); //当たっていればAction関数実行
+					enemygion->Action(playerShared.second); //当たっていればAction関数実行
 					sound.Play(SE_POYON);
 				}
 			}
@@ -1178,33 +1167,33 @@ void Stage2Scene::Update(void)
 		}
 
 		//ビリビリ
-		if (gionShared.lock())
+		if (gionShared)
 		{
-			if (BoxCollider(gionShared.lock(), effectShared.lock()))
+			if (BoxCollider(gionShared, effectShared))
 			{
-				effectShared.lock()->SetColor(Color(1.0f, 1.0f, 1.0f, 1.0f));
+				effectShared->SetColor(Color(1.0f, 1.0f, 1.0f, 1.0f));
 				//_p_biribiri.x = _p_biribiri.x - 250;
 				//_p_biribiri.y = _p_biribiri.y + 80;
 				//_r_biribiri.z = _r_biribiri.z - 15;
-				gionShared.lock()->Set_Onomatope(true); //当たってたらフラグをtrue
+				gionShared->Set_Onomatope(true); //当たってたらフラグをtrue
 				//
-				//gionShared.lock()->SetPosition(_p_biribiri); //ポヨンの画像の座標をバネにくっつける
-				//gionShared.lock()->SetRotation(_r_biribiri); //ポヨンの画像の回転を更新
+				//gionShared()->SetPosition(_p_biribiri); //ポヨンの画像の座標をバネにくっつける
+				//gionShared()->SetRotation(_r_biribiri); //ポヨンの画像の回転を更新
 				std::cout << "当りました" << std::endl;
 			}
 			else {
-				effectShared.lock()->SetColor(Color(1.0f, 1.0f, 1.0f, 0.0f)); //ビリビリのエフェクトを色で消えた感じにしてる
+				effectShared->SetColor(Color(1.0f, 1.0f, 1.0f, 0.0f)); //ビリビリのエフェクトを色で消えた感じにしてる
 			}
 
-			gionShared.lock()->Fade_in_out();
+			gionShared->Fade_in_out();
 			//二回目の回収をするまではずっとtrue
-			if (gionShared.lock()->Get_Onomatope())
+			if (gionShared->Get_Onomatope())
 			{
 				//Playerと付与したオブジェクトが当たっているか
-				if (BoxCollider(playerShared.second, groundShared3.lock()))
+				if (BoxCollider(playerShared.second, groundShared3))
 				{
 					playerShared.second->SetOnGround(true);
-					gionShared.lock()->Action(playerShared.second); //当たっていればAction関数実行
+					gionShared->Action(playerShared.second); //当たっていればAction関数実行
 					sound.Play(SE_BIRIBIRI);
 				}
 				else {
@@ -1215,7 +1204,7 @@ void Stage2Scene::Update(void)
 			}
 		}
 		else {
-			playerShared2.lock()->SetRotation(Vector3(0.0f, 0.0f, 0.0f));
+			playerShared2->SetRotation(Vector3(0.0f, 0.0f, 0.0f));
 		}
 
 
@@ -1228,7 +1217,7 @@ void Stage2Scene::Update(void)
 			auto magShared = objectmanager.GetGameObject<Magazine>(OBJECT, "Magazine3");
 
 			// マガジンと地面
-			Collider_toGround(std::weak_ptr<Magazine>(magShared.second), groundShared);
+			Collider_toGround(magShared.second, groundShared);
 			// プレイヤーとマガジンが当たったら
 			if (Collider_Player_to_Magazine(playerShared.second, objectmanager.GetGameObjectPtr<Magazine>(OBJECT, "Magazine3")))
 			{
@@ -1254,7 +1243,7 @@ void Stage2Scene::Update(void)
 		// フレーム遷移処理
 		if (Input::GetInstance().GetButtonTrigger(XINPUT_GAMEPAD_B) || Input::GetInstance().GetKeyTrigger(VK_RETURN))
 		{
-			if (Collider_to_Object(playerShared2.lock(), GOOL.lock()))
+			if (Collider_to_Object(playerShared2, GOOL))
 			{
 				m_Frame = FRAME2;
 				//playerShared.second->SetOnGround(false);

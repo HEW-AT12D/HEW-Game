@@ -33,8 +33,8 @@ void SoundGun::Update(void)
 
 	// 親オブジェクトと座標を同期(これは基底クラスでやるべき)
 	// ここではとりあえず擬音銃の座標を同期させる
-	Vector3 newpos = m_pParent.lock()->GetPosition();
-	newpos.x += transform.GetScale().x / 2 + m_pParent.lock()->GetScale().x / 2;	// 擬音銃とプレイヤーの大きさのそれぞれ半分を足した値を加算して座標を設定
+	Vector3 newpos = m_pParent->GetPosition();
+	newpos.x += transform.GetScale().x / 2 + m_pParent->GetScale().x / 2;	// 擬音銃とプレイヤーの大きさのそれぞれ半分を足した値を加算して座標を設定
 	transform.SetPosition(newpos);
 }
 
@@ -69,26 +69,26 @@ bool SoundGun::GetIsSuction(void)
  * @param _gion_pos
  * @param _p_pos
 */
-bool SoundGun::Suction(std::weak_ptr<GameObject> _gion)
+bool SoundGun::Suction(IOnomatopoeia* _gion)
 {
 	// 親オブジェクト(プレイヤー)が存在していて、
-	if (m_pParent.lock())
+	if (m_pParent)
 	{
 		// 吸い込む擬音の情報
-		Vector3 gion_pos = _gion.lock()->GetPosition();		// 座標
-		Vector3 gion_rot = _gion.lock()->GetRotation();		// 角度
-		Vector3 gion_scale = _gion.lock()->GetScale();		// サイズ
+		Vector3 gion_pos = _gion->GetPosition();		// 座標
+		Vector3 gion_rot = _gion->GetRotation();		// 角度
+		Vector3 gion_scale = _gion->GetScale();		// サイズ
 
 		/*Playerと擬音の距離が一定に来たら、擬音が徐々に近づく*/
 		//ここに、近づくスピードを書く
 		gion_pos.x -= 10;
-		_gion.lock()->SetPosition(gion_pos);
+		_gion->SetPosition(gion_pos);
 		std::cout << "吸い込んでます" << std::endl;
 
 
 		// 擬音の回転、縮小
 		gion_rot.z += 40;
-		_gion.lock()->SetRotation(gion_rot);	// 角度の再設定
+		_gion->SetRotation(gion_rot);	// 角度の再設定
 
 		// 吸い込み中は毎フレーム縮小される
 		if (gion_scale.y >= 0.0f)
@@ -97,19 +97,19 @@ bool SoundGun::Suction(std::weak_ptr<GameObject> _gion)
 			gion_scale.x -= 8.0f;
 			gion_scale.y -= 4.0f;
 
-			_gion.lock()->SetScale(gion_scale);
+			_gion->SetScale(gion_scale);
 		}
 
 		// プレイヤーの座標に当たったら(限りなく近づいたら)
-		if (gion_pos.x - m_pParent.lock()->GetPosition().x <= 100.0f)
+		if (gion_pos.x - m_pParent->GetPosition().x <= 100.0f)
 		{
 			
-			if (m_pParent.lock()->m_Tag == Tag(Doon))
+			if (m_pParent->m_Tag == Tag(Doon))
 			{
 				return false;
 			}
 			// 親オブジェクトのマガジンに格納
-			auto player = std::dynamic_pointer_cast<Player>(m_pParent.lock());
+			auto player = dynamic_cast<Player*>(m_pParent);
 			// ここの関数にはGameObject型で持ってきてるのでIOnomatopoeia型にキャスト
 			//auto onomatopoeia = std::dynamic_pointer_cast<IOnomatopoeia>(_gion.lock());
 
@@ -117,10 +117,10 @@ bool SoundGun::Suction(std::weak_ptr<GameObject> _gion)
 			//// →今選択してるマガジンに既に擬音がある場合、次のマガジンに装填、を繰り返し、全部装填されている場合、座標は寄せるが回転、吸い込み処理は行わない
 			////onomatopoeia->SetPosition(player->GetUsingMag()->GetPosition());	// 座標を設定
 			//onomatopoeia->SetRotation(player->GetUsingMag()->GetRotation());	// 角度を設定
-			auto gionShared = _gion.lock();
+			auto gionShared = _gion;
 			if (!gionShared) return false;  // weak_ptr が無効
 
-			auto onomatopoeia = std::dynamic_pointer_cast<IOnomatopoeia>(gionShared);
+			auto onomatopoeia = dynamic_cast<IOnomatopoeia*>(gionShared);
 			if (!onomatopoeia) return false; // キャスト失敗
 
 			// 安全に呼び出せる
@@ -180,13 +180,13 @@ bool SoundGun::Suction(std::weak_ptr<GameObject> _gion)
  * 流れ
  * 発射→マガジンの弾の所有権を銃に渡す（選択されているマガジン番号の中にある弾の所有権を渡す）→その弾を銃が発射
 */
-void SoundGun::Shot(std::shared_ptr<Magazine> _mag)
+void SoundGun::Shot(Magazine* _mag)
 {
 	// 引数のマガジンの中にある擬音のサイズなどを設定
 
 	auto gion = _mag->ReleaseBullet();
 
-	Vector3 gion_Rot = gion->GetRotation();		// 擬音の回転情報(出口はシーシャ)
+	Vector3 gion_Rot = gion->GetRotation();		// 擬音の回転情報
 	Vector3 gion_Scale = gion->GetScale();		// 擬音のサイズ情報
 	Vector3 gion_Pos = transform.GetPosition();	// 擬音の座標(これは擬音銃の少し右に出現させるので銃基準でいじる)
 	Vector3 gion_dir = m_Direction;				// 発射する向き(銃の向いている方向に発射する)

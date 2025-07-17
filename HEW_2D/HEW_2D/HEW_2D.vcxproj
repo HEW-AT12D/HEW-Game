@@ -149,10 +149,6 @@
     <ClCompile Include="Framework\Component\RigitBody\Gravity.cpp" />
     <ClCompile Include="Framework\Component\RigitBody\RigitBody2D.cpp" />
     <ClCompile Include="Framework\Component\TransForm\Transform.cpp" />
-    <ClCompile Include="Framework\Component\Transform\TransformComponent.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="Framework\D3D11\D3D11.cpp" />
     <ClCompile Include="Framework\Input\Input.cpp" />
     <ClCompile Include="Framework\Scene\IScene.cpp" />
@@ -204,10 +200,6 @@
     <ClInclude Include="Framework\Component\RigitBody\Gravity.h" />
     <ClInclude Include="Framework\Component\RigitBody\RigitBody2D.h" />
     <ClInclude Include="Framework\Component\TransForm\Transform.h" />
-    <ClInclude Include="Framework\Component\Transform\TransformComponent.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </ClInclude>
     <ClInclude Include="Framework\D3D11\D3D11.h" />
     <ClInclude Include="Framework\Input\Input.h" />
     <ClInclude Include="Framework\Scene\IScene.h" />

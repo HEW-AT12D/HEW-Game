@@ -64,7 +64,7 @@ class IOnomatopoeia;
  * @param color 色情報
  * 
 */
-class GameObject :public std::enable_shared_from_this<GameObject>
+class GameObject : public std::enable_shared_from_this<GameObject>
 {
 protected:
 	//! 頂点データ
@@ -110,8 +110,8 @@ protected:
 
 	// 移動用方向ベクトル(Transform.Rotaionは回転を扱うものなので別物)
 
-	// 付与されている擬音
-	std::shared_ptr<IOnomatopoeia> m_AttachedOnomatopoeia;
+	// 付与されている擬音のポインタ
+	IOnomatopoeia* m_pAttachedOnomatopoeia;
 
 	//// 名前(一意のもの)
 	//std::string m_Name;
@@ -121,10 +121,10 @@ public:
 	// 速度(これは毎フレーム変化する値)
 	Vector3 m_Velocity;
 	Vector3 m_Direction;
-	// 親オブジェクトのポインタ(子は親の所有権は持たないのでweak_ptrでおｋ)
-	std::weak_ptr<GameObject> m_pParent;
-	// 子オブジェクトのポインタ(親は子の所有権を持つのでshared_ptrにする)
-	std::vector<std::shared_ptr<GameObject>> m_pChildren;		// 子は複数存在する可能性があるのでvector
+	// 親オブジェクトのポインタ
+	GameObject* m_pParent = nullptr;	// 親は一つしか持てないのでポインタで良い
+	// 子オブジェクトのポインタ
+	std::vector<GameObject*> m_pChildren;		// 子は複数存在する可能性があるのでvector
 
 	//// タグ(オブジェクトの分類)
 	Tag m_Tag;
@@ -145,14 +145,14 @@ public:
 	virtual void SetRotation(Vector3 _Rot);			// 角度をセット
 	virtual void SetColor(const Color _Color);	// 色をセット
 	virtual void SetUV(const XMINT2 _UV);			// UV座標をセット
-	virtual void Animation(STATE,std::weak_ptr<GameObject>);		// アニメーション
+	virtual void Animation(STATE, GameObject*);		// アニメーション
 	// TODO:2025/01/24 赤根:プレイヤーに親子関係を持たせる際の関数の引数にタグと名前を入れるように変更する→プレイヤー側でオーバーライドして、タグがマガジンであればタグを変更、にしようと思ったが、それだとオブジェクトマネージャの管理外での処理が発生するかも→オブジェクトにはオブジェクトのポインタだけを持たせたほうが良いかも
-	virtual void SetParent(const std::weak_ptr<GameObject> _Parent);	// 親オブジェクトをセット
+	virtual void SetParent(GameObject* _Parent);	// 親オブジェクトをセット
 	virtual void AddForce(const Vector3 _Vel);		// 速度をセット(ここでは即座に値を加算する方法だけ作る→unityのforcemode.impulseみたいなやつ)
 	virtual void SetDirection(Vector3 _Dir);		// 方向ベクトルをセット
 	virtual void SetOnGround(bool _flg);			// 接地しているか？
 	virtual void SetIsDelete(bool _flg);			// 削除予定セット
-	virtual void SetChild(const std::shared_ptr<GameObject> _Child);		// 子オブジェクトをセット
+	virtual void SetChild(GameObject* _Child);		// 子オブジェクトをセット
 
 	// 個別の当たり判定もここに追加？オブジェクトの基本となるクラスならここじゃなくて、判定が必要なオブジェクトにそれぞれ追加？
 

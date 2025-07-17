@@ -173,19 +173,24 @@ void Player::Uninit(void)
 		// マガジンを全て開放
 		mag->Uninit();
 		// 所有権を捨てる
-		mag.reset();
+		delete mag;
 	}
 	// マガジンのコンテナを空にする
 	m_Magazines.clear();
 
 	// 擬音銃の解放
-	//m_Soundgun->Uninit();   //ここばぐる
-	// 所有権を捨てる
-	m_Soundgun.reset();
+	if (m_Soundgun) {
+		m_Soundgun->Uninit();   //ここばぐる
+		delete m_Soundgun;
+	}
+	//m_Soundgun.reset();
 
 	// クロスヘアの解放
-	//m_CrossHair->Uninit();
-	m_CrossHair.reset();
+	if(m_CrossHair) {
+		m_CrossHair->Uninit();
+		delete m_CrossHair;
+	}
+	//m_CrossHair.reset();
 
 	// プレイヤーの解放
 	this->GameObject::Uninit();
@@ -365,10 +370,10 @@ void Player::Animation(STATE _Anim_Name)
  * 〇マガジン取得の流れ
  * 　・マガジンを拾う→タグをUIに変更→大きさと座標を変更、としたい
 */
-void Player::SetChild(std::shared_ptr<GameObject> _child)
+void Player::SetChild(GameObject* _child)
 {
 	// 設定する子オブジェクトがマガジンであれば(キャストできれば)
-	if (auto casted = std::dynamic_pointer_cast<Magazine>(_child))
+	if (auto casted = dynamic_cast<Magazine*>(_child))
 	{
 		// マガジンの座標とスケールを変更する(ここをマガジン数によって変えたい)
 		// どうする？
@@ -413,10 +418,10 @@ void Player::SetChild(std::shared_ptr<GameObject> _child)
 
 		// プレイヤーをマガジンの親として設定する
 		// shared_from_thisだけだとGameObject型になるので、Player型にキャストしてから渡す
-		_child->SetParent(std::dynamic_pointer_cast<Player>(shared_from_this()));
+		_child->SetParent(dynamic_cast<Player*>(this));
 	}
 	// 擬音銃なら
-	else if (auto casted = std::dynamic_pointer_cast<SoundGun>(_child))
+	else if (auto casted = dynamic_cast<SoundGun*>(_child))
 	{
 		// 子オブジェクトに設定
 		m_Soundgun = casted;
@@ -429,7 +434,7 @@ void Player::SetChild(std::shared_ptr<GameObject> _child)
 
 	}
 	// クロスヘアの場合
-	else if (auto casted = std::dynamic_pointer_cast<CrossHair>(_child))
+	else if (auto casted = dynamic_cast<CrossHair*>(_child))
 	{
 		// 子オブジェクトに設定
 		m_CrossHair = casted;
@@ -441,7 +446,7 @@ void Player::SetChild(std::shared_ptr<GameObject> _child)
 		m_pChildren.push_back(_child);
 	}
 	// 子オブジェクト側にもこのオブジェクトを親として設定
-	_child->SetParent(shared_from_this());
+	_child->SetParent(this);
 }
 
 
@@ -456,7 +461,7 @@ void Player::SetChild(std::shared_ptr<GameObject> _child)
  * @param _gion_pos
  * @param _p_pos
 */
-bool Player::Suction(std::weak_ptr<IOnomatopoeia> _gion)
+bool Player::Suction(IOnomatopoeia* _gion)
 {
 	// フラグを立てて擬音銃の吸い込み処理を実行
 	m_Soundgun->SetIsSuction(true);
@@ -582,7 +587,7 @@ IOnomatopoeia* Player::GetLoadedBullet(void)
  * @brief 選択してるマガジンを返す関数
  * @return 選択中のマガジン
 */
-std::shared_ptr<Magazine> Player::GetUsingMag(void)
+Magazine* Player::GetUsingMag(void)
 {
 	return m_Magazines[UseMagNumber];
 }

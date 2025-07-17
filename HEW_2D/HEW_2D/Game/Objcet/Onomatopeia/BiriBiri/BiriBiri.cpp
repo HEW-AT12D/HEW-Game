@@ -1,22 +1,22 @@
 #include "BiriBiri.h"
 #include "../../Player/Player.h"
 
-void BiriBiri::Action(std::weak_ptr<Player> player)
+void BiriBiri::Action(Player* player)
 {
-	Vector3 player_pos = player.lock()->GetPosition();
-	Vector3 player_rotation = player.lock()->GetRotation();
+	Vector3 player_pos = player->GetPosition();
+	Vector3 player_rotation = player->GetRotation();
 	//playerをGameObject型→Player型に変更
 	if (Collision_Onomatope) //フラグがTRUEなら（擬音が当たっているか）
 	{
-		if (auto sharedPlayer = player.lock())
+		if (auto sharedPlayer = player)
 		{
 			//dynamic_pointer_castを使用して派生クラスにキャスト
-			auto derivedPlayer = std::dynamic_pointer_cast<Player>(sharedPlayer);
+			auto derivedPlayer = dynamic_cast<Player*>(sharedPlayer);
 			if (derivedPlayer) {//キャストに成功していたら
 				player_rotation.z = 50;
-				player.lock()->SetRotation(player_rotation);
+				player->SetRotation(player_rotation);
 				player_pos.x -= knockback_power;
-				player.lock()->SetPosition(player_pos);
+				player->SetPosition(player_pos);
 				BiriBiri_check = false;
 
 			}
@@ -30,7 +30,7 @@ void BiriBiri::Action(std::weak_ptr<Player> player)
 	}
 	else {
 		player_rotation.z = 0;
-		player.lock()->SetRotation(player_rotation);
+		player->SetRotation(player_rotation);
 	}
 }
 

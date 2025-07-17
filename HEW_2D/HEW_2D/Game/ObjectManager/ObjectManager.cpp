@@ -24,7 +24,7 @@ void ObjectManager::Collider_Player_to_Object(void)
 	auto playerobj = GetGameObjectPtr<Player>(PLAYER, "Player");
 
 	// 変更予定のオブジェクトを記録するリスト
-	std::vector<std::pair<std::pair<Tag, std::string>, std::shared_ptr<GameObject>>> toBeUpdated;
+	std::vector<std::pair<std::pair<Tag, std::string>, GameObject*>> toBeUpdated;
 
 
 	// プレイヤーと当たったオブジェクトを確認
@@ -65,12 +65,12 @@ void ObjectManager::Collider_Player_to_Object(void)
 
 	// 記録した変更対象を処理(マガジン用だが、中身を変えればオブジェクトの削除も可能)
 	for (auto& it : toBeUpdated) {
-		auto mag = std::dynamic_pointer_cast<Magazine>(it.second);
+		auto mag = dynamic_cast<Magazine*>(it.second);
 		if (mag) {
 			// マガジンのタグを変更
 			ChangeTag(it.first.first, it.first.second, UI);
 			// プレイヤーの子オブジェクトに設定
-			playerobj.lock()->SetChild(mag);
+			playerobj->SetChild(mag);
 			mag->SetScale(Vector3(50.0f, 50.0f, 0.0f));
 			mag->SetPosition(Vector3(-800.0f, -500.0f, 0.0f));
 		}
@@ -138,7 +138,7 @@ void ObjectManager::Draw(void) {
 	if (auto cam = HasCamera())
 	{
 		// 描画するべきオブジェクトを格納していく
-		std::vector<std::pair<std::pair<Tag, std::string>, std::shared_ptr<GameObject>>> drewobj;
+		std::vector<std::pair<std::pair<Tag, std::string>, GameObject*>> drewobj;
 
 		// カメラの描画範囲
 		float left = cam->GetPosition().x - cam->GetScale().x / 2;  // カメラの左端
@@ -237,9 +237,9 @@ void ObjectManager::Uninit(void) {
  * @brief 全てのオブジェクトを取得
  * @return
 */
-std::vector<std::pair<std::pair<Tag, std::string>, std::shared_ptr<GameObject>>> ObjectManager::GetAllObjects(void)
+std::vector<std::pair<std::pair<Tag, std::string>, GameObject*>> ObjectManager::GetAllObjects(void)
 {
-	std::vector<std::pair<std::pair<Tag, std::string>, std::shared_ptr<GameObject>>> ret;
+	std::vector<std::pair<std::pair<Tag, std::string>, GameObject*>> ret;
 	for (auto& obj : Objects)
 	{
 		ret.emplace_back(obj);
@@ -253,11 +253,12 @@ std::vector<std::pair<std::pair<Tag, std::string>, std::shared_ptr<GameObject>>>
  * @param
  * @return
 */
-std::shared_ptr<Camera> ObjectManager::HasCamera(void)
+Camera* ObjectManager::HasCamera(void)
 {
 	for (const auto& obj : Objects) {
-		if (auto casted = std::dynamic_pointer_cast<Camera>(obj.second)) {
+		if (auto casted = dynamic_cast<Camera*>(obj.second)) {
 			return casted;  // 1つ見つかったら終了
 		}
 	}
+	return nullptr;
 }

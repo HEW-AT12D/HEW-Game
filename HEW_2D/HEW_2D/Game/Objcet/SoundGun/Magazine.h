@@ -41,7 +41,7 @@ public:
 			// 擬音の解放
 			m_Onomatopoeia->Uninit();
 		}
-		m_Onomatopoeia.reset();
+		delete m_Onomatopoeia;
 	};
 
 	void Update(void) override;		// 擬音の状態などをこっちで管理するためにオーバーライド
@@ -53,13 +53,13 @@ public:
 	IOnomatopoeia* GetBulletPointer(void);
 
 	// 擬音をマガジンに装填する関数
-	void SetOnomatopoeia(std::shared_ptr<IOnomatopoeia> _onomat);
+	void SetOnomatopoeia(IOnomatopoeia* _onomat);
 
 	// 発射時に擬音の所有権を擬音銃に渡してマガジン内を空にする関数
-	std::shared_ptr<IOnomatopoeia> ReleaseBullet(void);
+	IOnomatopoeia* ReleaseBullet(void);
 
 private:
 	bool IsFlying;		// 飛んでいるか？
-	std::shared_ptr<IOnomatopoeia> m_Onomatopoeia;
+	IOnomatopoeia* m_Onomatopoeia;
 };
 

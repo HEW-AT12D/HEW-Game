@@ -10,7 +10,7 @@
  * @return 結果
 */
 template <class T, class U>
-bool BoxCollider2(std::shared_ptr<T> _obj1, std::shared_ptr<U> _obj2,std::shared_ptr<Player>_player)
+bool BoxCollider2(T* _obj1, U* _obj2, Player* _player)
 {
 	// オブジェクト1の各辺
 	float Object1_Right_Collider = _obj1->GetPosition().x + _obj1->GetScale().x / 2;
@@ -80,7 +80,7 @@ bool BoxCollider2(std::shared_ptr<T> _obj1, std::shared_ptr<U> _obj2,std::shared
 }
 
 template <class T, class U>
-bool BoxCollider(std::shared_ptr<T> _obj1, std::shared_ptr<U> _obj2)
+bool BoxCollider(T* _obj1, U* _obj2)
 {
 
 	float Object1_Right_Collider, Object1_Left_Collider, Object1_Top_Collider, Object1_Bottom_Collider;//playerの当たり判定変数
@@ -108,18 +108,18 @@ bool BoxCollider(std::shared_ptr<T> _obj1, std::shared_ptr<U> _obj2)
 }
 
 
-bool ColliderPlayer_Ground(std::shared_ptr<Player>, std::vector<std::shared_ptr<GameObject>>);	//PlayerとGroundの当たり判定関数
+bool ColliderPlayer_Ground(Player*, std::vector<GameObject*>);	//PlayerとGroundの当たり判定関数
 
 /**
  * @brief 対地面地面の当たり判定
  * @tparam T 何かの型
  * @param  地面
 */
-template <class T>
-bool Collider_toGround(std::weak_ptr<T> _obj1, std::weak_ptr<GameObject> _obj2)
+template <class T, class U>
+bool Collider_toGround(T* _obj1, U* _obj2)
 {
-	auto obj1 = _obj1.lock();
-	auto obj2 = _obj2.lock();
+	auto obj1 = _obj1;
+	auto obj2 = _obj2;
 
 	if (BoxCollider(obj1, obj2))
 	{
@@ -136,10 +136,10 @@ bool Collider_toGround(std::weak_ptr<T> _obj1, std::weak_ptr<GameObject> _obj2)
 }
 
 template <class T>
-bool Collider_toEnemy(std::weak_ptr<T> _obj1, std::weak_ptr<GameObject> _obj2)
+bool Collider_toEnemy(T* _obj1, GameObject* _obj2)
 {
-	auto obj1 = _obj1.lock();
-	auto obj2 = _obj2.lock();
+	auto obj1 = _obj1;
+	auto obj2 = _obj2;
 
 	if (BoxCollider(obj1, obj2))
 	{
@@ -168,7 +168,7 @@ bool Collider_toEnemy(std::weak_ptr<T> _obj1, std::weak_ptr<GameObject> _obj2)
  * @return
 */
 template <class T, class U>
-bool Collider_Objects_Objects(std::vector<std::shared_ptr<T>>_objects1, std::vector<std::shared_ptr<U>>_objects2)
+bool Collider_Objects_Objects(std::vector<T*>_objects1, std::vector<U*>_objects2)
 {
 	// オブジェクトごとにBoxColliderを回す
 	for (auto& obj2 : _objects2)
@@ -186,34 +186,28 @@ bool Collider_Objects_Objects(std::vector<std::shared_ptr<T>>_objects1, std::vec
 			}
 			else {
 				obj1->SetOnGround(false);
-				
 			}
 		}
 	}
 	return false;
 }
 
-
-
 /**
  * @brief プレイヤーとオブジェクトの当たり判定
  * @param _player プレイヤー
  * @param _objects オブジェクトのvector
 */
-bool Collider_to_Object(std::weak_ptr<Player> _player, std::weak_ptr<GameObject> _objects);
+bool Collider_to_Object(Player* _player, GameObject* _objects);
 
 /**
  * @brief プレイヤーとマガジンの当たり判定
 */
-bool Collider_Player_to_Magazine(std::weak_ptr<Player> obj1, std::weak_ptr<Magazine> obj2);
+bool Collider_Player_to_Magazine(Player* obj1, Magazine* obj2);
 
 
-
-bool ColliderPlayer_Gion(std::shared_ptr<Player>, std::shared_ptr<GameObject>);//Playerと擬音の当たり判定関数
+bool ColliderPlayer_Gion(Player*, GameObject*);//Playerと擬音の当たり判定関数
 
 // 扇型と擬音の当たり判定関数
-std::pair<std::pair<Tag, std::string>, std::shared_ptr<IOnomatopoeia>> ColliderFan_Gion(std::weak_ptr<Player> fan, std::vector<std::pair<std::pair<Tag, std::string>, std::shared_ptr<IOnomatopoeia>>>);
+std::pair<std::pair<Tag, std::string>, IOnomatopoeia*> ColliderFan_Gion(Player* fan, std::vector<std::pair<std::pair<Tag, std::string>, IOnomatopoeia*>>);
 
 bool LineIntersectsCircle(float, float, float, float, float, float, float);// 線分と円が交差しているか判定する関数
-
-//void DrawFan(GameObject*, bool);

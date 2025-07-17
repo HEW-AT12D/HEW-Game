@@ -260,9 +260,6 @@
     <ClCompile Include="Game\Scene\Stage1Scene.cpp">
       <Filter>ゲーム\シーン\ステージ1</Filter>
     </ClCompile>
-    <ClCompile Include="Framework\Component\Transform\TransformComponent.cpp">
-      <Filter>フレームワーク\コンポーネント\Transform</Filter>
-    </ClCompile>
     <ClCompile Include="Game\Scene\TitleScene.cpp">
       <Filter>ゲーム\シーン\タイトル</Filter>
     </ClCompile>
@@ -288,9 +285,6 @@
     </ClInclude>
     <ClInclude Include="Framework\Component\IComponent\IComponent.h">
       <Filter>フレームワーク\コンポーネント\基本コンポーネント</Filter>
-    </ClInclude>
-    <ClInclude Include="Framework\Component\Transform\TransformComponent.h">
-      <Filter>フレームワーク\コンポーネント\Transform</Filter>
     </ClInclude>
     <ClInclude Include="Framework\ComponentManager\ComponentManager.h">
       <Filter>フレームワーク\コンポーネント管理</Filter>

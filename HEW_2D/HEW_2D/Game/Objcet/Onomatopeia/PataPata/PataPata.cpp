@@ -24,10 +24,10 @@ void PataPata::Action(void)
 }
 
 
-void PataPata::Action(std::weak_ptr<GameObject> obj, std::weak_ptr<Player> player)
+void PataPata::Action(GameObject* obj, Player* player)
 {
-	Vector3 patapata_pos = obj.lock()->GetPosition();
-	Vector3 player_pos = player.lock()->GetPosition();
+	Vector3 patapata_pos = obj->GetPosition();
+	Vector3 player_pos = player->GetPosition();
 	auto patapataShared = obj;
 	auto playerShared = player;
 	Collision_Onomatope = true;
@@ -41,17 +41,14 @@ void PataPata::Action(std::weak_ptr<GameObject> obj, std::weak_ptr<Player> playe
 				if (Collider_toGround(obj, player))
 				{
 					player_pos.y += 5;
-					player.lock()->SetPosition(player_pos);
+					player->SetPosition(player_pos);
 				}
 				patapata_pos.y += 5;
-
-				obj.lock()->SetPosition(patapata_pos);
-
+				obj->SetPosition(patapata_pos);
 			}
 			else {
 				Collider_check = false;
 				Max = true;
-
 			}
 		}
 		if (Max == true)
@@ -61,19 +58,17 @@ void PataPata::Action(std::weak_ptr<GameObject> obj, std::weak_ptr<Player> playe
 				if (Collider_toGround(obj, player))
 				{
 					player_pos.y -= 5;
-					player.lock()->SetPosition(player_pos);
+					player->SetPosition(player_pos);
 				}
 				patapata_pos.y -= 5;
 
-				obj.lock()->SetPosition(patapata_pos);
+				obj->SetPosition(patapata_pos);
 			}
 			else {
 				Max = false;
 			}
-		}
-		
+		}	
 	}
-
 }
 
 

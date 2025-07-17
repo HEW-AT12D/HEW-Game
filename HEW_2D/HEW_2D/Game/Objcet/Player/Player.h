@@ -59,9 +59,9 @@ public:
 
 	void Animation(STATE _Anim_Name);	// プレイヤー個別のアニメーション関数
 
-	void SetChild(const std::shared_ptr<GameObject> _child) override;
+	void SetChild(GameObject* _child) override;
 
-	bool Suction(std::weak_ptr<IOnomatopoeia>);	// 吸い込み関数(戻り値で吸い込み処理が終了したかを判定)
+	bool Suction(IOnomatopoeia* _onomatopoeia);	// 吸い込み関数(戻り値で吸い込み処理が終了したかを判定)
 	void Shot(void);		// 擬音の発射関数
 
 	void SetIsShot(bool _flg);
@@ -73,14 +73,14 @@ public:
 	IOnomatopoeia* GetLoadedBullet(void);
 
 	// 銃に装填されているマガジンを返す関数
-	std::shared_ptr<Magazine> GetUsingMag(void);
+	Magazine* GetUsingMag(void);
 
 	int GetMagNumber(void);
 	void SetMagNumber(int _num);
 
 	// マガジン数を返す
 	size_t GetMagCount(void);
-	std::vector<std::shared_ptr<Magazine>> m_Magazines;	// マガジン（可変長）,0番目はドォン専用にして、その後はカウントを増やしてドォンを管理する？
+	std::vector<Magazine*> m_Magazines;	// マガジン（可変長）,0番目はドォン専用にして、その後はカウントを増やしてドォンを管理する？
 	int UseMagNumber;	// マガジンの何番目を使う(装填する)か
 
 private:
@@ -89,7 +89,7 @@ private:
 	bool isFacingLeft = false;	// 左向きか？
 	int BombCount;		// ドォンのカウント
 	// 擬音銃(吸い込む竜巻画像を持たせるために使う→シェーダーリソースビューとかを配列にすれば画像は複数読み込めたかも)
-	std::shared_ptr<SoundGun> m_Soundgun;		// 擬音銃
-	std::shared_ptr<CrossHair> m_CrossHair;		// クロスヘア
+	SoundGun* m_Soundgun;		// 擬音銃
+	CrossHair* m_CrossHair;		// クロスヘア
 };
 

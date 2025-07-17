@@ -25,7 +25,7 @@
 void Magazine::Update(void)
 {
 	// 親オブジェクトがいない場合
-	if (!m_pParent.lock())
+	if (!m_pParent)
 	{
 		// 重力加速度の影響を受ける
 		if (!OnGround)
@@ -69,7 +69,7 @@ void Magazine::Draw(void)
 */
 IOnomatopoeia* Magazine::GetBulletPointer(void)
 {
-	return m_Onomatopoeia.get();
+	return m_Onomatopoeia;
 }
 
 
@@ -77,12 +77,12 @@ IOnomatopoeia* Magazine::GetBulletPointer(void)
  * @brief マガジンに擬音を装填する関数
  * @param _onomat 擬音
 */
-void Magazine::SetOnomatopoeia(std::shared_ptr<IOnomatopoeia> _onomat)
+void Magazine::SetOnomatopoeia(IOnomatopoeia* _onomatopoeia)
 {
 	// マガジンに装填
-	m_Onomatopoeia = _onomat;
+	m_Onomatopoeia = _onomatopoeia;
 	// 擬音をマガジンの子オブジェクトに設定
-	SetChild(_onomat);
+	SetChild(_onomatopoeia);
 }
 
 
@@ -90,8 +90,7 @@ void Magazine::SetOnomatopoeia(std::shared_ptr<IOnomatopoeia> _onomat)
  * @brief 発射時に擬音の所有権を擬音銃に渡してマガジン内を空にする関数
  * @return 擬音のポインタ
 */
-std::shared_ptr<IOnomatopoeia> Magazine::ReleaseBullet(void)
+IOnomatopoeia* Magazine::ReleaseBullet(void)
 {
-	// 所有権を委譲
-	return std::move(m_Onomatopoeia);
+	return m_Onomatopoeia;
 }

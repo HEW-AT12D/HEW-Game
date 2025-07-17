@@ -25,7 +25,7 @@ public:
 
 	~Poyon();
 	void Action(void) {};
-	void Action(std::weak_ptr<Player>);
+	void Action(Player*);
 	void Set_Onomatope(bool)override;//擬音のAction関数を動かすためのゲッター、セッター
 	bool Get_Onomatope(void)override;
 	void Set_gion(bool)override;

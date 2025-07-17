@@ -26,8 +26,8 @@ public:
 	~SoundGun() {};
 
 	// W押したらエラー吐くのを直す
-	bool Suction(std::weak_ptr<GameObject> _gion);	// 吸い込み関数(吸い込む擬音のデータ、それを戻り値で渡し、マガジンに入れ込む)
-	void Shot(std::shared_ptr<Magazine> _mag);		// 発射関数(選択したマガジン内の擬音を発射する)
+	bool Suction(IOnomatopoeia* _gion);	// 吸い込み関数(吸い込む擬音のデータ、それを戻り値で渡し、マガジンに入れ込む)
+	void Shot(Magazine* _mag);		// 発射関数(選択したマガジン内の擬音を発射する)
 
 	void SetIsSuction(bool _flg);
 	bool GetIsSuction(void);

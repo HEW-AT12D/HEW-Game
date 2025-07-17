@@ -4,10 +4,6 @@
 
 using namespace SimpleMath;
 
-// TODO:2024/11/27 これ構造体でいい説！！！！！！！
-// →Transformはあくまでデータの取りまとめ→わざわざクラスにして継承させてしまうと親子関係が深くなりすぎて絶対ややこしくなるからこれはやめるべき
-// クラステンプレートとか標準ライブラリ、スマートポインタの勉強も必要かも std::vectorとかでコンポーネントを好きなだけつけれるとかできそう
-
 /// <summary>
 /// Transformクラス：全てのオブジェクトが持っている情報（ここでは数値のみを扱う）
 /// ・座標
@@ -32,9 +28,6 @@ public:
 	Vector3 GetRotation(void);
 	Vector3 GetScale(void);
 	Matrix ConvertMatrix(void);		// Transformの各値をかけ合わせてワールド行列に変換
-	
-	// 更新するべきなのはコンポーネントなのでここに更新はいらない？
-	// →conioのvectorとかと同じノリ？
 protected:
 	Vector3 m_Position;	// 座標
 	Vector3 m_Rotation;	// 角度

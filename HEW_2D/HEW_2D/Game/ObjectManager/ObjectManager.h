@@ -55,19 +55,19 @@ public:
 		}
 
 		// 正常であればキーとオブジェクトをセットで追加
-		Objects.emplace(std::move(key), std::make_shared<T>(D3d11));
+		Objects.emplace(std::move(key), new T(D3d11));
 	}
 
 	/**
 	 * @brief 指定したタグのオブジェクトをvectorで渡して追加する関数
 	*/
 	template <typename T>
-	void AddObject(Tag _Tag, std::vector<std::shared_ptr<T>> _Objects)
+	void AddObject(Tag _Tag, std::vector<T*> _Objects)
 	{
 		// 引数の長さ分オブジェクト追加関数を回す
 		for (auto&& object : _Objects)
 		{
-			AddObject(_Tag, std::move(object));
+			AddObject(_Tag, object);
 		}
 	}
 
@@ -92,7 +92,7 @@ public:
 	 * @return mapに登録されている状態(タグと名前がセットになった状態)でのオブジェクト
 	*/
 	template <class T>
-	std::pair<const std::pair<Tag, std::string>, std::shared_ptr<T>> GetGameObject(const Tag& _tag, const std::string& _name)
+	std::pair<const std::pair<Tag, std::string>, T*> GetGameObject(const Tag& _tag, const std::string& _name)
 	{
 		// 名前とタグを持つオブジェクトを探索
 		//std::pair<std::pair<Tag, std::string>, std::shared_ptr<T>> retobj;
@@ -102,7 +102,7 @@ public:
 			if (obj.first.first == _tag && obj.first.second == _name)
 			{
 				// ダウンキャストを試みる
-				auto castedObj = std::dynamic_pointer_cast<T>(obj.second);
+				auto castedObj = dynamic_cast<T*>(obj.second);
 				if (castedObj)
 				{
 					// キャスト成功時、適切に返す
@@ -127,9 +127,9 @@ public:
 	 * @return タグで指定したオブジェクトをマネージャに登録した状態でvectorにしたもの
 	*/
 	template <class T>
-	std::vector<std::pair<std::pair<Tag, std::string>, std::shared_ptr<T>>> GetGameObjectPair(const Tag& _tag)
+	std::vector<std::pair<std::pair<Tag, std::string>, T*>> GetGameObjectPair(const Tag& _tag)
 	{
-		std::vector<std::pair<std::pair<Tag, std::string>, std::shared_ptr<T>>> returnobjects;
+		std::vector<std::pair<std::pair<Tag, std::string>, T*>> returnobjects;
 		// map内を探索
 		for (auto& obj : Objects)
 		{
@@ -137,14 +137,14 @@ public:
 			if (obj.first.first == _tag)
 			{
 				// キャストできるならキャストして配列に格納
-				if (auto casted = std::dynamic_pointer_cast<T>(obj.second))
+				if (auto casted = dynamic_cast<T*>(obj.second))
 				{
 					returnobjects.emplace_back(obj.first, casted);
 				}
 				// 基底クラスならそのまま格納
 				else
 				{
-					returnobjects.emplace_back(obj.first, std::static_pointer_cast<T>(obj.second));
+					returnobjects.emplace_back(obj.first, static_cast<T*>(obj.second));
 				}
 			}
 		}
@@ -153,9 +153,9 @@ public:
 
 	//タグと名前
 	template <class T>
-	std::vector<std::pair<std::pair<Tag, std::string>, std::shared_ptr<T>>> GetGameObjectPair2(const Tag& _tag, std::string _name)
+	std::vector<std::pair<std::pair<Tag, std::string>, T*>> GetGameObjectPair2(const Tag& _tag, std::string _name)
 	{
-		std::vector<std::pair<std::pair<Tag, std::string>, std::shared_ptr<T>>> returnobjects;
+		std::vector<std::pair<std::pair<Tag, std::string>, T*>> returnobjects;
 		// map内を探索
 		for (auto& obj : Objects)
 		{
@@ -163,14 +163,14 @@ public:
 			if (obj.first.first == _tag)
 			{
 				// キャストできるならキャストして配列に格納
-				if (auto casted = std::dynamic_pointer_cast<T>(obj.second))
+				if (auto casted = dynamic_cast<T*>(obj.second))
 				{
 					returnobjects.emplace_back(obj.first, casted);
 				}
 				// 基底クラスならそのまま格納
 				else
 				{
-					returnobjects.emplace_back(obj.first, std::static_pointer_cast<T>(obj.second));
+					returnobjects.emplace_back(obj.first, static_cast<T*>(obj.second));
 				}
 			}
 		}
@@ -187,16 +187,16 @@ public:
 	 * 2025/01/22 赤根：名前振るように作ったけどその仕組みまだ作れてないから使わないかも！！
 	*/
 	template <class T>
-	std::vector<std::shared_ptr<T>> GetObjects(Tag _tag)
+	std::vector<T*> GetObjects(Tag _tag)
 	{
 		// オブジェクト保存用コンテナ
-		std::vector<std::shared_ptr<T>> objects;
+		std::vector<T*> objects;
 		for (auto& obj : Objects)
 		{
 			// タグが同じかを調べ、
 			if (obj.first.first == _tag)
 			{
-				auto casted = std::dynamic_pointer_cast<T>(obj.second);
+				auto casted = dynamic_cast<T*>(obj.second);
 				// dynamic_pointer_castで型チェックし、型が同じであれば配列に追加
 				if (casted) {
 					objects.push_back(casted);
@@ -205,7 +205,6 @@ public:
 		}
 		return objects;
 	}
-
 
 
 	/**
@@ -225,7 +224,7 @@ public:
 	 * @return オブジェクトの生ポインタ(タグの型にキャストしてから返す)
 	*/
 	template <class T>
-	std::weak_ptr<T> GetGameObjectPtr(const Tag& _Tag, const std::string& _Name)
+	T* GetGameObjectPtr(const Tag& _Tag, const std::string& _Name)
 	{
 		// タグと名前の一致するオブジェクトを見つける(見つからない場合はend()が返ってくる)
 		auto iterator = Objects.find(std::make_pair(_Tag, _Name));
@@ -233,7 +232,7 @@ public:
 		if (iterator != Objects.end())
 		{
 			// ポインタを取得して型に合わせて一度shared_ptrにキャスト
-			std::shared_ptr<T> castedptr = std::dynamic_pointer_cast<T>(iterator->second);
+			T* castedptr = dynamic_cast<T*>(iterator->second);
 
 			// キャストが成功した場合(nullptrではない場合)
 			if (castedptr)
@@ -243,15 +242,14 @@ public:
 			}
 		}
 		// 見つからなければ空のweak_ptrを返す
-		return std::weak_ptr<T>();
+		return nullptr;
 	}
 
-
 	// 全オブジェクトを取得する
-	std::vector<std::pair<std::pair<Tag, std::string>, std::shared_ptr<GameObject>>> GetAllObjects(void);
+	std::vector<std::pair<std::pair<Tag, std::string>, GameObject*>> GetAllObjects(void);
 
 	// カメラがあればそのポインタを返す関数
-	std::shared_ptr<Camera> HasCamera(void);
+	Camera* HasCamera(void);
 
 	/**
 	 * @brief タグ変更関数
@@ -274,6 +272,6 @@ private:
 	//! オブジェクトの管理はタグ（大まかな分類）と名前（一意のもの）を使う
 
 	// unordered_mapにpairを使う場合、pairの紐づけないといけないためPairHashをmapの引数に入れる
-	std::unordered_map<std::pair<Tag, std::string>, std::shared_ptr<GameObject>, PairHash> Objects;
+	std::unordered_map<std::pair<Tag, std::string>, GameObject*, PairHash> Objects;
 	D3D11& D3d11;
 };

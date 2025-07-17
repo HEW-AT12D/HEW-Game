@@ -1,15 +1,15 @@
 #include "Poyon.h"
 
-void Poyon::Action(std::weak_ptr<Player> _player)
+void Poyon::Action(Player* _player)
 {
 	//フラグがTRUEなら（擬音が当たっているか）
 	if (Collision_Onomatope)
 	{
 		//playerをGameObject型→Player型に変更
-		if (auto sharedPlayer = _player.lock())
+		if (auto sharedPlayer = _player)
 		{
 			//dynamic_pointer_castを使用して派生クラスにキャスト
-			auto derivedPlayer = std::dynamic_pointer_cast<Player>(sharedPlayer);
+			auto derivedPlayer = dynamic_cast<Player*>(sharedPlayer);
 			if (derivedPlayer) {//キャストに成功していたら
 				//derivedPlayer->SetJump(true);
 				derivedPlayer->m_Velocity.y = 25.0f; //ポヨン付与したときのジャンプ力

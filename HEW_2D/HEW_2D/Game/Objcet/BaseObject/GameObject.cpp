@@ -16,7 +16,7 @@ GameObject::GameObject(D3D11& _D3d11) :D3d11(_D3d11)
 	};
 	m_Direction = { 0.0f,0.0f,0.0f };
 	m_Velocity = { 0.0f,0.0f,0.0f };
-	m_AttachedOnomatopoeia = nullptr;
+	m_pAttachedOnomatopoeia = nullptr;
 }
 
 GameObject::~GameObject()
@@ -69,7 +69,7 @@ void GameObject::Init(const wchar_t* imgname, int sx, int sy, bool _animation)
 
 
 /**
- * @brief オブジェクトの更新 
+ * @brief オブジェクトの更新
 */
 void GameObject::Update(void)
 {
@@ -81,12 +81,12 @@ void GameObject::Update(void)
 
 	// 速度分だけ移動
 	Vector3 newpos = transform.GetPosition();
-	newpos+= m_Direction * m_Velocity;
+	newpos += m_Direction * m_Velocity;
 	transform.SetPosition(newpos);
 
 	// 摩擦や空気抵抗を考慮（加速度の減少）
 	m_Velocity *= 0.95f;		// 毎フレーム5% 減衰
-	
+
 	// 一定以下なら完全停止
 	if (fabs(m_Velocity.x) < 0.01f) {
 		m_Velocity.x = 0.0f;
@@ -112,7 +112,7 @@ void GameObject::Draw(void)
 	//定数バッファを更新
 
 	// プロジェクション変換行列を作成
-	cb.matrixProj = DirectX::XMMatrixOrthographicLH( SCREEN_WIDTH, SCREEN_HEIGHT, 0.0f, 3.0f);
+	cb.matrixProj = DirectX::XMMatrixOrthographicLH(SCREEN_WIDTH, SCREEN_HEIGHT, 0.0f, 3.0f);
 	cb.matrixProj = DirectX::XMMatrixTranspose(cb.matrixProj);
 
 	// ワールド変換行列の作成
@@ -144,19 +144,19 @@ void GameObject::Uninit()
 	SAFE_RELEASE(m_pTextureView);
 }
 
-void GameObject::SetPosition(Vector3 _Pos) 
+void GameObject::SetPosition(Vector3 _Pos)
 {
 	//座標をセットする
 	transform.SetPosition(_Pos);
 }
 
-void GameObject::SetScale(Vector3 _Size) 
+void GameObject::SetScale(Vector3 _Size)
 {
 	//大きさをセットする
 	transform.SetScale(_Size);
 }
 
-void GameObject::SetRotation(Vector3 _Rot) 
+void GameObject::SetRotation(Vector3 _Rot)
 {
 	//角度をセットする
 	transform.SetRotation(_Rot);
@@ -177,20 +177,21 @@ void GameObject::SetUV(XMINT2 _UV)
 	m_Number.y = _UV.y;
 }
 
-void GameObject::SetParent(const std::weak_ptr<GameObject> _Parent)
+void GameObject::SetParent(GameObject* _Parent)
 {
 	// 親オブジェクトを設定
 	m_pParent = _Parent;
 }
 
-void GameObject::SetChild(const std::shared_ptr<GameObject> _Child)
+void GameObject::SetChild(GameObject* _Child)
 {
 	// 子オブジェクトを追加
 	m_pChildren.push_back(_Child);
 
 	std::cout << m_pChildren.size() << std::endl;
 
-	if (m_pChildren.size() == 2 || m_pChildren[0] == _Child)//擬音のポジションSet
+	// 擬音の表示座標設定
+	if (m_pChildren.size() == 2 || m_pChildren[0] == _Child)
 	{
 		_Child->SetPosition(Vector3(-900.0f, 500.0f, 0.0f));
 	}
@@ -223,53 +224,52 @@ void GameObject::SetIsDelete(bool _flg)
  * @brief アニメーション遷移関数
  * ここでは通常のアニメーションのみを定義し、各派生クラスで各々のアニメーション処理を定義する
 */
-void GameObject::Animation(STATE m_State,std::weak_ptr<GameObject> _efect)
+void GameObject::Animation(STATE m_State, GameObject* _efect)
 {
-	
+
 	const float uvUpdateInterval = 0.1f; // 0.1秒ごとに更新（10FPS相当）
-	
+
 	// 経過時間
 	static float elapsedTime = 0.0f;
-	
 
 
-		// ここにアニメーション遷移処理を書く
-		switch (m_State)
-		{
-		case EFECT:
+	// ここにアニメーション遷移処理を書く
+	switch (m_State)
+	{
+	case EFECT:
 
-			elapsedTime += 0.03;
+		elapsedTime += 0.03;
 
-			// 指定した時間が経過したらUVを更新
- 			if (elapsedTime >= uvUpdateInterval) {
-				elapsedTime = 0.0f; // タイマーをリセット
+		// 指定した時間が経過したらUVを更新
+		if (elapsedTime >= uvUpdateInterval) {
+			elapsedTime = 0.0f; // タイマーをリセット
 
-				XMINT2 efect_UV = _efect.lock()->GetUV();
+			XMINT2 efect_UV = _efect->GetUV();
 
-				if (efect_UV.x < 8) {
-					efect_UV.x++;
-				}
-				else {
-					efect_UV.x = 0;
-					efect_UV.y = (efect_UV.y == 0) ? 1 : 0;
-				}
-
-				_efect.lock()->SetUV(efect_UV);
+			if (efect_UV.x < 8) {
+				efect_UV.x++;
+			}
+			else {
+				efect_UV.x = 0;
+				efect_UV.y = (efect_UV.y == 0) ? 1 : 0;
 			}
 
-			break;
-	//	case Jump:
-	//		break;
-		default:
-			break;
+			_efect->SetUV(efect_UV);
 		}
+
+		break;
+		//	case Jump:
+		//		break;
+	default:
+		break;
 	}
+}
 Vector3 GameObject::GetPosition(void)
 {
 	//座標をゲット
 	return transform.GetPosition();
 }
-  
+
 Vector3 GameObject::GetScale(void)
 {
 	//大きさをゲット
@@ -293,7 +293,7 @@ XMINT2 GameObject::GetUV(void)
 	//UV座標をゲット
 	return m_Number;
 }
-            
+
 Vector3 GameObject::GetVelocity(void)
 {
 	return m_Velocity;
