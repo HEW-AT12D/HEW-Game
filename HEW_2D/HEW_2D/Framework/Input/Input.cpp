@@ -41,6 +41,10 @@ void Input::Update()
 	//コントローラー入力を更新(XInput)
 	XInputGetState(0, &controllerState);
 
+	// 左トリガー状態を更新
+	m_PrevLeftTrigger = m_LeftTrigger;
+	m_LeftTrigger = controllerState.Gamepad.bLeftTrigger;
+
 	//振動継続時間をカウント
 	if (VibrationTime > 0) {
 		VibrationTime--;
@@ -91,13 +95,23 @@ DirectX::XMFLOAT2 Input::GetRightAnalogStick(void)
 	return res;
 }
 
-//左トリガー
+// 左トリガー
 float Input::GetLeftTrigger(void)
 {
 	BYTE t = controllerState.Gamepad.bLeftTrigger; // 0～255
 	return t / 255.0f;
 }
-//右トリガー
+bool Input::GetLeftTriggerPress() {
+	return m_LeftTrigger > TRIGGER_THRESHOLD;
+}
+bool Input::GetLeftTriggerTrigger() {
+	return (m_LeftTrigger > TRIGGER_THRESHOLD) && (m_PrevLeftTrigger <= TRIGGER_THRESHOLD);
+}
+bool Input::GetLeftTriggerRelease() {
+	return (m_LeftTrigger <= TRIGGER_THRESHOLD) && (m_PrevLeftTrigger > TRIGGER_THRESHOLD);
+}
+
+// 右トリガー
 float Input::GetRightTrigger(void)
 {
 	BYTE t = controllerState.Gamepad.bRightTrigger; // 0～255

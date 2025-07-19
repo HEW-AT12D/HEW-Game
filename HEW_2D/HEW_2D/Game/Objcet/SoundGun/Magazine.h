@@ -27,7 +27,7 @@
 class Magazine : public GameObject
 {
 public:
-	Magazine(D3D11& _D3d11) :GameObject(_D3d11) {
+	Magazine(D3D11& _D3d11, Sound* _sound = nullptr) :GameObject(_D3d11, _sound) {
 		// 最初はマガジンにはどの擬音も入っていない
 		m_Onomatopoeia = nullptr;
 		OnGround = false;
@@ -46,6 +46,7 @@ public:
 
 	void Update(void) override;		// 擬音の状態などをこっちで管理するためにオーバーライド
 	void Draw(void) override;		// 擬音装填したときにそれも描画するのでオーバーライド
+	void Uninit(void) override;		// 解放
 	// マガジンに入った場合、その擬音の所有権はマガジンに移るはずなのでunique_ptr
 	//void SetOnomatopoeia(Tag, std::string, std::shared_ptr<GameObject>&& _onomatopoeia);
 

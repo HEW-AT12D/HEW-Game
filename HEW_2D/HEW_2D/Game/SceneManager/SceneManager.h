@@ -17,7 +17,7 @@ public:
 	 * @param _D3d11 d3dの参照
 	 * タイトルシーンはゲーム開始すぐに必要なのでコンストラクタで生成する
 	*/
-	SceneManager(D3D11& _D3d11) :D3d11(_D3d11)
+	SceneManager(D3D11& _D3d11, Sound& _sound) :D3d11(_D3d11), SoundRef(_sound)
 	{
 		// シーン保持しているコンテナを空にする
 		Scenes.clear();
@@ -42,7 +42,7 @@ public:
 	void CreateScene(SceneName _SceneName)
 	{
 		// タグを設定してシーンを追加
-		Scenes.emplace(_SceneName, std::make_unique<T>(D3d11));
+		Scenes.emplace(_SceneName, std::make_unique<T>(D3d11, SoundRef));
 	}
 
 	/**
@@ -71,6 +71,7 @@ public:
 
 private:
 	D3D11& D3d11;
+	Sound& SoundRef;	//! Soundクラスの参照を保持(オブジェクト生成時に使用)
 	std::unordered_map<SceneName, std::unique_ptr<IScene>> Scenes;	//! シーン配列
 	SceneName CurrentScene;
 	bool Quit = false;

@@ -34,15 +34,15 @@ class Magazine;
 class Player :public Character
 {
 public:
-	Player(D3D11& _D3d11) :Character(_D3d11) {
+	Player(D3D11& _D3d11, Sound* _sound = nullptr) :Character(_D3d11, _sound) {
 		m_Velocity = { 0.0f };
 		m_MoveSpeed = 5.0f;
 		m_JumpPower = 10.5f; //7.5
 		IsShot = false;
 		IsSuction = false;
 		m_Soundgun = nullptr;
-		m_Magazines.clear();
-		UseMagNumber = 1;		// 0番目のマガジンはドォン専用なので1番目からスタート
+		//m_Magazines.clear();
+		UsingMagIdx = 1;		// 0番目のマガジンはドォン専用なので1番目からスタート
 		BombCount = 0;
 	};
 
@@ -57,39 +57,48 @@ public:
 	void Draw(void) override;		// 擬音使用で描画方法変更があった場合用に宣言
 	void Uninit(void) override;		// 解放
 
-	void Animation(STATE _Anim_Name);	// プレイヤー個別のアニメーション関数
+	void Animation(ANIMATIONSTATE _Anim_Name);	// プレイヤー個別のアニメーション関数
 
 	void SetChild(GameObject* _child) override;
 
-	bool Suction(IOnomatopoeia* _onomatopoeia);	// 吸い込み関数(戻り値で吸い込み処理が終了したかを判定)
+	void UpdateMove(void);			// プレイヤーの移動更新関数
+	void UpdateCrossHair(void);		// クロスヘアの更新関数
+	void UpdateCurrentMag(void);	// 現在使用中のマガジンをセット
+
+	std::pair<std::pair<Tag, std::string>, IOnomatopoeia*> StartSuction(std::vector<std::pair<std::pair<Tag, std::string>, IOnomatopoeia*>> _onomatopoeias);
+	bool Suction(std::pair<std::pair<Tag, std::string>, IOnomatopoeia*>);	// 吸い込み関数(戻り値で吸い込み処理が終了したかを判定)
 	void Shot(void);		// 擬音の発射関数
 
 	void SetIsShot(bool _flg);
 	bool GetIsShot(void);
 	void SetIsSuction(bool _flg);
 	bool GetIsSuction(void);
+	void SetMagCursor(GameObject* _mag);	// マガジンのカーソルをセット
 
 	// 撃とうとしている(選択されているマガジン内にある)擬音の情報を渡す関数
 	IOnomatopoeia* GetLoadedBullet(void);
 
+	// マガジンすべてを取得する関数
+	std::vector<Magazine*>& GetMagazines(void);
 	// 銃に装填されているマガジンを返す関数
 	Magazine* GetUsingMag(void);
 
-	int GetMagNumber(void);
-	void SetMagNumber(int _num);
+	int GetMagIdx(void);
+	void SetMagIdx(int _num);
 
 	// マガジン数を返す
 	size_t GetMagCount(void);
-	std::vector<Magazine*> m_Magazines;	// マガジン（可変長）,0番目はドォン専用にして、その後はカウントを増やしてドォンを管理する？
-	int UseMagNumber;	// マガジンの何番目を使う(装填する)か
 
 private:
+	std::vector<Magazine*> m_Magazines;	// マガジン（可変長）,0番目はドォン専用にして、その後はカウントを増やしてドォンを管理する]
+	int UsingMagIdx;	// マガジンの何番目を使う(装填する)か
 	bool IsSuction;		// 吸い込み中か？
 	bool IsShot;		// 発射中か？
 	bool isFacingLeft = false;	// 左向きか？
 	int BombCount;		// ドォンのカウント
 	// 擬音銃(吸い込む竜巻画像を持たせるために使う→シェーダーリソースビューとかを配列にすれば画像は複数読み込めたかも)
-	SoundGun* m_Soundgun;		// 擬音銃
-	CrossHair* m_CrossHair;		// クロスヘア
+	SoundGun* m_Soundgun;			// 擬音銃
+	CrossHair* m_pCrossHair;		// クロスヘア
+	GameObject* m_pMagCursor = nullptr;	// マガジンカーソル
 };
 

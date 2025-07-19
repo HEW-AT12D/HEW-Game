@@ -12,7 +12,7 @@
 class TitleScene :public IScene
 {
 public:
-	TitleScene(D3D11& _D3d11) :IScene(_D3d11) {
+	TitleScene(D3D11& _D3d11, Sound& _sound) :IScene(_D3d11, _sound) {
 		// オブジェクトの追加はシーンの初期化で行う
 		// サウンドとかこのシーンのみ存在するものがあればその初期化を行う
 	};

@@ -5,31 +5,5 @@
 */
 void CrossHair::Update(void)
 {
-	// À•Wİ’è—p•Ï”
-	Vector3 newpos = transform.GetPosition();
-
-	// ¶ˆÚ“®
-	if (MoveLeft)
-	{
-		newpos.x -= m_Velocity.x;
-		transform.SetPosition(newpos);
-	}
-	// ‰EˆÚ“®
-	if (MoveRight)
-	{
-		newpos.x += m_Velocity.x;
-		transform.SetPosition(newpos);
-	}
-	// ãˆÚ“®
-	if (MoveUp)
-	{
-		newpos.y += m_Velocity.y;
-		transform.SetPosition(newpos);
-	}
-	// ‰ºˆÚ“®
-	if (MoveDown)
-	{
-		newpos.y -= m_Velocity.y;
-		transform.SetPosition(newpos);
-	}
+	
 }

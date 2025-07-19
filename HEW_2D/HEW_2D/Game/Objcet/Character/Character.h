@@ -8,7 +8,7 @@
 class Character :public GameObject
 {
 public:
-	Character(D3D11& _D3d11) :GameObject(_D3d11) {
+	Character(D3D11& _D3d11, Sound* _sound = nullptr) :GameObject(_D3d11, _sound) {
 		MoveUp = false;
 		MoveDown = false;
 		MoveLeft = false;

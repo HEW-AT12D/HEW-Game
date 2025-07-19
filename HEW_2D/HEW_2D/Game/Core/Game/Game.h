@@ -12,7 +12,8 @@
 class Game
 {
 public:
-	Game(D3D11& _D3d11) :scenemanager(_D3d11) {};
+	// コンストラクタ(ここでサウンドマネージャー生成)
+	Game(D3D11& _D3d11) :m_pGameSound(std::make_unique<Sound>()), scenemanager(_D3d11, *m_pGameSound) {};
 	~Game() {};
 
 	void Init(void);
@@ -21,5 +22,6 @@ public:
 	void Uninit(void);
 
 private:
-	SceneManager scenemanager;	// シーン管理クラス
+	std::unique_ptr<Sound> m_pGameSound;	// ゲーム全体のサウンド管理クラス(ゲームごとに使う音は違うのでここに配置)
+	SceneManager scenemanager;				// シーン管理クラス
 };

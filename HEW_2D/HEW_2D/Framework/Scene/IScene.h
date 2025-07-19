@@ -37,7 +37,7 @@ enum SceneName {
 class IScene
 {
 public:
-	IScene(D3D11& _D3d11) :objectmanager(_D3d11), frame2(_D3d11) {
+	IScene(D3D11& _D3d11, Sound& _sound) : SoundRef(_sound), objectmanager(_D3d11, SoundRef) {
 		m_Frame = FRAME1;
 		m_MagCount = 1;
 	};
@@ -56,9 +56,8 @@ public:
 	virtual SceneName GetRequestScene(void);		// 次に遷移したいシーンを取得する関数
 
 protected:
-	Sound sound;					// サウンドクラス
+	Sound& SoundRef;	// サウンドクラスの参照
 	ObjectManager objectmanager;	// オブジェクトマネージャ
-	ObjectManager frame2;           //frame2のオブジェクト
 	SceneName m_RequestNext;		// 次に遷移したいシーン
 	FRAME m_Frame;					// 現在フレーム
 	bool ChangeScene = false;		// シーン切り替えフラグ

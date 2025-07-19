@@ -7,6 +7,8 @@
 */
 void Game::Init(void)
 {
+	// サウンド初期化
+	m_pGameSound->Init();
 	// シーンマネージャ初期化
 	scenemanager.Init();
 }
@@ -41,4 +43,6 @@ void Game::Draw(void)
 void Game::Uninit(void)
 {
 	scenemanager.Uninit();
+	m_pGameSound->Uninit();	// サウンド終了
+	CoUninitialize();		// 実行中にゲームを落とすとサウンドの解放がされずにメモリリークを起こすのでここでCOMライブラリを終了
 }

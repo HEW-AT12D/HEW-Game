@@ -1,6 +1,6 @@
 #include "Player.h"
 #include "../../../Framework/Input/Input.h"
-
+#include "../../../Framework/Component/Collider/BoxCollider2D/Collider.h"
 
 /**
  * @brief 更新
@@ -12,7 +12,6 @@ void Player::Update(void)
 
 	// 方向ベクトルを合成
 	// ジャンプした場合
-
 	if (Jump && !Jumping)
 	{
 		// ジャンプ中でなければ
@@ -44,6 +43,28 @@ void Player::Update(void)
 			m_Direction.y -= 1.0f;	// 下向きの方向ベクトルを加算
 		}
 	}
+	
+	// 押し続けている間は吸い込み処理
+	if (Input::GetInstance().GetKeyPress(VK_F) || Input::GetInstance().GetLeftTriggerPress()) {
+		// 吸い込み中の処理
+		IsSuction = true;	// 吸い込み中フラグを立てる
+		m_Soundgun->SetIsSuction(true);	// 吸い込み処理を実行
+	}
+	else {
+		IsSuction = false;	// 吸い込み中フラグを下ろす
+		m_Soundgun->SetIsSuction(false);	// 吸い込み処理を実行
+	}
+
+	// 発射処理
+	if (Input::GetInstance().GetKeyPress(VK_W) || Input::GetInstance().GetRightTrigger()) {
+		// 発射処理
+		IsShot = true;	// 発射中フラグを立てる
+		this->Shot();
+		IsShot = false;
+	}
+	this->UpdateMove();
+	this->UpdateCurrentMag();	// 現在のマガジンをセット
+	this->UpdateCrossHair();	// クロスヘアの更新
 
 	if (MoveLeft)
 	{
@@ -72,7 +93,6 @@ void Player::Update(void)
 		}
 		MoveRight = false;
 	}
-
 
 	// 正規化(長さを１に揃える)
 	if (m_Direction.Length() > 0.0f)
@@ -103,7 +123,7 @@ void Player::Update(void)
 			m_Number.y = 3; // 左向き立ち絵
 		}
 		else {
-			m_Number.y = 0;			// 2025/01/23 赤根: なぜか二枚目のほうに設定されるけど違和感はマシになったので一旦これで置いとく
+			m_Number.y = 0;
 		}
 	}
 
@@ -112,23 +132,6 @@ void Player::Update(void)
 	newpos += m_Velocity;		// 方向ベクトルとX成分の移動速度を掛けた値の分だけ毎フレーム進む
 	// 新しい座標を代入
 	transform.SetPosition(newpos);
-
-
-	// 吸い込み処理は引数が必要なのでシーンで直接行う
-
-	//if (IsSuction)
-	//{
-	//	Suction();
-	//}
-
-	// 発射処理
-
-	if (IsShot)
-	{
-		Shot();
-		IsShot = false;
-	}
-
 }
 
 
@@ -159,8 +162,6 @@ void Player::Draw(void)
 		float offset = transform.GetScale().x / 2 + m_Soundgun->GetScale().x / 2;
 		gunPos.x += isFacingLeft ? -offset : offset;
 		m_Soundgun->SetPosition(gunPos);
-
-		m_Soundgun->Draw();
 	}
 }
 
@@ -169,28 +170,8 @@ void Player::Draw(void)
 **/
 void Player::Uninit(void)
 {
-	for (auto& mag : m_Magazines) {
-		// マガジンを全て開放
-		mag->Uninit();
-		// 所有権を捨てる
-		delete mag;
-	}
 	// マガジンのコンテナを空にする
 	m_Magazines.clear();
-
-	// 擬音銃の解放
-	if (m_Soundgun) {
-		m_Soundgun->Uninit();   //ここばぐる
-		delete m_Soundgun;
-	}
-	//m_Soundgun.reset();
-
-	// クロスヘアの解放
-	if(m_CrossHair) {
-		m_CrossHair->Uninit();
-		delete m_CrossHair;
-	}
-	//m_CrossHair.reset();
 
 	// プレイヤーの解放
 	this->GameObject::Uninit();
@@ -203,7 +184,7 @@ void Player::Uninit(void)
  * 接地したときに左右移動キー押さないと通常時に戻らないのでそこも直す
  * TODO:2025/01/21 左向きに移動したときの処理がまだ！！！！！！！！！！！！！！
 */
-void Player::Animation(STATE _Anim_Name)
+void Player::Animation(ANIMATIONSTATE _Anim_Name)
 {
 	// 一番初めはアニメーション加算なのでCountUpをtrueに設定
 	static bool CountUp = true;
@@ -352,7 +333,7 @@ void Player::Animation(STATE _Anim_Name)
 			this->m_Number.x = 1;	// 右を使う
 		}
 		break;
-		// ↓は画像内ので今のところ実装予定なし
+		// ↓は画像がないので今のところ実装予定なし
 	case DAMAGED:
 		break;
 	case ATTACKED:
@@ -437,7 +418,7 @@ void Player::SetChild(GameObject* _child)
 	else if (auto casted = dynamic_cast<CrossHair*>(_child))
 	{
 		// 子オブジェクトに設定
-		m_CrossHair = casted;
+		m_pCrossHair = casted;
 		m_pChildren.push_back(casted);
 	}
 	else
@@ -449,25 +430,51 @@ void Player::SetChild(GameObject* _child)
 	_child->SetParent(this);
 }
 
+/**
+ * @brief プレイヤーの周囲にある擬音を取得する関数
+ * @param _onomatopoeias シーンから受け取ったプレイヤー周辺の擬音
+ * @return 近くにある擬音のペア(タグと名前、ポインタ)
+ *
+ * →プレイヤーの周囲にある擬音を取得する
+ * →その中から、吸い込める擬音を探す
+*/
+std::pair<std::pair<Tag, std::string>, IOnomatopoeia*> Player::StartSuction(std::vector<std::pair<std::pair<Tag, std::string>, IOnomatopoeia*>> _onomatopoeias)
+{
+	std::pair closest = ColliderFan_Gion(this, _onomatopoeias);
+	if (closest.second) {
+		IsSuction = true;
+	}
+	return closest;
+}
 
 /**
- * @brief 擬音吸い込み関数
+ * @brief 吸い込む擬音を探す関数
  *
- *
- * シーンで判定した擬音との当たり判定を使って当たった擬音の座標を移動させる
+ * シーンから受け取ったプレイヤー周辺の擬音から、吸い込める擬音を探す
  *
  * →その擬音をマガジンに組み込む処理を追加する
  *  →プレイヤーと当たるまで吸い込んだら、マガジンに追加
  * @param _gion_pos
  * @param _p_pos
 */
-bool Player::Suction(IOnomatopoeia* _gion)
+bool Player::Suction(std::pair<std::pair<Tag, std::string>, IOnomatopoeia*> _onomatopoeia)
 {
+	// 擬音銃が存在しない場合は何もしない
+	if (!m_Soundgun) return false;
+
+
 	// フラグを立てて擬音銃の吸い込み処理を実行
 	m_Soundgun->SetIsSuction(true);
 
 	// 擬音銃の吸い込みの結果を返す
-	return m_Soundgun->Suction(_gion);
+	if (m_Soundgun->Suction(_onomatopoeia)) {
+		// 音がドォンならカウント加算
+		if (_onomatopoeia.first.first == Tag::Doon) {
+			BombCount++;
+		}
+		return true;	// 吸い込み成功
+	}
+	return false;	// 吸い込み失敗
 }
 
 
@@ -482,16 +489,15 @@ bool Player::Suction(IOnomatopoeia* _gion)
 */
 void Player::Shot(void)
 {
-
 	//発射
 	if (IsShot)
 	{
+		if (!m_Magazines[UsingMagIdx]->GetBulletPointer()) { return; }
 		//==========================================
 		//=======１月２６日現状======================
 		//Playerの０度～１８０度までしか判定をとれていない
 		//１８０度を超えると＋に変換される（例：２４０度で入力すると、１２０度で発射される）
 		//==============================================================================
-
 
 		Vector3 vertex;			// 
 		float hypotenuse;		// 斜辺の二乗
@@ -507,9 +513,9 @@ void Player::Shot(void)
 		//斜辺^2 = エイムして取ったX座標のポジション ^ 2 - (エイムして取ったポジションから、垂直に降ろしたX座標 - PlayerのX座標) ^ 2//
 		//cosθ = (エイムして取ったポジションから、垂直に降ろしたX座標 - PlayerのX座標) / 斜辺
 
-		Vector3 p_aim = m_CrossHair->GetPosition();				// クロスヘア座標
+		Vector3 p_aim = m_pCrossHair->GetPosition();				// クロスヘア座標
 		Vector3 p_player = this->transform.GetPosition();		// プレイヤー座標
-		Vector3 p_gion = m_Magazines[UseMagNumber]->GetBulletPointer()->GetPosition();		// 発射する擬音の座標
+		Vector3 p_gion = m_Magazines[UsingMagIdx]->GetBulletPointer()->GetPosition();		// 発射する擬音の座標
 		vertex.x = p_aim.x - p_player.x;			// 照準とPlayerのX座標の差（底辺）
 		vertex.y = p_aim.y - p_player.y;			// 照準とPlayerのY座標差  （高さ）
 		hypotenuse = (vertex.y * vertex.y) + (vertex.x * vertex.x); //斜辺の計算（底辺の二乗＋高さの二乗＝斜辺の二乗）
@@ -520,57 +526,167 @@ void Player::Shot(void)
 		normalized_vector.x = vertex.x / root_hypotenuse;
 		normalized_vector.y = vertex.y / root_hypotenuse;
 
-
-
-
-		///////////////////////////////////////////////////////////////////////////////////////
-		///			連の頑張りを使うためにコメントアウト(↑で手計算してたので↓は使わないでいく)			///
-		///////////////////////////////////////////////////////////////////////////////////////
-		///*p_aimの位置が
-		//  (vertex.y, vertex.x) = ( 1, 1)…第一象限
-		//　(vertex.y, vertex.x) = (-1, 1)…第二象限
-		//　(vertex.y, vertex.x) = (-1,-1)…第三象限
-		//　(vertex.y, vertex.x) = ( 1,-1)…第四象限
-		// って感じ*/
-		//Radians = std::atan2(vertex.y, vertex.x); //p_aimのポジションが第何象限にあるか確認
-
-		//// 発射したい方向→銃の向く方向を設定
-		//// 角度をベクトルに変換
-		//Vector3 direction;
-		//direction.x = std::cos(Radians);	// ベクトルのX成分
-		//direction.y = std::sin(Radians);	// ベクトルのY成分
-
-		///////////////////////////////////////////////////////////////////////////////////////
-		///////////////////////////////////////////////////////////////////////////////////////
-
 		// 銃の向きを設定(↑で計算して正規化した方向ベクトルを使用)
 		m_Soundgun->SetDirection(normalized_vector);
 
-
-
-		// ここから下は毎フレーム呼び出す前提で書かれているので変更が必要
-
-		// 擬音銃の発射関数を呼び出す→毎フレーム呼び出す想定で書かれてる
-		/*p_gion.x += directionX * 5;
-		p_gion.y += directionY * 5;*/
-
-		// 擬音の座標を設定
-		//m_Magazines[UseMagNumber]->GetBulletPointer()->SetPosition(p_gion);
-
-
-
 		// 擬音の発射関数には減速力とかは気にしなくていい→0に設定する→まっすぐ飛んでいく
 		// 使うマガジンの情報を受け取って擬音銃で発射
-		m_Soundgun->Shot(m_Magazines[UseMagNumber]);
-
-		
+		m_Soundgun->Shot(m_Magazines[UsingMagIdx]);
 
 		// 発射フラグをリセット
 		IsShot = false;
-		//m_Magazines[UseMagNumber].reset();
+		//m_Magazines[UsingMagIdx].reset();
 	}
 }
 
+/**
+ * @brief マガジンカーソルの設定
+ * @param _cursor マガジンカーソルのポインタ
+ *
+ * マガジンカーソルを設定する
+ * マガジンカーソルの座標と大きさを設定して、子オブジェクトに追加する
+*/
+void Player::SetMagCursor(GameObject* _cursor)
+{
+	// マガジンカーソルを設定
+	if (_cursor)
+	{
+		m_pMagCursor = _cursor;
+		// マガジンカーソルを子オブジェクトに追加
+		m_pChildren.push_back(_cursor);
+	}
+}
+
+/**
+ * @brief プレイヤーの移動更新
+ * 入力に合わせてプレイヤーの移動フラグを更新する
+ * 右スティックの入力でジャンプ、左スティックの入力で左右移動を行う
+*/
+void Player::UpdateMove(void)
+{
+	Vector2 LeftStickInput = Input::GetInstance().GetLeftAnalogStick();
+	// 入力管理
+	// 右移動
+	if (Input::GetInstance().GetKeyPress(VK_D) || LeftStickInput.x > 0.1f)
+	{
+		this->MoveRight = true;
+	}
+	else {
+		this->MoveRight = false;
+	}
+	// 左移動
+	if (Input::GetInstance().GetKeyPress(VK_A) || LeftStickInput.x < -0.1f)
+	{
+		this->MoveLeft = true;
+	}
+	else {
+		this->MoveLeft = false;
+	}
+	// ジャンプ
+	if (Input::GetInstance().GetKeyTrigger(VK_SPACE) || Input::GetInstance().GetButtonTrigger(XINPUT_GAMEPAD_A))
+	{
+		this->Jump = true;
+	}
+	else {
+		this->Jump = false;
+	}
+}
+
+/**
+ * @brief 現在のマガジンを更新
+ * R1でマガジンカーソルを右に移動、L1で左に移動
+ * マガジンカーソルの座標を更新する
+*/
+void Player::UpdateCurrentMag(void)
+{
+	// カーソルの座標取得
+	Vector3 p_frame = m_pMagCursor->GetPosition();
+
+	// R1でマガジンカーソル右移動
+	if (Input::GetInstance().GetKeyTrigger(VK_P) || Input::GetInstance().GetButtonTrigger(XINPUT_GAMEPAD_RIGHT_SHOULDER))
+	{
+		// ドォン用マガジンを除く一番最後のマガジンを選択していなければ
+		if (this->UsingMagIdx != m_Magazines.size() - 1)
+		{
+			// マガジン選択番号を１増やしてカーソルを右に移動
+			this->UsingMagIdx += 1;
+			p_frame.x += 120.0f;
+		}
+		// 一番最後のマガジンを選択している場合
+		else
+		{
+			// マガジン選択番号を１(ドォン用マガジンを除く一番最初)に戻してカーソルを初期位置に移動
+			this->UsingMagIdx = 1;
+			p_frame.x = -900.0f;
+		}
+		// 座標を設定
+		m_pMagCursor->SetPosition(p_frame);
+		// SE再生
+		m_pSound->Play(SE_CLICK);
+	}
+	// L1でマガジンカーソル左移動
+	if (Input::GetInstance().GetKeyTrigger(VK_O) || Input::GetInstance().GetButtonTrigger(XINPUT_GAMEPAD_LEFT_SHOULDER))
+	{
+		// ドォン用マガジンを除く一番最初のマガジンを選択していなければ
+		if (this->UsingMagIdx != 1)
+		{
+			m_pSound->Play(SE_CLICK);
+			// マガジン選択番号を１減らして
+			this->UsingMagIdx -= 1;
+			// カーソルを左に移動
+			p_frame.x -= 120.0f;
+		}
+		// 一番最初のマガジンを選択している場合
+		else
+		{
+			// マガジン選択番号を(ドォン用マガジンを除く)一番後ろにして
+			this->UsingMagIdx = m_Magazines.size() - 1;
+			// カーソルを一番後ろの位置に移動
+			p_frame.x = -900.0f + m_pMagCursor->GetScale().x * (m_Magazines.size() - 2);	// 初期位置 + カーソルの大きさ * マガジン数(ドォン入れないので-2)
+		}
+		// マガジンアウトラインの座標を設定
+		m_pMagCursor->SetPosition(p_frame);
+		// SE再生
+		m_pSound->Play(SE_CLICK);
+	}
+}
+
+/**
+ * @brief クロスヘアの更新
+ * 右スティックの入力に合わせてクロスヘアの座標を更新する
+ * 画面外に出ないように制限をかける
+*/
+void Player::UpdateCrossHair(void)
+{
+	// クロスヘアの座標をプレイヤーの座標に合わせる
+	if (!m_pCrossHair) return; // クロスヘアが設定されていない場合は何もしない
+
+	Vector2 input = Input::GetInstance().GetRightAnalogStick(); // 右スティックの入力を取得
+
+	// スティックの入力に合わせてクロスヘアの座標を移動
+	if (input != Vector2{ 0.0f }) {
+
+		Vector3 crosshairvelocity = m_pCrossHair->GetVelocity();
+		Vector3 newPos = m_pCrossHair->GetPosition() + Vector3(input.x, input.y, 0.0f) * crosshairvelocity;
+
+		// クロスヘアの座標を画面内に調整
+		// X座標の制限
+		if(newPos.x < 0 - 1920.0f / 2){
+			newPos.x = 0 - 1920.0f / 2; // 左端
+		}
+		else if(newPos.x > 1920.0f / 2){
+			newPos.x = 1920.0f / 2; // 右端
+		}
+		// Y座標の制限
+		if(newPos.y < 0 - 1080.0f / 2){
+			newPos.y = 0 - 1080.0f / 2; // 下端
+		}
+		else if(newPos.y > 1080.0f / 2){
+			newPos.y = 1080.0f / 2; // 上端
+		}
+		m_pCrossHair->SetPosition(newPos);
+	}
+}
 
 /**
  * @brief 選択しているマガジン内の擬音の情報を返す関数
@@ -579,9 +695,17 @@ void Player::Shot(void)
 IOnomatopoeia* Player::GetLoadedBullet(void)
 {
 	// 装填中のマガジンに入ってる擬音を返す
-	return m_Magazines[UseMagNumber]->GetBulletPointer();
+	return m_Magazines[UsingMagIdx]->GetBulletPointer();
 }
 
+/**
+ * @brief プレイヤーが持っているマガジンのコンテナを返す関数
+ * @return マガジンのコンテナ
+*/
+std::vector<Magazine*>& Player::GetMagazines(void)
+{
+	return m_Magazines;
+}
 
 /**
  * @brief 選択してるマガジンを返す関数
@@ -589,7 +713,7 @@ IOnomatopoeia* Player::GetLoadedBullet(void)
 */
 Magazine* Player::GetUsingMag(void)
 {
-	return m_Magazines[UseMagNumber];
+	return m_Magazines[UsingMagIdx];
 }
 
 
@@ -613,17 +737,19 @@ bool Player::GetIsSuction(void)
 void Player::SetIsSuction(bool _flg)
 {
 	IsSuction = _flg;
+	m_Soundgun->SetIsSuction(_flg);	// 擬音銃の吸い込み状態も更新
 }
 
 // 選択されているマガジン番号のセッターゲッター
-void Player::SetMagNumber(int _num)
+void Player::SetMagIdx(int _num)
 {
-	this->UseMagNumber = _num;
+	this->UsingMagIdx = _num;
 }
 
-int Player::GetMagNumber(void)
+
+int Player::GetMagIdx(void)
 {
-	return this->UseMagNumber;
+	return this->UsingMagIdx;
 }
 
 // マガジン数のゲッター

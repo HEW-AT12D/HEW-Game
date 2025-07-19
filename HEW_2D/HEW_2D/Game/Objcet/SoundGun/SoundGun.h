@@ -18,15 +18,14 @@ class Magazine;
 class SoundGun : public GameObject
 {
 public:
-	SoundGun(D3D11& _D3d11) :GameObject(_D3d11) {
+	SoundGun(D3D11& _D3d11, Sound* _sound = nullptr) :GameObject(_D3d11, _sound) {
 		IsSuction = false;
 		IsShot = false;
 		m_ShotPower = 25.0f;
 	};
 	~SoundGun() {};
 
-	// W押したらエラー吐くのを直す
-	bool Suction(IOnomatopoeia* _gion);	// 吸い込み関数(吸い込む擬音のデータ、それを戻り値で渡し、マガジンに入れ込む)
+	bool Suction(std::pair<std::pair<Tag, std::string>, IOnomatopoeia*> _onomatopoeia);	// 吸い込み関数(吸い込む擬音のデータ、それを戻り値で渡し、マガジンに入れ込む)
 	void Shot(Magazine* _mag);		// 発射関数(選択したマガジン内の擬音を発射する)
 
 	void SetIsSuction(bool _flg);
@@ -35,6 +34,7 @@ public:
 	void Draw(void)override;
 
 private:
+	Magazine* m_pMagazine;	// 現在使用中のマガジン
 	bool IsSuction;			// 吸い込み中か？
 	bool IsShot;			// 発射したか？
 	float m_ShotPower;		// 射撃力

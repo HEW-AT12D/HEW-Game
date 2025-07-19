@@ -74,6 +74,10 @@ private:
 	XINPUT_STATE controllerState = {};
 	XINPUT_STATE controllerState_old = {};
 
+	// 左トリガーボタンの状態（押し込み具合:0?255）
+	BYTE m_LeftTrigger = 0;
+	BYTE m_PrevLeftTrigger = 0;
+
 	int VibrationTime;	//振動継続時間をカウントする変数
 
 
@@ -107,6 +111,9 @@ public:
 	//トリガー(コントローラー)
 	float GetLeftTrigger(void);
 	float GetRightTrigger(void);
+	bool GetLeftTriggerPress(void);   //プレス(押している間ずっと)
+	bool GetLeftTriggerTrigger(void); //トリガー(押し始めた時)
+	bool GetLeftTriggerRelease(void); //リリース(押し終わった時)
 
 	//ボタン入力(コントローラー)
 	bool GetButtonPress(WORD btn);   //プレス(押している間ずっと)

@@ -13,13 +13,12 @@
 class Camera : public GameObject
 {
 public:
-	Camera(D3D11& _D3d11) :GameObject(_D3d11) {
+	Camera(D3D11& _D3d11, Sound* _sound = nullptr) :GameObject(_D3d11, _sound) {
 		//! カメラの移動スピード
 		m_Velocity = { 20.0f };
 		Vector3 scele = { 1920.0f, 1080.0f, 0.0f };
 		transform.SetScale(scele);
 		transform.SetPosition(Vector3(0.0f, 0.0f, 0.0f));
-		//cameraSpeed = StageSize / 100;	//!ステージの移動スピード
 
 		// 最初はフェードインから始めたいのでフェードのフラグのみを設定しておく
 		OnFade = true;
@@ -30,9 +29,12 @@ public:
 	~Camera() {};
 	
 	void Update(void) override;		//! カメラスピードとオブジェクトの位置
+	void Draw(void) override;		//! 描画
+	void SetTarget(GameObject* _target) { m_pTarget = _target; }	//! 注視点オブジェクトを設定
 	void SetIsMoving(bool _flg) { IsMoving = _flg; }
 
 private:
+	GameObject* m_pTarget = nullptr;	//! 注視点オブジェクト
 	bool OnFade;	// フェード中
 	bool FadeIn;	// フェードイン/アウト判定
 	bool IsMoving;	// 移動中か判定

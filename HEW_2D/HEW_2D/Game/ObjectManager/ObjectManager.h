@@ -24,7 +24,7 @@ class ObjectManager
 {
 public:
 	ObjectManager() = default;
-	ObjectManager(D3D11& _D3d11) :D3d11(_D3d11) {
+	ObjectManager(D3D11& _D3d11, Sound& _sound) : D3d11(_D3d11), SoundRef(_sound) {
 
 	}
 	~ObjectManager() {};
@@ -36,7 +36,7 @@ public:
 	 * 追加時にmake_pairを書かずに引数二つ書くだけで動作させたい→関数内で引数二つの型を確認し、二つの型がTagとstringであればmake_pairしてmapに追加する
 	*/
 	template <typename T>
-	void AddObject(const Tag& _Tag, const std::string& _Name)
+	void AddObject(const Tag& _Tag, const std::string& _Name, bool _hasSound = false)
 	{
 		// 同一のタグと名前を持つオブジェクトが存在する場合にはエラーを出すようにする
 		// 名前が空の場合は追加しない
@@ -54,8 +54,15 @@ public:
 			return; // すでに同じキーが存在する場合は追加しない
 		}
 
-		// 正常であればキーとオブジェクトをセットで追加
-		Objects.emplace(std::move(key), new T(D3d11));
+		// 正常であればキーとオブジェクトをセットで追加(音を持つオブジェクトならサウンドクラスを注入する)
+		std::unique_ptr<T> obj;
+		if (_hasSound) {
+			obj = std::make_unique<T>(D3d11, &SoundRef);
+		}
+		else {
+			obj = std::make_unique<T>(D3d11);
+		}
+		Objects.emplace(std::move(key), std::move(obj));
 	}
 
 	/**
@@ -67,7 +74,7 @@ public:
 		// 引数の長さ分オブジェクト追加関数を回す
 		for (auto&& object : _Objects)
 		{
-			AddObject(_Tag, object);
+			AddObject<T>(_Tag, object);
 		}
 	}
 
@@ -82,7 +89,6 @@ public:
 	{
 		(AddObject<T>(std::forward<Keys>(keys).first, std::forward<Keys>(keys).second), ...);
 	}
-
 
 	/**
 	 * @brief オブジェクト取得関数
@@ -102,7 +108,7 @@ public:
 			if (obj.first.first == _tag && obj.first.second == _name)
 			{
 				// ダウンキャストを試みる
-				auto castedObj = dynamic_cast<T*>(obj.second);
+				auto castedObj = dynamic_cast<T*>(obj.second.get());
 				if (castedObj)
 				{
 					// キャスト成功時、適切に返す
@@ -118,7 +124,6 @@ public:
 		// 一致するオブジェクトが見つからない場合
 		throw std::runtime_error("指定されたタグと名前のオブジェクトが見つかりませんでした");
 	}
-
 
 	/**
 	 * @brief	オブジェクトを配列で取得する関数
@@ -137,14 +142,16 @@ public:
 			if (obj.first.first == _tag)
 			{
 				// キャストできるならキャストして配列に格納
-				if (auto casted = dynamic_cast<T*>(obj.second))
+				if (auto casted = dynamic_cast<T*>(obj.second.get()))
 				{
-					returnobjects.emplace_back(obj.first, casted);
+					//returnobjects.emplace_back(obj.first, casted);
+					returnobjects.emplace_back(std::make_pair(std::pair<Tag, std::string>(obj.first), casted));
 				}
 				// 基底クラスならそのまま格納
 				else
 				{
-					returnobjects.emplace_back(obj.first, static_cast<T*>(obj.second));
+					//returnobjects.emplace_back(obj.first, static_cast<T*>(obj.second.get()));
+					returnobjects.emplace_back(std::pair<std::pair<Tag, std::string>, T*>{ obj.first, static_cast<T*>(obj.second.get()) });
 				}
 			}
 		}
@@ -159,18 +166,16 @@ public:
 		// map内を探索
 		for (auto& obj : Objects)
 		{
-			// タグが同じで
-			if (obj.first.first == _tag)
+			// タグと名前が一致しているか確認
+			if (obj.first.first == _tag && obj.first.second == _name)
 			{
-				// キャストできるならキャストして配列に格納
-				if (auto casted = dynamic_cast<T*>(obj.second))
+				if (auto casted = dynamic_cast<T*>(obj.second.get()))
 				{
-					returnobjects.emplace_back(obj.first, casted);
+					returnobjects.emplace_back(std::pair<std::pair<Tag, std::string>, T*>{ {obj.first.first, obj.first.second}, casted });
 				}
-				// 基底クラスならそのまま格納
 				else
 				{
-					returnobjects.emplace_back(obj.first, static_cast<T*>(obj.second));
+					returnobjects.emplace_back(std::pair<std::pair<Tag, std::string>, T*>{ {obj.first.first, obj.first.second}, static_cast<T*>(obj.second.get()) });
 				}
 			}
 		}
@@ -196,7 +201,7 @@ public:
 			// タグが同じかを調べ、
 			if (obj.first.first == _tag)
 			{
-				auto casted = dynamic_cast<T*>(obj.second);
+				auto casted = dynamic_cast<T*>(obj.second.get());
 				// dynamic_pointer_castで型チェックし、型が同じであれば配列に追加
 				if (casted) {
 					objects.push_back(casted);
@@ -206,16 +211,11 @@ public:
 		return objects;
 	}
 
-
 	/**
 	 * @brief オブジェクト削除関数
 	 * @param object 削除対象オブジェクト
 	*/
 	void DeleteObject(Tag _ObjTag, const std::string& objString);
-
-	// オブジェクト取得関数
-	//GameObject* GetGameObject(const Tag& _Tag, const std::string _Name);
-
 
 	/**
 	 * @brief オブジェクト取得関数(weak_ptrを返す)
@@ -232,7 +232,7 @@ public:
 		if (iterator != Objects.end())
 		{
 			// ポインタを取得して型に合わせて一度shared_ptrにキャスト
-			T* castedptr = dynamic_cast<T*>(iterator->second);
+			T* castedptr = dynamic_cast<T*>(iterator->second.get());
 
 			// キャストが成功した場合(nullptrではない場合)
 			if (castedptr)
@@ -247,6 +247,8 @@ public:
 
 	// 全オブジェクトを取得する
 	std::vector<std::pair<std::pair<Tag, std::string>, GameObject*>> GetAllObjects(void);
+	// プレイヤー周辺の擬音を取得する
+	std::vector<std::pair<std::pair<Tag, std::string>, IOnomatopoeia*>> GetOnomatopoeiaAroundPlayer(void);
 
 	// カメラがあればそのポインタを返す関数
 	Camera* HasCamera(void);
@@ -270,8 +272,8 @@ public:
 
 private:
 	//! オブジェクトの管理はタグ（大まかな分類）と名前（一意のもの）を使う
-
 	// unordered_mapにpairを使う場合、pairの紐づけないといけないためPairHashをmapの引数に入れる
-	std::unordered_map<std::pair<Tag, std::string>, GameObject*, PairHash> Objects;
+	std::unordered_map<std::pair<Tag, std::string>, std::unique_ptr<GameObject>, PairHash> Objects;
 	D3D11& D3d11;
+	Sound& SoundRef; // Soundクラスの参照を保持(オブジェクト生成時に使用)
 };

@@ -3,14 +3,12 @@
 #include "../../Game/SceneManager/SceneManager.h"
 
 constexpr float BUTTON_STAGE1 = 0.0f;
-constexpr float BUTTON_STAGE2 = -250.0f;
+constexpr float BUTTON_STAGE2 = -300.0f;
 
 
 void StageSelectScene::Init(void) {
-	// サウンド初期化
-	sound.Init();
 	// BGM再生
-	sound.Play(BGM_STAGESELECT);
+	SoundRef.Play(BGM_STAGESELECT);
 	// 背景
 	objectmanager.AddObject<GameObject>(BACKGROUND, "Background");
 	objectmanager.GetGameObjectPtr<GameObject>(BACKGROUND, "Background")->Init(L"Game/Asset/BackGround/StageSelectBack.png");
@@ -34,7 +32,7 @@ void StageSelectScene::Init(void) {
 	// カーソル
 	objectmanager.AddObject<GameObject>(UI, "Cursol");
 	objectmanager.GetGameObjectPtr<GameObject>(UI, "Cursol")->Init(L"Game/Asset/UI/TitleCursol.png", 3, 1);
-	objectmanager.GetGameObjectPtr<GameObject>(UI, "Cursol")->SetPosition(Vector3(-250.0f, -10.0f, 0.0f));
+	objectmanager.GetGameObjectPtr<GameObject>(UI, "Cursol")->SetPosition(Vector3(-250.0f, 0.0f, 0.0f));
 	objectmanager.GetGameObjectPtr<GameObject>(UI, "Cursol")->SetScale(Vector3(300.0f, 450.0f, 0.0f));
 	objectmanager.GetGameObjectPtr<GameObject>(UI, "Cursol")->SetUV(XMINT2(2, 0));
 
@@ -73,7 +71,7 @@ void StageSelectScene::Update(void) {
 		// シーン遷移フラグを立てる
 		SetChangeScene(true);
 		// BGM停止
-		sound.Stop(BGM_STAGESELECT);
+		SoundRef.Stop(BGM_STAGESELECT);
 	}
 	else
 	{
@@ -95,7 +93,7 @@ void StageSelectScene::Update(void) {
 		}
 		objectmanager.GetGameObjectPtr<GameObject>(UI, "Cursol")->SetPosition(Cursor_pos);
 		// SE再生
-		sound.Play(SE_CLICK);
+		SoundRef.Play(SE_CLICK);
 	}
 
 	// 上ボタン入力確認
@@ -108,7 +106,7 @@ void StageSelectScene::Update(void) {
 		}
 		objectmanager.GetGameObjectPtr<GameObject>(UI, "Cursol")->SetPosition(Cursor_pos);
 		// SE再生
-		sound.Play(SE_CLICK);
+		SoundRef.Play(SE_CLICK);
 	}
 	
 	// カーソル座標によってボタンの色を変化
@@ -138,8 +136,7 @@ void StageSelectScene::Draw(void) {
 
 void StageSelectScene::Uninit(void) {
 	// BGM停止
-	sound.Stop(BGM_STAGESELECT);
-	sound.Uninit();
+	SoundRef.Stop(BGM_STAGESELECT);
 	objectmanager.Uninit();
 }
 

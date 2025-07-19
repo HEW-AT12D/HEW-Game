@@ -76,5 +76,4 @@ void Application::Uninit(void)
 	Window::GetInstance().Uninit();	// ウィンドウを終了
 	m_Game.Uninit();		// ゲームを終了
 	m_D3d11.Release();		// DirectXを終了
-	CoUninitialize();		// 実行中にゲームを落とすとサウンドの解放がされずにメモリリークを起こすのでここでCOMライブラリを終了
 }

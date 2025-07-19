@@ -42,7 +42,6 @@ void Camera::Update(void)
 		}
 	}
 
-	// フェードアウト→カメラ座標移動→フェードイン、という風にしたい
 	if (IsMoving)
 	{
 		// 座標を変更
@@ -53,4 +52,19 @@ void Camera::Update(void)
 		IsMoving = false;		// 移動完了	
 		OnFade = true;			// フェードアウト開始
 	}
+
+	// 注視点オブジェクトがあれば
+	//if (m_pTarget)
+	//{
+	//	Vector3 targetPos = m_pTarget->GetPosition();
+	//	Vector3 halfScreenSize = transform.GetScale() * 0.5f;
+
+	//	// カメラの左上座標を更新（画面中心にターゲットを置く）
+	//	Vector3 newCameraPos = targetPos - halfScreenSize;
+	//	transform.SetPosition(newCameraPos);
+	//}
+}
+
+void Camera::Draw(void){
+
 }

@@ -5,8 +5,6 @@
 #include <Xinput.h>
 
 void ResultScene::Init(void) {
-	// サウンド初期化
-	sound.Init();
 	// オブジェクト追加
 	//背景
 	objectmanager.AddObject<GameObject>(BACKGROUND, "background");
@@ -116,7 +114,6 @@ void ResultScene::Draw(void) {
 
 
 void ResultScene::Uninit(void) {
-	sound.Uninit();
 	objectmanager.Uninit();
 }
 

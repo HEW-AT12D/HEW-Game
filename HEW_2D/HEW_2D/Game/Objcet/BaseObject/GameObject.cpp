@@ -4,7 +4,7 @@
  * @brief コンストラクタ
  * @param _D3d11 D3Dクラスの参照
 */
-GameObject::GameObject(D3D11& _D3d11) :D3d11(_D3d11)
+GameObject::GameObject(D3D11& _D3d11, Sound* _sound) :D3d11(_D3d11), m_pSound(_sound)
 {
 	// std::vectorを使うためコンストラクタで初期化
 	vertices = {
@@ -191,14 +191,14 @@ void GameObject::SetChild(GameObject* _Child)
 	std::cout << m_pChildren.size() << std::endl;
 
 	// 擬音の表示座標設定
-	if (m_pChildren.size() == 2 || m_pChildren[0] == _Child)
+	/*if (m_pChildren.size() == 2 || m_pChildren[0] == _Child)
 	{
 		_Child->SetPosition(Vector3(-900.0f, 500.0f, 0.0f));
 	}
 	else if (m_pChildren.size() == 3 || m_pChildren[1] == _Child)
 	{
 		_Child->SetPosition(Vector3(-800.0f, 500.0f, 0.0f));
-	}
+	}*/
 }
 
 void GameObject::AddForce(Vector3 _Vel)
@@ -224,7 +224,7 @@ void GameObject::SetIsDelete(bool _flg)
  * @brief アニメーション遷移関数
  * ここでは通常のアニメーションのみを定義し、各派生クラスで各々のアニメーション処理を定義する
 */
-void GameObject::Animation(STATE m_State, GameObject* _efect)
+void GameObject::Animation(ANIMATIONSTATE m_State, GameObject* _efect)
 {
 
 	const float uvUpdateInterval = 0.1f; // 0.1秒ごとに更新（10FPS相当）

@@ -19,10 +19,9 @@ class Poyon : public IOnomatopoeia
 {
 public:
 
-	Poyon(D3D11& _D3d11) :IOnomatopoeia(_D3d11) {
+	Poyon(D3D11& _D3d11, Sound* _sound = nullptr) :IOnomatopoeia(_D3d11, _sound) {
 
 	}
-
 	~Poyon();
 	void Action(void) {};
 	void Action(Player*);

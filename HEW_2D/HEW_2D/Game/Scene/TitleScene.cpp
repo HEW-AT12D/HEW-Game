@@ -3,10 +3,8 @@
 
 
 void TitleScene::Init(void) {
-	// サウンド初期化
-	sound.Init();
 	// BGM再生
-	sound.Play(BGM_TITLE);
+	SoundRef.Play(BGM_TITLE);
 
 	// 背景
 	objectmanager.AddObject<Player>(ENEMY, "player");
@@ -85,7 +83,7 @@ void TitleScene::Update(void) {
 		// シーン遷移フラグを立てる
 		SetChangeScene(true);
 		// BGM停止
-		sound.Stop(BGM_TITLE);
+		SoundRef.Stop(BGM_TITLE);
 	}
 	else
 	{
@@ -98,7 +96,7 @@ void TitleScene::Update(void) {
 		Cursol_pos.y = -370.0f;
 		objectmanager.GetGameObjectPtr<GameObject>(UI, "Cursol")->SetPosition(Cursol_pos);
 		// SE再生
-		sound.Play(SE_CLICK);
+		SoundRef.Play(SE_CLICK);
 	}
 
 	// 上ボタン入力確認
@@ -107,7 +105,7 @@ void TitleScene::Update(void) {
 		Cursol_pos.y = -170.0f;
 		objectmanager.GetGameObjectPtr<GameObject>(UI, "Cursol")->SetPosition(Cursol_pos);
 		// SE再生
-		sound.Play(SE_CLICK);
+		SoundRef.Play(SE_CLICK);
 	}
 }
 
@@ -116,7 +114,7 @@ void TitleScene::Draw(void) {
 }
 
 void TitleScene::Uninit(void) {
-	sound.Uninit();
+	SoundRef.Stop(BGM_TITLE);
 	objectmanager.Uninit();
 }
 

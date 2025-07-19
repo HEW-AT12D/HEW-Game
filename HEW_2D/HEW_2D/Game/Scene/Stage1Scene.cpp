@@ -18,10 +18,8 @@
  * ステージは、縦２０マス＊横４０マス
 */
 void Stage1Scene::Init(void) {
-	// サウンド初期化
-	sound.Init();
 	// BGM再生
-	sound.Play(BGM_INGAME);
+	SoundRef.Play(BGM_INGAME);
 	// オブジェクトマネージャ初期化
 	objectmanager.Init();
 
@@ -727,59 +725,6 @@ void Stage1Scene::Update(void)
 
 	//----------------当たり判定-----------------------
 
-	//ColliderPlayer_Ground(playerShared.second, grounds);			// プレイヤーと地面
-	//Collider_Objects_Objects(onopatopoeias,grounds);		// 擬音と地面
-	//ColliderPlayer_Ground(playerShared, groundShared2);
-
-	/*if (ColliderPlayer_Ground(playerShared.second, grounds))
-	{
-		Collider_to_Object(playerShared.second, baneShared.lock());
-
-	}
-	else {
-		Collider_toGround(playerShared2, grounds2.lock());
-
-	}*/
-
-
-	// クロスヘアの入力取得(本来はプレイヤーのフラグを立てて、プレイヤーの更新の中でクロスヘアを動かすべき)
-	if (Input::GetInstance().GetKeyPress(VK_UP) || RightStickInput.y > 0.1f)
-	{
-		crosshairShared->SetMoveUp(true);
-	}
-	else {
-		crosshairShared->SetMoveUp(false);
-	}
-
-	if (Input::GetInstance().GetKeyPress(VK_DOWN) || RightStickInput.y < -0.1f)
-	{
-		crosshairShared->SetMoveDown(true);
-	}
-	else
-	{
-		crosshairShared->SetMoveDown(false);
-	}
-
-	if (Input::GetInstance().GetKeyPress(VK_RIGHT) || RightStickInput.x > 0.1f)
-	{
-		crosshairShared->SetMoveRight(true);
-	}
-	else
-	{
-		crosshairShared->SetMoveRight(false);
-	}
-
-	if (Input::GetInstance().GetKeyPress(VK_LEFT) || RightStickInput.x < -0.1f)
-	{
-		crosshairShared->SetMoveLeft(true);
-	}
-	else
-	{
-		crosshairShared->SetMoveLeft(false);
-	}
-
-
-
 	////擬音の吸収→247行目の吸い込み処理に変更、改良
 	//if (Input::GetInstance().GetKeyPress(VK_F))
 	//{
@@ -834,12 +779,9 @@ void Stage1Scene::Update(void)
 				throw std::runtime_error("擬音をキャストできませんでした");
 			}
 			// SE再生
-			sound.Play(SE_SHOT);
+			SoundRef.Play(SE_SHOT);
 		}
 	}
-
-
-	//playerShared.lock()->Shot(gionShared);
 
 
 	// ----------------吸い込み処理→ここはプレイヤーの処理に移す-------------------------
@@ -848,8 +790,7 @@ void Stage1Scene::Update(void)
 	{
 		// 吸い込める擬音がなくても演出だけ行う
 		// SE再生
-		sound.Play(SE_SUCTION);
-		// 
+		SoundRef.Play(SE_SUCTION);
 
 		// 吸い込める擬音を探す
 		// そのフレーム内のタグが擬音のもの全て取得→それとプレイヤーから出る扇型の当たり判定を取得
@@ -869,7 +810,7 @@ void Stage1Scene::Update(void)
 				playerShared.second->SetIsSuction(true);			// プレイヤーの状態を吸い込み中に設定
 
 				// 吸い込み処理が終わったら
-				if (playerShared.second->Suction(HitOnomatopoeia.second))
+				if (playerShared.second->Suction(HitOnomatopoeia))
 				{
 					// 吸い込み処理が終わった時に擬音のタグをUIに変更して
 					objectmanager.ChangeTag(HitOnomatopoeia.first.first, HitOnomatopoeia.first.second, UI);
@@ -893,9 +834,6 @@ void Stage1Scene::Update(void)
 		}
 		
 	}
-	//連：メモ
-	//擬音を回収したときに、オブジェクトをただ移動させるだけじゃなくて、回収したオブジェクトの情報によって表示させるUIを変える
-
 
 	//////////////////////////////////////////////
 	/// スライム挙動
@@ -1035,71 +973,9 @@ void Stage1Scene::Update(void)
 			m_MagCount = 0;
 
 			// サウンド再生
-			sound.Play(SE_GETMAGAZINE);
+			SoundRef.Play(SE_GETMAGAZINE);
 		}
 
-	}
-
-	/////////////////////////////////
-	// カーソル移動して擬音の選択
-	/////////////////////////////////
-	
-	// R1でマガジンカーソル右移動
-	if (Input::GetInstance().GetKeyTrigger(VK_P) || Input::GetInstance().GetButtonTrigger(XINPUT_GAMEPAD_RIGHT_SHOULDER))
-	{
-		// カーソルの座標取得
-		Vector3 p_frame = objectmanager.GetGameObjectPtr<GameObject>(UI, "Frame")->GetPosition();
-
-		// ドォン用マガジンを除く一番最後のマガジンを選択していなければ
-		if (playerShared.second->GetMagNumber() != playerShared.second->GetMagCount() - 1)
-		{
-			// マガジン選択番号を１増やして
-			playerShared.second->SetMagNumber(playerShared.second->GetMagNumber() + 1);
-			// カーソルを右に移動
-			p_frame.x += 120.0f;
-		}
-		// 一番最後のマガジンを選択している場合
-		else
-		{
-			// マガジン選択番号を１(ドォン用マガジンを除く一番最初)に戻して
-			playerShared.second->SetMagNumber(1);
-			// カーソルを初期位置に移動
-			p_frame.x = -900.0f;
-		}
-		// 座標を設定
-		objectmanager.GetGameObjectPtr<GameObject>(UI, "Frame")->SetPosition(p_frame);
-		// SE再生
-		sound.Play(SE_CLICK);
-	}
-	// L1でマガジンカーソル左移動
-	if (Input::GetInstance().GetKeyTrigger(VK_O) || Input::GetInstance().GetButtonTrigger(XINPUT_GAMEPAD_LEFT_SHOULDER))
-	{
-		// カーソルの座標取得
-		Vector3 p_frame = objectmanager.GetGameObjectPtr<GameObject>(UI, "Frame")->GetPosition();
-
-		// ドォン用マガジンを除く一番最初のマガジンを選択していなければ
-		if (playerShared.second->GetMagNumber() != 1)
-		{
-			sound.Play(SE_CLICK);
-			// マガジン選択番号を１減らして
-			playerShared.second->SetMagNumber(playerShared.second->GetMagNumber() - 1);
-			// カーソルを左に移動
-			p_frame.x -= 120.0f;
-		}
-		// 一番最初のマガジンを選択している場合
-		else
-		{
-			// マガジン選択用カーソルを取得
-			auto magcursor = objectmanager.GetGameObjectPtr<GameObject>(UI, "Frame");
-			// マガジン選択番号を(ドォン用マガジンを除く)一番後ろにして
-			playerShared.second->SetMagNumber(playerShared.second->GetMagCount() - 1);
-			// カーソルを一番後ろの位置に移動
-			p_frame.x = -900.0f + magcursor->GetScale().x * (playerShared.second->GetMagCount() - 2);	// 初期位置 + カーソルの大きさ * マガジン数(ドォン入れないので-2)
-		}
-		// 座標を設定
-		objectmanager.GetGameObjectPtr<GameObject>(UI, "Frame")->SetPosition(p_frame);
-		// SE再生
-		sound.Play(SE_CLICK);
 	}
 
 	// オブジェクトの更新
@@ -1115,8 +991,7 @@ void Stage1Scene::Draw(void) {
 
 void Stage1Scene::Uninit(void) {
 	// BGM停止
-	sound.Stop(BGM_INGAME);
-	sound.Uninit();
+	SoundRef.Stop(BGM_INGAME);
 	objectmanager.Uninit();
 }
 

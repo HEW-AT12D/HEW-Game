@@ -3,6 +3,7 @@
 #include "../../../Framework/D3D11/D3D11.h"
 #include "../../../Framework/WICTextureLoader/WICTextureLoader.h"	// テクスチャ読み込みライブラリ
 #include "../../../Framework/Component/Transform/Transform.h"		//Transform.h読み込み
+#include "../../../Framework/Sound/Sound.h"
 
 /// <summary>
 /// TODO:オブジェクトの描画方法を変更する
@@ -25,6 +26,7 @@
  * @brief オブジェクト管理タグ
 */
 enum Tag {
+	NONE = -1,	// タグなし
 	BACKGROUND,
 	IMAGE,
 	UI,
@@ -38,7 +40,7 @@ enum Tag {
 };
 
 // オブジェクトの状態（ここに全部書き出しておく）
-enum STATE
+enum ANIMATIONSTATE
 {
 	NORMAL,		// 通常時
 	RUN,		// 移動時
@@ -64,59 +66,8 @@ class IOnomatopoeia;
  * @param color 色情報
  * 
 */
-class GameObject : public std::enable_shared_from_this<GameObject>
+class GameObject
 {
-protected:
-	//! 頂点データ
-	//! このゲームでは擬音を吸い込むことがあるため頂点を可変にしておく
-	std::vector<Vertex> vertices;
-	
-	// d3dクラス
-	D3D11& D3d11;
-
-	// 座標,大きさ,角度
-	Transform transform;
-	
-	// 色
-	Color m_Color = { 1.0f, 1.0f, 1.0f, 1.0f };
-
-	// 頂点バッファ
-	ID3D11Buffer* m_pVertexBuffer = nullptr;
-	
-	// テクスチャ用変数
-	ID3D11ShaderResourceView* m_pTextureView = nullptr;
-
-	//テクスチャが縦横に何分割されているか
-	XMINT2 m_Split = { 1,1 };
-	
-	//左上から何段目を切り抜いて表示するか
-	XMINT2 m_Number = { 0,0 };
-
-	// アニメーション用状態管理変数
-	STATE m_State = {};
-
-	// アニメーション管理フラグ
-	bool IsAnimation = false;
-
-	// 接地しているか？
-	bool OnGround = false;
-
-	// 削除予定フラグ(毎フレームこのフラグを確認し、立っているオブジェクトは削除する)
-	bool IsDelete = false;
-	
-
-	// 加速度(それぞれの軸の方向の加速度(重力とか)を設定→毎フレーム一定の値(現実だと時間)を乗算した値を速度に代入する、というように使う)
-	//Vector3 m_Acceleration;→速度から算出できるのでいらない
-
-	// 移動用方向ベクトル(Transform.Rotaionは回転を扱うものなので別物)
-
-	// 付与されている擬音のポインタ
-	IOnomatopoeia* m_pAttachedOnomatopoeia;
-
-	//// 名前(一意のもの)
-	//std::string m_Name;
-	
-
 public:
 	// 速度(これは毎フレーム変化する値)
 	Vector3 m_Velocity;
@@ -133,7 +84,7 @@ public:
 	//Tag tag;
 
 	//GameObject() = default;	// クラスのメンバ変数に参照が入っている場合、デフォルトコンストラクタが使えない（初期化が必須となる）
-	GameObject(D3D11& _D3d11);
+	GameObject(D3D11& _D3d11, Sound* _sound = nullptr);
 	virtual ~GameObject();
 
 	virtual void Init(const wchar_t* imgname, int sx = 1, int sy = 1, bool _animation = false); // 初期化
@@ -145,7 +96,7 @@ public:
 	virtual void SetRotation(Vector3 _Rot);			// 角度をセット
 	virtual void SetColor(const Color _Color);	// 色をセット
 	virtual void SetUV(const XMINT2 _UV);			// UV座標をセット
-	virtual void Animation(STATE, GameObject*);		// アニメーション
+	virtual void Animation(ANIMATIONSTATE, GameObject*);		// アニメーション
 	// TODO:2025/01/24 赤根:プレイヤーに親子関係を持たせる際の関数の引数にタグと名前を入れるように変更する→プレイヤー側でオーバーライドして、タグがマガジンであればタグを変更、にしようと思ったが、それだとオブジェクトマネージャの管理外での処理が発生するかも→オブジェクトにはオブジェクトのポインタだけを持たせたほうが良いかも
 	virtual void SetParent(GameObject* _Parent);	// 親オブジェクトをセット
 	virtual void AddForce(const Vector3 _Vel);		// 速度をセット(ここでは即座に値を加算する方法だけ作る→unityのforcemode.impulseみたいなやつ)
@@ -164,4 +115,55 @@ public:
 	virtual Vector3 GetVelocity(void);		// 速度を取得
 	virtual Vector3 GetDirection(void);		// 方向ベクトルを取得
 	virtual bool GetOnGround(void);         //デバック用
+
+protected:
+	//! 頂点データ
+	//! このゲームでは擬音を吸い込むことがあるため頂点を可変にしておく
+	std::vector<Vertex> vertices;
+	
+	// d3dクラス
+	D3D11& D3d11;
+
+	// 座標,大きさ,角度
+	Transform transform;
+	
+	// 色
+	Color m_Color = { 1.0f, 1.0f, 1.0f, 1.0f };
+
+	// サウンド再生用ポインタ(DI:必要に応じてアタッチするのでポインタ管理)
+	Sound* m_pSound = nullptr;
+
+	// 頂点バッファ
+	ID3D11Buffer* m_pVertexBuffer = nullptr;
+	
+	// テクスチャ用変数
+	ID3D11ShaderResourceView* m_pTextureView = nullptr;
+
+	//テクスチャが縦横に何分割されているか
+	XMINT2 m_Split = { 1,1 };
+	
+	//左上から何段目を切り抜いて表示するか
+	XMINT2 m_Number = { 0,0 };
+
+	// アニメーション用状態管理変数
+	ANIMATIONSTATE m_AnimState = {};
+
+	// アニメーション管理フラグ
+	bool IsAnimation = false;
+
+	// 接地しているか？
+	bool OnGround = false;
+
+	// 削除予定フラグ(毎フレームこのフラグを確認し、立っているオブジェクトは削除する)
+	bool IsDelete = false;
+	
+
+	// 加速度(それぞれの軸の方向の加速度(重力とか)を設定→毎フレーム一定の値(現実だと時間)を乗算した値を速度に代入する、というように使う)
+	//Vector3 m_Acceleration;→速度から算出できるのでいらない
+
+	// 付与されている擬音のポインタ
+	IOnomatopoeia* m_pAttachedOnomatopoeia;
+
+	//// 名前(一意のもの)
+	//std::string m_Name;
 };

@@ -152,7 +152,7 @@ bool ColliderPlayer_Gion(Player* player, GameObject* gion)
 std::pair<std::pair<Tag, std::string>, IOnomatopoeia*> ColliderFan_Gion(Player* fan, std::vector<std::pair<std::pair<Tag, std::string>, IOnomatopoeia*>> _onomatopoeias)
 {
 	float PI = 3.14159265;
-	float fanAngle = PI / 6;
+	float fanAngle = PI / 3;
 	//îŒ^‚Ìî•ñæ“¾
 	float fanCenterX = fan->GetPosition().x + 200.0f;	//îŒ^‚Ì’†SXÀ•W
 	//float fanCenterX = fan.lock()->GetPosition().x + 200.0f;	//îŒ^‚Ì’†SXÀ•W
@@ -229,7 +229,7 @@ std::pair<std::pair<Tag, std::string>, IOnomatopoeia*> ColliderFan_Gion(Player* 
 		}
 	}
 	//‚Ç‚ê‚É‚àŠY“–‚µ‚È‚¢ê‡A“–‚½‚Á‚Ä‚¢‚È‚¢‚Ì‚Å‰½‚à•Ô‚³‚È‚¢
-	return {};
+	return { {Tag::NONE, ""}, nullptr };
 }
 
 // ü•ª‚Æ‰~‚ªŒğ·‚µ‚Ä‚¢‚é‚©”»’è‚·‚éŠÖ”

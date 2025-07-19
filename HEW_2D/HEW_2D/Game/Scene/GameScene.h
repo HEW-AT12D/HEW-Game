@@ -11,7 +11,7 @@
 class GameScene :public IScene
 {
 public:
-	GameScene(D3D11& _D3d11) :IScene(_D3d11) {};
+	GameScene(D3D11& _D3d11, Sound& _sound) :IScene(_D3d11, _sound) {};
 	~GameScene() {};
 	void Init(void)override;
 	void Update(void)override;

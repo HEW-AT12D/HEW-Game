@@ -62,6 +62,20 @@ void Magazine::Draw(void)
 	}
 }
 
+/**
+ * @brief ‰ğ•ú
+ * ƒ}ƒKƒWƒ“‚É‘•“U‚³‚ê‚Ä‚¢‚é‹[‰¹‚ª‚ ‚ê‚Î‰ğ•ú‚·‚é
+*/
+void Magazine::Uninit(void)
+{
+	// ƒ}ƒKƒWƒ“‚É‘•“U‚³‚ê‚Ä‚¢‚é‹[‰¹‚ª‚ ‚ê‚Î
+	if (m_Onomatopoeia)
+	{
+		m_Onomatopoeia = nullptr; // ƒ|ƒCƒ“ƒ^‚ğnullptr‚Éİ’è
+	}
+	// GameObject‚Ì‰ğ•ú
+	this->GameObject::Uninit();
+}
 
 /**
  * @brief  ‘•“U‚³‚ê‚Ä‚¢‚é‹[‰¹‚ğ•Ô‚·ŠÖ”
@@ -92,5 +106,7 @@ void Magazine::SetOnomatopoeia(IOnomatopoeia* _onomatopoeia)
 */
 IOnomatopoeia* Magazine::ReleaseBullet(void)
 {
-	return m_Onomatopoeia;
+	IOnomatopoeia* temp = m_Onomatopoeia; // Œ»İ‚Ì‹[‰¹‚ğˆê“I‚É•Û‘¶
+	m_Onomatopoeia = nullptr;		// ƒ}ƒKƒWƒ““à‚ğ‹ó‚É‚·‚é
+	return temp;
 }

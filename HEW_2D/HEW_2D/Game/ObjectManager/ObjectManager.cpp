@@ -35,7 +35,7 @@ void ObjectManager::Collider_Player_to_Object(void)
 			// オブジェクトが地面なら
 		case BACKGROUND:
 			// 地面との当たり判定を取る
-			Collider_toGround(playerobj, obj.second);
+			Collider_toGround(playerobj, obj.second.get());
 			break;
 			// 画像は当たり判定を取らない
 		case IMAGE:
@@ -46,9 +46,14 @@ void ObjectManager::Collider_Player_to_Object(void)
 			// ゲームオブジェクトなら判定を取る
 		case OBJECT:
 			// ここはマガジンの判定を取っている
-			if (Collider_to_Object(playerobj, obj.second))
+			if (Collider_to_Object(playerobj, obj.second.get()))
 			{
-				toBeUpdated.push_back(obj); // 変更対象を記録
+                // 修正前のコード
+                // auto key = std::make_pair<Tag, std::string>(obj.first, obj.second.get());
+
+                // 修正後のコード
+                auto key = std::make_pair(obj.first, obj.second.get());
+				toBeUpdated.push_back(key); // 変更対象を記録
 			}
 			break;
 		case GROUND:
@@ -97,12 +102,12 @@ bool ObjectManager::ChangeTag(Tag _oldtag, const std::string _name, Tag _newTag)
 	}
 
 	// 2. オブジェクトを取得し、マップから削除
-	auto obj = it->second;
+	auto obj = std::move(it->second);
 	Objects.erase(it);
 
 	// 3. 新しいタグで再登録
 	auto newKey = std::make_pair(_newTag, _name);
-	Objects[newKey] = obj;
+	Objects[newKey] = std::move(obj);
 
 	return true;
 }
@@ -154,8 +159,8 @@ void ObjectManager::Draw(void) {
 			// オブジェクトのx座標がカメラの視界範囲内、かつy座標が視界範囲内にある場合
 			if (left <= objX && objX <= right && down <= objY && objY <= up) {
 				// オブジェクトを描画するべきリストに追加
-				drewobj.push_back(obj);  // 必要に応じて追加処理
-				obj.second->Draw();      // オブジェクトを描画
+				drewobj.push_back(std::make_pair(obj.first, obj.second.get()));  // 必要に応じて追加処理
+				//obj.second->Draw();      // オブジェクトを描画
 			}
 		}
 		// 範囲for文
@@ -220,6 +225,7 @@ void ObjectManager::Draw(void) {
 	D3d11.FinishRender();
 }
 
+
 void ObjectManager::Uninit(void) {
 	// 範囲for文
 	for (auto& obj : Objects)
@@ -242,11 +248,38 @@ std::vector<std::pair<std::pair<Tag, std::string>, GameObject*>> ObjectManager::
 	std::vector<std::pair<std::pair<Tag, std::string>, GameObject*>> ret;
 	for (auto& obj : Objects)
 	{
-		ret.emplace_back(obj);
+		const auto& key = obj.first;
+		GameObject* ptr = obj.second.get();
+		ret.emplace_back(std::make_pair(std::pair<Tag, std::string>(key.first, key.second), ptr));
 	}
 	return ret;
 }
 
+/**
+ * @brief プレイヤーの周りのオノマトペを取得
+ * @return プレイヤーの周りにあるオノマトペの配列
+*/
+std::vector<std::pair<std::pair<Tag, std::string>, IOnomatopoeia*>> ObjectManager::GetOnomatopoeiaAroundPlayer(void)
+{
+	std::vector<std::pair<std::pair<Tag, std::string>, IOnomatopoeia*>> ret;
+	// プレイヤー取得
+	auto playerobj = GetGameObjectPtr<Player>(PLAYER, "Player");
+	// プレイヤーの周りのオノマトペを取得
+	for (auto& obj : Objects)
+	{
+		// タグが擬音で
+		if (obj.first.first == ONOMATOPOEIA) {
+			auto onomatopoeia = dynamic_cast<IOnomatopoeia*>(obj.second.get());
+			// プレイヤーの周囲750px以内にある擬音オブジェクトを取得
+			if(onomatopoeia && 
+				(onomatopoeia->GetPosition() - playerobj->GetPosition()).Length() < 750.0f) {
+				// タグと名前をセットで返す
+				ret.emplace_back(std::make_pair(obj.first, onomatopoeia));
+			}
+		}
+	}
+	return ret;
+}
 
 /**
  * @brief カメラがあればそのポインタを返す
@@ -256,7 +289,7 @@ std::vector<std::pair<std::pair<Tag, std::string>, GameObject*>> ObjectManager::
 Camera* ObjectManager::HasCamera(void)
 {
 	for (const auto& obj : Objects) {
-		if (auto casted = dynamic_cast<Camera*>(obj.second)) {
+		if (auto casted = dynamic_cast<Camera*>(obj.second.get())) {
 			return casted;  // 1つ見つかったら終了
 		}
 	}
